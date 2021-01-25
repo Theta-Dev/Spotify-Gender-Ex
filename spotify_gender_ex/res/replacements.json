@@ -1,0 +1,23 @@
+{
+  "genderex": {
+    "version": "0.0.1",
+    "spotify_versions": ["spotify-8-5-89-901"]
+  },
+  "files": [
+    {
+      "path": "res/values-de/plurals.xml",
+      "replace": [
+        {
+          "key": "home_inline_onboarding_header_title/other",
+          "old": "Folge %1$d Künstler*innen, um speziell für dich ausgewählte Musik zu erhalten.",
+          "new": "Folge %1$d Künstlern, um speziell für dich ausgewählte Musik zu erhalten."
+        },
+        {
+          "key": "home_inline_onboarding_header_title/one",
+          "old": "Folge %1$d Künstler*in, um speziell für dich ausgewählte Musik zu erhalten.",
+          "new": "Folge %1$d Künstler, um speziell für dich ausgewählte Musik zu erhalten."
+        }
+      ]
+    }
+  ]
+}
