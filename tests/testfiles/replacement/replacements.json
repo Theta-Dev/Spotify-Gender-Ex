@@ -1,11 +1,11 @@
 {
-  "genderex": {
-    "version": "0.0.1",
-    "spotify_versions": ["spotify-8-5-89-901"]
-  },
+  "version": "0.0.1",
+  "spotify_versions": [
+    "spotify-8-5-89-901"
+  ],
   "files": [
     {
-      "path": "res/values-de/plurals.xml",
+      "path": "original/8-5-89-901_plurals.xml",
       "replace": [
         {
           "key": "home_inline_onboarding_header_title/other",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "path": "res/values-de/plurals.xml",
+      "path": "original/8-5-89-901_strings.xml",
       "replace": [
         {
           "key": "ac_search_subtitle_artist",

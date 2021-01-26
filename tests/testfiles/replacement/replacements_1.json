@@ -1,0 +1,18 @@
+{
+  "version": "0.0.1",
+  "spotify_versions": [
+    "spotify-8-5-89-901"
+  ],
+  "files": [
+    {
+      "path": "file1",
+      "replace": [
+        {
+          "key": "key1",
+          "old": "Old1",
+          "new": "New1"
+        }
+      ]
+    }
+  ]
+}
