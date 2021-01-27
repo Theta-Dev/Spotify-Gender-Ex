@@ -1,5 +1,5 @@
 import json
-from os import path
+import os
 from .lang_file import LangFile, LangField
 
 
@@ -32,6 +32,8 @@ class ReplacementTable:
     def to_string(self):
         return json.dumps(self, default=lambda obj: getattr(obj.__class__, "to_json")(obj), indent=2, ensure_ascii=False)
 
+    def spotify_compatible(self, version):
+        return version in self.spotify_versions
 
     def do_replace(self, root_path):
         n_replace = 0
@@ -62,6 +64,8 @@ class ReplacementSet:
 
     def __init__(self, path, replace):
         self.path = path
+        self.realpath = os.path.join(*path.split('/'))
+
         self.replace = [Replacement(**r) for r in replace]
         self.lang_file = None
 
@@ -70,7 +74,7 @@ class ReplacementSet:
 
     def do_replace(self, root_path):
         # Open language file
-        self.lang_file = LangFile.from_file(path.join(root_path, self.path))
+        self.lang_file = LangFile.from_file(os.path.join(root_path, self.realpath))
 
         # Apply all replacements
         for r in self.replace:
@@ -99,7 +103,7 @@ class ReplacementSet:
         return n_replace, n_original_changed, n_suspicious, new_replacements
 
     def write_file(self, base_path):
-        file = path.join(base_path, self.path)
+        file = os.path.join(base_path, self.realpath)
         self.lang_file.to_file(file)
 
     def to_json(self):

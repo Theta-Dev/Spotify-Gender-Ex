@@ -11,9 +11,14 @@ from spotify_gender_ex.replacement_table import ReplacementTable
 VERSION = '0.0.1'
 
 class GenderEx:
-    def __init__(self, folder_out, file_apk='', folder_apk='', file_replace='', file_apktool='', file_apksigner=''):
+    def __init__(self, folder_out, file_apk='', folder_apk='', file_replace=''):
         self.spotify_version = ''
 
+        # Java libraries
+        self.file_apktool = str(files('spotify_gender_ex.lib').joinpath('apktool.jar'))
+        self.file_apksigner = str(files('spotify_gender_ex.lib').joinpath('uber-apk-signer-1.2.1.jar'))
+
+        # Replacement table
         if not file_replace:
             self.rt_original = True
             file_replace = files('spotify_gender_ex.res').joinpath('replacements.json')
@@ -22,23 +27,14 @@ class GenderEx:
         self.file_rt = file_replace
         self.replacement_table = ReplacementTable.from_file(file_replace)
 
-        if file_apktool:
-            self.file_apktool = file_apktool
-        else:
-            self.file_apktool = str(files('spotify_gender_ex.lib').joinpath('apktool.jar'))
-
-        if file_apksigner:
-            self.file_apksigner = file_apksigner
-        else:
-            self.file_apksigner = str(files('spotify_gender_ex.lib').joinpath('uber-apk-signer-1.2.1.jar'))
-
-        self.file_apk = file_apk
-
+        # Output folder
         try:
             os.makedirs(folder_out)
         except FileExistsError:
             pass
         self.folder_main = folder_out
+
+        self.file_apk = file_apk
 
         # Generate unique folder for apk decomp
         if folder_apk:
@@ -53,16 +49,8 @@ class GenderEx:
                     break
                 i += 1
 
-        # Generate unique output file name
-        i = 0
-        while True:
-            self.file_apkout = path.join(self.folder_main, os.path.basename(self.folder_apk))
-            if i > 0:
-                self.file_apkout += '_' + str(i)
-            self.file_apkout += '.apk'
-            if not path.exists(self.file_apkout):
-                break
-            i += 1
+        # Output file
+        self.file_apkout = self.folder_apk + '.apk'
 
         # Generate unique table export file name
         i = 0
@@ -75,15 +63,21 @@ class GenderEx:
                 break
             i += 1
 
+        # Keystore file
         self.file_keystore = path.join(self.folder_main, 'genderex.keystore')
 
     def decompile(self):
-        if self.file_apk:
-            subprocess.run(['java', '-jar', self.file_apktool, 'd', self.file_apk, '-s', '-o', self.folder_apk])
-        else:
-            click.echo('Dekompilierung übersprungen.')
+        subprocess.run(['java', '-jar', self.file_apktool, 'd', self.file_apk, '-s', '-o', self.folder_apk])
+
+    def check_compatibility(self):
         self.spotify_version = self.get_spotify_version()
         click.echo('Spotify-Version %s erkannt.' % self.spotify_version)
+
+        if self.replacement_table.spotify_compatible(self.spotify_version):
+            click.echo('Diese Version ist mit der Ersetzungstabelle kompatibel.')
+        else:
+            click.echo('Diese Version ist nicht mit der Ersetzungstabelle kompatibel.'
+                       'Erwarte, manuelle Anpassungen vornehmen zu müssen')
 
     def recompile(self):
         click.echo('Rekompiliere nach ' + self.file_apkout)
@@ -172,8 +166,10 @@ class GenderEx:
 def run(input, rt):
     click.echo('0. INFO')
     if path.isfile(input):
+        decomp = True
         genderex = GenderEx('genderex', file_apk=input, file_replace=rt)
     elif path.isdir(input):
+        decomp = False
         genderex = GenderEx('genderex', folder_apk=input, file_replace=rt)
     else:
         click.echo('Keine Eingabedaten')
@@ -186,8 +182,11 @@ def run(input, rt):
     if not click.confirm('Starten?'):
         return
 
-    click.echo('1. DEKOMPILIEREN')
-    genderex.decompile()
+    if decomp:
+        click.echo('1. DEKOMPILIEREN')
+        genderex.decompile()
+
+    genderex.check_compatibility()
 
     click.echo('2. DEGENDERIFIZIEREN')
     genderex.replace()

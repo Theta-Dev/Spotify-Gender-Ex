@@ -1,7 +1,7 @@
 {
   "version": "0.0.1",
   "spotify_versions": [
-    "spotify-8-5-89-901"
+    "8.5.89.901", "8.5.93.445", "8.5.94.839"
   ],
   "files": [
     {
@@ -691,6 +691,46 @@
           "key": "your_library_sort_order_artist_name_alphabetically_in_artists",
           "old": "Künstler*in",
           "new": "Künstler"
+        },
+        {
+          "key": "context_menu_pin_artist",
+          "old": "Künstler*in anheften",
+          "new": "Künstler anheften"
+        },
+        {
+          "key": "context_menu_unpin_artist",
+          "old": "Künstler*in lösen",
+          "new": "Künstler lösen"
+        },
+        {
+          "key": "empty_view_subtitle",
+          "old": "Hier findest du bald deinen gesamten Hörverlauf.",
+          "new": "Hier findest du bald deinen gesamten Hörverlauf."
+        },
+        {
+          "key": "podcast_paywalls_subscriber_podcast_dialog_body",
+          "old": "Abonnent*innen dieses Podcasts erhalten Zugriff auf diese Folge und alle älteren Folgen.",
+          "new": "Abonnenten dieses Podcasts erhalten Zugriff auf diese Folge und alle älteren Folgen."
+        },
+        {
+          "key": "podcast_paywalls_subscriber_podcast_dialog_title",
+          "old": "Dieser Podcast ist nur für Abonnent*innen verfügbar",
+          "new": "Dieser Podcast ist nur für Abonnenten verfügbar"
+        },
+        {
+          "key": "podcast_qna_blocked_user_message",
+          "old": "Du wurdest daran gehindert, diesem*dieser Podcaster*in eine Antwort zu senden.",
+          "new": "Du wurdest daran gehindert, diesem Podcaster eine Antwort zu senden."
+        },
+        {
+          "key": "scannables_onboarding_content",
+          "old": "Alle Inhalte auf Spotify haben einen Code zum Teilen. Scanne ihn mit deinem Smartphone, um den Song, den Podcast, den*die Künstler*in oder die Playlist direkt aufzurufen.",
+          "new": "Alle Inhalte auf Spotify haben einen Code zum Teilen. Scanne ihn mit deinem Smartphone, um den Song, den Podcast, den Künstler oder die Playlist direkt aufzurufen."
+        },
+        {
+          "key": "start_session_top_subtitle_text",
+          "old": "Höre Spotify in Echtzeit zusammen mit Freund*innen.",
+          "new": "Höre Spotify in Echtzeit zusammen mit Freunden."
         }
       ]
     }
