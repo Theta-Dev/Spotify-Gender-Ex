@@ -17,7 +17,7 @@ class ReplacementFileTest(TestCase):
         file0 = replacements.files[0]
         self.assertEqual('original/8-5-89-901_plurals.xml', file0.path)
         rep0_0 = file0.replace[0]
-        self.assertEqual('home_inline_onboarding_header_title/other', rep0_0.key)
+        self.assertEqual(['home_inline_onboarding_header_title', 'other'], rep0_0.key_list)
         self.assertEqual('Folge %1$d Künstler*innen, um speziell für dich ausgewählte Musik zu erhalten.', rep0_0.old)
         self.assertEqual('Folge %1$d Künstlern, um speziell für dich ausgewählte Musik zu erhalten.', rep0_0.new)
 
@@ -79,8 +79,10 @@ class ReplacementFileTest(TestCase):
         self.assertEqual('%1$s + %2$d weitere*r', new_replacements[0].old)
         self.assertEqual('%1$s + %2$d weitere*r EDIT', new_replacements[0].new)
 
-    def test_full_replace(self):
+    def test_add_replacements(self):
         file = path.join(TESTFILES, 'replacement', 'replacements.json')
+        file_out = path.join(TESTFILES, 'output', 'add_replacements.json')
+
         replacements = ReplacementTable.from_file(file)
 
         n_replace, n_original_changed, n_suspicious = replacements.do_replace(TESTFILES)
@@ -88,7 +90,17 @@ class ReplacementFileTest(TestCase):
         self.assertEqual(0, n_original_changed)
         self.assertEqual(132, n_suspicious)
 
-        replacements.to_file(path.join(TESTFILES, 'output', 'full_replace.json'))
+        replacements.to_file(file_out)
+
+    def test_complete_replace(self):
+        # Replace using full replacement table and export the new language file
+        file = path.join(TESTFILES, 'replacement', 'replacements_full.json')
+        file_out = path.join(TESTFILES, 'output')
+
+        replacements = ReplacementTable.from_file(file)
+        replacements.do_replace(TESTFILES)
+
+        replacements.write_files(file_out)
 
 
 class LanguageFileTest(TestCase):
@@ -101,3 +113,18 @@ class LanguageFileTest(TestCase):
         self.assertEqual('%1$s Folgen', lang_file.fields[0].old)
         self.assertEqual('%1$s Folgen', lang_file.fields[0].new)
         self.assertEqual(0, lang_file.fields[0].res)
+
+    def test_to_file(self):
+        file = path.join(TESTFILES, 'original', '8-5-89-901_plurals.xml')
+        outfile = path.join(TESTFILES, 'output', 'lang_to_file.xml')
+        lang_file = LangFile.from_file(file)
+
+        # Add a replacement
+        lang_file.fields[0].new = 'Hallo'
+        lang_file.fields[0].res = 2
+
+        lang_file.to_file(outfile)
+
+        # Read back the file and compare
+        lang_file_test = LangFile.from_file(outfile)
+        self.assertEqual('Hallo', lang_file_test.fields[0].old)

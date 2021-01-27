@@ -27,10 +27,11 @@ class ReplacementTable:
 
     def to_file(self, file):
         with open(file, 'w') as outfile:
-            json.dump(self, outfile, default=lambda o: o.__dict__, indent=2, ensure_ascii=False)
+            json.dump(self, outfile, default=lambda obj: getattr(obj.__class__, "to_json")(obj), indent=2, ensure_ascii=False)
 
     def to_string(self):
-        return json.dumps(self, default=lambda o: o.__dict__, indent=2, ensure_ascii=False)
+        return json.dumps(self, default=lambda obj: getattr(obj.__class__, "to_json")(obj), indent=2, ensure_ascii=False)
+
 
     def do_replace(self, root_path):
         n_replace = 0
@@ -45,6 +46,13 @@ class ReplacementTable:
 
         return n_replace, n_original_changed, n_suspicious
 
+    def write_files(self, root_path):
+        for f in self.files:
+            f.write_file(root_path)
+
+    def to_json(self):
+        return self.__dict__
+
 
 class ReplacementSet:
     """
@@ -55,18 +63,19 @@ class ReplacementSet:
     def __init__(self, path, replace):
         self.path = path
         self.replace = [Replacement(**r) for r in replace]
+        self.lang_file = None
 
     def add(self, replacement):
         self.replace.append(replacement)
 
     def do_replace(self, root_path):
         # Open language file
-        lang_file = LangFile.from_file(path.join(root_path, self.path))
+        self.lang_file = LangFile.from_file(path.join(root_path, self.path))
 
         # Apply all replacements
         for r in self.replace:
             # Look for a language field matching the key
-            field = lang_file.get_field(r.key_list())
+            field = self.lang_file.get_field(r.key_list)
             r.try_replace(field)
 
         # Verify language file
@@ -75,7 +84,7 @@ class ReplacementSet:
         n_suspicious = 0
         new_replacements = []
 
-        for f in lang_file.fields:
+        for f in self.lang_file.fields:
             if f.res == ReplacementResult.REPLACED:
                 n_replace += 1
             elif f.res == ReplacementResult.ORIGINAL_CHANGED:
@@ -89,6 +98,13 @@ class ReplacementSet:
 
         return n_replace, n_original_changed, n_suspicious, new_replacements
 
+    def write_file(self, base_path):
+        file = path.join(base_path, self.path)
+        self.lang_file.to_file(file)
+
+    def to_json(self):
+        return {'path': self.path, 'replace': self.replace}
+
 
 class Replacement:
     """
@@ -97,7 +113,7 @@ class Replacement:
     """
 
     def __init__(self, key, old: str, new: str):
-        self.key = key
+        self.key_list = key.split('/')
         self.old = old
         self.new = new
 
@@ -106,19 +122,16 @@ class Replacement:
         return cls('/'.join(lang_field.key_list), lang_field.old, lang_field.old + mark)
 
     def __repr__(self):
-        return self.key + ': ' + self.old + ' -> ' + self.new
-
-    def key_list(self):
-        return self.key.split('/')
+        return '/'.join(self.key_list) + ': ' + self.old + ' -> ' + self.new
 
     def match_key(self, key_list):
-        return self.key_list() == key_list
+        return self.key_list == key_list
 
     def try_replace(self, lang_field: LangField):
         """Tries to replace the value in the language file."""
 
         # Key of Replacement has to match
-        if self.key_list() != lang_field.key_list:
+        if self.key_list != lang_field.key_list:
             res = ReplacementResult.KEYS_DONT_MATCH
 
         # If the original value in the language file has changed, dont replace
@@ -132,6 +145,13 @@ class Replacement:
 
         lang_field.res = max(lang_field.res, res)
         return res
+
+    def to_json(self):
+        return {
+            'key': '/'.join(self.key_list),
+            'old': self.old,
+            'new': self.new
+        }
 
 
 class ReplacementResult:
