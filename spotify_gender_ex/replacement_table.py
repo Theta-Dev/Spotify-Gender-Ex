@@ -27,10 +27,12 @@ class ReplacementTable:
 
     def to_file(self, file):
         with open(file, 'w') as outfile:
-            json.dump(self, outfile, default=lambda obj: getattr(obj.__class__, "to_json")(obj), indent=2, ensure_ascii=False)
+            json.dump(self, outfile,
+                      default=lambda obj: getattr(obj.__class__, "to_json")(obj), indent=2, ensure_ascii=False)
 
     def to_string(self):
-        return json.dumps(self, default=lambda obj: getattr(obj.__class__, "to_json")(obj), indent=2, ensure_ascii=False)
+        return json.dumps(self,
+                          default=lambda obj: getattr(obj.__class__, "to_json")(obj), indent=2, ensure_ascii=False)
 
     def spotify_compatible(self, version):
         return version in self.spotify_versions

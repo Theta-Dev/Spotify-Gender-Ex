@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ET
 import re
 
+
 class LangFile:
     def __init__(self, path, fields=None):
         self.path = path
@@ -87,5 +88,4 @@ class LangField:
     def is_suspicious(self):
         if re.search('spotify:internal', self.new):
             return False
-        return bool(re.search('(\*[iIrRnN])|(\([rRnN]\))|([a-zß-ü][IRN])|(:[iIrRnN])', self.new))
-
+        return bool(re.search(r'(\*[iIrRnN])|(\([rRnN]\))|([a-zß-ü][IRN])|(:[iIrRnN])', self.new))

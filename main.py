@@ -5,10 +5,12 @@ import os
 from os import path
 import re
 import hashlib
+from datetime import datetime
 from spotify_gender_ex.replacement_table import ReplacementTable
 
 # Version as shown in the credits
-VERSION = '0.0.1'
+VERSION = '0.1.0'
+
 
 class GenderEx:
     def __init__(self, folder_out, file_apk='', folder_apk='', file_replace=''):
@@ -102,8 +104,8 @@ class GenderEx:
         with open(apktool_file, 'r') as f:
             text = f.read()
 
-        for l in text.splitlines():
-            line = l.strip()
+        for line in text.splitlines():
+            line = line.strip()
             if line.startswith('versionName:'):
                 return line[12:].strip()
 
@@ -130,6 +132,7 @@ class GenderEx:
         cred = cred.replace('{{GENDEREX_VERSION}}', VERSION)
         cred = cred.replace('{{REPLACEMENT_TABLE}}', 'ORIGINAL' if self.rt_original else 'GEÄNDERT')
         cred = cred.replace('{{REPLACEMENT_HASH}}', self.md5(self.file_rt))
+        cred = cred.replace('{{BUILD_DATE}}', datetime.now().strftime("%d.%m.%Y %H:%M:%S"))
 
         # Remove credits if there are any
         html = re.sub(r'<div id="gender-ex-credits">[\s\S]*?</div>', '', html)
@@ -146,7 +149,6 @@ class GenderEx:
         with open(html_file, 'w') as f:
             f.write(html)
 
-
     def make_keystore(self):
         if not path.exists(self.file_keystore):
             subprocess.run(['keytool', '-keystore', self.file_keystore, '-genkey', '-alias', 'genderex',
@@ -161,16 +163,16 @@ class GenderEx:
 
 
 @click.command()
-@click.argument('input', type=click.Path(exists=True))
+@click.argument('inputfile', type=click.Path(exists=True))
 @click.option('-rt', help='Ersetzungstabelle', default='')
-def run(input, rt):
+def run(inputfile, rt):
     click.echo('0. INFO')
-    if path.isfile(input):
+    if path.isfile(inputfile):
         decomp = True
-        genderex = GenderEx('genderex', file_apk=input, file_replace=rt)
-    elif path.isdir(input):
+        genderex = GenderEx('genderex', file_apk=inputfile, file_replace=rt)
+    elif path.isdir(inputfile):
         decomp = False
-        genderex = GenderEx('genderex', folder_apk=input, file_replace=rt)
+        genderex = GenderEx('genderex', folder_apk=inputfile, file_replace=rt)
     else:
         click.echo('Keine Eingabedaten')
         return
