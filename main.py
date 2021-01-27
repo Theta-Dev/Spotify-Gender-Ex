@@ -177,7 +177,7 @@ def run(inputfile, rt):
         click.echo('Keine Eingabedaten')
         return
 
-    click.echo('In: %s' % input)
+    click.echo('In: %s' % inputfile)
     click.echo('Out: %s' % genderex.folder_main)
     click.echo('APKTool: %s' % genderex.file_apktool)
     click.echo('APKSigner: %s' % genderex.file_apksigner)
