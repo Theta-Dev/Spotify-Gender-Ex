@@ -82,7 +82,8 @@ class ReplacementSet:
         for r in self.replace:
             # Look for a language field matching the key
             field = self.lang_file.get_field(r.key_list)
-            r.try_replace(field)
+            if field:
+                r.try_replace(field)
 
         # Verify language file
         n_replace = 0
@@ -93,12 +94,13 @@ class ReplacementSet:
         for f in self.lang_file.fields:
             if f.res == ReplacementResult.REPLACED:
                 n_replace += 1
-            elif f.res == ReplacementResult.ORIGINAL_CHANGED:
-                n_original_changed += 1
-                new_replacements.append(Replacement.from_langfield(f, ' EDIT'))
             elif f.is_suspicious():
-                n_suspicious += 1
-                new_replacements.append(Replacement.from_langfield(f, ' EDIT'))
+                if f.res == ReplacementResult.ORIGINAL_CHANGED:
+                    n_original_changed += 1
+                    new_replacements.append(Replacement.from_langfield(f, ' EDIT'))
+                else:
+                    n_suspicious += 1
+                    new_replacements.append(Replacement.from_langfield(f, ' EDIT'))
 
         self.replace += new_replacements
 

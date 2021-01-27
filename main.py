@@ -17,8 +17,8 @@ class GenderEx:
         self.spotify_version = ''
 
         # Java libraries
-        self.file_apktool = str(files('spotify_gender_ex.lib').joinpath('apktool.jar'))
-        self.file_apksigner = str(files('spotify_gender_ex.lib').joinpath('uber-apk-signer-1.2.1.jar'))
+        self.file_apktool = files('spotify_gender_ex.lib').joinpath('apktool.jar')
+        self.file_apksigner = files('spotify_gender_ex.lib').joinpath('uber-apk-signer-1.2.1.jar')
 
         # Replacement table
         if not file_replace:
@@ -52,7 +52,7 @@ class GenderEx:
                 i += 1
 
         # Output file
-        self.file_apkout = self.folder_apk + '.apk'
+        self.file_apkout = self.folder_apk + '-gex.apk'
 
         # Generate unique table export file name
         i = 0
@@ -78,8 +78,7 @@ class GenderEx:
         if self.replacement_table.spotify_compatible(self.spotify_version):
             click.echo('Diese Version ist mit der Ersetzungstabelle kompatibel.')
         else:
-            click.echo('Diese Version ist nicht mit der Ersetzungstabelle kompatibel.'
-                       'Erwarte, manuelle Anpassungen vornehmen zu müssen')
+            click.echo('Diese Version ist nicht mit der Ersetzungstabelle kompatibel. Erwarte, manuelle Anpassungen vornehmen zu müssen')
 
     def recompile(self):
         click.echo('Rekompiliere nach ' + self.file_apkout)
@@ -179,6 +178,7 @@ def run(inputfile, rt):
 
     click.echo('In: %s' % inputfile)
     click.echo('Out: %s' % genderex.folder_main)
+    click.echo('Ersetzungstabelle: %s' % genderex.file_rt)
     click.echo('APKTool: %s' % genderex.file_apktool)
     click.echo('APKSigner: %s' % genderex.file_apksigner)
     if not click.confirm('Starten?'):
@@ -193,6 +193,9 @@ def run(inputfile, rt):
     click.echo('2. DEGENDERIFIZIEREN')
     genderex.replace()
     genderex.add_credits()
+
+    if not click.confirm('Rekompilieren?'):
+        return
 
     click.echo('3. REKOMPILIEREN')
     genderex.recompile()

@@ -1,4 +1,7 @@
+.idea
 venv
 *.apk
 /tests/testfiles/output/
 /genderex/
+build
+dist

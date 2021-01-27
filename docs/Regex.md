@@ -1,3 +1,9 @@
+# Regex
+Um verdächtige Felder (Felder, die Gendersternchen enthalten) zu ermitteln, wird ein Regex-Muster verwendet.
+Hier ist die momentane Version samt Test. Falls sich die Spotify-Entwickler in Zukunft noch kreativere
+Sprachverunstaltungen ausdenken, muss dies eventuell überarbeitet werden. Momentan werden Sternchen,
+Doppelpunkte und Binnen-Is erkannt.
+
 ### REGEX:
 ```
 (\*[iIrRnN])|(\([rRnN]\))|([a-zß-ü][IRN])|((:[iIrRnN])(?![\w:]+\\"))
