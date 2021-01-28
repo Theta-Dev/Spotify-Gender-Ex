@@ -13,8 +13,9 @@ class LangFile:
     @classmethod
     def from_file(cls, file):
         lang_file = cls(file)
-
-        tree = ET.parse(file)
+        
+        xmlp = ET.XMLParser(encoding="utf-8")
+        tree = ET.parse(file, parser=xmlp)
         lang_file._walk_tree(tree.getroot(), [])
 
         return lang_file
