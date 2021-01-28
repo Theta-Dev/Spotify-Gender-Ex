@@ -48,7 +48,7 @@ Aktiviere sie mit `source venv/bin/activate` bzw auf Windows mit `venv\Scripts\a
    
 3. Installiere Spotify-Gender-Ex mit diesem Befehl:
     ```shell
-    pip3 install git+https://github.com/Theta-Dev/Spotify-Gender-Ex.git
+    pip3 install spotify-gender-ex
     ```
 
 4. Starte das Skript und gebe als Argument die APK-Datei, die du in Schritt 1 heruntergeladen hast, an.
