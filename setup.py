@@ -9,7 +9,7 @@ setuptools.setup(
     author='ThetaDev',
     description='Ein kleines Tool, das die Gendersternchen (z.B. Künstler*innen) aus der Spotify-App für Android entfernt.',
     license='MIT License',
-    py_modules=['main'],
+    py_modules=['spotify_gender_ex'],
     install_requires=REQUIRES,
     packages=setuptools.find_packages(exclude=['tests*']),
     package_data={
@@ -17,7 +17,7 @@ setuptools.setup(
     },
     entry_points={
         'console_scripts': [
-            'spotify-gender-ex=main:run',
+            'spotify-gender-ex=spotify_gender_ex.main:run',
         ],
     },
 )

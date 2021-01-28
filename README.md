@@ -1,6 +1,8 @@
 # Spotify-Gender-Ex
 Ein kleines Tool, das die Gendersternchen (z.B. Künstler*innen) aus der Spotify-App für Android entfernt.
 
+![](./assets/app_vorher_nachher_s.jpg)
+
 ### Funktionsprinzip
 Es ist möglich, mit einem Programm namens apktool Android-Apps zu dekompilieren. An den Quellcode kommt man
 so zwar nicht ohne weiteres heran, da dieser zu Java-Bytecode kompiliert wurde. Sämtliche Assets
@@ -30,6 +32,8 @@ App mit der entsprechenden APK-Datei aktualisiert werden kann. Da die verändert
 muss eine eventuell vorhandene Original-Spotify-App zuerst deinstalliert werden.
 
 ### Systemvoraussetzungen
+Spotify-Gender-Ex ist mit Windows und Linux kompatibel (getestet mit Ubuntu 20 und Windows 10)
+
 Python 3 und Java müssen auf deinem System installiert sein (testen mit `python3` und `java -version`).
 Außerdem brauchst du natürlich auch ein Android-Smartphone oder Tablet, um die modifizierte App zu installieren.
 
@@ -39,26 +43,27 @@ Außerdem brauchst du natürlich auch ein Android-Smartphone oder Tablet, um die
 1. Lade die Spotify-App als apk-Datei herunter.
 Hierfür empfehle ich [uptodown](https://spotify.de.uptodown.com/android/versions).
    
-2. Erstelle eine neue Python-Umgebung mit dem Befehl `python -m venv venv`
-und aktiviere sie mit `source venv/bin/activate`.
+2. Öffne ein Terminal in einem leeren Ordner und erstelle eine neue Python-Umgebung mit dem Befehl `python -m venv venv`.
+Aktiviere sie mit `source venv/bin/activate` bzw auf Windows mit `venv\Scripts\activate`.
    
 3. Installiere Spotify-Gender-Ex mit diesem Befehl:
     ```shell
-    pip install
+    pip3 install git+https://github.com/Theta-Dev/Spotify-Gender-Ex.git
     ```
 
 4. Starte das Skript und gebe als Argument die APK-Datei, die du in Schritt 1 heruntergeladen hast, an.
-   Möchtest du eine andere als die eingebaute Ersetzungstabelle verwenden. Dann gib diese mit dem `-rt`-Flag an
+   Möchtest du eine andere als die eingebaute Ersetzungstabelle verwenden? Dann gib diese mit dem `-rt`-Flag an
    
     ```shell
     python3 main.py spotify-x-x-xx-xxx.apk
     python3 main.py spotify-x-x-xx-xxx.apk -rt genderex/replacements.json
     
     0. INFO
-    In: genderex/spotify-8-5-89-901/
+    In: spotify-8-5-89-901.apk
     Out: genderex
-    APKTool: /home/thetadev/Documents/Python/Spotify-Gender-Ex/spotify_gender_ex/lib/apktool.jar
-    APKSigner: /home/thetadev/Documents/Python/Spotify-Gender-Ex/spotify_gender_ex/lib/uber-apk-signer-1.2.1.jar
+    Ersetzungstabelle: /home/thetadev/test-genderex/venv/lib/python3.8/site-packages/spotify_gender_ex/res/replacements.json
+    APKTool: /home/thetadev/test-genderex/venv/lib/python3.8/site-packages/spotify_gender_ex/lib/apktool.jar
+    APKSigner: /home/thetadev/test-genderex/venv/lib/python3.8/site-packages/spotify_gender_ex/lib/uber-apk-signer-1.2.1.jar
     Starten? [y/N]: y
     ```
 
@@ -164,7 +169,7 @@ Dieses Projekt enthält die Java-Pakete [apktool](https://bitbucket.org/iBotPeac
 und [Uber APK Signer](https://github.com/patrickfav/uber-apk-signer) (patrickfav), die beide unter der
 Apache 2.0 License stehen.
 Vielen Dank für diese großartigen Open-Source-Projekte!
-Die Lizenzen befinden sich im `lib`-Ordner.
+Die Lizenzen befinden sich im `spotify_gender_ex/lib`-Ordner.
 
 Es ist mir aus Copyrightgründen nicht erlaubt, degenderifizierte Kopien der Spotify-App zum
 Download anzubieten. Wenn du dieses Tool herunterlädst und deine Spotify-App selbst modifizierst, 

@@ -5,3 +5,4 @@ venv
 /genderex/
 build
 dist
+/Spotify_Gender_Ex.egg-info/

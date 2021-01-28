@@ -155,9 +155,9 @@ class GenderEx:
                 keytool_base = str(os.path.join(os.getenv('JAVA_HOME'), 'bin', 'keytool.exe'))
             else:
                 keytool_base = 'keytool'
-		
+
             subprocess.run([keytool_base, '-keystore', self.file_keystore, '-genkey', '-alias', 'genderex',
-                            '-keyalg', 'RSA', '-keysize', '2048', '-validity', '10000',
+                            '-keyalg', 'RSA', '-keysize', '2048', '-validity', '50000',
                             '-storepass', '12345678', '-keypass', '12345678', '-dname', 'CN=spotify-gender-ex'])
 
     def sign(self):
