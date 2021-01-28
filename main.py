@@ -100,7 +100,7 @@ class GenderEx:
     def get_spotify_version(self):
         apktool_file = path.join(self.folder_apk, 'apktool.yml')
 
-        with open(apktool_file, 'r') as f:
+        with open(apktool_file, 'r', encoding='utf-8') as f:
             text = f.read()
 
         for line in text.splitlines():
@@ -121,9 +121,9 @@ class GenderEx:
         credits_file = files('spotify_gender_ex.res').joinpath('credits.html')
         html_file = path.join(self.folder_apk, 'assets', 'licenses.xhtml')
 
-        with open(credits_file, 'r') as f:
+        with open(credits_file, 'r', encoding='utf-8') as f:
             cred = f.read()
-        with open(html_file, 'r') as f:
+        with open(html_file, 'r', encoding='utf-8') as f:
             html = f.read()
 
         # Fill in template
@@ -145,7 +145,7 @@ class GenderEx:
         html = html[:pos] + cred + html[pos:]
 
         # Write back the html
-        with open(html_file, 'w') as f:
+        with open(html_file, 'w', encoding='utf-8') as f:
             f.write(html)
 
     def make_keystore(self):
