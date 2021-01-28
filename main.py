@@ -17,16 +17,16 @@ class GenderEx:
         self.spotify_version = ''
 
         # Java libraries
-        self.file_apktool = files('spotify_gender_ex.lib').joinpath('apktool.jar')
-        self.file_apksigner = files('spotify_gender_ex.lib').joinpath('uber-apk-signer-1.2.1.jar')
+        self.file_apktool = str(files('spotify_gender_ex.lib').joinpath('apktool.jar'))
+        self.file_apksigner = str(files('spotify_gender_ex.lib').joinpath('uber-apk-signer-1.2.1.jar'))
 
         # Replacement table
         if not file_replace:
             self.rt_original = True
-            file_replace = files('spotify_gender_ex.res').joinpath('replacements.json')
+            file_replace = str(files('spotify_gender_ex.res').joinpath('replacements.json'))
         else:
             self.rt_original = False
-        self.file_rt = file_replace
+        self.file_rt = str(file_replace)
         self.replacement_table = ReplacementTable.from_file(file_replace)
 
         # Output folder
@@ -36,15 +36,15 @@ class GenderEx:
             pass
         self.folder_main = folder_out
 
-        self.file_apk = file_apk
+        self.file_apk = str(file_apk)
 
         # Generate unique folder for apk decomp
         if folder_apk:
-            self.folder_apk = folder_apk
+            self.folder_apk = str(folder_apk)
         else:
             i = 0
             while True:
-                self.folder_apk = path.join(self.folder_main, os.path.splitext(os.path.basename(self.file_apk))[0])
+                self.folder_apk = str(path.join(self.folder_main, os.path.splitext(os.path.basename(self.file_apk))[0]))
                 if i > 0:
                     self.folder_apk += '_' + str(i)
                 if not path.exists(self.folder_apk):
@@ -57,7 +57,7 @@ class GenderEx:
         # Generate unique table export file name
         i = 0
         while True:
-            self.file_tableout = path.join(self.folder_main, 'replacement')
+            self.file_tableout = str(path.join(self.folder_main, 'replacement'))
             if i > 0:
                 self.file_tableout += '_' + str(i)
             self.file_tableout += '.json'
@@ -66,7 +66,7 @@ class GenderEx:
             i += 1
 
         # Keystore file
-        self.file_keystore = path.join(self.folder_main, 'genderex.keystore')
+        self.file_keystore = str(path.join(self.folder_main, 'genderex.keystore'))
 
     def decompile(self):
         subprocess.run(['java', '-jar', self.file_apktool, 'd', self.file_apk, '-s', '-o', self.folder_apk])
