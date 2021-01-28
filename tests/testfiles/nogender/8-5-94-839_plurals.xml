@@ -1,5 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+    <plurals name="add_to_playlist_filter_items_count_changed_announcement">
+        <item quantity="other">%1$d Elemente gefunden</item>
+        <item quantity="one">%1$d Element gefunden</item>
+    </plurals>
     <plurals name="add_to_playlist_your_episodes_subtitle">
         <item quantity="other">%1$s Folgen</item>
         <item quantity="one">%1$s Folge</item>
@@ -44,6 +48,14 @@
         <item quantity="other">%1$d Minuten</item>
         <item quantity="one">%1$d Minute</item>
     </plurals>
+    <plurals name="context_menu_subtitle_description_folder_folders_count">
+        <item quantity="other">%1$s Ordner</item>
+        <item quantity="one">%1$s Ordner</item>
+    </plurals>
+    <plurals name="context_menu_subtitle_description_folder_playlists_count">
+        <item quantity="other">%1$s Playlists</item>
+        <item quantity="one">%1$s Playlist</item>
+    </plurals>
     <plurals name="device_picker_available_for_join_subtitle_others">
         <item quantity="other">%1$s und %2$d andere nehmen teil</item>
         <item quantity="one">%1$s und %2$d andere Person nehmen teil</item>
@@ -51,6 +63,18 @@
     <plurals name="edit_profile_notice_character_cap">
         <item quantity="other">Max. %1$,d Zeichen</item>
         <item quantity="one">Max. %1$,d Zeichen</item>
+    </plurals>
+    <plurals name="episode_transcript_position_hours_content_description">
+        <item quantity="other">%1$d Stunden</item>
+        <item quantity="one">%1$d Stunde</item>
+    </plurals>
+    <plurals name="episode_transcript_position_minutes_content_description">
+        <item quantity="other">%1$d Minuten</item>
+        <item quantity="one">%1$d Minute</item>
+    </plurals>
+    <plurals name="episode_transcript_position_seconds_content_description">
+        <item quantity="other">%1$d Sekunden</item>
+        <item quantity="one">%1$d Sekunde</item>
     </plurals>
     <plurals name="error_dialog_body_resend_limit">
         <item quantity="other">Warte %1$d Sekunden und fordere dann einen neuen Code an.</item>
@@ -240,10 +264,6 @@
         <item quantity="other">%1$d/%2$d Zeilen ausgewählt</item>
         <item quantity="one">%1$d/%2$d Zeile ausgewählt</item>
     </plurals>
-    <plurals name="share_notice">
-        <item quantity="other">Füge zum Teilen noch %1$d Songs oder Podcasts hinzu.</item>
-        <item quantity="one">Füge zum Teilen noch %1$d Song oder Podcast hinzu.</item>
-    </plurals>
     <plurals name="social_listening_join_failed_session_full_body">
         <item quantity="other">Es können %1$s Hörer gleichzeitig teilnehmen und wir haben das Maximum erreicht.</item>
         <item quantity="one">Es kann %1$s Hörer gleichzeitig teilnehmen und wir haben das Maximum erreicht.</item>
@@ -307,6 +327,10 @@
     <plurals name="user_mix_songs_limit_popup_header">
         <item quantity="other">Du hast bei deiner Playlist „Heruntergeladene Songs“ das Limit von %1$d Songs erreicht.</item>
         <item quantity="one">Du hast bei deiner Playlist „Heruntergeladene Songs“ das Limit von %1$d Song erreicht.</item>
+    </plurals>
+    <plurals name="your_episodes_context_menu_subtitle">
+        <item quantity="other">%1$s Folgen</item>
+        <item quantity="one">%1$s Folge</item>
     </plurals>
     <plurals name="your_episodes_header_subtitle">
         <item quantity="other">%1$d Folgen</item>

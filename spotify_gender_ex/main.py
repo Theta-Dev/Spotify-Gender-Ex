@@ -1,3 +1,4 @@
+# coding=utf-8
 import click
 import subprocess
 from importlib_resources import files
@@ -9,12 +10,14 @@ from datetime import datetime
 from spotify_gender_ex.replacement_table import ReplacementTable
 
 # Version as shown in the credits
-VERSION = '0.1.0'
+VERSION = '0.1.1'
+RT_HASH = 'a67c36a7e575b3a75fbb75e0a1b5b6cd'
 
 
 class GenderEx:
-    def __init__(self, folder_out, file_apk='', folder_apk='', file_replace=''):
+    def __init__(self, folder_out, file_apk='', folder_apk='', file_replace='', no_interaction=False):
         self.spotify_version = ''
+        self.no_interaction = no_interaction
 
         # Java libraries
         self.file_apktool = str(files('spotify_gender_ex.lib').joinpath('apktool.jar'))
@@ -22,12 +25,13 @@ class GenderEx:
 
         # Replacement table
         if not file_replace:
-            self.rt_original = True
             file_replace = str(files('spotify_gender_ex.res').joinpath('replacements.json'))
-        else:
-            self.rt_original = False
         self.file_rt = str(file_replace)
         self.replacement_table = ReplacementTable.from_file(file_replace)
+
+        # Replacement table hash
+        self.rt_hash = self.md5(self.file_rt)
+        self.rt_original = self.rt_hash == RT_HASH
 
         # Output folder
         try:
@@ -78,7 +82,8 @@ class GenderEx:
         if self.replacement_table.spotify_compatible(self.spotify_version):
             click.echo('Diese Version ist mit der Ersetzungstabelle kompatibel.')
         else:
-            click.echo('Diese Version ist nicht mit der Ersetzungstabelle kompatibel. Erwarte, manuelle Anpassungen vornehmen zu müssen')
+            click.echo(
+                'Diese Version ist nicht mit der Ersetzungstabelle kompatibel. Erwarte, manuelle Anpassungen vornehmen zu müssen')
 
     def recompile(self):
         click.echo('Rekompiliere nach ' + self.file_apkout)
@@ -90,7 +95,7 @@ class GenderEx:
         click.echo('%d Felder mit geändertem Original' % n_original_changed)
         click.echo('%d verdächtige Felder' % n_suspicious)
 
-        if n_original_changed or n_suspicious:
+        if not self.no_interaction and (n_original_changed or n_suspicious):
             if click.confirm('Beenden und die Ersetzungstabelle zuerst manuell bearbeiten?'):
                 self.replacement_table.to_file(self.file_tableout)
                 exit(0)
@@ -129,8 +134,8 @@ class GenderEx:
         # Fill in template
         cred = cred.replace('{{SPOTIFY_VERSION}}', self.spotify_version)
         cred = cred.replace('{{GENDEREX_VERSION}}', VERSION)
-        cred = cred.replace('{{REPLACEMENT_TABLE}}', 'ORIGINAL' if self.rt_original else 'GEÄNDERT')
-        cred = cred.replace('{{REPLACEMENT_HASH}}', self.md5(self.file_rt))
+        cred = cred.replace('{{REPLACEMENT_TABLE}}', 'ORIGINAL' if self.rt_original else 'MODIFIZIERT')
+        cred = cred.replace('{{REPLACEMENT_HASH}}', self.rt_hash)
         cred = cred.replace('{{BUILD_DATE}}', datetime.now().strftime("%d.%m.%Y %H:%M:%S"))
 
         # Remove credits if there are any
@@ -167,28 +172,28 @@ class GenderEx:
                         '12345678'])
 
 
-@click.command()
-@click.argument('inputfile', type=click.Path(exists=True))
-@click.option('-rt', help='Ersetzungstabelle', default='')
-def run(inputfile, rt):
+def start_genderex(inputfile, rt='', out='genderex', no_interaction=False):
     click.echo('0. INFO')
     if path.isfile(inputfile):
         decomp = True
-        genderex = GenderEx('genderex', file_apk=inputfile, file_replace=rt)
+        genderex = GenderEx(out, file_apk=inputfile, file_replace=rt, no_interaction=no_interaction)
     elif path.isdir(inputfile):
         decomp = False
-        genderex = GenderEx('genderex', folder_apk=inputfile, file_replace=rt)
+        genderex = GenderEx(out, folder_apk=inputfile, file_replace=rt, no_interaction=no_interaction)
     else:
         click.echo('Keine Eingabedaten')
         return
 
+    click.echo('Spotify-Gender-Ex Version %s' % VERSION)
     click.echo('In: %s' % inputfile)
     click.echo('Out: %s' % genderex.folder_main)
     click.echo('Ersetzungstabelle: %s' % genderex.file_rt)
+    click.echo('ET-Hash: %s (%s)' % (genderex.rt_hash, 'Original' if genderex.rt_original else 'Modifiziert'))
     click.echo('APKTool: %s' % genderex.file_apktool)
     click.echo('APKSigner: %s' % genderex.file_apksigner)
-    if not click.confirm('Starten?'):
-        return
+    if not no_interaction:
+        if not click.confirm('Starten?'):
+            return
 
     if decomp:
         click.echo('1. DEKOMPILIEREN')
@@ -200,8 +205,9 @@ def run(inputfile, rt):
     genderex.replace()
     genderex.add_credits()
 
-    if not click.confirm('Rekompilieren?'):
-        return
+    if not no_interaction:
+        if not click.confirm('Rekompilieren?'):
+            return
 
     click.echo('3. REKOMPILIEREN')
     genderex.recompile()
@@ -210,6 +216,16 @@ def run(inputfile, rt):
     genderex.sign()
 
     click.echo('Degenderifizierung abgeschlossen. Vielen Dank.')
+
+
+@click.command()
+@click.argument('inputfile', type=click.Path(exists=True))
+@click.option('-rt', help='Ersetzungstabelle', default='')
+@click.option('-out', help='Ausgabeordner', default='genderex')
+@click.option('--noia', help='Prompts (ja/nein) deaktivieren', is_flag=True)
+def run(inputfile, rt, out, noia):
+    """Entferne die Gendersternchen (z.B. Künstler*innen) aus der Spotify-App für Android!"""
+    start_genderex(inputfile, rt, out, noia)
 
 
 if __name__ == '__main__':

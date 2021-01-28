@@ -1,12 +1,13 @@
+import unittest
+from importlib_resources import files
+from os import path
 from spotify_gender_ex.replacement_table import *
 from spotify_gender_ex.lang_file import *
-from unittest import TestCase
-from os import path
 
-TESTFILES = path.join(path.dirname(path.realpath(__file__)), 'testfiles')
+TESTFILES = str(files('tests.testfiles').joinpath(''))
 
 
-class ReplacementFileTest(TestCase):
+class ReplacementFileTest(unittest.TestCase):
     def test_from_file(self):
         file = path.join(TESTFILES, 'replacement', 'replacements.json')
         replacements = ReplacementTable.from_file(file)
@@ -103,7 +104,7 @@ class ReplacementFileTest(TestCase):
         replacements.write_files(file_out)
 
 
-class LanguageFileTest(TestCase):
+class LanguageFileTest(unittest.TestCase):
     def test_from_file(self):
         file = path.join(TESTFILES, 'original', '8-5-89-901_plurals.xml')
         lang_file = LangFile.from_file(file)
@@ -128,3 +129,7 @@ class LanguageFileTest(TestCase):
         # Read back the file and compare
         lang_file_test = LangFile.from_file(outfile)
         self.assertEqual('Hallo', lang_file_test.fields[0].old)
+
+
+if __name__ == '__main__':
+    unittest.main()

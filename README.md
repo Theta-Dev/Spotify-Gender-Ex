@@ -5,7 +5,7 @@ Ein kleines Tool, das die Gendersternchen (z.B. Künstler*innen) aus der Spotify
 
 ### Funktionsprinzip
 Es ist möglich, mit einem Programm namens apktool Android-Apps zu dekompilieren. An den Quellcode kommt man
-so zwar nicht ohne weiteres heran, da dieser zu Java-Bytecode kompiliert wurde. Sämtliche Assets
+so nicht ohne weiteres heran, da dieser zu Java-Bytecode kompiliert wurde. Sämtliche Assets
 (Bilder und eben auch Sprachdateien) lassen sich dagegen problemlos extrahieren.
 
 Der Clou ist, dass apktool dekompilierte Apps auch wieder in eine APK-Datei packen kann. Somit sind Modifikationen
