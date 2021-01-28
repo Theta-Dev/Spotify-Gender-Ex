@@ -16,7 +16,7 @@ class ReplacementTable:
 
     @classmethod
     def from_file(cls, file):
-        with open(file) as json_file:
+        with open(file, 'r', encoding='utf-8') as json_file:
             data = json.load(json_file)
             return cls(**data)
 
@@ -26,7 +26,7 @@ class ReplacementTable:
         return cls(**data)
 
     def to_file(self, file):
-        with open(file, 'w') as outfile:
+        with open(file, 'w', encoding='utf-8') as outfile:
             json.dump(self, outfile,
                       default=lambda obj: getattr(obj.__class__, "to_json")(obj), indent=2, ensure_ascii=False)
 
