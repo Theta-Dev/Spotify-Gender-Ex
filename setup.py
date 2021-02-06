@@ -1,5 +1,6 @@
 # coding=utf-8
 import setuptools
+import spotify_gender_ex.main
 
 with open('requirements.txt') as f:
     REQUIRES = f.read().splitlines()
@@ -9,7 +10,7 @@ with open('README.md') as f:
 
 setuptools.setup(
     name='Spotify-Gender-Ex',
-    version='0.1.1',
+    version=spotify_gender_ex.main.VERSION,
     author='ThetaDev',
     description='Ein kleines Tool, das die Gendersternchen (z.B. Künstler*innen) aus der Spotify-App für Android entfernt.',
     long_description=README,

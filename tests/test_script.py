@@ -11,6 +11,9 @@ Put them in the tests/testfiles/apk directory.
 """
 TESTFILES = str(files('tests.testfiles').joinpath(''))
 
+# Test recompilation (Tests will take longer)
+RECOMPILE = False
+
 
 class ScriptTest(unittest.TestCase):
     def do_script_test(self, version):
@@ -28,7 +31,7 @@ class ScriptTest(unittest.TestCase):
         shutil.rmtree(out_folder)
 
         # Run the script
-        start_genderex(apk_file, '', out_folder, True)
+        start_genderex(apk_file, '', out_folder, True, not RECOMPILE)
 
         # Verify replacements
         for i in range(len(nogender_files)):
@@ -40,8 +43,9 @@ class ScriptTest(unittest.TestCase):
             self.assertEqual(nogender, modified)
 
         # Are output apks present?
-        self.assertTrue(path.isfile(path.join(out_folder, 'spotify-%s-gex.apk' % version)))
-        self.assertTrue(path.isfile(path.join(out_folder, 'spotify-%s-gex-aligned-signed.apk' % version)))
+        if RECOMPILE:
+            self.assertTrue(path.isfile(path.join(out_folder, 'spotify-%s-gex.apk' % version)))
+            self.assertTrue(path.isfile(path.join(out_folder, 'spotify-%s-gex-aligned-signed.apk' % version)))
 
     # Run tests for all compatible Spotify versions
     def test_spotify_8_5_89_901(self):
@@ -52,6 +56,9 @@ class ScriptTest(unittest.TestCase):
 
     def test_spotify_8_5_94_839(self):
         self.do_script_test('8-5-94-839')
+
+    def test_spotify_8_5_98_984(self):
+        self.do_script_test('8-5-98-984')
 
 
 if __name__ == '__main__':

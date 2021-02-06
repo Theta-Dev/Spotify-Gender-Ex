@@ -1,7 +1,11 @@
 {
-  "version": "0.1.0",
+  "version": "0.2.0",
   "spotify_versions": [
-    "8.5.89.901", "8.5.93.445", "8.5.94.839"
+    "8.5.89.901",
+    "8.5.93.445",
+    "8.5.94.839",
+    "8.5.96.936",
+    "8.5.98.984"
   ],
   "files": [
     {
@@ -731,6 +735,16 @@
           "key": "start_session_top_subtitle_text",
           "old": "Höre Spotify in Echtzeit zusammen mit Freund*innen.",
           "new": "Höre Spotify in Echtzeit zusammen mit Freunden."
+        },
+        {
+          "key": "artist_page_not_found_placeholder_subtitle",
+          "old": "Der*die Künstler*in wurde nicht gefunden. Bitte versuch’s mit einem*einer anderen.",
+          "new": "Der Künstler wurde nicht gefunden. Bitte versuch’s mit einem anderen."
+        },
+        {
+          "key": "artist_page_not_found_placeholder_title",
+          "old": "Künstler*in wurde nicht gefunden",
+          "new": "Künstler wurde nicht gefunden"
         }
       ]
     }

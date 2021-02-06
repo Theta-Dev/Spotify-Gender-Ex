@@ -10,8 +10,8 @@ from datetime import datetime
 from spotify_gender_ex.replacement_table import ReplacementTable
 
 # Version as shown in the credits
-VERSION = '0.1.1'
-RT_HASH = 'a67c36a7e575b3a75fbb75e0a1b5b6cd'
+VERSION = '0.2.0'
+RT_HASH = '15b048084ceda494fb9f80c8fd38529d'
 
 
 class GenderEx:
@@ -61,7 +61,7 @@ class GenderEx:
         # Generate unique table export file name
         i = 0
         while True:
-            self.file_tableout = str(path.join(self.folder_main, 'replacement'))
+            self.file_tableout = str(path.join(self.folder_main, 'replacements'))
             if i > 0:
                 self.file_tableout += '_' + str(i)
             self.file_tableout += '.json'
@@ -172,7 +172,7 @@ class GenderEx:
                         '12345678'])
 
 
-def start_genderex(inputfile, rt='', out='genderex', no_interaction=False):
+def start_genderex(inputfile, rt='', out='genderex', no_interaction=False, no_compile=False):
     click.echo('0. INFO')
     if path.isfile(inputfile):
         decomp = True
@@ -204,6 +204,9 @@ def start_genderex(inputfile, rt='', out='genderex', no_interaction=False):
     click.echo('2. DEGENDERIFIZIEREN')
     genderex.replace()
     genderex.add_credits()
+
+    if no_compile:
+        return
 
     if not no_interaction:
         if not click.confirm('Rekompilieren?'):
