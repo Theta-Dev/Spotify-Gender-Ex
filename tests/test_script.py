@@ -10,6 +10,13 @@ You have to download them manually from here: https://spotify.de.uptodown.com/an
 Put them in the tests/testfiles/apk directory.
 """
 TESTFILES = str(files('tests.testfiles').joinpath(''))
+TESTVERSIONS = [
+    '8-5-89-901',
+    '8-5-93-445',
+    '8-5-94-839',
+    '8-5-98-984',
+    '8-6-0-830'
+]
 
 # Test recompilation (Tests will take longer)
 RECOMPILE = False
@@ -47,18 +54,19 @@ class ScriptTest(unittest.TestCase):
             self.assertTrue(path.isfile(path.join(out_folder, 'spotify-%s-gex.apk' % version)))
             self.assertTrue(path.isfile(path.join(out_folder, 'spotify-%s-gex-aligned-signed.apk' % version)))
 
-    # Run tests for all compatible Spotify versions
-    def test_spotify_8_5_89_901(self):
-        self.do_script_test('8-5-89-901')
+    '''
+    def test_complete(self):
+        """Run tests for all compatible spotify versions"""
+        for version in TESTVERSIONS:
+            self.do_script_test(version)
+    '''
 
-    def test_spotify_8_5_93_445(self):
-        self.do_script_test('8-5-93-445')
+    def test_reduced(self):
+        """Run tests for oldest version + 2 most recent versions"""
+        versions = TESTVERSIONS[0:1] + TESTVERSIONS[-2:]
 
-    def test_spotify_8_5_94_839(self):
-        self.do_script_test('8-5-94-839')
-
-    def test_spotify_8_5_98_984(self):
-        self.do_script_test('8-5-98-984')
+        for version in versions:
+            self.do_script_test(version)
 
 
 if __name__ == '__main__':

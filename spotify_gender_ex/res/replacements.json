@@ -5,7 +5,8 @@
     "8.5.93.445",
     "8.5.94.839",
     "8.5.96.936",
-    "8.5.98.984"
+    "8.5.98.984",
+    "8.6.0.830"
   ],
   "files": [
     {
@@ -745,6 +746,16 @@
           "key": "artist_page_not_found_placeholder_title",
           "old": "Künstler*in wurde nicht gefunden",
           "new": "Künstler wurde nicht gefunden"
+        },
+        {
+          "key": "your_library_content_filter_artists",
+          "old": "Künstler*innen",
+          "new": "Künstler"
+        },
+        {
+          "key": "your_library_search_empty_view_subtitle",
+          "old": "Such in deiner Bibliothek nach Playlists, Künstler*innen, Alben und Podcasts.",
+          "new": "Such in deiner Bibliothek nach Playlists, Künstlern, Alben und Podcasts."
         }
       ]
     }

@@ -10,8 +10,8 @@ from datetime import datetime
 from spotify_gender_ex.replacement_table import ReplacementTable
 
 # Version as shown in the credits
-VERSION = '0.2.0'
-RT_HASH = '15b048084ceda494fb9f80c8fd38529d'
+VERSION = '0.3.0'
+RT_HASH = '8ca73f670adca762bf5d1b63c36ecd34'
 
 
 class GenderEx:
