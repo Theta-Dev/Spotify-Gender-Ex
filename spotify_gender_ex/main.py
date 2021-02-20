@@ -60,7 +60,7 @@ class GenderEx:
                         self.workdir.dir_apk, '-o', self.workdir.file_apkout])
 
     def replace(self):
-        n_replaced, n_newrpl = self.rtm.do_replace()
+        n_replaced, n_newrpl = self.rtm.do_replace(self.spotify_version)
 
         click.echo('%d Ersetzungen vorgenommen' % n_replaced)
         click.echo('%d neue Ersetzungsregeln hinzugefügt' % n_newrpl)
@@ -71,10 +71,11 @@ class GenderEx:
             return langfield.old
         else:
             try:
-                return click.edit(str(langfield.old))
+                new_text = click.edit(str(langfield.old))
             except click.ClickException:
                 # No inline editing, less user friendly, but if the above does not work:
-                return click.prompt('Neuer Text:', str(langfield.old))
+                new_text = click.prompt('Neuer Text:', str(langfield.old))
+            return new_text.strip()
 
     def get_spotify_version(self):
         with open(self.workdir.file_apktool, 'r', encoding='utf-8') as f:
@@ -126,10 +127,9 @@ class GenderEx:
         os.renames(self.workdir.file_apkout_signed,
                    self.workdir.get_file_apkout(self.spotify_version, self.rtm.get_rt_versions()))
 
-    def can_continue(self, msg):
+    def wait_for_enter(self, msg):
         if not self.noia:
-            return click.confirm('Starten?')
-        return True
+            input(msg)
 
 
 def start_genderex(apk_file, directory='.', no_interaction=False, no_compile=False):
@@ -143,7 +143,7 @@ def start_genderex(apk_file, directory='.', no_interaction=False, no_compile=Fal
     click.echo('Spotify-Gender-Ex Version: %s' % VERSION)
     click.echo('Aktuelle Spotify-Version: %s' % genderex.downloader.spotify_version)
 
-    if not genderex.can_continue('Starten?'):
+    if not genderex.wait_for_enter('Drücke Enter zum Starten...'):
         return
 
     click.echo('1. HERUNTERLADEN')
@@ -171,12 +171,12 @@ def start_genderex(apk_file, directory='.', no_interaction=False, no_compile=Fal
 
 
 @click.command()
-@click.argument('app', type=click.Path(exists=True))
-@click.option('-d', help='GenderEx-Ordner', default='.', type=click.Path(exists=True))
+@click.option('-a', help='Spotify-App (APK)', default='', type=click.Path())
+@click.option('-d', help='GenderEx-Ordner', default='.', type=click.Path())
 @click.option('--noia', help='Prompts (ja/nein) deaktivieren', is_flag=True)
-def run(app, d, noia):
+def run(a, d, noia):
     """Entferne die Gendersternchen (z.B. Künstler*innen) aus der Spotify-App für Android!"""
-    start_genderex(app, d, noia)
+    start_genderex(a, d, noia)
 
 
 if __name__ == '__main__':

@@ -29,10 +29,9 @@ class ReplacementManager:
 
     def insert_replacement(self, lfpath, replacement):
         if self.mutable_rtab:
-            rset = self.mutable_rtab.set_from_langfile(lfpath)
-            if rset:
-                rset.add(replacement)
-                self.rtab_modified = True
+            rset = self.mutable_rtab.make_set_from_langfile(lfpath)
+            rset.add(replacement)
+            self.rtab_modified = True
 
     def check_compatibility(self, spotify_version):
         res = True
@@ -52,12 +51,12 @@ class ReplacementManager:
 
         return vstring
 
-    def do_replace(self):
+    def do_replace(self, spotify_version=''):
         # Accumulate language files
         lfpaths = set()
         for rtab in self._rtabs.values():
             for s in rtab.sets:
-                lfpaths.add(s.realpath)
+                lfpaths.add(s.path)
 
         # Do the replacements
         n_replaced = 0
@@ -66,7 +65,7 @@ class ReplacementManager:
         # Iterate through all language files
         for lfpath in lfpaths:
             # Get language file
-            langfile = LangFile.from_file(os.path.join(self.workdir.dir_apk, lfpath))
+            langfile = LangFile.from_file(os.path.join(self.workdir.dir_apk, ReplacementSet.get_realpath(lfpath)))
 
             # For each language field in file:
             for langfield in langfile.fields:
@@ -98,6 +97,8 @@ class ReplacementManager:
         # Write back modified replacement table
         if self.rtab_modified:
             self.mutable_rtab.version += 1
+            if spotify_version:
+                self.mutable_rtab.spotify_addversion(spotify_version)
             self.mutable_rtab.to_file()
 
         return n_replaced, n_newrpl
@@ -132,11 +133,18 @@ class ReplacementTable:
         data = json.loads(string)
         return cls(**data)
 
-    def set_from_langfile(self, realpath):
+    def set_from_langfile(self, path):
         try:
-            return next(filter(lambda s: s.realpath == realpath, self.sets))
+            return next(filter(lambda s: s.path == path, self.sets))
         except StopIteration:
             return None
+
+    def make_set_from_langfile(self, path):
+        rset = self.set_from_langfile(path)
+        if not rset:
+            rset = ReplacementSet(path, [])
+            self.sets.append(rset)
+        return rset
 
     def to_file(self, file=None):
         if not file:
@@ -177,10 +185,14 @@ class ReplacementSet:
 
     def __init__(self, path, replace):
         self.path = path
-        self.realpath = os.path.join(*path.split('/'))
+        self.realpath = self.get_realpath(path)
 
         self.replace = [Replacement(**r) for r in replace]
         self.lang_file = None
+
+    @staticmethod
+    def get_realpath(path):
+        return os.path.join(*path.split('/'))
 
     def add(self, replacement):
         self.replace.append(replacement)
