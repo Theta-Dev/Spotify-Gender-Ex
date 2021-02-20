@@ -2,9 +2,6 @@
 import setuptools
 import spotify_gender_ex.main
 
-with open('requirements.txt') as f:
-    REQUIRES = f.read().splitlines()
-
 with open('README.md') as f:
     README = f.read()
 
@@ -23,7 +20,13 @@ setuptools.setup(
         "Programming Language :: Python :: 3.7",
     ],
     py_modules=['spotify_gender_ex'],
-    install_requires=REQUIRES,
+    install_requires=[
+        'click',
+        'tqdm',
+        'importlib_resources',
+        'pyyaml',
+        'requests'
+    ],
     packages=setuptools.find_packages(exclude=['tests*']),
     package_data={
         'spotify_gender_ex': ['lib/*', 'res/*']

@@ -15,7 +15,7 @@ class ReplacementFileTest(unittest.TestCase):
         self.assertEqual('0.0.1', replacements.version)
         self.assertEqual(["spotify-8-5-89-901"], replacements.spotify_versions)
 
-        file0 = replacements.files[0]
+        file0 = replacements.sets[0]
         self.assertEqual('original/8-5-89-901_plurals.xml', file0.path)
         rep0_0 = file0.replace[0]
         self.assertEqual(['home_inline_onboarding_header_title', 'other'], rep0_0.key_list)
@@ -36,7 +36,7 @@ class ReplacementFileTest(unittest.TestCase):
         file = path.join(TESTFILES, 'replacement', 'replacements_1.json')
         replacements = ReplacementTable.from_file(file)
 
-        replacements.files[0].add(Replacement('key2', 'Old2', 'New2'))
+        replacements.sets[0].add(Replacement('key2', 'Old2', 'New2'))
 
         expected = '''
 {
@@ -69,7 +69,7 @@ class ReplacementFileTest(unittest.TestCase):
         file = path.join(TESTFILES, 'replacement', 'replacements.json')
         replacements = ReplacementTable.from_file(file)
 
-        set_plurals = replacements.files[0]
+        set_plurals = replacements.sets[0]
         n_replace, n_original_changed, n_suspicious, new_replacements = set_plurals.do_replace(TESTFILES)
 
         self.assertEqual(2, n_replace)

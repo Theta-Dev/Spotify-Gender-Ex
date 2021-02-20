@@ -34,12 +34,15 @@ class LangFile:
                 else:
                     self._walk_tree(elm, nkl)
 
-    def to_file(self, file):
+    def to_file(self, file=None):
+        if not file:
+            file = self.path
+
         xml = ET.parse(self.path)
         tree = xml.getroot()
 
         # Apply all replacements
-        for field in list(filter(lambda f: f.res == 2, self.fields)):
+        for field in list(filter(lambda f: f.is_replaced, self.fields)):
             elm = self._find_in_tree(tree, field.key_list, [])
             elm.text = field.new
 
@@ -78,14 +81,15 @@ class LangField:
         self.key_list = key_list
         self.old = value
         self.new = value
-        self.res = 0
 
     def __repr__(self):
         return self.old + ' -> ' + self.new
 
     def reset(self):
         self.new = self.old
-        self.res = 0
+
+    def is_replaced(self):
+        return self.old != self.new
 
     def is_suspicious(self):
         if re.search('spotify:internal', self.new):
