@@ -143,8 +143,7 @@ def start_genderex(apk_file, directory='.', no_interaction=False, no_compile=Fal
     click.echo('Spotify-Gender-Ex Version: %s' % VERSION)
     click.echo('Aktuelle Spotify-Version: %s' % genderex.downloader.spotify_version)
 
-    if not genderex.wait_for_enter('Drücke Enter zum Starten...'):
-        return
+    genderex.wait_for_enter('Drücke Enter zum Starten...')
 
     click.echo('1. HERUNTERLADEN')
     genderex.download()
