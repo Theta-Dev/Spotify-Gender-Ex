@@ -79,7 +79,7 @@ Wird neben der eingebauten Ersetzungstabelle eine selbst erstellte (`replacement
 so erhält diese ebenfalls eine Versionsnummer, die unabhängig von der Version der eingebauen Tabelle ist.
 
 Die Ersetzungstabellen-Version, die in diesem Fall an den App-Namen angefügt wird, setzt sich aus beiden
-zusammen (z.B. `2c1`, das c steht für 'custom').
+zusammen (z.B. `b2c1`, b für builtin und c für custom).
 
 Die Hashes wurden durch das bessere Versionssystem quasi überflüssig und sind deswegen ab Version 1.x.x
 nicht mehr enthalten.

@@ -17,7 +17,6 @@ class Workdir:
 
         self.dir_tmp = self._get_dir(os.path.join(self.dir_root, 'tmp'))
 
-        self.file_hool = self._get_file(os.path.join(self.dir_root, 'hook.py'), None)
         self.file_keystore = self._get_file(os.path.join(self.dir_root, 'genderex.keystore'), self._create_keystore)
         self.file_rtable = os.path.join(self.dir_root, 'replacements.json')
         self.file_rtable_upd = os.path.join(self.dir_root, 'replacements_updated.json')

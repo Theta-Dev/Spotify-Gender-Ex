@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <plurals name="Urelex_Yeable">
+        <item quantity="other">Künstler</item>
+        <item quantity="one">Künstler</item>
+    </plurals>
+    <plurals name="Blatte_Greade">
+        <item quantity="other">Spieler</item>
+        <item quantity="one">Spieler</item>
+    </plurals>
+    <plurals name="Semeno_Lehori">
+        <item quantity="other">Stunden</item>
+        <item quantity="one">Stunde</item>
+    </plurals>
+    <plurals name="Inhoul_Imphyp">
+        <item quantity="other">%1$d Std.</item>
+        <item quantity="one">%1$d Std.</item>
+    </plurals>
+</resources>

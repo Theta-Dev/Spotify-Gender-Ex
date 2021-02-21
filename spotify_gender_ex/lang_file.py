@@ -70,11 +70,6 @@ class LangFile:
             raise Exception('Mehr als 1 Feld für', '/'.join(key_list), 'gefunden')
         return fields[0]
 
-    def reset(self):
-        """Resets all fields back to their original values"""
-        for f in self.fields:
-            f.reset()
-
 
 class LangField:
     def __init__(self, key_list, value):
@@ -84,9 +79,6 @@ class LangField:
 
     def __repr__(self):
         return self.old + ' -> ' + self.new
-
-    def reset(self):
-        self.new = self.old
 
     def is_replaced(self):
         return self.old != self.new

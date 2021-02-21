@@ -7,14 +7,12 @@ from spotify_gender_ex.workdir import Workdir
 
 
 class ReplacementManager:
-    """
-    ReplacementManager holds multiple ReplacementTables
-    """
+    """ReplacementManager holds multiple ReplacementTables"""
 
     def __init__(self, workdir: Workdir, get_missing_replacement=None):
         self._rtabs = {}
         self.workdir = workdir
-        self.mutable_rtab = None
+        self._mutable_rtab = None
         self.rtab_modified = False
 
         if callable(get_missing_replacement):
@@ -23,26 +21,36 @@ class ReplacementManager:
             self.get_missing_replacement = lambda lf: lf.old
 
     def add_rtab(self, rtab, name, is_mutable=False):
+        """
+        Adds a ReplacementTable to the manager.
+        Sets the mutable replacement table if specified.
+        """
         self._rtabs[name] = rtab
         if is_mutable:
-            self.mutable_rtab = rtab
+            self._mutable_rtab = rtab
 
     def insert_replacement(self, lfpath, replacement):
-        if self.mutable_rtab:
-            rset = self.mutable_rtab.make_set_from_langfile(lfpath)
+        """Inserts a new replacement into the mutable replacement table"""
+        if self._mutable_rtab:
+            rset = self._mutable_rtab.make_set_from_langfile(lfpath)
             rset.add(replacement)
             self.rtab_modified = True
 
     def check_compatibility(self, spotify_version):
+        """
+        Returns True if all loaded replacement tables are compatible to the Spotify version.
+        Outputs incompatibility messages via the console, too.
+        """
         res = True
 
         for rtab_name in self._rtabs:
-            if not self._rtabs.get(rtab_name).spotify_compatible:
+            if not self._rtabs.get(rtab_name).spotify_compatible(spotify_version):
                 click.echo('Ersetzungstabelle %s ist nicht mit Spotify %s kompatibel.' % (rtab_name, spotify_version))
                 res = False
         return res
 
     def get_rt_versions(self):
+        """Gets a version string of all replacement tables (e.g. b3c0)"""
         vstring = ''
 
         for rtab_name in self._rtabs:
@@ -51,7 +59,20 @@ class ReplacementManager:
 
         return vstring
 
-    def do_replace(self, spotify_version=''):
+    def do_replace(self):
+        """
+        Iterates through all language files.
+        For each language field in every file, it tries to find a replacement.
+        If the field could not be replaced and seems suspicious (gender*),
+        it will call the get_missing_replacement(langfield) function and creates a new
+        replacement with the return value (used for prompting).
+
+        The new replacements can be written back into the replacement table
+        using write_replacement_table(spotify_version).
+
+        Returns a tuple: (Number of replaced fields, Number of new replacements)
+        """
+
         # Accumulate language files
         lfpaths = set()
         for rtab in self._rtabs.values():
@@ -94,14 +115,16 @@ class ReplacementManager:
 
             # Write back modified language file
             langfile.to_file()
-        # Write back modified replacement table
-        if self.rtab_modified:
-            self.mutable_rtab.version += 1
-            if spotify_version:
-                self.mutable_rtab.spotify_addversion(spotify_version)
-            self.mutable_rtab.to_file()
 
         return n_replaced, n_newrpl
+
+    def write_replacement_table(self, spotify_version=''):
+        """If modified, write back replacement table"""
+        if self.rtab_modified:
+            self._mutable_rtab.version += 1
+            if spotify_version:
+                self._mutable_rtab.spotify_addversion(spotify_version)
+            self._mutable_rtab.to_file()
 
 
 class ReplacementTable:
@@ -134,12 +157,17 @@ class ReplacementTable:
         return cls(**data)
 
     def set_from_langfile(self, path):
+        """Returns ReplacemenSet that matches the (os-agnostic) path of the language file."""
         try:
             return next(filter(lambda s: s.path == path, self.sets))
         except StopIteration:
             return None
 
     def make_set_from_langfile(self, path):
+        """
+        Returns ReplacemenSet that matches the (os-agnostic) path of the language file
+        or creates one if it doesn't exist.
+        """
         rset = self.set_from_langfile(path)
         if not rset:
             rset = ReplacementSet(path, [])
@@ -165,10 +193,6 @@ class ReplacementTable:
         if not version in self.spotify_versions:
             self.spotify_versions.append(version)
 
-    def write_files(self, root_path):
-        for f in self.sets:
-            f.write_file(root_path)
-
     def to_json(self):
         return {
             'version': self.version,
@@ -188,7 +212,6 @@ class ReplacementSet:
         self.realpath = self.get_realpath(path)
 
         self.replace = [Replacement(**r) for r in replace]
-        self.lang_file = None
 
     @staticmethod
     def get_realpath(path):
@@ -203,10 +226,6 @@ class ReplacementSet:
                 return True
         return False
 
-    def write_file(self, base_path):
-        file = os.path.join(base_path, self.realpath)
-        self.lang_file.to_file(file)
-
     def to_json(self):
         return {'path': self.path, 'replace': self.replace}
 
@@ -217,7 +236,7 @@ class Replacement:
     It also holds the old value that has to be replaced as well as the new value.
     """
 
-    def __init__(self, key, old: str, new: str, inserted: bool = False):
+    def __init__(self, key: str, old: str, new: str, inserted: bool = False):
         self.key_list = key.split('/')
         self.old = old
         self.new = new
@@ -230,14 +249,11 @@ class Replacement:
     def __repr__(self):
         return '/'.join(self.key_list) + ': ' + self.old + ' -> ' + self.new
 
-    def match_key(self, key_list):
-        return self.key_list == key_list
-
-    def match(self, langfield: LangField):
-        return self.key_list == langfield.key_list and self.old == langfield.old
-
     def try_replace(self, lang_field: LangField):
-        """Tries to replace the value in the language file."""
+        """
+        Tries to replace the value in the language file.
+        Returns True if the language field is replaced
+        """
         if not lang_field.is_replaced():
             # Key of Replacement and old values have to match
             if self.key_list != lang_field.key_list or self.old != lang_field.old:

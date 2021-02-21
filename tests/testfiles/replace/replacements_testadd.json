@@ -1,0 +1,22 @@
+{
+  "version": 0,
+  "spotify_versions": [
+    "unittest"
+  ],
+  "files": [
+    {
+      "path": "file1_withgender.xml",
+      "replace": [
+        {
+          "key": "Biblec",
+          "old": "Künstler*innen",
+          "new": "Künstler"
+        }
+      ]
+    },
+    {
+      "path": "file2_withgender.xml",
+      "replace": []
+    }
+  ]
+}

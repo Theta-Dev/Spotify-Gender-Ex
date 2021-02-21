@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="Laglog">MODIFIED</string>
+    <string name="Biblec">Künstler*innen</string>
+    <string name="Luxilo">Weitere Optionen</string>
+    <string name="Lythro">Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem*einer Freund*in.</string>
+    <string name="Bderfe">Alle anzeigen</string>
+    <string name="Housur">Nur Premium Nutzer*innen</string>
+    <string name="Lammop">AUS</string>
+    <string name="Fipali">AN</string>
+    <string name="Avatoi">Alt +</string>
+    <string name="Kouria">Strg +</string>
+    <string name="Wolach">Löschen</string>
+    <string name="Spasha">Eingabetaste</string>
+    <string name="Bizong">Künstler*innen-Radio basierend auf</string>
+    <string name="Giting">FREUND*INNEN EINLADEN</string>
+    <string name="Ollope">„%1$s“ in Künstler*innen</string>
+    <string name="Jejugi">Tippe auf einer Folge auf {download}, um sie dir ohne Internetverbindung anzuhören.</string>
+    <string name="Hysita">Konnte nicht mit %1$s geteilt werden. Bitte versuch es noch mal.</string>
+    <string name="Zuggie">Aus „Downloads“ in der Bibliothek entfernt</string>
+    <string name="Cedrap">Suchen…</string>
+    <string name="Xebiun">Ich stimme den &lt;a href=\"spotify:internal:signup:tos\"&gt;Nutzungsbedingungen&lt;/a&gt; und der &lt;a href=\"spotify:internal:signup:policy\"&gt;Datenschutzrichtlinie&lt;/a&gt; von Spotify zu.</string>
+</resources>

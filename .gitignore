@@ -1,9 +1,10 @@
 .idea
 venv
 *.apk
-/tests/testfiles/output/
+/tests/testfiles_old/output/
 /genderex/
 build
 dist
 /Spotify_Gender_Ex.egg-info/
 /GenderEx/
+/tests/testfiles/tmp/

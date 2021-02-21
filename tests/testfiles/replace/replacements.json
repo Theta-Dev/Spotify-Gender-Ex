@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "spotify_versions": [
+    "unittest"
+  ],
+  "files": [
+    {
+      "path": "file1_withgender.xml",
+      "replace": [
+        {
+          "key": "Biblec",
+          "old": "Künstler*innen",
+          "new": "Künstler"
+        },
+        {
+          "key": "Lythro",
+          "old": "Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem*einer Freund*in.",
+          "new": "Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem Freund."
+        },
+        {
+          "key": "Housur",
+          "old": "Nur Premium Nutzer*innen",
+          "new": "Nur Premiumnutzer"
+        },
+        {
+          "key": "Bizong",
+          "old": "Künstler*innen-Radio basierend auf",
+          "new": "Künstlerradio basierend auf"
+        },
+        {
+          "key": "Giting",
+          "old": "FREUND*INNEN EINLADEN",
+          "new": "FREUNDE EINLADEN"
+        },
+        {
+          "key": "Ollope",
+          "old": "„%1$s“ in Künstler*innen",
+          "new": "„%1$s“ in Künstler"
+        }
+      ]
+    },
+    {
+      "path": "file2_withgender.xml",
+      "replace": [
+        {
+          "key": "Urelex_Yeable/other",
+          "old": "Künstler*innen",
+          "new": "Künstler"
+        },
+        {
+          "key": "Urelex_Yeable/one",
+          "old": "Künstler*in",
+          "new": "Künstler"
+        },
+        {
+          "key": "Blatte_Greade/other",
+          "old": "Spieler*innen",
+          "new": "Spieler"
+        },
+        {
+          "key": "Blatte_Greade/one",
+          "old": "Spieler*in",
+          "new": "Spieler"
+        }
+      ]
+    }
+  ]
+}
