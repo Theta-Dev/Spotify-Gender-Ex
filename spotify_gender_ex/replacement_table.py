@@ -55,7 +55,8 @@ class ReplacementManager:
 
         for rtab_name in self._rtabs:
             rtab = self._rtabs.get(rtab_name)
-            vstring += rtab_name[0] + str(rtab.version)
+            if not rtab.is_empty():
+                vstring += rtab_name[0] + str(rtab.version)
 
         return vstring
 
@@ -187,11 +188,17 @@ class ReplacementTable:
                           default=lambda obj: getattr(obj.__class__, "to_json")(obj), indent=2, ensure_ascii=False)
 
     def spotify_compatible(self, version):
-        return version in self.spotify_versions
+        return version in self.spotify_versions or self.is_empty()
 
     def spotify_addversion(self, version):
         if not version in self.spotify_versions:
             self.spotify_versions.append(version)
+
+    def is_empty(self):
+        for rset in self.sets:
+            if not rset.is_empty():
+                return False
+        return True
 
     def to_json(self):
         return {
@@ -225,6 +232,9 @@ class ReplacementSet:
             if r.try_replace(langfield):
                 return True
         return False
+
+    def is_empty(self):
+        return not bool(self.replace)
 
     def to_json(self):
         return {'path': self.path, 'replace': self.replace}

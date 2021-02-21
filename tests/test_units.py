@@ -196,6 +196,9 @@ class ReplacementTableTest(unittest.TestCase):
         self.assertEqual(['file1_withgender.xml', 'file2_withgender.xml'], list(map(lambda s: s.path, rt1.sets)))
         self.assertEqual(['file1_withgender.xml', 'file2_withgender.xml'], list(map(lambda s: s.path, rt2.sets)))
 
+        self.assertFalse(rt1.is_empty())
+        self.assertTrue(rt2.is_empty())
+
     def test_from_string(self):
         rt = replacement_table.ReplacementTable.from_string(RT_STRING)
 
@@ -243,21 +246,26 @@ class ReplacementManagerTest(unittest.TestCase):
     def test_add_rtab(self):
         path1 = os.path.join(DIR_REPLACE, 'replacements.json')
         path2 = os.path.join(DIR_REPLACE, 'replacements_testadd.json')
+        path3 = os.path.join(DIR_REPLACE, 'replacements_empty.json')
 
         rt1 = replacement_table.ReplacementTable.from_file(path1)
         rt2 = replacement_table.ReplacementTable.from_file(path2)
+        rt3 = replacement_table.ReplacementTable.from_file(path3)
 
         # noinspection PyTypeChecker
         rpm = replacement_table.ReplacementManager(None)
-        rpm.add_rtab(rt2, 'rt2', True)
-        rpm.add_rtab(rt1, 'rt1')
+        rpm.add_rtab(rt2, 'b', True)
+        rpm.add_rtab(rt1, 'a')
+        rpm.add_rtab(rt3, 'c')
 
-        self.assertEqual(rt2, rpm._rtabs.get('rt2'))
-        self.assertEqual(rt1, rpm._rtabs.get('rt1'))
+        self.assertEqual(rt2, rpm._rtabs.get('b'))
+        self.assertEqual(rt1, rpm._rtabs.get('a'))
         self.assertEqual(rt2, rpm._mutable_rtab)
 
         self.assertTrue(rpm.check_compatibility('unittest'))
         self.assertFalse(rpm.check_compatibility('v1'))
+
+        self.assertEqual('b0a1', rpm.get_rt_versions())
 
     def test_do_replacement(self):
         clear_tmp_folder()
