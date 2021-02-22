@@ -2,7 +2,7 @@ import unittest
 from importlib_resources import files
 import os
 import shutil
-from spotify_gender_ex.main import start_genderex
+from spotify_gender_ex.spotify_gender_ex import start_genderex
 
 """
 Information: Spotify APK files for script testing are not included in the repository for copyright reasons.

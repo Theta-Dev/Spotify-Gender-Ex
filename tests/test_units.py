@@ -2,7 +2,7 @@ import unittest
 import os
 import shutil
 from importlib_resources import files
-from spotify_gender_ex import downloader, workdir, replacement_table, lang_file, main
+from spotify_gender_ex import downloader, workdir, replacement_table, lang_file, spotify_gender_ex
 
 DIR_TESTFILES = str(files('tests.testfiles').joinpath(''))
 DIR_LANG = os.path.join(DIR_TESTFILES, 'lang')

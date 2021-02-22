@@ -2,6 +2,7 @@
 import click
 import json
 import os
+import logging
 from spotify_gender_ex.lang_file import LangFile, LangField
 from spotify_gender_ex.workdir import Workdir
 
@@ -45,7 +46,9 @@ class ReplacementManager:
 
         for rtab_name in self._rtabs:
             if not self._rtabs.get(rtab_name).spotify_compatible(spotify_version):
-                click.echo('Ersetzungstabelle %s ist nicht mit Spotify %s kompatibel.' % (rtab_name, spotify_version))
+                msg = 'Ersetzungstabelle %s ist nicht mit Spotify %s kompatibel.' % (rtab_name, spotify_version)
+                click.echo(msg)
+                logging.info(msg)
                 res = False
         return res
 
@@ -104,9 +107,14 @@ class ReplacementManager:
                         break
 
                 if not replaced and langfield.is_suspicious():
+                    logging.info('Verdächtig: ' + langfield.old)
+
                     # Create a new replacement and obtain the new value
                     new_replacement = Replacement.from_langfield(langfield)
                     new_replacement.new = str(self.get_missing_replacement(langfield))
+
+                    logging.info('Neue Ersetzungsregel: ' + new_replacement.new)
+
                     # Replace using new replacement and add it to the table
                     new_replacement.try_replace(langfield)
                     self.insert_replacement(lfpath, new_replacement)
@@ -117,6 +125,8 @@ class ReplacementManager:
             # Write back modified language file
             langfile.to_file()
 
+        logging.info('%d Ersetzungen vorgenommen' % n_replaced)
+        logging.info('%d neue Ersetungsregeln' % n_newrpl)
         return n_replaced, n_newrpl
 
     def write_replacement_table(self, spotify_version=''):
@@ -126,6 +136,8 @@ class ReplacementManager:
             if spotify_version:
                 self._mutable_rtab.spotify_addversion(spotify_version)
             self._mutable_rtab.to_file()
+
+            logging.info('Benutzerdefinierte Ersetzungstabelle gespeichert')
 
 
 class ReplacementTable:
@@ -271,6 +283,8 @@ class Replacement:
 
             # Replace it
             lang_field.new = self.new
+
+            logging.debug('Ersetzung: %s -> %s' % (self.old, self.new))
             return True
         return True
 

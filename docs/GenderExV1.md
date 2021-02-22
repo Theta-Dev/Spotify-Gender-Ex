@@ -1,3 +1,6 @@
+Dies eine Sammlung von Notizen, die ich für die Entwicklung von GenderEx V1.0.0 verwendet habe.
+Für die fertige Dokumentation siehe README.
+
 # Ordnerstruktur
 
 ```text

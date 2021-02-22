@@ -39,55 +39,30 @@ Außerdem brauchst du natürlich auch ein Android-Smartphone oder Tablet, um die
 
 ### Wie es geht
 ![](./assets/Screenshot1.png)
-
-1. Lade die Spotify-App als apk-Datei herunter.
-Hierfür empfehle ich [uptodown](https://spotify.de.uptodown.com/android/versions).
-   
-2. Öffne ein Terminal in einem leeren Ordner und erstelle eine neue Python-Umgebung mit dem Befehl `python -m venv venv`.
+ 
+1. Öffne ein Terminal in einem leeren Ordner und erstelle eine neue Python-Umgebung mit dem Befehl `python -m venv venv`.
 Aktiviere sie mit `source venv/bin/activate` bzw auf Windows mit `venv\Scripts\activate`.
    
-3. Installiere Spotify-Gender-Ex mit diesem Befehl:
+2. Installiere Spotify-Gender-Ex mit diesem Befehl:
     ```shell
     pip3 install spotify-gender-ex
     ```
 
-4. Starte das Skript und gebe als Argument die APK-Datei, die du in Schritt 1 heruntergeladen hast, an.
-   Möchtest du eine andere als die eingebaute Ersetzungstabelle verwenden? Dann gib diese mit dem `-rt`-Flag an
-   
-    ```shell
-    python3 main.py spotify-x-x-xx-xxx.apk
-    python3 main.py spotify-x-x-xx-xxx.apk -rt genderex/replacements.json
-    
-    0. INFO
-    In: spotify-8-5-89-901.apk
-    Out: genderex
-    Ersetzungstabelle: /home/thetadev/test-genderex/venv/lib/python3.8/site-packages/spotify_gender_ex/res/replacements.json
-    APKTool: /home/thetadev/test-genderex/venv/lib/python3.8/site-packages/spotify_gender_ex/lib/apktool.jar
-    APKSigner: /home/thetadev/test-genderex/venv/lib/python3.8/site-packages/spotify_gender_ex/lib/uber-apk-signer-1.2.1.jar
-    Starten? [y/N]: y
-    ```
+3. Starte das Skript mit dem Befehl `spotify-gender-ex`
 
-5.  Bestätige mit y + Enter. Nun wird die apk-Datei dekompiliert, es werden die Ersetzungen vorgenommen
+5.  Bestätige mit Enter. Nun wird die apk-Datei dekompiliert, es werden die Ersetzungen vorgenommen
     und anschließend wird eine neue, signierte apk-Datei erzeugt.
    
 6.  Wenn du eine neue Spotify-Version verwendest, kann es sein, dass neue Einträge zur Sprachdatei
-    und damit auch neue Gendersternchen hinzukommen. Diese werden als 'verdächtige Felder' angezeigt.
-    Zudem kann es passieren, dass sich durch ein Update die Einträge der Sprachdatei verändern. Sollte einer
-    dieser Einträge eigentlich verändert werden, wird dieser als 'Feld mit geändertem Original' markiert.
-    Bei einer blinden Ersetzung könnten in diesem Fall Informationen verloren gehen.
-
-    Nun hast du 2 Möglichkeiten. Entweder du fährst fort, dann werden die verdächtigen Felder nicht ersetzt,
-    oder du brichst den Vorgang ab. In diesem Fall wird eine neue Ersetzungstabelle (`replacements.json`)
-    im `genderex`-Ordner angelegt. Um diese Tabelle selbst anzupassen und zu verwenden, siehe den Abschnitt
-    Ersetzungstabelle.
+    und damit auch neue Gendersternchen hinzukommen. Diese werden als 'verdächtig' erkannt.
+    GenderEx öffnet dann einen Texteditor mit dem Inhalt des verdächtigen Felds.
     
-    ```text
-    2. DEGENDERIFIZIEREN
-    0 Ersetzungen vorgenommen
-    0 Felder mit geändertem Original
-    3 verdächtige Felder
-    Beenden und die Ersetzungstabelle zuerst manuell bearbeiten? [y/N]:
-    ```
+    ![](./assets/Screenshot3.png)
+
+    Nun kannst du das Feld manuell bearbeiten. Wenn du alle Gendersternchen entfernt hast, kannst
+    du die Datei speichern und das Skript fährt automatisch fort. Sämtliche Ersetzungsregeln, die du
+    auf diese Art selbst erstellt hast, landen in der Datei `GenderEx/replacements.json` und werden
+    auch bei zukünftiger Verwendung des Skripts berücksichtigt.
 
 7.  Wenn alles geklappt hat, befindet sich nach Abschluss des Skripts eine veränderte und signierte Spotify-App
     unter `genderex/spotify-x-x-xx-xxx-gex-aligned-signed.apk`. Diese Datei kannst du nun auf dein Handy/Tablet
@@ -103,6 +78,14 @@ Aktiviere sie mit `source venv/bin/activate` bzw auf Windows mit `venv\Scripts\a
 8.  Nun kannst du die Spotify-App öffnen, dich anmelden und Musik ohne Gendersternchen genießen. Du kannst
     auch ins Einstellungsmenü gehen und auf `Drittanbieter-Software` tippen. Auf der Seite befinden sich
     Informationen über dieses Skript, die zum Testen und zur Fehlersuche relevant sein können.
+
+### Asciicasts
+
+Wenn du das Skript in Action sehen willst, habe ich hier ein paar Asciicasts aufgenommen.
+
+https://asciinema.org/a/392687
+
+https://asciinema.org/a/393371
 
 ### Ersetzungstabelle
 Spotify-Gender-Ex hat eine Ersetzungstabelle eingebaut, die standardmäßig verwendet wird
@@ -163,6 +146,10 @@ auch nicht durch Modifikation der App verändern.
 #### Ich liebe Gendersternchen/nutze kein Spotify. Ist dieses Skript auch für was anderes nützlich?
 Ja, man könnte dieses Skript bspw. auch dafür benutzen, um Spotify (bzw. mit Änderungen jede andere Android-App)
 in eine andere Sprache zu übersetzen, wenn die Originalübersetzung nicht vorhanden oder von mangelhafter Qualität ist.
+
+<!-- TODO:
+#### Ich will NOCH MEHR Automatisierung. Ich will Spotify wie zu guten alten Zeiten ohne Gendersternchen direkt von meinem Handy runterladen und installieren, ohne bei jeder neuen Spotify-Version ein Skript benutzen und die App manuell auf mein Gerät übertragen zu müssen.
+Ich habe GenderEx zusammen mit Pythons SimpleHttpServer in einen Docker-Container gepackt.-->
 
 ### Lizenzen und Rechtliches
 Dieses Projekt enthält die Java-Pakete [apktool](https://bitbucket.org/iBotPeaches/apktool/src/master/) (iBotPeaches)
