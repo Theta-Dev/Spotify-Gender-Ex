@@ -4,7 +4,6 @@ import subprocess
 from importlib_resources import files
 import os
 import re
-import shutil
 import logging
 from datetime import datetime
 from spotify_gender_ex.replacement_table import ReplacementManager, ReplacementTable
@@ -209,15 +208,16 @@ class GenderEx:
                         '--ks', self.workdir.file_keystore, '--ksAlias', 'genderex', '--ksPass', '12345678',
                         '--ksKeyPass', '12345678'])
 
-        # Rename apk file
+        # Move apk file
         self.file_apkout = self.workdir.get_file_apkout(self.spotify_version, self.rtm.get_rt_versions())
         logging.info('Speichere App unter %s' % self.file_apkout)
         os.renames(self.workdir.file_apkout_signed, self.file_apkout)
 
-        # Copy log file
-        file_logout = os.path.join(self.workdir.dir_log, 'log_%s.txt' % os.path.basename(self.file_apkout)[:-4])
-        logging.info('Speichere Logdatei unter %s' % file_logout)
-        shutil.copyfile(self.workdir.file_log, file_logout)
+        # Move log file
+        logging.shutdown()
+        if os.path.isfile(self.workdir.file_log):
+            file_logout = os.path.join(self.workdir.dir_log, 'log_%s.txt' % os.path.basename(self.file_apkout)[:-4])
+            os.renames(self.workdir.file_log, file_logout)
 
     def wait_for_enter(self, msg):
         """Displays a message and waits for the user to press ENTER. Does nothing in non-interactive mode."""
