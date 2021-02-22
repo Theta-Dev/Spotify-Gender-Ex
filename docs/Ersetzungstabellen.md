@@ -36,7 +36,7 @@ Findet GenderEx nun Einträge in der Sprachdatei, die Gendersternchen aufweisen,
 Ersetzungstabelle abgedeckt sind, kannst du deine eigene Ersetzungsregel eintippen. Diese Einträge werden
 in der benutzerdefinierten Ersetzungstabelle gespeichert, die sich unter `GenderEx/replacements.json` befindet.
 
-Möchtest du eine eigene Ersetzungstabelle statt dieser beiden Tabellen verwenden, so kannst du diese mit
+Möchtest du eine eigene Ersetzungstabelle anstatt dieser beiden Tabellen verwenden, so kannst du diese mit
 der Option `-rt` angeben.
 
 Alle Ersetzungstabellen haben eine Versionsnummer, die bei jedem Update inkrementiert wird.

@@ -87,9 +87,8 @@ https://asciinema.org/a/392687
 
 https://asciinema.org/a/393371
 
-### Ersetzungstabelle
-Spotify-Gender-Ex hat eine Ersetzungstabelle eingebaut, die standardmäßig verwendet wird
-(befindet sich unter `spotify_gender_ex/res/replacements.json`). Die Ersetzungstabelle enthält eine Liste
+### Ersetzungstabellen
+Jede Ersetzungstabelle enthält eine Liste
 kompatibler Spotify-Versionen und sämtliche vorzunehmenden Ersetzungen bestehend aus
 Sprachdatei, Schlüssel, Originaltext und neuem Text.
 
@@ -102,31 +101,21 @@ Hier ein Beispiel für eine Ersetzungsregel:
 }
 ```
 
-Wenn du die Ersetzungstabelle selbst verändern möchtest, kannst du sie entweder direkt von Github kopieren
-oder du lässt das Skript laufen und es stellt fest, dass verdächtige Einträge in der Spotify-Sprachdatei
-gefunden wurden, die einer Anpassung der Ersetzungstabelle bedürfen.
-In diesem Fall wird automatisch eine neue Ersetzungstabelle unter `genderex/replacements(_X).json` erstellt,
-die die fehlenden Einträge vorausgefüllt beinhaltet.
+Bei der Ersetzung geht Spotify-Gender-Ex durch alle Sprachdateien und versucht, das entsprechende
+Feld anhand des Schlüssels und des Inhalts in einer Ersetzungstabelle zu finden.
+Wurde ein zu ersetzendes Feld gefunden, wird der Text durch den neuen ausgetauscht.
 
-Ungefähr so:
-```json
-{
-  "key": "your_library_sort_order_artist_name_alphabetically_in_artists", 
-  "old": "Künstler*in",
-  "new": "Künstler*in EDIT"
-}
-```
+Spotify GenderEx arbeitet mit 2 Ersetzungstabellen: der eingebauten und der benutzerdefinierten Tabelle.
+Die eingebaute Tabelle befindet sich im Package unter `spotify_gender_ex/res/replacements.json`.
+Wenn möglich verwendet das Skript aber die aktuelle Version von GitHub unter
+https://github.com/Theta-Dev/Spotify-Gender-Ex/blob/master/spotify_gender_ex/res/replacements.json.
 
-An die automatisch erzeugten Einträge wird das Wort EDIT angefügt, damit diese schnell zu finden sind.
-Das einzige, was du machen musst, ist bei allen markierten Einträgen das Feld `new` anzupassen. Bitte keine
-anderen Felder ändern, das Feld `old` muss so bleiben, wie es ist.
+Findet GenderEx nun Einträge in der Sprachdatei, die Gendersternchen aufweisen, aber nicht von der eingebauten
+Ersetzungstabelle abgedeckt sind, kannst du deine eigene Ersetzungsregel eintippen. Diese Einträge werden
+in der benutzerdefinierten Ersetzungstabelle gespeichert, die sich unter `GenderEx/replacements.json` befindet.
 
-Anschließend kannst du Spotify-Gender-Ex erneut starten und hierbei die Ersetzungstabelle mit dem Flag
-`-rt ./path/to/replacements.json` übergeben.
-
-Bei der Ersetzung geht Spotify-Gender-Ex durch die komplette Ersetzungstabelle und versucht, das entsprechende
-Feld anhand des Schlüssels und des alten Texts in der Sprachdatei zu finden. Wurde ein zu ersetzendes Feld gefunden,
-wird der Text durch den neuen ausgetauscht.
+Möchtest du eine eigene Ersetzungstabelle anstatt dieser beiden Tabellen verwenden, so kannst du diese mit
+der Option `-rt` angeben.
 
 ### FAQ
 #### Betrug! Da sind immer noch Gendersternchen in der App!
