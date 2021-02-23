@@ -1,0 +1,9 @@
+.idea
+venv
+assers
+tests
+build
+dist
+*.egg-info
+GenderEx
+GenderEx_docker

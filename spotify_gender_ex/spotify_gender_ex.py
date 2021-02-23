@@ -203,10 +203,22 @@ class GenderEx:
 
     def sign(self):
         """Signs the APK file using UberAPKSigner and copies the app into the output folder"""
-        subprocess.run(['java', '-jar', self.file_apksigner,
-                        '-a', self.workdir.file_apkout, '-o', self.workdir.dir_output,
-                        '--ks', self.workdir.file_keystore, '--ksAlias', 'genderex', '--ksPass', '12345678',
-                        '--ksKeyPass', '12345678'])
+        # Tests if zipalign is installed
+        has_zip_align = True
+        try:
+            subprocess.run('zipalign')
+        except FileNotFoundError:
+            has_zip_align = False
+
+        cmd = ['java', '-jar', self.file_apksigner,
+               '-a', self.workdir.file_apkout, '-o', self.workdir.dir_output,
+               '--ks', self.workdir.file_keystore, '--ksAlias', 'genderex', '--ksPass', '12345678',
+               '--ksKeyPass', '12345678']
+
+        if has_zip_align:
+            cmd += ['--zipAlignPath', 'zipalign']
+
+        subprocess.run(cmd)
 
         # Move apk file
         self.file_apkout = self.workdir.get_file_apkout(self.spotify_version, self.rtm.get_rt_versions())
@@ -277,7 +289,7 @@ def start_genderex(apk_file, directory='.', replacement_table='', no_interaction
 
     if hook:
         click.echo('Führe Hook aus: ' + hook)
-        subprocess.run(hook)
+        os.system(hook)
 
 
 @click.command()
