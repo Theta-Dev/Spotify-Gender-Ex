@@ -10,7 +10,7 @@ class Workdir:
         """Create the required files and directories if needed"""
         self.dir_root = self._get_dir(os.path.join(pathin, 'GenderEx'))
         self.dir_output = self._get_dir(os.path.join(self.dir_root, 'output'))
-        self.dir_log = self._get_dir(os.path.join(self.dir_root, 'log'))
+        self.dir_log = self._get_dir(os.path.join(self.dir_output, 'log'))
 
         self.dir_tmp = os.path.join(self.dir_root, 'tmp')
         self._clear_tmp_folder()
