@@ -11,19 +11,22 @@ from spotify_gender_ex.workdir import Workdir
 from spotify_gender_ex import downloader
 
 # Version as shown in the credits
-VERSION = '1.0.0'
+VERSION = '1.1.1'
 
 
 class GenderEx:
-    def __init__(self, apk_file='', folder_out='.', replacement_table='', no_interaction=False, debug=False):
+    def __init__(self, apk_file='', folder_out='.', replacement_table='', no_interaction=False, debug=False,
+                 ks_password='', key_password=''):
         self.spotify_version = ''
         self.noia = no_interaction
+        self.ks_password = ks_password or '12345678'
+        self.key_password = key_password or '12345678'
 
         # Java libraries
         self.file_apktool = str(files('spotify_gender_ex.lib').joinpath('apktool.jar'))
         self.file_apksigner = str(files('spotify_gender_ex.lib').joinpath('uber-apk-signer-1.2.1.jar'))
 
-        self.workdir = Workdir(folder_out)
+        self.workdir = Workdir(folder_out, self.ks_password, self.key_password)
         self.rtm = ReplacementManager(self.workdir, self._get_missing_replacement)
 
         # Logging
@@ -212,8 +215,8 @@ class GenderEx:
 
         cmd = ['java', '-jar', self.file_apksigner,
                '-a', self.workdir.file_apkout, '-o', self.workdir.dir_output,
-               '--ks', self.workdir.file_keystore, '--ksAlias', 'genderex', '--ksPass', '12345678',
-               '--ksKeyPass', '12345678']
+               '--ks', self.workdir.file_keystore, '--ksAlias', 'genderex', '--ksPass', self.ks_password,
+               '--ksKeyPass', self.key_password]
 
         if has_zip_align:
             cmd += ['--zipAlignPath', 'zipalign']
@@ -237,14 +240,14 @@ class GenderEx:
             input(msg)
 
 
-def start_genderex(apk_file, directory='.', replacement_table='', no_interaction=False, force=False,
-                   hook='', cleanup_max_files=0, debug=False, no_compile=False):
+def start_genderex(apk_file, directory='.', replacement_table='', ks_password='', key_password='',
+                   no_interaction=False, force=False, cleanup_max_files=0, debug=False, no_compile=False):
     click.echo('0. INFO')
     if not os.path.isdir(directory):
         click.echo('Keine Eingabedaten')
         return
 
-    genderex = GenderEx(apk_file, directory, replacement_table, no_interaction, debug)
+    genderex = GenderEx(apk_file, directory, replacement_table, no_interaction, debug, ks_password, key_password)
 
     click.echo('Spotify-Gender-Ex Version: %s' % VERSION)
     click.echo('Aktuelle Spotify-Version: %s' % genderex.latest_spotify)
@@ -287,10 +290,6 @@ def start_genderex(apk_file, directory='.', replacement_table='', no_interaction
 
     genderex.workdir.cleanup(cleanup_max_files)
 
-    if hook:
-        click.echo('Führe Hook aus: ' + hook)
-        os.system(hook)
-
 
 @click.command()
 @click.option('-a',
@@ -300,20 +299,19 @@ def start_genderex(apk_file, directory='.', replacement_table='', no_interaction
 @click.option('-rt',
               help='Spezifizierte Ersetzungstabelle. Standard: eingebaute Tabelle (wird automatisch aktualisiert) + benutzerdefinierte Tabelle unter GenderEx/replacements.json',
               type=click.Path(exists=True))
+@click.option('--kspw', help='Signer: Passwort für den Keystore.', default='', type=click.STRING)
+@click.option('--kypw', help='Signer: Passwort für den Key (genderex).', default='', type=click.STRING)
 @click.option('--noia', help='Keine Interaktion: Deaktiviert Eingabeaufforderungen (für Automatisierung)', is_flag=True)
 @click.option('--force',
               help='(Nur in Verbindung mit --noia) Durchlauf erzwingen, auch wenn die aktuelle Spotify-Version bereits verarbeitet wurde',
               is_flag=True)
-@click.option('--hook',
-              help='Befehl, der nach erfolgreicher Verarbeitung ausgeführt wird.',
-              default='', type=click.STRING)
 @click.option('--cleanup',
               help='Automatische Säuberung am Ende: Maximale Anzahl Dateien im Ausgabeordner (die ältesten Versionen werden gelöscht)',
               default=0, type=click.INT)
 @click.option('--debug', help='Debug-Informationen in die Logdatei schreiben', is_flag=True)
-def run(a, d, rt, noia, force, hook, cleanup, debug):
+def run(a, d, rt, kspw, kypw, noia, force, cleanup, debug):
     """Entferne die Gendersternchen (z.B. Künstler*innen) aus der Spotify-App für Android!"""
-    start_genderex(a, d, rt, noia, force, hook, cleanup, debug)
+    start_genderex(a, d, rt, kspw, kypw, noia, force, cleanup, debug)
 
 
 if __name__ == '__main__':

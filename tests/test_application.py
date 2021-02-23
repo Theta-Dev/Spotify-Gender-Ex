@@ -58,7 +58,7 @@ class ScriptTest(unittest.TestCase):
         clear_tmp_folder()
 
         # Run the script
-        start_genderex(apk_file, DIR_TMP, '', True, not RECOMPILE)
+        start_genderex(apk_file, DIR_TMP, '', '', '', True, True, 0, False, not RECOMPILE)
 
         # Verify replacements
         for i in range(len(nogender_files)):

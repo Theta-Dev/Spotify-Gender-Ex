@@ -6,8 +6,11 @@ import click
 
 
 class Workdir:
-    def __init__(self, pathin):
+    def __init__(self, pathin, ks_password='12345678', key_password='12345678'):
         """Create the required files and directories if needed"""
+        self.ks_password = ks_password
+        self.key_password = key_password
+
         self.dir_root = self._get_dir(os.path.join(pathin, 'GenderEx'))
         self.dir_output = self._get_dir(os.path.join(self.dir_root, 'output'))
         self.dir_log = self._get_dir(os.path.join(self.dir_output, 'log'))
@@ -69,8 +72,7 @@ class Workdir:
                 return None
         return filepath
 
-    @staticmethod
-    def _create_keystore(keystorepath):
+    def _create_keystore(self, keystorepath):
         if os.name == 'nt':
             # Keytool on Windows
             keytool_base = str(os.path.join(os.getenv('JAVA_HOME'), 'bin', 'keytool.exe'))
@@ -80,4 +82,4 @@ class Workdir:
 
         subprocess.run([keytool_base, '-keystore', keystorepath, '-genkey', '-alias', 'genderex',
                         '-keyalg', 'RSA', '-keysize', '2048', '-validity', '50000',
-                        '-storepass', '12345678', '-keypass', '12345678', '-dname', 'CN=spotify-gender-ex'])
+                        '-storepass', self.ks_password, '-keypass', self.key_password, '-dname', 'CN=spotify-gender-ex'])
