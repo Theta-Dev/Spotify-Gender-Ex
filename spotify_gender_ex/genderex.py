@@ -1,22 +1,21 @@
-# coding=utf-8
 import click
 import subprocess
 from importlib_resources import files
-import os
 import re
 import logging
+import os
 from datetime import datetime
 from spotify_gender_ex.replacement_table import ReplacementManager, ReplacementTable
 from spotify_gender_ex.workdir import Workdir
 from spotify_gender_ex import downloader
 
 # Version as shown in the credits
-VERSION = '1.1.1'
+VERSION = '1.1.2'
 
 
 class GenderEx:
     def __init__(self, apk_file='', folder_out='.', replacement_table='', no_interaction=False, debug=False,
-                 ks_password='', key_password=''):
+                 ks_password='', key_password='', ignore_ssl=False, no_logfile=False):
         self.spotify_version = ''
         self.noia = no_interaction
         self.ks_password = ks_password or '12345678'
@@ -30,17 +29,14 @@ class GenderEx:
         self.rtm = ReplacementManager(self.workdir, self._get_missing_replacement)
 
         # Logging
-        logging.basicConfig(filename=self.workdir.file_log, level=logging.DEBUG if debug else logging.INFO)
+        if not no_logfile:
+            logging.basicConfig(filename=self.workdir.file_log, level=logging.DEBUG if debug else logging.INFO)
+
         logging.info('Starte Spotify GenderEx V' + VERSION)
 
         # Downloader
-        try:
-            self.downloader = downloader.Downloader()
-            self.latest_spotify = self.downloader.spotify_version
-        except downloader.DownloaderException as e:
-            click.echo(str(e))
-            self.downloader = None
-            self.latest_spotify = 'NA'
+        self.downloader = downloader.Downloader(ignore_ssl)
+        self.latest_spotify = self.downloader.spotify_version
 
         if apk_file and os.path.isfile(apk_file):
             self.workdir.file_apk = apk_file
@@ -58,7 +54,7 @@ class GenderEx:
 
             # If we can, use the latest replacement table from GitHub
             try:
-                rtab_raw = downloader.get_replacement_table_raw()
+                rtab_raw = self.downloader.get_replacement_table_raw()
                 rt_builtin = ReplacementTable.from_string(rtab_raw)
             except Exception as e:
                 click.echo(str(e))
@@ -106,6 +102,9 @@ class GenderEx:
         subprocess.run(
             ['java', '-jar', self.file_apktool, 'd', self.workdir.file_apk, '-s', '-o', self.workdir.dir_apk])
 
+        # Check if decompile was successful
+        assert os.path.isfile(self.workdir.file_apktool)
+
     def check_compatibility(self):
         """Checks if the decompiled Spotify version is compatible with all replacement tables"""
         self.spotify_version = self.get_spotify_version()
@@ -127,6 +126,9 @@ class GenderEx:
         logging.info(msg)
         subprocess.run(['java', '-jar', self.file_apktool, 'b', '--use-aapt2',
                         self.workdir.dir_apk, '-o', self.workdir.file_apkout])
+
+        # Check if compile was successful
+        assert os.path.isfile(self.workdir.file_apkout)
 
     def replace(self):
         """Executes all replacements"""
@@ -223,96 +225,20 @@ class GenderEx:
 
         subprocess.run(cmd)
 
+        rtver = self.rtm.get_rt_versions()
+
         # Move apk file
-        self.file_apkout = self.workdir.get_file_apkout(self.spotify_version, self.rtm.get_rt_versions())
+        self.file_apkout = self.workdir.get_file_apkout(self.spotify_version, rtver)
         logging.info('Speichere App unter %s' % self.file_apkout)
         os.renames(self.workdir.file_apkout_signed, self.file_apkout)
 
         # Move log file
         logging.shutdown()
         if os.path.isfile(self.workdir.file_log):
-            file_logout = os.path.join(self.workdir.dir_log, 'log_%s.txt' % os.path.basename(self.file_apkout)[:-4])
+            file_logout = self.workdir.get_file_logout(self.spotify_version, rtver)
             os.renames(self.workdir.file_log, file_logout)
 
     def wait_for_enter(self, msg):
         """Displays a message and waits for the user to press ENTER. Does nothing in non-interactive mode."""
         if not self.noia:
             input(msg)
-
-
-def start_genderex(apk_file, directory='.', replacement_table='', ks_password='', key_password='',
-                   no_interaction=False, force=False, cleanup_max_files=0, debug=False, no_compile=False):
-    click.echo('0. INFO')
-    if not os.path.isdir(directory):
-        click.echo('Keine Eingabedaten')
-        return
-
-    genderex = GenderEx(apk_file, directory, replacement_table, no_interaction, debug, ks_password, key_password)
-
-    click.echo('Spotify-Gender-Ex Version: %s' % VERSION)
-    click.echo('Aktuelle Spotify-Version: %s' % genderex.latest_spotify)
-
-    # Non-interactive mode is meant for automation.
-    # In this case, dont process the same spotify version multiple times
-    if genderex.is_latest_spotify_processed():
-        click.echo('Du hast bereits die aktuellste Spotify-Version degenderifiziert.')
-        if no_interaction and not force:
-            click.echo('Vielen Dank.')
-            return
-
-    genderex.wait_for_enter('Drücke Enter zum Starten...')
-
-    click.echo('1. HERUNTERLADEN')
-    if not genderex.download():
-        return
-
-    click.echo('2. DEKOMPILIEREN')
-    genderex.decompile()
-    genderex.check_compatibility()
-
-    click.echo('3. DEGENDERIFIZIEREN')
-    genderex.replace()
-    genderex.add_credits()
-
-    # This is only for reducing test time
-    if no_compile:
-        return
-
-    click.echo('4. REKOMPILIEREN')
-    genderex.recompile()
-
-    click.echo('5. SIGNIEREN')
-    genderex.sign()
-
-    click.echo('Degenderifizierung abgeschlossen. Vielen Dank.')
-    click.echo('Deine Spotify-App befindet sich hier:')
-    click.echo(genderex.file_apkout)
-
-    genderex.workdir.cleanup(cleanup_max_files)
-
-
-@click.command()
-@click.option('-a',
-              help='Spotify-App (APK). Ohne diese Option wird die aktuellste Version von uptodown.com heruntergeladen.',
-              default='', type=click.Path())
-@click.option('-d', help='GenderEx-Ordner. Standard: ./GenderEx', default='.', type=click.Path())
-@click.option('-rt',
-              help='Spezifizierte Ersetzungstabelle. Standard: eingebaute Tabelle (wird automatisch aktualisiert) + benutzerdefinierte Tabelle unter GenderEx/replacements.json',
-              type=click.Path(exists=True))
-@click.option('--kspw', help='Signer: Passwort für den Keystore.', default='', type=click.STRING)
-@click.option('--kypw', help='Signer: Passwort für den Key (genderex).', default='', type=click.STRING)
-@click.option('--noia', help='Keine Interaktion: Deaktiviert Eingabeaufforderungen (für Automatisierung)', is_flag=True)
-@click.option('--force',
-              help='(Nur in Verbindung mit --noia) Durchlauf erzwingen, auch wenn die aktuelle Spotify-Version bereits verarbeitet wurde',
-              is_flag=True)
-@click.option('--cleanup',
-              help='Automatische Säuberung am Ende: Maximale Anzahl Dateien im Ausgabeordner (die ältesten Versionen werden gelöscht)',
-              default=0, type=click.INT)
-@click.option('--debug', help='Debug-Informationen in die Logdatei schreiben', is_flag=True)
-def run(a, d, rt, kspw, kypw, noia, force, cleanup, debug):
-    """Entferne die Gendersternchen (z.B. Künstler*innen) aus der Spotify-App für Android!"""
-    start_genderex(a, d, rt, kspw, kypw, noia, force, cleanup, debug)
-
-
-if __name__ == '__main__':
-    run()

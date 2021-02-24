@@ -3,6 +3,7 @@ import urllib.request
 from tqdm import tqdm
 import click
 import re
+import os
 import logging
 
 URL_UPTODOWN = 'https://spotify.de.uptodown.com/android/download'
@@ -10,16 +11,20 @@ URL_RTABLE = 'https://raw.githubusercontent.com/Theta-Dev/Spotify-Gender-Ex/mast
 
 
 class Downloader:
-    def __init__(self):
+    def __init__(self, ignore_ssl=False):
         pattern_url = re.escape('https://dw.uptodown.com/dwn/') + r'(\w|\.|\/|-|\+|=)+'
         pattern_version = r'(?<=<div class=version>)(\d|\.)+'
+        self.verify = not ignore_ssl
 
         try:
-            r = requests.get(URL_UPTODOWN)
+            r = requests.get(URL_UPTODOWN, verify=self.verify)
         except Exception:
             msg = 'Spotify-Version konnte nicht abgerufen werden'
             logging.error(msg)
-            raise DownloaderException(msg)
+            click.echo(msg)
+            self.spotify_version = 'NA'
+            self.spotify_url = ''
+            return
 
         search_url = re.search(pattern_url, r.text)
         search_version = re.search(pattern_version, r.text)
@@ -27,7 +32,10 @@ class Downloader:
         if not search_url or not search_version:
             msg = 'Spotify-Version nicht gefunden'
             logging.error(msg)
-            raise DownloaderException(msg)
+            click.echo(msg)
+            self.spotify_version = 'NA'
+            self.spotify_url = ''
+            return
 
         self.spotify_url = str(search_url[0])
         self.spotify_version = str(search_version[0])
@@ -35,17 +43,19 @@ class Downloader:
         logging.info('Aktuelle Spotify-Version: %s' % self.spotify_version)
 
     def download_spotify(self, output_path):
+        if not self.spotify_url:
+            return False
+
         return _download(self.spotify_url, output_path, 'Spotify')
 
+    def get_replacement_table_raw(self):
+        logging.info('Ersetzungstabelle von GitHub abrufen')
+        try:
+            return requests.get(URL_RTABLE, verify=self.verify).text
+        except Exception:
+            msg = 'Ersetzungstabelle konnte nicht abgerufen werden. Verwende eingebaute Tabelle.'
+            logging.error(msg)
 
-def get_replacement_table_raw():
-    logging.info('Ersetzungstabelle von GitHub abrufen')
-    try:
-        return requests.get(URL_RTABLE).text
-    except Exception:
-        msg = 'Ersetzungstabelle konnte nicht abgerufen werden. Verwende eingebaute Tabelle.'
-        logging.error(msg)
-        raise DownloaderException(msg)
 
 # See here
 # https://stackoverflow.com/questions/15644964/python-progress-bar-and-downloads
@@ -70,8 +80,4 @@ def _download(url, output_path, description=''):
             urllib.request.urlretrieve(url, filename=output_path, reporthook=t.update_to)
     except Exception:
         return False
-    return True
-
-
-class DownloaderException(Exception):
-    pass
+    return os.path.isfile(output_path)

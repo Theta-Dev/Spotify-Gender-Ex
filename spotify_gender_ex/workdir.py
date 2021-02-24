@@ -29,10 +29,24 @@ class Workdir:
         self.dir_apk = os.path.join(self.dir_tmp, 'app')
         self.file_apktool = os.path.join(self.dir_apk, 'apktool.yml')
 
-    def get_file_apkout(self, spotify_version, rt_version):
+    @staticmethod
+    def _output_basename(spotify_version, rt_version):
         version_fn = spotify_version.replace('.', '-')
-        fname = 'spotify-%s-genderex-%s.apk' % (version_fn, rt_version)
-        return os.path.join(self.dir_output, fname)
+        return str('%s-genderex-%s' % (version_fn, rt_version))
+
+    def _output_file(self, spotify_version, rt_version, name, ending):
+        basename = Workdir._output_basename(spotify_version, rt_version)
+        file = os.path.join(self.dir_output, name + '-' + basename + '.' + ending)
+
+        if os.path.isfile(file):
+            os.remove(file)
+        return file
+
+    def get_file_apkout(self, spotify_version, rt_version):
+        return self._output_file(spotify_version, rt_version, 'spotify', 'apk')
+
+    def get_file_logout(self, spotify_version, rt_version):
+        return self._output_file(spotify_version, rt_version, 'log', 'txt')
 
     def cleanup(self, max_files=0):
         if max_files > 0:
@@ -82,4 +96,8 @@ class Workdir:
 
         subprocess.run([keytool_base, '-keystore', keystorepath, '-genkey', '-alias', 'genderex',
                         '-keyalg', 'RSA', '-keysize', '2048', '-validity', '50000',
-                        '-storepass', self.ks_password, '-keypass', self.key_password, '-dname', 'CN=spotify-gender-ex'])
+                        '-storepass', self.ks_password, '-keypass', self.key_password, '-dname',
+                        'CN=spotify-gender-ex'])
+
+        # Check if keystore generation was successful
+        assert os.path.isfile(keystorepath), 'Keystore konnte nicht erzeugt werden'

@@ -6,7 +6,7 @@ with open('README.md') as f:
 
 setuptools.setup(
     name='Spotify-Gender-Ex',
-    version='1.1.1',
+    version='1.1.2',
     author='ThetaDev',
     description='Ein kleines Tool, das die Gendersternchen (z.B. Künstler*innen) aus der Spotify-App für Android entfernt.',
     long_description=README,
@@ -32,7 +32,7 @@ setuptools.setup(
     },
     entry_points={
         'console_scripts': [
-            'spotify-gender-ex=spotify_gender_ex.spotify_gender_ex:run',
+            'spotify-gender-ex=spotify_gender_ex:run',
         ],
     },
 )
