@@ -6,17 +6,13 @@
   "files": [
     {
       "path": "file1_withgender.xml",
-      "replace": [
-        {
-          "key": "Biblec",
-          "old": "Künstler*innen",
-          "new": "Künstler"
-        }
-      ]
+      "replace": {
+        "Biblec|Künstler*innen": "Künstler"
+      }
     },
     {
       "path": "file2_withgender.xml",
-      "replace": []
+      "replace": {}
     }
   ]
 }

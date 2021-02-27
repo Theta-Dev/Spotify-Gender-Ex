@@ -6,11 +6,11 @@
   "files": [
     {
       "path": "file1_withgender.xml",
-      "replace": []
+      "replace": {}
     },
     {
       "path": "file2_withgender.xml",
-      "replace": []
+      "replace": {}
     }
   ]
 }

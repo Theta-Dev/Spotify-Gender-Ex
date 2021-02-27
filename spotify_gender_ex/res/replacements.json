@@ -12,753 +12,161 @@
   "files": [
     {
       "path": "res/values-de/plurals.xml",
-      "replace": [
-        {
-          "key": "home_inline_onboarding_header_title/other",
-          "old": "Folge %1$d Künstler*innen, um speziell für dich ausgewählte Musik zu erhalten.",
-          "new": "Folge %1$d Künstlern, um speziell für dich ausgewählte Musik zu erhalten."
-        },
-        {
-          "key": "home_inline_onboarding_header_title/one",
-          "old": "Folge %1$d Künstler*in, um speziell für dich ausgewählte Musik zu erhalten.",
-          "new": "Folge %1$d Künstler, um speziell für dich ausgewählte Musik zu erhalten."
-        },
-        {
-          "key": "playlist_header_owner_button_text_collaborative/one",
-          "old": "%1$s + %2$d weitere*r",
-          "new": "%1$s + %2$d weiterer"
-        },
-        {
-          "key": "social_listening_join_failed_session_full_body/other",
-          "old": "Es können %1$s Hörer*innen gleichzeitig teilnehmen und wir haben das Maximum erreicht.",
-          "new": "Es können %1$s Hörer gleichzeitig teilnehmen und wir haben das Maximum erreicht."
-        },
-        {
-          "key": "social_listening_join_failed_session_full_body/one",
-          "old": "Es kann %1$s Hörer*in gleichzeitig teilnehmen und wir haben das Maximum erreicht.",
-          "new": "Es kann %1$s Hörer gleichzeitig teilnehmen und wir haben das Maximum erreicht."
-        },
-        {
-          "key": "social_listening_participant_list_invite_notice_title/other",
-          "old": "Lade bis zu %1$s Freund*innen ein",
-          "new": "Lade bis zu %1$s Freunde ein"
-        },
-        {
-          "key": "social_listening_participant_list_invite_notice_title/one",
-          "old": "Lade maximal %1$s Freund*in ein",
-          "new": "Lade maximal %1$s Freund ein"
-        }
-      ]
+      "replace": {
+        "home_inline_onboarding_header_title/other|Folge %1$d Künstler*innen, um speziell für dich ausgewählte Musik zu erhalten.": "Folge %1$d Künstlern, um speziell für dich ausgewählte Musik zu erhalten.",
+        "home_inline_onboarding_header_title/one|Folge %1$d Künstler*in, um speziell für dich ausgewählte Musik zu erhalten.": "Folge %1$d Künstler, um speziell für dich ausgewählte Musik zu erhalten.",
+        "playlist_header_owner_button_text_collaborative/one|%1$s + %2$d weitere*r": "%1$s + %2$d weiterer",
+        "social_listening_join_failed_session_full_body/other|Es können %1$s Hörer*innen gleichzeitig teilnehmen und wir haben das Maximum erreicht.": "Es können %1$s Hörer gleichzeitig teilnehmen und wir haben das Maximum erreicht.",
+        "social_listening_join_failed_session_full_body/one|Es kann %1$s Hörer*in gleichzeitig teilnehmen und wir haben das Maximum erreicht.": "Es kann %1$s Hörer gleichzeitig teilnehmen und wir haben das Maximum erreicht.",
+        "social_listening_participant_list_invite_notice_title/other|Lade bis zu %1$s Freund*innen ein": "Lade bis zu %1$s Freunde ein",
+        "social_listening_participant_list_invite_notice_title/one|Lade maximal %1$s Freund*in ein": "Lade maximal %1$s Freund ein"
+      }
     },
     {
       "path": "res/values-de/strings.xml",
-      "replace": [
-        {
-          "key": "ac_search_subtitle_artist",
-          "old": "Künstler*in",
-          "new": "Künstler"
-        },
-        {
-          "key": "ac_see_all_title_artist",
-          "old": "Alle Künstler*innen anzeigen",
-          "new": "Alle Künstler anzeigen"
-        },
-        {
-          "key": "allboarding_skip_dialog_body",
-          "old": "Deine Künstler*innen auszuwählen dauert nur eine Minute und hilft uns, Spotify für dich noch besser zu machen.",
-          "new": "Deine Künstler auszuwählen dauert nur eine Minute und hilft uns, Spotify für dich noch besser zu machen."
-        },
-        {
-          "key": "allboarding_skip_dialog_continue",
-          "old": "Künstler*innen auswählen",
-          "new": "Künstler auswählen"
-        },
-        {
-          "key": "artist_accessibility_title",
-          "old": "Spotify – Künstler*in %1$s",
-          "new": "Spotify – Künstler %1$s"
-        },
-        {
-          "key": "artist_concerts_browse_all_concerts_text",
-          "old": "Dort siehst du mehr Konzerte von deinen Lieblingskünstler*innen",
-          "new": "Dort siehst du mehr Konzerte von deinen Lieblingskünstlern"
-        },
-        {
-          "key": "artist_concerts_no_concerts_near_user_location",
-          "old": "Für diesen/diese Künstler*in gibt es keine Konzerttermine in der Nähe von %1$s.",
-          "new": "Für diesen Künstler gibt es keine Konzerttermine in der Nähe von %1$s."
-        },
-        {
-          "key": "artist_concerts_no_concerts_near_you",
-          "old": "Für diesen/diese Künstler*in gibt es keine Konzerttermine in deiner Nähe.",
-          "new": "Für diesen Künstler gibt es keine Konzerttermine in deiner Nähe."
-        },
-        {
-          "key": "artist_default_title",
-          "old": "Künstler*in",
-          "new": "Künstler"
-        },
-        {
-          "key": "artist_go_online_to_see_full_artist_page",
-          "old": "Du musst online sein, um die vollständige Künstler*innen-Seite anzuzeigen.",
-          "new": "Du musst online sein, um die vollständige Künstlerseite anzuzeigen."
-        },
-        {
-          "key": "assisted_curation_drilldown_artist_title",
-          "old": "„%1$s“ in Künstler*innen",
-          "new": "„%1$s“ in Künstler"
-        },
-        {
-          "key": "blend_instructions",
-          "old": "Wähle eine*n Freund*in aus, um mit ihm*ihr einen gemeinsamen Mix zu erstellen – eine Playlist, die zeigt, wie gut euer Musikgeschmack zusammenpasst.",
-          "new": "Wähle einen Freund aus, um mit ihm einen gemeinsamen Mix zu erstellen – eine Playlist, die zeigt, wie gut euer Musikgeschmack zusammenpasst."
-        },
-        {
-          "key": "blend_note",
-          "old": "Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem*einer Freund*in.",
-          "new": "Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem Freund."
-        },
-        {
-          "key": "btl_artist_card_label",
-          "old": "KÜNSTLER*IN",
-          "new": "KÜNSTLER"
-        },
-        {
-          "key": "collection_artist_default_title",
-          "old": "Künstler*in",
-          "new": "Künstler"
-        },
-        {
-          "key": "collection_start_artists_title",
-          "old": "Künstler*innen",
-          "new": "Künstler"
-        },
-        {
-          "key": "collection_stations_empty_body",
-          "old": "\"Suche nach Künstler*innen, Songs, Genres, Playlists oder Alben,\n um einen Radiosender zu starten.\"",
-          "new": "\"Suche nach Künstlern, Songs, Genres, Playlists oder Alben,\n um einen Radiosender zu starten.\""
-        },
-        {
-          "key": "connect_device_premium_only",
-          "old": "Nur Premium Nutzer*innen",
-          "new": "Nur Premiumnutzer"
-        },
-        {
-          "key": "context_menu_artists_list_title",
-          "old": "Künstler*innen",
-          "new": "Künstler"
-        },
-        {
-          "key": "context_menu_ban_artist",
-          "old": "Diese(n) Künstler*in nicht spielen",
-          "new": "Diesen Künstler nicht spielen"
-        },
-        {
-          "key": "context_menu_browse_artist",
-          "old": "Künstler*in anzeigen",
-          "new": "Künstler anzeigen"
-        },
-        {
-          "key": "context_menu_browse_artists",
-          "old": "Künstler*in anzeigen",
-          "new": "Künstler anzeigen"
-        },
-        {
-          "key": "context_menu_go_to_artist_radio",
-          "old": "Künstler*innen-Radio aufrufen",
-          "new": "Künstlerradio aufrufen"
-        },
-        {
-          "key": "context_menu_unban_artist",
-          "old": "Diesen/diese Künstler*in wieder spielen",
-          "new": "Diesen Künstler wieder spielen"
-        },
-        {
-          "key": "context_type_description_artist",
-          "old": "Wiedergabe über Künstler*in",
-          "new": "Wiedergabe über Künstler"
-        },
-        {
-          "key": "context_type_description_artist_radio",
-          "old": "Künstler*innen-Radio basierend auf",
-          "new": "Künstlerradio basierend auf"
-        },
-        {
-          "key": "creator_artist_monthly_listeners_title",
-          "old": "MONATLICHE HÖRER*INNEN",
-          "new": "MONATLICHE HÖRER"
-        },
-        {
-          "key": "creator_artist_verified",
-          "old": "Verifizierte(r) Künstler*in",
-          "new": "Verifizierter Künstler"
-        },
-        {
-          "key": "data_saver_mode_subtitle",
-          "old": "Setzt die Musikqualität auf „Niedrig“ (entspricht 24 kbit/s) und deaktiviert Künstler*innen-Canvases.",
-          "new": "Setzt die Musikqualität auf „Niedrig“ (entspricht 24 kbit/s) und deaktiviert Künstler-Canvases."
-        },
-        {
-          "key": "did_not_catch_description",
-          "old": "Frage nach beliebigen Künstler*innen oder Playlists.",
-          "new": "Frage nach beliebigen Künstlern oder Playlists."
-        },
-        {
-          "key": "drilldown_artists_title",
-          "old": "„%1$s“ in Künstler*innen",
-          "new": "„%1$s“ in Künstler"
-        },
-        {
-          "key": "employee_podcasts_cell_description",
-          "old": "Zur Erinnerung: Dies ist ein vertrauliches internes Tool nur für Mitarbeiter*innen.",
-          "new": "Zur Erinnerung: Dies ist ein vertrauliches internes Tool nur für Mitarbeiter"
-        },
-        {
-          "key": "employee_podcasts_cell_title",
-          "old": "Mitarbeiter*innen-Podcasts",
-          "new": "Mitarbeiter-Podcasts"
-        },
-        {
-          "key": "employee_podcasts_settings_section_description",
-          "old": "Jetzt kannst du Mitarbeiter*innen-Podcasts einfacher hören und herunterladen.",
-          "new": "Jetzt kannst du Mitarbeiter-Podcasts einfacher hören und herunterladen."
-        },
-        {
-          "key": "employee_podcasts_settings_title",
-          "old": "Mitarbeiter*innen-Podcasts",
-          "new": "Mitarbeiter-Podcasts"
-        },
-        {
-          "key": "empty_view_subtitle",
-          "old": "Suche nach Künstler*innen, Songs und mehr.",
-          "new": "Suche nach Künstlern, Songs und mehr."
-        },
-        {
-          "key": "events_hub_section_footer_popular",
-          "old": "Um mehr über Konzerte in deiner Nähe zu erfahren, spiel einfach Songs von einem/einer Künstler*in ab oder folge ihm/ihr.",
-          "new": "Um mehr über Konzerte in deiner Nähe zu erfahren, spiel einfach Songs von einem Künstler ab oder folge ihm."
-        },
-        {
-          "key": "eventshub_monthly_listeners_title",
-          "old": "MONATLICHE HÖRER*INNEN",
-          "new": "MONATLICHE HÖRER"
-        },
-        {
-          "key": "featured_content_entity_subtitle_artist",
-          "old": "Künstler*in",
-          "new": "Künstler"
-        },
-        {
-          "key": "find_friends_flow_empty",
-          "old": "Deine Facebook Freund*innen sind noch nicht bei Spotify. Lade sie ein!",
-          "new": "Deine Facebook-Freunde sind noch nicht bei Spotify. Lade sie ein!"
-        },
-        {
-          "key": "find_friends_flow_title",
-          "old": "Freund*innen finden",
-          "new": "Freunde finden"
-        },
-        {
-          "key": "find_search_field_hint",
-          "old": "Künstler*innen, Songs oder Alben",
-          "new": "Künstler, Songs oder Alben"
-        },
-        {
-          "key": "find_search_field_hint_voice",
-          "old": "Nach Künstler*innen, Songs oder Alben suchen",
-          "new": "Nach Künstlern, Songs oder Alben suchen"
-        },
-        {
-          "key": "find_search_field_hint_voice_with_podcasts",
-          "old": "Nach Künstler*innen, Songs oder Podcasts suchen",
-          "new": "Nach Künstlern, Songs oder Podcasts suchen"
-        },
-        {
-          "key": "find_search_field_hint_with_podcasts",
-          "old": "Künstler*innen, Songs oder Podcasts",
-          "new": "Künstler, Songs oder Podcasts"
-        },
-        {
-          "key": "follow_feed_empty_state_description",
-          "old": "Du folgst keinen Künstler*innen, die in den vergangenen 6 Monaten neue Musik veröffentlicht haben. Folge mehr Künstler*innen, um hier ihre Neuerscheinungen zu sehen.",
-          "new": "Du folgst keinen Künstlern, die in den vergangenen 6 Monaten neue Musik veröffentlicht haben. Folge mehr Künstlern, um hier ihre Neuerscheinungen zu sehen."
-        },
-        {
-          "key": "follow_feed_feature_title",
-          "old": "Künstler*innen-Feed",
-          "new": "Künstlerfeed"
-        },
-        {
-          "key": "follow_feed_header_subtitle",
-          "old": "Neuerscheinungen von Künstler*innen, denen du folgst, und mehr",
-          "new": "Neuerscheinungen von Künstlern, denen du folgst, und mehr"
-        },
-        {
-          "key": "follow_feed_item_image_description",
-          "old": "Künstler*innen-Avatar",
-          "new": "Künstleravatar"
-        },
-        {
-          "key": "free_tier_taste_onboarding_artist_picker_content_description_artist_image",
-          "old": "Künstler*innen-Bild",
-          "new": "Künstlerbild"
-        },
-        {
-          "key": "free_tier_taste_onboarding_artist_picker_title_choose_n_or_more",
-          "old": "Wähle %1$d oder mehr Künstler*innen aus, die dir gefallen.",
-          "new": "Wähle %1$d oder mehr Künstler aus, die dir gefallen."
-        },
-        {
-          "key": "free_tier_taste_onboarding_artist_picker_title_update_instruction",
-          "old": "Wähle weitere Künstler*innen aus, die dir gefallen.",
-          "new": "Wähle weitere Künstler aus, die dir gefallen."
-        },
-        {
-          "key": "free_tier_taste_onboarding_error_view_artists_are_saved_go_online",
-          "old": "Wir haben die Künstler*innen, die du ausgewählt hast, gespeichert. Du musst online sein, um fortzufahren.",
-          "new": "Wir haben die Künstler, die du ausgewählt hast, gespeichert. Du musst online sein, um fortzufahren."
-        },
-        {
-          "key": "free_tier_taste_onboarding_search_empty_state_no_query_title",
-          "old": "Finde deine Lieblingskünstler*innen",
-          "new": "Finde deine Lieblingskünstler"
-        },
-        {
-          "key": "free_tier_taste_onboarding_skip_dialog_continue",
-          "old": "Künstler*in auswählen",
-          "new": "Künstler auswählen"
-        },
-        {
-          "key": "free_tier_taste_onboarding_skip_dialog_message",
-          "old": "Deine Künstler*innen auszuwählen dauert nur eine Minute und hilft uns, Spotify für dich noch besser zu machen.",
-          "new": "Deine Künstler auszuwählen dauert nur eine Minute und hilft uns, Spotify für dich noch besser zu machen."
-        },
-        {
-          "key": "freetier_education_toastie_artist_ban",
-          "old": "OK, wir werden diese(n) Künstler*in nicht wieder spielen.",
-          "new": "OK, wir werden diesen Künstler nicht wieder spielen."
-        },
-        {
-          "key": "header_radio_not_available_in_region_title",
-          "old": "Radio ist nur für Premium Nutzer*innen in deiner Region verfügbar.",
-          "new": "Radio ist nur für Premiumnutzer in deiner Region verfügbar."
-        },
-        {
-          "key": "hidden_content_section_artists",
-          "old": "Künstler*innen",
-          "new": "Künstler"
-        },
-        {
-          "key": "home_mix_taste_onboarding_cta_header",
-          "old": "Wähle Künstler*innen aus, die dir gefallen, um %1$s zu erhalten.",
-          "new": "Wähle Künstler aus, die dir gefallen, um %1$s zu erhalten."
-        },
-        {
-          "key": "home_mix_taste_onboarding_cta_reminder",
-          "old": "Wähle Künstler*innen aus, die dir gefallen, um %1$s zu erhalten.",
-          "new": "Wähle Künstler aus, die dir gefallen, um %1$s zu erhalten."
-        },
-        {
-          "key": "invite_a_friend",
-          "old": "Eine*n Freund*in einladen",
-          "new": "Einen Freund einladen"
-        },
-        {
-          "key": "item_description_artist",
-          "old": "Künstler*in",
-          "new": "Künstler"
-        },
-        {
-          "key": "label_spotify_employee",
-          "old": "Spotify Mitarbeiter*in",
-          "new": "Spotify-Mitarbeiter"
-        },
-        {
-          "key": "listening_history_artist",
-          "old": "Künstler*in",
-          "new": "Künstler"
-        },
-        {
-          "key": "magiclink_error_request_user_not_found",
-          "old": "Kein(e) Nutzer*in mit diesem Namen gefunden",
-          "new": "Keinen Nutzer mit diesem Namen gefunden"
-        },
-        {
-          "key": "marquee_feedback_menu_option_artist",
-          "old": "Ich habe kein Interesse an diesem/dieser Künstler*in.",
-          "new": "Ich habe kein Interesse an diesem Künstler."
-        },
-        {
-          "key": "marquee_optout_artist_notification_text",
-          "old": "Alles klar. Diese werden für diesen/diese Künstler*in nicht angezeigt.",
-          "new": "Alles klar. Diese werden für diesen Künstler nicht angezeigt."
-        },
-        {
-          "key": "marquee_optout_marquee_notification_text",
-          "old": "Alles klar. Diese werden für keine Künstler*innen angezeigt.",
-          "new": "Alles klar. Diese werden für keinen Künstler angezeigt."
-        },
-        {
-          "key": "marquee_optout_menu_disclosure_text",
-          "old": "Das ist ein neues Musikupdate zu einem/einer Künstler*in, den/die du hörst oder dem/der du folgst. Es wird von einem unserer Musikpartner gesponsert.",
-          "new": "Das ist ein neues Musikupdate zu einem Künstler, den du hörst oder dem du folgst. Es wird von einem unserer Musikpartner gesponsert."
-        },
-        {
-          "key": "marquee_optout_menu_optout_altogether",
-          "old": "Für keine(n) Künstler*in anzeigen",
-          "new": "Für keinen Künstler anzeigen"
-        },
-        {
-          "key": "marquee_optout_menu_optout_artist",
-          "old": "Für diese(n) Künstler*in nicht anzeigen",
-          "new": "Für diesen Künstler nicht anzeigen"
-        },
-        {
-          "key": "message_default_group_session",
-          "old": "Lass zu, dass sich Freund*innen in deinem WLAN mit diesem Gerät verbinden.",
-          "new": "Lass zu, dass sich Freunde in deinem WLAN mit diesem Gerät verbinden."
-        },
-        {
-          "key": "message_leave_group_session_view",
-          "old": "Jede*r kann die Musik steuern und auswählen, was abgespielt werden soll.",
-          "new": "Jeder kann die Musik steuern und auswählen, was abgespielt werden soll."
-        },
-        {
-          "key": "mobile_artist_concert_go_to_artist",
-          "old": "Künstler*in aufrufen",
-          "new": "Künstler aufrufen"
-        },
-        {
-          "key": "options_menu_browse_artist",
-          "old": "Künstler*in aufrufen",
-          "new": "Künstler aufrufen"
-        },
-        {
-          "key": "options_menu_find_friends",
-          "old": "Freund*innen finden",
-          "new": "Freunde finden"
-        },
-        {
-          "key": "placeholder_collection_empty_artist_only_not_following_body",
-          "old": "Du hast von %1$s noch nichts gespeichert. Folge diesem/dieser Künstler*in, um ihn/sie in „Deine Musik“ anzuzeigen.",
-          "new": "Du hast von %1$s noch nichts gespeichert. Folge diesem Künstler, um ihn in „Deine Musik“ anzuzeigen."
-        },
-        {
-          "key": "placeholder_collection_empty_artist_only_not_following_body_your_library",
-          "old": "Du hast von %1$s noch nichts gespeichert. Folge diesem/dieser Künstler*in, um ihn/sie in deiner Bibliothek anzuzeigen.",
-          "new": "Du hast von %1$s noch nichts gespeichert. Folge diesem Künstler, um ihn in deiner Bibliothek anzuzeigen."
-        },
-        {
-          "key": "play_this_artist",
-          "old": "Diese(n) Künstler*in abspielen",
-          "new": "Diesen Künstler abspielen"
-        },
-        {
-          "key": "playlist_participants_row_subtitle_owner",
-          "old": "Eigentümer*in",
-          "new": "Eigentümer"
-        },
-        {
-          "key": "podcast_qna_terms_and_conditions_education_body",
-          "old": "\"Vergewissere dich, dass du unsere %1$s gelesen und verstanden hast.\n\nDer*die Podcaster*in kann Antworten auf Spotify lesen und zeigen.\n\nDu kannst deine Antworten jederzeit löschen.\"",
-          "new": "\"Vergewissere dich, dass du unsere %1$s gelesen und verstanden hast.\n\nDer Podcaster kann Antworten auf Spotify lesen und zeigen.\n\nDu kannst deine Antworten jederzeit löschen.\""
-        },
-        {
-          "key": "profile_list_recently_played_artists_title",
-          "old": "Kürzlich gehörte Künstler*innen",
-          "new": "Kürzlich gehörte Künstler"
-        },
-        {
-          "key": "radio_section_your_stations_artist_subtitle",
-          "old": "Künstler*innen-Radio",
-          "new": "Künstlerradio"
-        },
-        {
-          "key": "recently_played_artist",
-          "old": "Künstler*in",
-          "new": "Künstler"
-        },
-        {
-          "key": "scannables_onboarding_content",
-          "old": "Jetzt gibt es für alles auf Spotify einen eindeutigen Code. Scanne einen Code auf dem Smartphone von Freund*innen, um direkt einen Song, eine(n) Künstler*in oder eine Playlist aufzurufen.",
-          "new": "Jetzt gibt es für alles auf Spotify einen eindeutigen Code. Scanne einen Code auf dem Smartphone von Freunden, um direkt einen Song, einen Künstler oder eine Playlist aufzurufen."
-        },
-        {
-          "key": "scannables_social_listening_privacy_notice",
-          "old": "Verbundene Freund*innen können dein Profilbild und deinen Benutzernamen sehen.",
-          "new": "Verbundene Freunde können dein Profilbild und deinen Benutzernamen sehen."
-        },
-        {
-          "key": "scannables_social_listening_viewfinder_hint",
-          "old": "Richte deine Kamera auf den Code auf dem Telefon deiner Freund*innen.",
-          "new": "Richte deine Kamera auf den Code auf dem Telefon deiner Freunde."
-        },
-        {
-          "key": "search_main_entity_subtitle_artist",
-          "old": "Künstler*in",
-          "new": "Künstler"
-        },
-        {
-          "key": "search_start_subtitle_assisted_curation",
-          "old": "Suche nach Künstler*innen, Songs und mehr",
-          "new": "Suche nach Künstlern, Songs und mehr"
-        },
-        {
-          "key": "search_start_subtitle_free_user_online",
-          "old": "Suche nach Künstler*innen, Songs, Playlists und mehr.",
-          "new": "Suche nach Künstlern, Songs, Playlists und mehr."
-        },
-        {
-          "key": "search_start_subtitle_podcast",
-          "old": "Suche nach Künstler*innen, Songs, Podcasts und mehr.",
-          "new": "Suche nach Künstlern, Songs, Podcasts und mehr."
-        },
-        {
-          "key": "see_all_title_artist",
-          "old": "Alle Künstler*innen anzeigen",
-          "new": "Alle Künstler anzeigen"
-        },
-        {
-          "key": "settings_employee_podcasts_description",
-          "old": "Dies ist ein vertrauliches internes Tool nur für Mitarbeiter*innen.",
-          "new": "Dies ist ein vertrauliches internes Tool nur für Mitarbeiter"
-        },
-        {
-          "key": "settings_employee_podcasts_title",
-          "old": "Mitarbeiter*innen-Podcasts",
-          "new": "Mitarbeiter-Podcasts"
-        },
-        {
-          "key": "settings_offline_active_but_expired_description",
-          "old": "Sobald du offline gehst, kannst du nur heruntergeladene Musik hören.<br><br>Geh bitte jetzt online, um zu bestätigen, dass du noch Premium Nutzer*in bist. Vielen Dank.",
-          "new": "Sobald du offline gehst, kannst du nur heruntergeladene Musik hören.<br><br>Geh bitte jetzt online, um zu bestätigen, dass du noch Premiumnutzer bist. Vielen Dank."
-        },
-        {
-          "key": "settings_offline_active_but_expired_description_shows",
-          "old": "Sobald du offline bist, kannst du nur heruntergeladene Musik und Podcasts abspielen.<br><br>Geh bitte jetzt online, um zu bestätigen, dass du noch Premium Nutzer*in bist. Vielen Dank.",
-          "new": "Sobald du offline bist, kannst du nur heruntergeladene Musik und Podcasts abspielen.<br><br>Geh bitte jetzt online, um zu bestätigen, dass du noch Premiumnutzer bist. Vielen Dank."
-        },
-        {
-          "key": "settings_section_employee_podcasts",
-          "old": "Mitarbeiter*innen-Podcasts",
-          "new": "Mitarbeiter-Podcasts"
-        },
-        {
-          "key": "settings_show_recently_played_artists",
-          "old": "Kürzlich gehörte Künstler*innen",
-          "new": "Kürzlich gehörte Künstler"
-        },
-        {
-          "key": "settings_show_recently_played_artists_description",
-          "old": "Kürzlich gehörte Künstler*innen in meinem Profil anzeigen",
-          "new": "Kürzlich gehörte Künstler in meinem Profil anzeigen"
-        },
-        {
-          "key": "share_to_external_artist_title",
-          "old": "Hier ist ein(e) Künstler*in, den/die ich mit dir teilen möchte…",
-          "new": "Hier ist ein Künstler, den ich mit dir teilen möchte…"
-        },
-        {
-          "key": "social_listening_join_confirmation_dialog_subtitle",
-          "old": "Hört zusammen in Echtzeit. In einer Gruppen-Session können alle Teilnehmer*innen steuern, was gespielt wird.",
-          "new": "Hört zusammen in Echtzeit. In einer Gruppen-Session können alle Teilnehmer steuern, was gespielt wird."
-        },
-        {
-          "key": "social_listening_join_failed_session_full_title",
-          "old": "Sorry, die maximale Anzahl an Hörer*innen ist in dieser Gruppen-Session bereits erreicht.",
-          "new": "Sorry, die maximale Anzahl an Hörern ist in dieser Gruppen-Session bereits erreicht."
-        },
-        {
-          "key": "social_listening_notification_channel_title",
-          "old": "Mit Freund*innen verbinden",
-          "new": "Mit Freunden verbinden"
-        },
-        {
-          "key": "social_listening_participant_list_invite_button",
-          "old": "FREUND*INNEN EINLADEN",
-          "new": "FREUNDE EINLADEN"
-        },
-        {
-          "key": "social_listening_participant_list_invite_notice_title_link_shared",
-          "old": "Warten auf Beitreten von Freund*innen…",
-          "new": "Warten auf Beitreten von Freunden…"
-        },
-        {
-          "key": "social_listening_participant_list_invite_notice_title_one_friend",
-          "old": "Eine(n) Freund*in einladen",
-          "new": "Einen Freund einladen"
-        },
-        {
-          "key": "social_listening_participant_list_toolbar_invite_button_content_description",
-          "old": "FREUND*INNEN EINLADEN",
-          "new": "FREUNDE EINLADEN"
-        },
-        {
-          "key": "social_listening_see_listeners_button_title",
-          "old": "HÖRER*INNEN ANZEIGEN",
-          "new": "HÖRER ANZEIGEN"
-        },
-        {
-          "key": "social_listening_subtitle_multi_output_in_session",
-          "old": "Warten auf Beitreten von Freund*innen…",
-          "new": "Warten auf Beitreten von Freunden…"
-        },
-        {
-          "key": "social_listening_subtitle_multi_output_no_session",
-          "old": "Höre Spotify in Echtzeit zusammen mit Freund*innen. Wählt und steuert eure Musik gemeinsam.",
-          "new": "Höre Spotify in Echtzeit zusammen mit Freunden. Wählt und steuert eure Musik gemeinsam."
-        },
-        {
-          "key": "sort_order_artist",
-          "old": "Künstler*in",
-          "new": "Künstler"
-        },
-        {
-          "key": "toast_banned_artist",
-          "old": "Ok, wir werden keine Musik von diesem/dieser Künstler*in mehr spielen.",
-          "new": "Ok, wir werden keine Musik von diesem Künstler mehr spielen."
-        },
-        {
-          "key": "toast_feature_not_available",
-          "old": "Das Feature ist für Nutzer*innen von Spotify Free nicht verfügbar.",
-          "new": "Das Feature ist für Nutzer von Spotify Free nicht verfügbar."
-        },
-        {
-          "key": "try_saying",
-          "old": "Versuche, eine(n) Künstler*in, einen Song oder den Namen einer Playlist zu sagen.",
-          "new": "Versuche, einen Künstler, einen Song oder den Namen einer Playlist zu sagen."
-        },
-        {
-          "key": "your_library_music_pages_artists_artist_clicked_offline_message",
-          "old": "Du musst online sein, um diese(n) Künstler*in abzuspielen.",
-          "new": "Du musst online sein, um diesen Künstler abzuspielen."
-        },
-        {
-          "key": "your_library_music_pages_artists_show_sort_options_title",
-          "old": "Künstler*innen sortieren",
-          "new": "Künstler sortieren"
-        },
-        {
-          "key": "your_library_music_pages_artists_show_text_filter_title",
-          "old": "In Künstler*innen suchen",
-          "new": "In Künstlern suchen"
-        },
-        {
-          "key": "your_library_music_pages_button_add_artists",
-          "old": "Künstler*innen hinzufügen",
-          "new": "Künstler hinzufügen"
-        },
-        {
-          "key": "your_library_music_pages_find_in_artists_hint",
-          "old": "In Künstler*innen suchen",
-          "new": "In Künstlern suchen"
-        },
-        {
-          "key": "your_library_music_pages_page_artists_empty_button",
-          "old": "KÜNSTLER*INNEN HINZUFÜGEN",
-          "new": "KÜNSTLER HINZUFÜGEN"
-        },
-        {
-          "key": "your_library_music_pages_page_artists_empty_subtitle",
-          "old": "Du kannst jetzt einige Künstler*innen hinzufügen, die dir gefallen.",
-          "new": "Du kannst jetzt einige Künstler hinzufügen, die dir gefallen."
-        },
-        {
-          "key": "your_library_music_pages_page_artists_empty_title",
-          "old": "Hier siehst du bald deine Künstler*innen.",
-          "new": "Hier siehst du bald deine Künstler."
-        },
-        {
-          "key": "your_library_music_pages_page_artists_title",
-          "old": "Künstler*innen",
-          "new": "Künstler"
-        },
-        {
-          "key": "your_library_music_pages_row_banned_artists_subtitle",
-          "old": "Hier sind deine ausgeblendeten Songs und Künstler*innen.",
-          "new": "Hier sind deine ausgeblendeten Songs und Künstler."
-        },
-        {
-          "key": "your_library_music_pages_row_banned_tracks_subtitle",
-          "old": "Hier sind deine ausgeblendeten Songs und Künstler*innen.",
-          "new": "Hier sind deine ausgeblendeten Songs und Künstler."
-        },
-        {
-          "key": "your_library_music_pages_row_section_header_recommended_artists_title",
-          "old": "Empfohlene Künstler*innen",
-          "new": "Empfohlene Künstler"
-        },
-        {
-          "key": "your_library_sort_order_artist_name_alphabetically",
-          "old": "Künstler*in",
-          "new": "Künstler"
-        },
-        {
-          "key": "your_library_sort_order_artist_name_alphabetically_in_artists",
-          "old": "Künstler*in",
-          "new": "Künstler"
-        },
-        {
-          "key": "context_menu_pin_artist",
-          "old": "Künstler*in anheften",
-          "new": "Künstler anheften"
-        },
-        {
-          "key": "context_menu_unpin_artist",
-          "old": "Künstler*in lösen",
-          "new": "Künstler lösen"
-        },
-        {
-          "key": "empty_view_subtitle",
-          "old": "Hier findest du bald deinen gesamten Hörverlauf.",
-          "new": "Hier findest du bald deinen gesamten Hörverlauf."
-        },
-        {
-          "key": "podcast_paywalls_subscriber_podcast_dialog_body",
-          "old": "Abonnent*innen dieses Podcasts erhalten Zugriff auf diese Folge und alle älteren Folgen.",
-          "new": "Abonnenten dieses Podcasts erhalten Zugriff auf diese Folge und alle älteren Folgen."
-        },
-        {
-          "key": "podcast_paywalls_subscriber_podcast_dialog_title",
-          "old": "Dieser Podcast ist nur für Abonnent*innen verfügbar",
-          "new": "Dieser Podcast ist nur für Abonnenten verfügbar"
-        },
-        {
-          "key": "podcast_qna_blocked_user_message",
-          "old": "Du wurdest daran gehindert, diesem*dieser Podcaster*in eine Antwort zu senden.",
-          "new": "Du wurdest daran gehindert, diesem Podcaster eine Antwort zu senden."
-        },
-        {
-          "key": "scannables_onboarding_content",
-          "old": "Alle Inhalte auf Spotify haben einen Code zum Teilen. Scanne ihn mit deinem Smartphone, um den Song, den Podcast, den*die Künstler*in oder die Playlist direkt aufzurufen.",
-          "new": "Alle Inhalte auf Spotify haben einen Code zum Teilen. Scanne ihn mit deinem Smartphone, um den Song, den Podcast, den Künstler oder die Playlist direkt aufzurufen."
-        },
-        {
-          "key": "start_session_top_subtitle_text",
-          "old": "Höre Spotify in Echtzeit zusammen mit Freund*innen.",
-          "new": "Höre Spotify in Echtzeit zusammen mit Freunden."
-        },
-        {
-          "key": "artist_page_not_found_placeholder_subtitle",
-          "old": "Der*die Künstler*in wurde nicht gefunden. Bitte versuch’s mit einem*einer anderen.",
-          "new": "Der Künstler wurde nicht gefunden. Bitte versuch’s mit einem anderen."
-        },
-        {
-          "key": "artist_page_not_found_placeholder_title",
-          "old": "Künstler*in wurde nicht gefunden",
-          "new": "Künstler wurde nicht gefunden"
-        },
-        {
-          "key": "your_library_content_filter_artists",
-          "old": "Künstler*innen",
-          "new": "Künstler"
-        },
-        {
-          "key": "your_library_search_empty_view_subtitle",
-          "old": "Such in deiner Bibliothek nach Playlists, Künstler*innen, Alben und Podcasts.",
-          "new": "Such in deiner Bibliothek nach Playlists, Künstlern, Alben und Podcasts."
-        }
-      ]
+      "replace": {
+        "ac_search_subtitle_artist|Künstler*in": "Künstler",
+        "ac_see_all_title_artist|Alle Künstler*innen anzeigen": "Alle Künstler anzeigen",
+        "allboarding_skip_dialog_body|Deine Künstler*innen auszuwählen dauert nur eine Minute und hilft uns, Spotify für dich noch besser zu machen.": "Deine Künstler auszuwählen dauert nur eine Minute und hilft uns, Spotify für dich noch besser zu machen.",
+        "allboarding_skip_dialog_continue|Künstler*innen auswählen": "Künstler auswählen",
+        "artist_accessibility_title|Spotify – Künstler*in %1$s": "Spotify – Künstler %1$s",
+        "artist_concerts_browse_all_concerts_text|Dort siehst du mehr Konzerte von deinen Lieblingskünstler*innen": "Dort siehst du mehr Konzerte von deinen Lieblingskünstlern",
+        "artist_concerts_no_concerts_near_user_location|Für diesen/diese Künstler*in gibt es keine Konzerttermine in der Nähe von %1$s.": "Für diesen Künstler gibt es keine Konzerttermine in der Nähe von %1$s.",
+        "artist_concerts_no_concerts_near_you|Für diesen/diese Künstler*in gibt es keine Konzerttermine in deiner Nähe.": "Für diesen Künstler gibt es keine Konzerttermine in deiner Nähe.",
+        "artist_default_title|Künstler*in": "Künstler",
+        "artist_go_online_to_see_full_artist_page|Du musst online sein, um die vollständige Künstler*innen-Seite anzuzeigen.": "Du musst online sein, um die vollständige Künstlerseite anzuzeigen.",
+        "assisted_curation_drilldown_artist_title|„%1$s“ in Künstler*innen": "„%1$s“ in Künstler",
+        "blend_instructions|Wähle eine*n Freund*in aus, um mit ihm*ihr einen gemeinsamen Mix zu erstellen – eine Playlist, die zeigt, wie gut euer Musikgeschmack zusammenpasst.": "Wähle einen Freund aus, um mit ihm einen gemeinsamen Mix zu erstellen – eine Playlist, die zeigt, wie gut euer Musikgeschmack zusammenpasst.",
+        "blend_note|Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem*einer Freund*in.": "Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem Freund.",
+        "btl_artist_card_label|KÜNSTLER*IN": "KÜNSTLER",
+        "collection_artist_default_title|Künstler*in": "Künstler",
+        "collection_start_artists_title|Künstler*innen": "Künstler",
+        "collection_stations_empty_body|\"Suche nach Künstler*innen, Songs, Genres, Playlists oder Alben,\n um einen Radiosender zu starten.\"": "\"Suche nach Künstlern, Songs, Genres, Playlists oder Alben,\n um einen Radiosender zu starten.\"",
+        "connect_device_premium_only|Nur Premium Nutzer*innen": "Nur Premiumnutzer",
+        "context_menu_artists_list_title|Künstler*innen": "Künstler",
+        "context_menu_ban_artist|Diese(n) Künstler*in nicht spielen": "Diesen Künstler nicht spielen",
+        "context_menu_browse_artist|Künstler*in anzeigen": "Künstler anzeigen",
+        "context_menu_browse_artists|Künstler*in anzeigen": "Künstler anzeigen",
+        "context_menu_go_to_artist_radio|Künstler*innen-Radio aufrufen": "Künstlerradio aufrufen",
+        "context_menu_unban_artist|Diesen/diese Künstler*in wieder spielen": "Diesen Künstler wieder spielen",
+        "context_type_description_artist|Wiedergabe über Künstler*in": "Wiedergabe über Künstler",
+        "context_type_description_artist_radio|Künstler*innen-Radio basierend auf": "Künstlerradio basierend auf",
+        "creator_artist_monthly_listeners_title|MONATLICHE HÖRER*INNEN": "MONATLICHE HÖRER",
+        "creator_artist_verified|Verifizierte(r) Künstler*in": "Verifizierter Künstler",
+        "data_saver_mode_subtitle|Setzt die Musikqualität auf „Niedrig“ (entspricht 24 kbit/s) und deaktiviert Künstler*innen-Canvases.": "Setzt die Musikqualität auf „Niedrig“ (entspricht 24 kbit/s) und deaktiviert Künstler-Canvases.",
+        "did_not_catch_description|Frage nach beliebigen Künstler*innen oder Playlists.": "Frage nach beliebigen Künstlern oder Playlists.",
+        "drilldown_artists_title|„%1$s“ in Künstler*innen": "„%1$s“ in Künstler",
+        "employee_podcasts_cell_description|Zur Erinnerung: Dies ist ein vertrauliches internes Tool nur für Mitarbeiter*innen.": "Zur Erinnerung: Dies ist ein vertrauliches internes Tool nur für Mitarbeiter",
+        "employee_podcasts_cell_title|Mitarbeiter*innen-Podcasts": "Mitarbeiter-Podcasts",
+        "employee_podcasts_settings_section_description|Jetzt kannst du Mitarbeiter*innen-Podcasts einfacher hören und herunterladen.": "Jetzt kannst du Mitarbeiter-Podcasts einfacher hören und herunterladen.",
+        "employee_podcasts_settings_title|Mitarbeiter*innen-Podcasts": "Mitarbeiter-Podcasts",
+        "empty_view_subtitle|Suche nach Künstler*innen, Songs und mehr.": "Suche nach Künstlern, Songs und mehr.",
+        "events_hub_section_footer_popular|Um mehr über Konzerte in deiner Nähe zu erfahren, spiel einfach Songs von einem/einer Künstler*in ab oder folge ihm/ihr.": "Um mehr über Konzerte in deiner Nähe zu erfahren, spiel einfach Songs von einem Künstler ab oder folge ihm.",
+        "eventshub_monthly_listeners_title|MONATLICHE HÖRER*INNEN": "MONATLICHE HÖRER",
+        "featured_content_entity_subtitle_artist|Künstler*in": "Künstler",
+        "find_friends_flow_empty|Deine Facebook Freund*innen sind noch nicht bei Spotify. Lade sie ein!": "Deine Facebook-Freunde sind noch nicht bei Spotify. Lade sie ein!",
+        "find_friends_flow_title|Freund*innen finden": "Freunde finden",
+        "find_search_field_hint|Künstler*innen, Songs oder Alben": "Künstler, Songs oder Alben",
+        "find_search_field_hint_voice|Nach Künstler*innen, Songs oder Alben suchen": "Nach Künstlern, Songs oder Alben suchen",
+        "find_search_field_hint_voice_with_podcasts|Nach Künstler*innen, Songs oder Podcasts suchen": "Nach Künstlern, Songs oder Podcasts suchen",
+        "find_search_field_hint_with_podcasts|Künstler*innen, Songs oder Podcasts": "Künstler, Songs oder Podcasts",
+        "follow_feed_empty_state_description|Du folgst keinen Künstler*innen, die in den vergangenen 6 Monaten neue Musik veröffentlicht haben. Folge mehr Künstler*innen, um hier ihre Neuerscheinungen zu sehen.": "Du folgst keinen Künstlern, die in den vergangenen 6 Monaten neue Musik veröffentlicht haben. Folge mehr Künstlern, um hier ihre Neuerscheinungen zu sehen.",
+        "follow_feed_feature_title|Künstler*innen-Feed": "Künstlerfeed",
+        "follow_feed_header_subtitle|Neuerscheinungen von Künstler*innen, denen du folgst, und mehr": "Neuerscheinungen von Künstlern, denen du folgst, und mehr",
+        "follow_feed_item_image_description|Künstler*innen-Avatar": "Künstleravatar",
+        "free_tier_taste_onboarding_artist_picker_content_description_artist_image|Künstler*innen-Bild": "Künstlerbild",
+        "free_tier_taste_onboarding_artist_picker_title_choose_n_or_more|Wähle %1$d oder mehr Künstler*innen aus, die dir gefallen.": "Wähle %1$d oder mehr Künstler aus, die dir gefallen.",
+        "free_tier_taste_onboarding_artist_picker_title_update_instruction|Wähle weitere Künstler*innen aus, die dir gefallen.": "Wähle weitere Künstler aus, die dir gefallen.",
+        "free_tier_taste_onboarding_error_view_artists_are_saved_go_online|Wir haben die Künstler*innen, die du ausgewählt hast, gespeichert. Du musst online sein, um fortzufahren.": "Wir haben die Künstler, die du ausgewählt hast, gespeichert. Du musst online sein, um fortzufahren.",
+        "free_tier_taste_onboarding_search_empty_state_no_query_title|Finde deine Lieblingskünstler*innen": "Finde deine Lieblingskünstler",
+        "free_tier_taste_onboarding_skip_dialog_continue|Künstler*in auswählen": "Künstler auswählen",
+        "free_tier_taste_onboarding_skip_dialog_message|Deine Künstler*innen auszuwählen dauert nur eine Minute und hilft uns, Spotify für dich noch besser zu machen.": "Deine Künstler auszuwählen dauert nur eine Minute und hilft uns, Spotify für dich noch besser zu machen.",
+        "freetier_education_toastie_artist_ban|OK, wir werden diese(n) Künstler*in nicht wieder spielen.": "OK, wir werden diesen Künstler nicht wieder spielen.",
+        "header_radio_not_available_in_region_title|Radio ist nur für Premium Nutzer*innen in deiner Region verfügbar.": "Radio ist nur für Premiumnutzer in deiner Region verfügbar.",
+        "hidden_content_section_artists|Künstler*innen": "Künstler",
+        "home_mix_taste_onboarding_cta_header|Wähle Künstler*innen aus, die dir gefallen, um %1$s zu erhalten.": "Wähle Künstler aus, die dir gefallen, um %1$s zu erhalten.",
+        "home_mix_taste_onboarding_cta_reminder|Wähle Künstler*innen aus, die dir gefallen, um %1$s zu erhalten.": "Wähle Künstler aus, die dir gefallen, um %1$s zu erhalten.",
+        "invite_a_friend|Eine*n Freund*in einladen": "Einen Freund einladen",
+        "item_description_artist|Künstler*in": "Künstler",
+        "label_spotify_employee|Spotify Mitarbeiter*in": "Spotify-Mitarbeiter",
+        "listening_history_artist|Künstler*in": "Künstler",
+        "magiclink_error_request_user_not_found|Kein(e) Nutzer*in mit diesem Namen gefunden": "Keinen Nutzer mit diesem Namen gefunden",
+        "marquee_feedback_menu_option_artist|Ich habe kein Interesse an diesem/dieser Künstler*in.": "Ich habe kein Interesse an diesem Künstler.",
+        "marquee_optout_artist_notification_text|Alles klar. Diese werden für diesen/diese Künstler*in nicht angezeigt.": "Alles klar. Diese werden für diesen Künstler nicht angezeigt.",
+        "marquee_optout_marquee_notification_text|Alles klar. Diese werden für keine Künstler*innen angezeigt.": "Alles klar. Diese werden für keinen Künstler angezeigt.",
+        "marquee_optout_menu_disclosure_text|Das ist ein neues Musikupdate zu einem/einer Künstler*in, den/die du hörst oder dem/der du folgst. Es wird von einem unserer Musikpartner gesponsert.": "Das ist ein neues Musikupdate zu einem Künstler, den du hörst oder dem du folgst. Es wird von einem unserer Musikpartner gesponsert.",
+        "marquee_optout_menu_optout_altogether|Für keine(n) Künstler*in anzeigen": "Für keinen Künstler anzeigen",
+        "marquee_optout_menu_optout_artist|Für diese(n) Künstler*in nicht anzeigen": "Für diesen Künstler nicht anzeigen",
+        "message_default_group_session|Lass zu, dass sich Freund*innen in deinem WLAN mit diesem Gerät verbinden.": "Lass zu, dass sich Freunde in deinem WLAN mit diesem Gerät verbinden.",
+        "message_leave_group_session_view|Jede*r kann die Musik steuern und auswählen, was abgespielt werden soll.": "Jeder kann die Musik steuern und auswählen, was abgespielt werden soll.",
+        "mobile_artist_concert_go_to_artist|Künstler*in aufrufen": "Künstler aufrufen",
+        "options_menu_browse_artist|Künstler*in aufrufen": "Künstler aufrufen",
+        "options_menu_find_friends|Freund*innen finden": "Freunde finden",
+        "placeholder_collection_empty_artist_only_not_following_body|Du hast von %1$s noch nichts gespeichert. Folge diesem/dieser Künstler*in, um ihn/sie in „Deine Musik“ anzuzeigen.": "Du hast von %1$s noch nichts gespeichert. Folge diesem Künstler, um ihn in „Deine Musik“ anzuzeigen.",
+        "placeholder_collection_empty_artist_only_not_following_body_your_library|Du hast von %1$s noch nichts gespeichert. Folge diesem/dieser Künstler*in, um ihn/sie in deiner Bibliothek anzuzeigen.": "Du hast von %1$s noch nichts gespeichert. Folge diesem Künstler, um ihn in deiner Bibliothek anzuzeigen.",
+        "play_this_artist|Diese(n) Künstler*in abspielen": "Diesen Künstler abspielen",
+        "playlist_participants_row_subtitle_owner|Eigentümer*in": "Eigentümer",
+        "podcast_qna_terms_and_conditions_education_body|\"Vergewissere dich, dass du unsere %1$s gelesen und verstanden hast.\n\nDer*die Podcaster*in kann Antworten auf Spotify lesen und zeigen.\n\nDu kannst deine Antworten jederzeit löschen.\"": "\"Vergewissere dich, dass du unsere %1$s gelesen und verstanden hast.\n\nDer Podcaster kann Antworten auf Spotify lesen und zeigen.\n\nDu kannst deine Antworten jederzeit löschen.\"",
+        "profile_list_recently_played_artists_title|Kürzlich gehörte Künstler*innen": "Kürzlich gehörte Künstler",
+        "radio_section_your_stations_artist_subtitle|Künstler*innen-Radio": "Künstlerradio",
+        "recently_played_artist|Künstler*in": "Künstler",
+        "scannables_onboarding_content|Jetzt gibt es für alles auf Spotify einen eindeutigen Code. Scanne einen Code auf dem Smartphone von Freund*innen, um direkt einen Song, eine(n) Künstler*in oder eine Playlist aufzurufen.": "Jetzt gibt es für alles auf Spotify einen eindeutigen Code. Scanne einen Code auf dem Smartphone von Freunden, um direkt einen Song, einen Künstler oder eine Playlist aufzurufen.",
+        "scannables_social_listening_privacy_notice|Verbundene Freund*innen können dein Profilbild und deinen Benutzernamen sehen.": "Verbundene Freunde können dein Profilbild und deinen Benutzernamen sehen.",
+        "scannables_social_listening_viewfinder_hint|Richte deine Kamera auf den Code auf dem Telefon deiner Freund*innen.": "Richte deine Kamera auf den Code auf dem Telefon deiner Freunde.",
+        "search_main_entity_subtitle_artist|Künstler*in": "Künstler",
+        "search_start_subtitle_assisted_curation|Suche nach Künstler*innen, Songs und mehr": "Suche nach Künstlern, Songs und mehr",
+        "search_start_subtitle_free_user_online|Suche nach Künstler*innen, Songs, Playlists und mehr.": "Suche nach Künstlern, Songs, Playlists und mehr.",
+        "search_start_subtitle_podcast|Suche nach Künstler*innen, Songs, Podcasts und mehr.": "Suche nach Künstlern, Songs, Podcasts und mehr.",
+        "see_all_title_artist|Alle Künstler*innen anzeigen": "Alle Künstler anzeigen",
+        "settings_employee_podcasts_description|Dies ist ein vertrauliches internes Tool nur für Mitarbeiter*innen.": "Dies ist ein vertrauliches internes Tool nur für Mitarbeiter",
+        "settings_employee_podcasts_title|Mitarbeiter*innen-Podcasts": "Mitarbeiter-Podcasts",
+        "settings_offline_active_but_expired_description|Sobald du offline gehst, kannst du nur heruntergeladene Musik hören.<br><br>Geh bitte jetzt online, um zu bestätigen, dass du noch Premium Nutzer*in bist. Vielen Dank.": "Sobald du offline gehst, kannst du nur heruntergeladene Musik hören.<br><br>Geh bitte jetzt online, um zu bestätigen, dass du noch Premiumnutzer bist. Vielen Dank.",
+        "settings_offline_active_but_expired_description_shows|Sobald du offline bist, kannst du nur heruntergeladene Musik und Podcasts abspielen.<br><br>Geh bitte jetzt online, um zu bestätigen, dass du noch Premium Nutzer*in bist. Vielen Dank.": "Sobald du offline bist, kannst du nur heruntergeladene Musik und Podcasts abspielen.<br><br>Geh bitte jetzt online, um zu bestätigen, dass du noch Premiumnutzer bist. Vielen Dank.",
+        "settings_section_employee_podcasts|Mitarbeiter*innen-Podcasts": "Mitarbeiter-Podcasts",
+        "settings_show_recently_played_artists|Kürzlich gehörte Künstler*innen": "Kürzlich gehörte Künstler",
+        "settings_show_recently_played_artists_description|Kürzlich gehörte Künstler*innen in meinem Profil anzeigen": "Kürzlich gehörte Künstler in meinem Profil anzeigen",
+        "share_to_external_artist_title|Hier ist ein(e) Künstler*in, den/die ich mit dir teilen möchte…": "Hier ist ein Künstler, den ich mit dir teilen möchte…",
+        "social_listening_join_confirmation_dialog_subtitle|Hört zusammen in Echtzeit. In einer Gruppen-Session können alle Teilnehmer*innen steuern, was gespielt wird.": "Hört zusammen in Echtzeit. In einer Gruppen-Session können alle Teilnehmer steuern, was gespielt wird.",
+        "social_listening_join_failed_session_full_title|Sorry, die maximale Anzahl an Hörer*innen ist in dieser Gruppen-Session bereits erreicht.": "Sorry, die maximale Anzahl an Hörern ist in dieser Gruppen-Session bereits erreicht.",
+        "social_listening_notification_channel_title|Mit Freund*innen verbinden": "Mit Freunden verbinden",
+        "social_listening_participant_list_invite_button|FREUND*INNEN EINLADEN": "FREUNDE EINLADEN",
+        "social_listening_participant_list_invite_notice_title_link_shared|Warten auf Beitreten von Freund*innen…": "Warten auf Beitreten von Freunden…",
+        "social_listening_participant_list_invite_notice_title_one_friend|Eine(n) Freund*in einladen": "Einen Freund einladen",
+        "social_listening_participant_list_toolbar_invite_button_content_description|FREUND*INNEN EINLADEN": "FREUNDE EINLADEN",
+        "social_listening_see_listeners_button_title|HÖRER*INNEN ANZEIGEN": "HÖRER ANZEIGEN",
+        "social_listening_subtitle_multi_output_in_session|Warten auf Beitreten von Freund*innen…": "Warten auf Beitreten von Freunden…",
+        "social_listening_subtitle_multi_output_no_session|Höre Spotify in Echtzeit zusammen mit Freund*innen. Wählt und steuert eure Musik gemeinsam.": "Höre Spotify in Echtzeit zusammen mit Freunden. Wählt und steuert eure Musik gemeinsam.",
+        "sort_order_artist|Künstler*in": "Künstler",
+        "toast_banned_artist|Ok, wir werden keine Musik von diesem/dieser Künstler*in mehr spielen.": "Ok, wir werden keine Musik von diesem Künstler mehr spielen.",
+        "toast_feature_not_available|Das Feature ist für Nutzer*innen von Spotify Free nicht verfügbar.": "Das Feature ist für Nutzer von Spotify Free nicht verfügbar.",
+        "try_saying|Versuche, eine(n) Künstler*in, einen Song oder den Namen einer Playlist zu sagen.": "Versuche, einen Künstler, einen Song oder den Namen einer Playlist zu sagen.",
+        "your_library_music_pages_artists_artist_clicked_offline_message|Du musst online sein, um diese(n) Künstler*in abzuspielen.": "Du musst online sein, um diesen Künstler abzuspielen.",
+        "your_library_music_pages_artists_show_sort_options_title|Künstler*innen sortieren": "Künstler sortieren",
+        "your_library_music_pages_artists_show_text_filter_title|In Künstler*innen suchen": "In Künstlern suchen",
+        "your_library_music_pages_button_add_artists|Künstler*innen hinzufügen": "Künstler hinzufügen",
+        "your_library_music_pages_find_in_artists_hint|In Künstler*innen suchen": "In Künstlern suchen",
+        "your_library_music_pages_page_artists_empty_button|KÜNSTLER*INNEN HINZUFÜGEN": "KÜNSTLER HINZUFÜGEN",
+        "your_library_music_pages_page_artists_empty_subtitle|Du kannst jetzt einige Künstler*innen hinzufügen, die dir gefallen.": "Du kannst jetzt einige Künstler hinzufügen, die dir gefallen.",
+        "your_library_music_pages_page_artists_empty_title|Hier siehst du bald deine Künstler*innen.": "Hier siehst du bald deine Künstler.",
+        "your_library_music_pages_page_artists_title|Künstler*innen": "Künstler",
+        "your_library_music_pages_row_banned_artists_subtitle|Hier sind deine ausgeblendeten Songs und Künstler*innen.": "Hier sind deine ausgeblendeten Songs und Künstler.",
+        "your_library_music_pages_row_banned_tracks_subtitle|Hier sind deine ausgeblendeten Songs und Künstler*innen.": "Hier sind deine ausgeblendeten Songs und Künstler.",
+        "your_library_music_pages_row_section_header_recommended_artists_title|Empfohlene Künstler*innen": "Empfohlene Künstler",
+        "your_library_sort_order_artist_name_alphabetically|Künstler*in": "Künstler",
+        "your_library_sort_order_artist_name_alphabetically_in_artists|Künstler*in": "Künstler",
+        "context_menu_pin_artist|Künstler*in anheften": "Künstler anheften",
+        "context_menu_unpin_artist|Künstler*in lösen": "Künstler lösen",
+        "empty_view_subtitle|Hier findest du bald deinen gesamten Hörverlauf.": "Hier findest du bald deinen gesamten Hörverlauf.",
+        "podcast_paywalls_subscriber_podcast_dialog_body|Abonnent*innen dieses Podcasts erhalten Zugriff auf diese Folge und alle älteren Folgen.": "Abonnenten dieses Podcasts erhalten Zugriff auf diese Folge und alle älteren Folgen.",
+        "podcast_paywalls_subscriber_podcast_dialog_title|Dieser Podcast ist nur für Abonnent*innen verfügbar": "Dieser Podcast ist nur für Abonnenten verfügbar",
+        "podcast_qna_blocked_user_message|Du wurdest daran gehindert, diesem*dieser Podcaster*in eine Antwort zu senden.": "Du wurdest daran gehindert, diesem Podcaster eine Antwort zu senden.",
+        "scannables_onboarding_content|Alle Inhalte auf Spotify haben einen Code zum Teilen. Scanne ihn mit deinem Smartphone, um den Song, den Podcast, den*die Künstler*in oder die Playlist direkt aufzurufen.": "Alle Inhalte auf Spotify haben einen Code zum Teilen. Scanne ihn mit deinem Smartphone, um den Song, den Podcast, den Künstler oder die Playlist direkt aufzurufen.",
+        "start_session_top_subtitle_text|Höre Spotify in Echtzeit zusammen mit Freund*innen.": "Höre Spotify in Echtzeit zusammen mit Freunden.",
+        "artist_page_not_found_placeholder_subtitle|Der*die Künstler*in wurde nicht gefunden. Bitte versuch’s mit einem*einer anderen.": "Der Künstler wurde nicht gefunden. Bitte versuch’s mit einem anderen.",
+        "artist_page_not_found_placeholder_title|Künstler*in wurde nicht gefunden": "Künstler wurde nicht gefunden",
+        "your_library_content_filter_artists|Künstler*innen": "Künstler",
+        "your_library_search_empty_view_subtitle|Such in deiner Bibliothek nach Playlists, Künstler*innen, Alben und Podcasts.": "Such in deiner Bibliothek nach Playlists, Künstlern, Alben und Podcasts."
+      }
     }
   ]
 }

@@ -2,18 +2,24 @@ import os
 import shutil
 from importlib_resources import files
 
-# Test recompilation (Application tests will take longer)
-RECOMPILE = False
+# Test cases to run
+TEST_DOWNLOAD = False
+TEST_APPLICATION = True
+TEST_PERFORMANCE = True
+
+# Application test options
 TEST_ALL_VERSIONS = False
+RECOMPILE = False
 
 # Dont verify SSL certificate
-NOSSL = True
+NOSSL = False
 
 DIR_TESTFILES = str(files('tests.testfiles').joinpath(''))
 DIR_TMP = os.path.join(DIR_TESTFILES, 'tmp')
 DIR_APK = os.path.join(DIR_TESTFILES, 'apk')
 DIR_LANG = os.path.join(DIR_TESTFILES, 'lang')
 DIR_REPLACE = os.path.join(DIR_TESTFILES, 'replace')
+DIR_MAKE = os.path.join(DIR_TESTFILES, 'make')
 
 
 def clear_tmp_folder():

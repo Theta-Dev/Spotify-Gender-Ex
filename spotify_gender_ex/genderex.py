@@ -26,7 +26,7 @@ class GenderEx:
         self.file_apksigner = str(files('spotify_gender_ex.lib').joinpath('uber-apk-signer-1.2.1.jar'))
 
         self.workdir = Workdir(folder_out, self.ks_password, self.key_password)
-        self.rtm = ReplacementManager(self.workdir, self._get_missing_replacement)
+        self.rtm = ReplacementManager(self.workdir.dir_apk, self._get_missing_replacement)
 
         # Logging
         if not no_logfile:
@@ -138,27 +138,27 @@ class GenderEx:
         click.echo('%d Ersetzungen vorgenommen' % n_replaced)
         click.echo('%d neue Ersetzungsregeln hinzugefügt' % n_newrpl)
 
-    def _get_missing_replacement(self, langfield):
+    def _get_missing_replacement(self, old):
         """
         This method gets called by the ReplacementManager if it cant replace a suspicious field.
         Prompts the user to manually enter a replacement value.
         In non-interactive mode it will skip the field instead.
         """
-        click.echo('Verdächtig: %s' % langfield.old)
+        click.echo('Verdächtig: %s' % old)
         if self.noia:
-            return langfield.old
+            return old
         else:
             try:
-                new_text = click.edit(str(langfield.old))
+                new_text = click.edit(str(old))
             except click.ClickException:
                 # No inline editing, less user friendly, but if the above does not work:
-                new_text = click.prompt('Neuer Text:', str(langfield.old))
+                new_text = click.prompt('Neuer Text:', str(old))
 
             if new_text:
                 return new_text.strip()
             else:
                 self.wait_for_enter('Enter drücken, um die Eingabe zu wiederholen.')
-                return self._get_missing_replacement(langfield)
+                return self._get_missing_replacement(old)
 
     def get_spotify_version(self):
         """Reads the Spotify version number from the decompiled app."""

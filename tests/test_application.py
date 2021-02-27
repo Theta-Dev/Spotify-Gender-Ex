@@ -17,6 +17,7 @@ TESTVERSIONS = [
 ]
 
 
+@unittest.skipUnless(tests.TEST_APPLICATION, 'application test skipped')
 class ScriptTest(unittest.TestCase):
     def do_script_test(self, version):
         self.maxDiff = None
@@ -40,12 +41,7 @@ class ScriptTest(unittest.TestCase):
 
         # Verify replacements
         for i in range(len(nogender_files)):
-            with open(nogender_files[i], 'r') as f:
-                nogender = f.read()
-            with open(modified_files[i], 'r') as f:
-                modified = f.read()
-
-            self.assertEqual(nogender, modified)
+            tests.assert_files_equal(self, nogender_files[i], modified_files[i])
 
         # Is output apk present?
         if tests.RECOMPILE:

@@ -7,72 +7,23 @@
   "files": [
     {
       "path": "file1_withgender.xml",
-      "replace": [
-        {
-          "key": "Biblec",
-          "old": "Künstler*innen",
-          "new": "Künstler"
-        },
-        {
-          "key": "Lythro",
-          "old": "Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem*einer Freund*in.",
-          "new": "Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem*einer Freund*in._MOD",
-          "inserted": true
-        },
-        {
-          "key": "Housur",
-          "old": "Nur Premium Nutzer*innen",
-          "new": "Nur Premium Nutzer*innen_MOD",
-          "inserted": true
-        },
-        {
-          "key": "Bizong",
-          "old": "Künstler*innen-Radio basierend auf",
-          "new": "Künstler*innen-Radio basierend auf_MOD",
-          "inserted": true
-        },
-        {
-          "key": "Giting",
-          "old": "FREUND*INNEN EINLADEN",
-          "new": "FREUND*INNEN EINLADEN_MOD",
-          "inserted": true
-        },
-        {
-          "key": "Ollope",
-          "old": "„%1$s“ in Künstler*innen",
-          "new": "„%1$s“ in Künstler*innen_MOD",
-          "inserted": true
-        }
-      ]
+      "replace": {
+        "Biblec|Künstler*innen": "Künstler",
+        "Lythro|Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem*einer Freund*in.": "Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem*einer Freund*in._MOD",
+        "Housur|Nur Premium Nutzer*innen": "Nur Premium Nutzer*innen_MOD",
+        "Bizong|Künstler*innen-Radio basierend auf": "Künstler*innen-Radio basierend auf_MOD",
+        "Giting|FREUND*INNEN EINLADEN": "FREUND*INNEN EINLADEN_MOD",
+        "Ollope|„%1$s“ in Künstler*innen": "„%1$s“ in Künstler*innen_MOD"
+      }
     },
     {
       "path": "file2_withgender.xml",
-      "replace": [
-        {
-          "key": "Urelex_Yeable/other",
-          "old": "Künstler*innen",
-          "new": "Künstler*innen_MOD",
-          "inserted": true
-        },
-        {
-          "key": "Urelex_Yeable/one",
-          "old": "Künstler*in",
-          "new": "Künstler*in_MOD",
-          "inserted": true
-        },
-        {
-          "key": "Blatte_Greade/other",
-          "old": "Spieler*innen",
-          "new": "Spieler*innen_MOD",
-          "inserted": true
-        },
-        {
-          "key": "Blatte_Greade/one",
-          "old": "Spieler*in",
-          "new": "Spieler*in_MOD",
-          "inserted": true
-        }
-      ]
+      "replace": {
+        "Urelex_Yeable/other|Künstler*innen": "Künstler*innen_MOD",
+        "Urelex_Yeable/one|Künstler*in": "Künstler*in_MOD",
+        "Blatte_Greade/other|Spieler*innen": "Spieler*innen_MOD",
+        "Blatte_Greade/one|Spieler*in": "Spieler*in_MOD"
+      }
     }
   ]
 }

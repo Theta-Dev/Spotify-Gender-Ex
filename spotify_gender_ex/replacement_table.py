@@ -3,23 +3,26 @@ import click
 import json
 import os
 import logging
-from spotify_gender_ex.lang_file import LangFile, LangField
-from spotify_gender_ex.workdir import Workdir
+from spotify_gender_ex import lang_file
 
 
 class ReplacementManager:
     """ReplacementManager holds multiple ReplacementTables"""
 
-    def __init__(self, workdir: Workdir, get_missing_replacement=None):
+    def __init__(self, dir_apk, get_missing_replacement=None):
         self._rtabs = {}
-        self.workdir = workdir
+        self.dir_apk = dir_apk
         self._mutable_rtab = None
         self.rtab_modified = False
+
+        # Replacement counters
+        self.n_replaced = 0
+        self.n_newrpl = 0
 
         if callable(get_missing_replacement):
             self.get_missing_replacement = get_missing_replacement
         else:
-            self.get_missing_replacement = lambda lf: lf.old
+            self.get_missing_replacement = lambda old: old
 
     def add_rtab(self, rtab, name, is_mutable=False):
         """
@@ -30,11 +33,20 @@ class ReplacementManager:
         if is_mutable:
             self._mutable_rtab = rtab
 
-    def insert_replacement(self, lfpath, replacement):
+    def get_replacement(self, lfpath, key, old):
+        for rtab in self._rtabs.values():
+            rset = rtab.set_from_langfile(lfpath)
+            if rset:
+                new_string = rset.get_replacement(key, old)
+                if new_string:
+                    return new_string
+
+    def insert_replacement(self, lfpath, key, old, new):
         """Inserts a new replacement into the mutable replacement table"""
         if self._mutable_rtab:
             rset = self._mutable_rtab.make_set_from_langfile(lfpath)
-            rset.add(replacement)
+            rset.add(key, old, new)
+
             self.rtab_modified = True
 
     def check_compatibility(self, spotify_version):
@@ -63,7 +75,7 @@ class ReplacementManager:
 
         return vstring
 
-    def do_replace(self):
+    def do_replace(self, dir_out=None):
         """
         Iterates through all language files.
         For each language field in every file, it tries to find a replacement.
@@ -77,57 +89,53 @@ class ReplacementManager:
         Returns a tuple: (Number of replaced fields, Number of new replacements)
         """
 
+        self.n_replaced = 0
+        self.n_newrpl = 0
+
         # Accumulate language files
         lfpaths = set()
         for rtab in self._rtabs.values():
             for s in rtab.sets:
                 lfpaths.add(s.path)
 
-        # Do the replacements
-        n_replaced = 0
-        n_newrpl = 0
-
         # Iterate through all language files
         for lfpath in lfpaths:
             # Get language file
-            langfile = LangFile.from_file(os.path.join(self.workdir.dir_apk, ReplacementSet.get_realpath(lfpath)))
+            langfile = lang_file.LangFile(os.path.join(self.dir_apk, ReplacementSet.get_realpath(lfpath)))
 
-            # For each language field in file:
-            for langfield in langfile.fields:
-                # go through all replacement tables
-                replaced = False
-                for rtab in self._rtabs.values():
-                    rset = rtab.set_from_langfile(lfpath)
-                    if not rset:
-                        continue
+            def fun_replace(key, old):
+                new_string = self.get_replacement(lfpath, key, old)
+                if new_string:
+                    self.n_replaced += 1
+                    return new_string
 
-                    if rset.try_replace(langfield):
-                        replaced = True
-                        n_replaced += 1
-                        break
-
-                if not replaced and langfield.is_suspicious():
-                    logging.info('Verdächtig: ' + langfield.old)
+                if lang_file.is_suspicious(old):
+                    logging.info('Verdächtig: ' + old)
 
                     # Create a new replacement and obtain the new value
-                    new_replacement = Replacement.from_langfield(langfield)
-                    new_replacement.new = str(self.get_missing_replacement(langfield))
-
-                    logging.info('Neue Ersetzungsregel: ' + new_replacement.new)
+                    new_string = str(self.get_missing_replacement(old))
+                    logging.info('Neue Ersetzungsregel: ' + new_string)
 
                     # Replace using new replacement and add it to the table
-                    new_replacement.try_replace(langfield)
-                    self.insert_replacement(lfpath, new_replacement)
+                    self.insert_replacement(lfpath, key, old, new_string)
 
-                    n_replaced += 1
-                    n_newrpl += 1
+                    self.n_replaced += 1
+                    self.n_newrpl += 1
+                    return new_string
+
+            # Do the replacement
+            langfile.replace_tree(fun_replace)
 
             # Write back modified language file
-            langfile.to_file()
+            target_file = None
+            if dir_out:
+                target_file = os.path.join(dir_out, os.path.basename(ReplacementSet.get_realpath(lfpath)))
 
-        logging.info('%d Ersetzungen vorgenommen' % n_replaced)
-        logging.info('%d neue Ersetungsregeln' % n_newrpl)
-        return n_replaced, n_newrpl
+            langfile.to_file(target_file)
+
+        logging.info('%d Ersetzungen vorgenommen' % self.n_replaced)
+        logging.info('%d neue Ersetungsregeln' % self.n_newrpl)
+        return self.n_replaced, self.n_newrpl
 
     def write_replacement_table(self, spotify_version=''):
         """If modified, write back replacement table"""
@@ -162,6 +170,13 @@ class ReplacementTable:
             rtab = cls(0, [], [])
 
         rtab.path = file
+
+        # Check for deprecated replacement sets
+        for rset in rtab.sets:
+            if rset.deprecated:
+                logging.warning('Format of replacement table %s is deprecated. Converting.' % file)
+                rtab.to_file()
+
         return rtab
 
     @classmethod
@@ -203,7 +218,7 @@ class ReplacementTable:
         return version in self.spotify_versions or self.is_empty()
 
     def spotify_addversion(self, version):
-        if not version in self.spotify_versions:
+        if version not in self.spotify_versions:
             self.spotify_versions.append(version)
 
     def is_empty(self):
@@ -229,72 +244,33 @@ class ReplacementSet:
     def __init__(self, path, replace):
         self.path = path
         self.realpath = self.get_realpath(path)
+        self.deprecated = False
 
-        self.replace = [Replacement(**r) for r in replace]
+        if isinstance(replace, dict):
+            self.replace = replace
+        else:
+            # Backwards-compatibility for lists
+            self.deprecated = True
+            self.replace = {}
+            for item in replace:
+                self.replace[self._get_key(item.get('key'), item.get('old'))] = item.get('new')
 
     @staticmethod
     def get_realpath(path):
         return os.path.join(*path.split('/'))
 
-    def add(self, replacement):
-        self.replace.append(replacement)
+    @staticmethod
+    def _get_key(key, old):
+        return key + '|' + old
 
-    def try_replace(self, langfield: LangField):
-        for r in self.replace:
-            if r.try_replace(langfield):
-                return True
-        return False
+    def add(self, key, old, new):
+        self.replace[self._get_key(key, old)] = new
+
+    def get_replacement(self, key, old):
+        return self.replace.get(self._get_key(key, old))
 
     def is_empty(self):
         return not bool(self.replace)
 
     def to_json(self):
         return {'path': self.path, 'replace': self.replace}
-
-
-class Replacement:
-    """
-    A replacement includes a list of keys to identify the field in the language file.
-    It also holds the old value that has to be replaced as well as the new value.
-    """
-
-    def __init__(self, key: str, old: str, new: str, inserted: bool = False):
-        self.key_list = key.split('/')
-        self.old = old
-        self.new = new
-        self.inserted = inserted
-
-    @classmethod
-    def from_langfield(cls, lang_field: LangField):
-        return cls('/'.join(lang_field.key_list), lang_field.old, lang_field.old, True)
-
-    def __repr__(self):
-        return '/'.join(self.key_list) + ': ' + self.old + ' -> ' + self.new
-
-    def try_replace(self, lang_field: LangField):
-        """
-        Tries to replace the value in the language file.
-        Returns True if the language field is replaced
-        """
-        if not lang_field.is_replaced():
-            # Key of Replacement and old values have to match
-            if self.key_list != lang_field.key_list or self.old != lang_field.old:
-                return False
-
-            # Replace it
-            lang_field.new = self.new
-
-            logging.debug('Ersetzung: %s -> %s' % (self.old, self.new))
-            return True
-        return True
-
-    def to_json(self):
-        res = {
-            'key': '/'.join(self.key_list),
-            'old': self.old,
-            'new': self.new
-        }
-        if self.inserted:
-            res['inserted'] = True
-
-        return res

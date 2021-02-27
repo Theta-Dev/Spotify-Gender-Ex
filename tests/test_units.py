@@ -1,9 +1,7 @@
 import unittest
 import os
 import shutil
-from importlib_resources import files
 import tests
-import spotify_gender_ex
 from spotify_gender_ex import downloader, workdir, replacement_table, lang_file
 
 RT_STRING = '''{
@@ -14,14 +12,15 @@ RT_STRING = '''{
   "files": [
     {
       "path": "file1_withgender.xml",
-      "replace": []
+      "replace": {}
     },
     {
       "path": "file2_withgender.xml",
-      "replace": []
+      "replace": {}
     }
   ]
 }'''
+
 
 class DownloaderTest(unittest.TestCase):
     def test_spotify_version(self):
@@ -29,6 +28,7 @@ class DownloaderTest(unittest.TestCase):
         self.assertRegex(dldr.spotify_version, r'\d+.\d+.\d+.\d+')
         self.assertTrue(dldr.spotify_url.startswith('https://dw.uptodown.com/dwn/'))
 
+    @unittest.skipUnless(tests.TEST_DOWNLOAD)
     def test_download_spotify(self):
         tests.clear_tmp_folder()
 
@@ -62,13 +62,13 @@ class WorkdirTest(unittest.TestCase):
 class LangFileTest(unittest.TestCase):
     def test_from_file(self):
         self._test_from_file('file1_withgender.xml', 20)
-        self._test_from_file('file2_withgender.xml', 8)
+        self._test_from_file('file2_withgender.xml', 4)
 
     def _test_from_file(self, file, ass_len):
         path = os.path.join(tests.DIR_LANG, file)
-        lfile = lang_file.LangFile.from_file(path)
+        lfile = lang_file.LangFile(path)
 
-        self.assertEqual(ass_len, len(lfile.fields))
+        self.assertEqual(ass_len, len(lfile.tree.findall('*')))
         self.assertEqual(path, lfile.path)
 
     def test_to_file(self):
@@ -80,81 +80,45 @@ class LangFileTest(unittest.TestCase):
         path = os.path.join(tests.DIR_LANG, file)
         path_out = os.path.join(tests.DIR_TMP, 'lang.xml')
 
-        lfile = lang_file.LangFile.from_file(path)
+        lfile = lang_file.LangFile(path)
         lfile.to_file(path_out)
 
         tests.assert_files_equal(self, path, path_out)
 
     def test_modify_file(self):
-        self._test_modify_file('file1_withgender.xml', 'file1_mod.xml')
-        self._test_modify_file('file2_withgender.xml', 'file2_mod.xml')
+        self._test_modify_file('file1_withgender.xml', 'file1_mod.xml', 'Laglog')
+        self._test_modify_file('file2_withgender.xml', 'file2_mod.xml', 'Urelex_Yeable/other')
 
-    def _test_modify_file(self, file, file_mod):
+    def _test_modify_file(self, file, file_mod, rkey):
         tests.clear_tmp_folder()
         path = os.path.join(tests.DIR_LANG, file)
         path_mod = os.path.join(tests.DIR_LANG, file_mod)
         path_out = os.path.join(tests.DIR_TMP, 'lang.xml')
 
-        lfile = lang_file.LangFile.from_file(path)
-        lfile.fields[0].new = 'MODIFIED'
-        self.assertTrue(lfile.fields[0].is_replaced())
+        lfile = lang_file.LangFile(path)
+
+        def fun_replace(key, old):
+            if key == rkey:
+                return 'MODIFIED'
+
+        lfile.replace_tree(fun_replace)
 
         lfile.to_file(path_out)
         tests.assert_files_equal(self, path_mod, path_out)
 
     def test_is_suspicious(self):
-        self._test_is_suspicious('file1_withgender.xml', 6)
-        self._test_is_suspicious('file2_withgender.xml', 4)
-
-    def _test_is_suspicious(self, file, ass_sus):
-        path = os.path.join(tests.DIR_LANG, file)
-        lfile = lang_file.LangFile.from_file(path)
-
-        n_suspicious = sum(
-            1 for field in lfile.fields if field.is_suspicious())
-        self.assertEqual(ass_sus, n_suspicious)
-
-
-class ReplacementTest(unittest.TestCase):
-    def test_replacement(self):
-        rp1 = replacement_table.Replacement('testkey', 'testval', 'MODIFIED')
-        rp2 = replacement_table.Replacement(
-            'testkey/xyz', 'testval', 'MODIFIED_2')
-
-        lf = lang_file.LangField(['testkey'], 'testval')
-
-        self.assertFalse(rp2.try_replace(lf))
-        self.assertTrue(rp1.try_replace(lf))
-        self.assertTrue(rp2.try_replace(lf))
-
-    def test_from_langfield(self):
-        lf1 = lang_file.LangField(['testkey'], 'testval')
-        lf2 = lang_file.LangField(['testkey', 'xyz'], 'testval')
-
-        rp1 = replacement_table.Replacement.from_langfield(lf1)
-        rp2 = replacement_table.Replacement.from_langfield(lf2)
-
-        self.assertEqual(['testkey'], rp1.key_list)
-        self.assertEqual(['testkey', 'xyz'], rp2.key_list)
-
-        self.assertEqual('testval', rp1.old)
-        self.assertEqual('testval', rp1.new)
-
-        self.assertEqual('testval', rp2.old)
-        self.assertEqual('testval', rp2.new)
-
-        self.assertTrue(rp1.inserted)
-        self.assertTrue(rp2.inserted)
-
-    def test_to_json(self):
-        rp = replacement_table.Replacement(
-            'testkey/xyz', 'testval', 'MODIFIED')
-        data = {
-            'key': 'testkey/xyz',
-            'old': 'testval',
-            'new': 'MODIFIED'
+        test_data = {
+            'Hallo Welt!': False,
+            'Künstler*innen': True,
+            'Weitere Optionen': False,
+            'Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem*einer Freund*in.': True,
+            '„%1$s“ in Künstler*innen': True,
+            'Tippe auf einer Folge auf {download}, um sie dir ohne Internetverbindung anzuhören.': False,
+            'Ich stimme den &lt;a href=\"spotify:internal:signup:tos\"&gt;Nutzungsbedingungen&lt;/a&gt; und der &lt;a href=\"spotify:internal:signup:policy\"&gt;Datenschutzrichtlinie&lt;/a&gt; von Spotify zu.': False
         }
-        self.assertEqual(data, rp.to_json())
+
+        for item in test_data.items():
+            self.assertEqual(item[1], lang_file.is_suspicious(item[0]))
 
 
 class ReplacementTableTest(unittest.TestCase):
@@ -210,8 +174,7 @@ class ReplacementTableTest(unittest.TestCase):
 
         rt = replacement_table.ReplacementTable.from_file(path)
 
-        rt.set_from_langfile('file1_withgender.xml') \
-            .add(replacement_table.Replacement('Biblec', 'Künstler*innen', 'Künstler'))
+        rt.set_from_langfile('file1_withgender.xml').add('Biblec', 'Künstler*innen', 'Künstler')
 
         rt.to_file(path_out)
         tests.assert_files_equal(self, path_ass, path_out)
@@ -250,12 +213,11 @@ class ReplacementManagerTest(unittest.TestCase):
 
     def test_do_replacement(self):
         tests.clear_tmp_folder()
-        wd = workdir.Workdir(tests.DIR_TMP)
-        dir_apk = wd._get_dir(wd.dir_apk)
+
         shutil.copyfile(os.path.join(tests.DIR_LANG, 'file1_withgender.xml'),
-                        os.path.join(dir_apk, 'file1_withgender.xml'))
+                        os.path.join(tests.DIR_TMP, 'file1_withgender.xml'))
         shutil.copyfile(os.path.join(tests.DIR_LANG, 'file2_withgender.xml'),
-                        os.path.join(dir_apk, 'file2_withgender.xml'))
+                        os.path.join(tests.DIR_TMP, 'file2_withgender.xml'))
 
         path1 = os.path.join(tests.DIR_REPLACE, 'replacements_testadd.json')
         path2 = os.path.join(tests.DIR_REPLACE, 'replacements_part2.json')
@@ -263,27 +225,31 @@ class ReplacementManagerTest(unittest.TestCase):
         rt1 = replacement_table.ReplacementTable.from_file(path1)
         rt2 = replacement_table.ReplacementTable.from_file(path2)
 
-        rpm = replacement_table.ReplacementManager(wd)
+        rpm = replacement_table.ReplacementManager(tests.DIR_TMP)
         rpm.add_rtab(rt1, 'rt1')
         rpm.add_rtab(rt2, 'rt2')
 
         rpm.do_replace()
 
-        tests.assert_files_equal(self, os.path.join(tests.DIR_LANG, 'file1_nogender.xml'), os.path.join(dir_apk, 'file1_withgender.xml'))
-        tests.assert_files_equal(self, os.path.join(tests.DIR_LANG, 'file2_nogender.xml'), os.path.join(dir_apk, 'file2_withgender.xml'))
+        tests.assert_files_equal(self, os.path.join(tests.DIR_LANG, 'file1_nogender.xml'),
+                                 os.path.join(tests.DIR_TMP, 'file1_withgender.xml'))
+        tests.assert_files_equal(self, os.path.join(tests.DIR_LANG, 'file2_nogender.xml'),
+                                 os.path.join(tests.DIR_TMP, 'file2_withgender.xml'))
 
     def test_write_replacement_table(self):
         tests.clear_tmp_folder()
         wd = workdir.Workdir(tests.DIR_TMP)
         dir_apk = wd._get_dir(wd.dir_apk)
-        shutil.copyfile(os.path.join(tests.DIR_LANG, 'file1_withgender.xml'), os.path.join(dir_apk, 'file1_withgender.xml'))
-        shutil.copyfile(os.path.join(tests.DIR_LANG, 'file2_withgender.xml'), os.path.join(dir_apk, 'file2_withgender.xml'))
+        shutil.copyfile(os.path.join(tests.DIR_LANG, 'file1_withgender.xml'),
+                        os.path.join(dir_apk, 'file1_withgender.xml'))
+        shutil.copyfile(os.path.join(tests.DIR_LANG, 'file2_withgender.xml'),
+                        os.path.join(dir_apk, 'file2_withgender.xml'))
 
         path = os.path.join(tests.DIR_TMP, 'replacements.json')
         shutil.copyfile(os.path.join(tests.DIR_REPLACE, 'replacements_testadd.json'), path)
         rt = replacement_table.ReplacementTable.from_file(path)
 
-        rpm = replacement_table.ReplacementManager(wd, lambda lf: lf.old+'_MOD')
+        rpm = replacement_table.ReplacementManager(dir_apk, lambda old: old + '_MOD')
         rpm.add_rtab(rt, 'rt', True)
 
         rpm.do_replace()
