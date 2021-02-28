@@ -42,7 +42,11 @@ class ScriptTest(unittest.TestCase):
             else:
                 self.fail('Download not successful')
 
-        self.assertGreater(os.path.getsize(apk_file), 20000000)
+        if os.path.getsize(apk_file) < 20000000:
+            with open(apk_file, 'r') as f:
+                content = f.read()
+
+            self.fail(content)
 
         # Empty output folder
         tests.clear_tmp_folder()
