@@ -9,3 +9,5 @@ dist
 /tests/testfiles/tmp/
 /GenderEx_docker/
 /tests/testfiles/make/
+/tests/testfiles/apk/
+/tests/testfiles/apk_old/

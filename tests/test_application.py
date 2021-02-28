@@ -1,7 +1,7 @@
 import unittest
 import os
 import tests
-from spotify_gender_ex import start_genderex, downloader
+from spotify_gender_ex import start_genderex, downloader, workdir
 
 DOWNLOAD_IDS = {
     '8-5-89-901': '3065569',
@@ -19,6 +19,9 @@ TESTVERSIONS = list(DOWNLOAD_IDS.keys())
 class ScriptTest(unittest.TestCase):
     def do_script_test(self, version):
         self.maxDiff = None
+
+        # Create APK dir if not existant
+        workdir.Workdir._get_dir(tests.DIR_APK)
 
         apk_file = os.path.join(tests.DIR_APK, 'spotify-%s.apk' % version)
         gex_folder = os.path.join(tests.DIR_TMP, 'GenderEx')
