@@ -1,4 +1,4 @@
-name: Upload Python Package
+name: Upload Test
 
 on: [ workflow_dispatch ]
 
@@ -21,4 +21,4 @@ jobs:
         TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
       run: |
         python setup.py sdist bdist_wheel
-        twine upload dist/*
+        twine upload --repository testpypi dist/*
