@@ -10,11 +10,11 @@ from spotify_gender_ex.workdir import Workdir
 from spotify_gender_ex import downloader
 
 # Version as shown in the credits
-VERSION = '1.1.2'
+VERSION = '2.0.0'
 
 
 class GenderEx:
-    def __init__(self, apk_file='', folder_out='.', replacement_table='', no_interaction=False, debug=False,
+    def __init__(self, apk_file='', folder_out='.', replacement_table='', builtin=False, no_interaction=False, debug=False,
                  ks_password='', key_password='', ignore_ssl=False, no_logfile=False):
         self.spotify_version = ''
         self.noia = no_interaction
@@ -53,11 +53,16 @@ class GenderEx:
             rt_custom = ReplacementTable.from_file(self.workdir.file_rtable)
 
             # If we can, use the latest replacement table from GitHub
-            try:
-                rtab_raw = self.downloader.get_replacement_table_raw()
-                rt_builtin = ReplacementTable.from_string(rtab_raw)
-            except Exception as e:
-                click.echo(str(e))
+            rt_builtin = None
+
+            if not builtin:
+                try:
+                    rtab_raw = self.downloader.get_replacement_table_raw()
+                    rt_builtin = ReplacementTable.from_string(rtab_raw)
+                except Exception as e:
+                    click.echo(str(e))
+
+            if not rt_builtin:
                 rt_builtin = ReplacementTable.from_file(files('spotify_gender_ex.res').joinpath('replacements.json'))
 
             self.rtm.add_rtab(rt_builtin, 'builtin')
@@ -138,7 +143,7 @@ class GenderEx:
         click.echo('%d Ersetzungen vorgenommen' % n_replaced)
         click.echo('%d neue Ersetzungsregeln hinzugefügt' % n_newrpl)
 
-    def _get_missing_replacement(self, old):
+    def _get_missing_replacement(self, key, old):
         """
         This method gets called by the ReplacementManager if it cant replace a suspicious field.
         Prompts the user to manually enter a replacement value.

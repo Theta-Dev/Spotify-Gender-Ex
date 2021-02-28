@@ -28,7 +28,7 @@ class DownloaderTest(unittest.TestCase):
         self.assertRegex(dldr.spotify_version, r'\d+.\d+.\d+.\d+')
         self.assertTrue(dldr.spotify_url.startswith('https://dw.uptodown.com/dwn/'))
 
-    @unittest.skipUnless(tests.TEST_DOWNLOAD)
+    @unittest.skipUnless(tests.TEST_DOWNLOAD, 'download skipped')
     def test_download_spotify(self):
         tests.clear_tmp_folder()
 
@@ -249,7 +249,7 @@ class ReplacementManagerTest(unittest.TestCase):
         shutil.copyfile(os.path.join(tests.DIR_REPLACE, 'replacements_testadd.json'), path)
         rt = replacement_table.ReplacementTable.from_file(path)
 
-        rpm = replacement_table.ReplacementManager(dir_apk, lambda old: old + '_MOD')
+        rpm = replacement_table.ReplacementManager(dir_apk, lambda key, old: old + '_MOD')
         rpm.add_rtab(rt, 'rt', True)
 
         rpm.do_replace()

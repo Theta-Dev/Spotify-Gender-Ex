@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -7,7 +7,8 @@
     "8.5.96.936",
     "8.5.98.984",
     "8.6.0.830",
-    "8.6.2.774"
+    "8.6.2.774",
+    "8.6.4.971"
   ],
   "files": [
     {
@@ -19,7 +20,9 @@
         "social_listening_join_failed_session_full_body/other|Es können %1$s Hörer*innen gleichzeitig teilnehmen und wir haben das Maximum erreicht.": "Es können %1$s Hörer gleichzeitig teilnehmen und wir haben das Maximum erreicht.",
         "social_listening_join_failed_session_full_body/one|Es kann %1$s Hörer*in gleichzeitig teilnehmen und wir haben das Maximum erreicht.": "Es kann %1$s Hörer gleichzeitig teilnehmen und wir haben das Maximum erreicht.",
         "social_listening_participant_list_invite_notice_title/other|Lade bis zu %1$s Freund*innen ein": "Lade bis zu %1$s Freunde ein",
-        "social_listening_participant_list_invite_notice_title/one|Lade maximal %1$s Freund*in ein": "Lade maximal %1$s Freund ein"
+        "social_listening_participant_list_invite_notice_title/one|Lade maximal %1$s Freund*in ein": "Lade maximal %1$s Freund ein",
+        "connect_device_multiple_listeners/other|%1$d Hörer*innen": "%1$d Hörer",
+        "connect_device_multiple_listeners/one|%1$d Hörer*in": "%1$d Hörer"
       }
     },
     {
@@ -165,7 +168,16 @@
         "artist_page_not_found_placeholder_subtitle|Der*die Künstler*in wurde nicht gefunden. Bitte versuch’s mit einem*einer anderen.": "Der Künstler wurde nicht gefunden. Bitte versuch’s mit einem anderen.",
         "artist_page_not_found_placeholder_title|Künstler*in wurde nicht gefunden": "Künstler wurde nicht gefunden",
         "your_library_content_filter_artists|Künstler*innen": "Künstler",
-        "your_library_search_empty_view_subtitle|Such in deiner Bibliothek nach Playlists, Künstler*innen, Alben und Podcasts.": "Such in deiner Bibliothek nach Playlists, Künstlern, Alben und Podcasts."
+        "your_library_search_empty_view_subtitle|Such in deiner Bibliothek nach Playlists, Künstler*innen, Alben und Podcasts.": "Such in deiner Bibliothek nach Playlists, Künstlern, Alben und Podcasts.",
+        "free_tier_taste_onboarding_skip_dialog_continue|Künstler*innen auswählen": "Künstler auswählen",
+        "invite_friends_button_content_description|Freund*innen zu %1$s einladen": "Freunde zu %1$s einladen",
+        "local_files_import_deselect_all_artists_button|Auswahl für alle Künstler*innen aufheben": "Auswahl für alle Künstler aufheben",
+        "local_files_import_select_all_artists_button|Alle Künstler*innen auswählen": "Alle Künstler auswählen",
+        "social_listening_participant_list_info_subtitle|Entscheide gemeinsam mit Freund*innen, was gehört wird. Sie müssen sich dazu nur mit diesem Lautsprecher verbinden.": "Entscheide gemeinsam mit Freunden, was gehört wird. Sie müssen sich dazu nur mit diesem Lautsprecher verbinden.",
+        "social_listening_participant_list_invite_button|Freund*innen einladen": "Freunde einladen",
+        "social_listening_participant_list_toolbar_invite_button_content_description|Freund*innen einladen": "Freunde einladen",
+        "social_listening_see_listeners_button_title|Hörer*innen anzeigen": "Hörer anzeigen",
+        "your_library_music_pages_page_artists_empty_button|Künstler*innen hinzufügen": "Künstler hinzufügen"
       }
     }
   ]

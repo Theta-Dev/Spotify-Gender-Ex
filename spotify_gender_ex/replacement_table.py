@@ -22,7 +22,7 @@ class ReplacementManager:
         if callable(get_missing_replacement):
             self.get_missing_replacement = get_missing_replacement
         else:
-            self.get_missing_replacement = lambda old: old
+            self.get_missing_replacement = self._missing_replacement_default
 
     def add_rtab(self, rtab, name, is_mutable=False):
         """
@@ -75,6 +75,12 @@ class ReplacementManager:
 
         return vstring
 
+    @staticmethod
+    def _missing_replacement_default(key, old):
+        logging.info('Diese Zeile zu deiner Ersetzungstabelle hinzufügen und anpassen.')
+        logging.info('"%s|%s": "%s"' % (key, old, old))
+        return old
+
     def do_replace(self, dir_out=None):
         """
         Iterates through all language files.
@@ -113,7 +119,7 @@ class ReplacementManager:
                     logging.info('Verdächtig: ' + old)
 
                     # Create a new replacement and obtain the new value
-                    new_string = str(self.get_missing_replacement(old))
+                    new_string = str(self.get_missing_replacement(key, old))
                     logging.info('Neue Ersetzungsregel: ' + new_string)
 
                     # Replace using new replacement and add it to the table

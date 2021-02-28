@@ -11,13 +11,18 @@ URL_RTABLE = 'https://raw.githubusercontent.com/Theta-Dev/Spotify-Gender-Ex/mast
 
 
 class Downloader:
-    def __init__(self, ignore_ssl=False):
+    def __init__(self, ignore_ssl=False, download_id=''):
         pattern_url = re.escape('https://dw.uptodown.com/dwn/') + r'(\w|\.|\/|-|\+|=)+'
         pattern_version = r'(?<=<div class=version>)(\d|\.)+'
         self.verify = not ignore_ssl
 
+        if download_id:
+            url = URL_UPTODOWN + '/' + download_id
+        else:
+            url = URL_UPTODOWN
+
         try:
-            r = requests.get(URL_UPTODOWN, verify=self.verify)
+            r = requests.get(url, verify=self.verify)
         except Exception:
             msg = 'Spotify-Version konnte nicht abgerufen werden'
             logging.error(msg)

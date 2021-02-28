@@ -1,20 +1,18 @@
 import unittest
 import os
 import tests
-from spotify_gender_ex import start_genderex
+from spotify_gender_ex import start_genderex, downloader
 
-"""
-Information: Spotify APK files for script testing are not included in the repository for copyright reasons.
-You have to download them manually from here: https://spotify.de.uptodown.com/android/versions
-Put them in the tests/testfiles/apk directory.
-"""
-TESTVERSIONS = [
-    '8-5-89-901',
-    '8-5-93-445',
-    '8-5-94-839',
-    '8-5-98-984',
-    '8-6-0-830'
-]
+DOWNLOAD_IDS = {
+    '8-5-89-901': '3065569',
+    '8-5-93-445': '3145501',
+    '8-5-94-839': '3170083',
+    '8-5-98-984': '3217260',
+    '8-6-0-830': '3243383',
+    '8-6-4-971': '3313036'
+}
+
+TESTVERSIONS = list(DOWNLOAD_IDS.keys())
 
 
 @unittest.skipUnless(tests.TEST_APPLICATION, 'application test skipped')
@@ -32,11 +30,16 @@ class ScriptTest(unittest.TestCase):
         modified_files = [os.path.join(app_folder, 'res', 'values-de', 'plurals.xml'),
                           os.path.join(app_folder, 'res', 'values-de', 'strings.xml')]
 
+        # Dowload apk file if not existant
+        if not os.path.isfile(apk_file):
+            dwn = downloader.Downloader(tests.NOSSL, DOWNLOAD_IDS[version])
+            dwn.download_spotify(apk_file)
+
         # Empty output folder
         tests.clear_tmp_folder()
 
         # Run the script
-        start_genderex(apk_file, tests.DIR_TMP, '', '', '', tests.NOSSL,
+        start_genderex(apk_file, tests.DIR_TMP, '', True, '', '', tests.NOSSL,
                        True, True, 0, False, not tests.RECOMPILE, True)
 
         # Verify replacements
