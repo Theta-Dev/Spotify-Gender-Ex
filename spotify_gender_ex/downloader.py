@@ -80,9 +80,6 @@ def _download(url, output_path, description=''):
     click.echo(msg)
     logging.info(msg)
 
-    try:
-        with _DownloadProgressBar(unit='B', unit_scale=True, miniters=1, desc=url.split('/')[-1]) as t:
+    with _DownloadProgressBar(unit='B', unit_scale=True, miniters=1, desc=url.split('/')[-1]) as t:
             urllib.request.urlretrieve(url, filename=output_path, reporthook=t.update_to)
-    except Exception:
-        return False
     return os.path.isfile(output_path)

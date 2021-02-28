@@ -36,7 +36,9 @@ class ScriptTest(unittest.TestCase):
         # Dowload apk file if not existant
         if not os.path.isfile(apk_file):
             dwn = downloader.Downloader(tests.NOSSL, DOWNLOAD_IDS[version])
+
             dwn.download_spotify(apk_file)
+
 
         # Empty output folder
         tests.clear_tmp_folder()
