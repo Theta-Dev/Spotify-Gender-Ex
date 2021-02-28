@@ -21,7 +21,7 @@ class ScriptTest(unittest.TestCase):
         self.maxDiff = None
 
         # Create APK dir if not existant
-        if not os.path.isdir(tests.DIR_APK):
+        if not os.path.exists(tests.DIR_APK):
             os.makedirs(tests.DIR_APK)
 
         apk_file = os.path.join(tests.DIR_APK, 'spotify-%s.apk' % version)
@@ -42,13 +42,6 @@ class ScriptTest(unittest.TestCase):
                 print('Downloaded ' + version)
             else:
                 self.fail('Download not successful')
-
-        # Double check if file is ok
-        if os.path.getsize(apk_file) < 20000000:
-            with open(apk_file, 'r') as f:
-                content = f.read()
-
-            self.fail(content)
 
         # Empty output folder
         tests.clear_tmp_folder()
