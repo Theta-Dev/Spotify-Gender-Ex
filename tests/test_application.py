@@ -1,7 +1,7 @@
 import unittest
 import os
 import tests
-from spotify_gender_ex import start_genderex, downloader, workdir
+from spotify_gender_ex import start_genderex, downloader
 
 DOWNLOAD_IDS = {
     '8-5-89-901': '3065569',
@@ -21,7 +21,8 @@ class ScriptTest(unittest.TestCase):
         self.maxDiff = None
 
         # Create APK dir if not existant
-        workdir.Workdir._get_dir(tests.DIR_APK)
+        if not os.path.isdir(tests.DIR_APK):
+            os.makedirs(tests.DIR_APK)
 
         apk_file = os.path.join(tests.DIR_APK, 'spotify-%s.apk' % version)
         gex_folder = os.path.join(tests.DIR_TMP, 'GenderEx')
@@ -42,6 +43,7 @@ class ScriptTest(unittest.TestCase):
             else:
                 self.fail('Download not successful')
 
+        # Double check if file is ok
         if os.path.getsize(apk_file) < 20000000:
             with open(apk_file, 'r') as f:
                 content = f.read()
