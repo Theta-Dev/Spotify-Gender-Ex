@@ -37,8 +37,12 @@ class ScriptTest(unittest.TestCase):
         if not os.path.isfile(apk_file):
             dwn = downloader.Downloader(tests.NOSSL, DOWNLOAD_IDS[version])
 
-            dwn.download_spotify(apk_file)
+            if dwn.download_spotify(apk_file):
+                print('Downloaded ' + version)
+            else:
+                self.fail('Download not successful')
 
+        self.assertGreater(os.path.getsize(apk_file), 20000000)
 
         # Empty output folder
         tests.clear_tmp_folder()
