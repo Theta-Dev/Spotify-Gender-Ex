@@ -24,21 +24,21 @@ RT_STRING = '''{
 
 class DownloaderTest(unittest.TestCase):
     def test_spotify_version(self):
-        dldr = downloader.Downloader(tests.NOSSL)
+        dldr = downloader.Downloader()
         self.assertRegex(dldr.spotify_version, r'\d+.\d+.\d+.\d+')
-        self.assertTrue(dldr.spotify_url.startswith('https://dw.uptodown.com/dwn/'))
+        self.assertTrue(dldr.spotify_url.startswith('https://play.googleapis.com/download/by-token/download?token='))
 
     @unittest.skipUnless(tests.TEST_DOWNLOAD, 'download skipped')
     def test_download_spotify(self):
         tests.clear_tmp_folder()
 
-        dldr = downloader.Downloader(tests.NOSSL)
+        dldr = downloader.Downloader()
         path = os.path.join(tests.DIR_TMP, 'spotify.apk')
         dldr.download_spotify(path)
         self.assertGreater(os.path.getsize(path), 20000000)
 
     def test_download_replacement_table(self):
-        dldr = downloader.Downloader(tests.NOSSL)
+        dldr = downloader.Downloader()
         rpl_text = dldr.get_replacement_table_raw()
         rtab = replacement_table.ReplacementTable.from_string(rpl_text)
 

@@ -6,23 +6,25 @@ import re
 import os
 import logging
 
-URL_UPTODOWN = 'https://spotify.de.uptodown.com/android/download'
+URL_APKCOMBO = 'https://apkcombo.com/spotify-listen-to-podcasts-find-music-you-love/com.spotify.music/download/apk'
 URL_RTABLE = 'https://raw.githubusercontent.com/Theta-Dev/Spotify-Gender-Ex/master/spotify_gender_ex/res/replacements.json'
 
 
 class Downloader:
-    def __init__(self, ignore_ssl=False, download_id=''):
-        pattern_url = re.escape('https://dw.uptodown.com/dwn/') + r'(\w|\.|\/|-|\+|=)+'
-        pattern_version = r'(?<=<div class=version>)(\d|\.)+'
-        self.verify = not ignore_ssl
-
-        if download_id:
-            url = URL_UPTODOWN + '/' + download_id
+    def __init__(self, arm32=False):
+        if arm32:
+            d_code = 'armeabi-v7a'
         else:
-            url = URL_UPTODOWN
+            d_code = 'arm64-v8a'
+
+        pattern_url = r'(?<=' + re.escape(d_code) + r'</code>\W<a href=")' +\
+                      re.escape('https://play.googleapis.com/download/by-token/download?token=') + r'[^"]+'
+        pattern_version = r'(?<=<strong>spotify-listen-to-podcasts-find-music-you-love_)(\d|\.)+(?=.apk<\/strong>)'
+
+        url = URL_APKCOMBO
 
         try:
-            r = requests.get(url, verify=self.verify)
+            r = requests.get(url)
         except Exception:
             msg = 'Spotify-Version konnte nicht abgerufen werden'
             logging.error(msg)
@@ -56,7 +58,7 @@ class Downloader:
     def get_replacement_table_raw(self):
         logging.info('Ersetzungstabelle von GitHub abrufen')
         try:
-            return requests.get(URL_RTABLE, verify=self.verify).text
+            return requests.get(URL_RTABLE).text
         except Exception:
             msg = 'Ersetzungstabelle konnte nicht abgerufen werden. Verwende eingebaute Tabelle.'
             logging.error(msg)
@@ -81,7 +83,7 @@ def _download(url, output_path, description=''):
     logging.info(msg)
 
     try:
-        with _DownloadProgressBar(unit='B', unit_scale=True, miniters=1, desc=url.split('/')[-1]) as t:
+        with _DownloadProgressBar(unit='B', unit_scale=True, miniters=1, desc=description) as t:
             urllib.request.urlretrieve(url, filename=output_path, reporthook=t.update_to)
     except Exception:
         return False

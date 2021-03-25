@@ -5,15 +5,15 @@ from spotify_gender_ex import genderex
 
 
 def start_genderex(apk_file='', directory='.', replacement_table='', builtin=False, ks_password='', key_password='',
-                   ignore_ssl=False, no_interaction=False, force=False, cleanup_max_files=0, debug=False,
-                   no_compile=False, no_logfile=False):
+                   no_interaction=False, force=False, cleanup_max_files=0, debug=False,
+                   no_compile=False, no_logfile=False, arm32=False):
     click.echo('0. INFO')
     if not os.path.isdir(directory):
         click.echo('Keine Eingabedaten')
         return
 
     gex = genderex.GenderEx(apk_file, directory, replacement_table, builtin, no_interaction, debug, ks_password,
-                            key_password, ignore_ssl, no_logfile)
+                            key_password, no_logfile, arm32)
 
     click.echo('Spotify-Gender-Ex Version: %s' % genderex.VERSION)
     click.echo('Aktuelle Spotify-Version: %s' % gex.latest_spotify)
@@ -66,7 +66,6 @@ def start_genderex(apk_file='', directory='.', replacement_table='', builtin=Fal
 @click.option('--builtin', help='Benutze die eingebaute Ersetzungstabelle', is_flag=True)
 @click.option('--kspw', help='Signer: Passwort für den Keystore.', default='', type=click.STRING)
 @click.option('--kypw', help='Signer: Passwort für den Key (genderex).', default='', type=click.STRING)
-@click.option('--nossl', help='SSL-Verifizierung deaktivieren', is_flag=True)
 @click.option('--noia', help='Keine Interaktion: Deaktiviert Eingabeaufforderungen (für Automatisierung)', is_flag=True)
 @click.option('--force',
               help='(Nur mit --noia) Durchlauf erzwingen, auch wenn die aktuelle Spotify-Version bereits verarbeitet wurde',
@@ -74,10 +73,11 @@ def start_genderex(apk_file='', directory='.', replacement_table='', builtin=Fal
 @click.option('--cleanup',
               help='Säuberung am Ende: Maximale Anzahl Dateien im Ausgabeordner (die ältesten Versionen werden gelöscht)',
               default=0, type=click.INT)
+@click.option('--arm32', help='Download Spotify in the 32bit version (for older devices)', is_flag=True)
 @click.option('--debug', help='Debug-Informationen in die Logdatei schreiben', is_flag=True)
-def run(a, d, rt, builtin, kspw, kypw, nossl, noia, force, cleanup, debug):
+def run(a, d, rt, builtin, kspw, kypw, noia, force, cleanup, debug, arm32):
     """Entferne die Gendersternchen (z.B. Künstler*innen) aus der Spotify-App für Android!"""
-    start_genderex(a, d, rt, builtin, kspw, kypw, nossl, noia, force, cleanup, debug)
+    start_genderex(a, d, rt, builtin, kspw, kypw, noia, force, cleanup, debug, arm32)
 
 
 if __name__ == '__main__':

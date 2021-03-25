@@ -10,12 +10,12 @@ from spotify_gender_ex.workdir import Workdir
 from spotify_gender_ex import downloader
 
 # Version as shown in the credits
-VERSION = '2.0.0'
+VERSION = '2.1.0'
 
 
 class GenderEx:
-    def __init__(self, apk_file='', folder_out='.', replacement_table='', builtin=False, no_interaction=False, debug=False,
-                 ks_password='', key_password='', ignore_ssl=False, no_logfile=False):
+    def __init__(self, apk_file='', folder_out='.', replacement_table='', builtin=False, no_interaction=False,
+                 debug=False, ks_password='', key_password='', no_logfile=False, arm32=False):
         self.spotify_version = ''
         self.noia = no_interaction
         self.ks_password = ks_password or '12345678'
@@ -35,7 +35,7 @@ class GenderEx:
         logging.info('Starte Spotify GenderEx V' + VERSION)
 
         # Downloader
-        self.downloader = downloader.Downloader(ignore_ssl)
+        self.downloader = downloader.Downloader(arm32)
         self.latest_spotify = self.downloader.spotify_version
 
         if apk_file and os.path.isfile(apk_file):

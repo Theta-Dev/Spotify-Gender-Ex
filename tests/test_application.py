@@ -15,7 +15,8 @@ DOWNLOAD_IDS = {
 TESTVERSIONS = list(DOWNLOAD_IDS.keys())
 
 
-@unittest.skipUnless(tests.TEST_APPLICATION, 'application test skipped')
+# @unittest.skipUnless(tests.TEST_APPLICATION, 'application test skipped')
+@unittest.skip
 class ScriptTest(unittest.TestCase):
     def do_script_test(self, version):
         self.maxDiff = None
@@ -47,7 +48,7 @@ class ScriptTest(unittest.TestCase):
         tests.clear_tmp_folder()
 
         # Run the script
-        start_genderex(apk_file, tests.DIR_TMP, '', True, '', '', tests.NOSSL,
+        start_genderex(apk_file, tests.DIR_TMP, '', True, '', '',
                        True, True, 0, False, not tests.RECOMPILE, True)
 
         # Verify replacements

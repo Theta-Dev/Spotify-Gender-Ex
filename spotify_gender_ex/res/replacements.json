@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -8,7 +8,9 @@
     "8.5.98.984",
     "8.6.0.830",
     "8.6.2.774",
-    "8.6.4.971"
+    "8.6.4.971",
+    "8.6.8.1094",
+    "8.6.10.581"
   ],
   "files": [
     {
@@ -177,7 +179,18 @@
         "social_listening_participant_list_invite_button|Freund*innen einladen": "Freunde einladen",
         "social_listening_participant_list_toolbar_invite_button_content_description|Freund*innen einladen": "Freunde einladen",
         "social_listening_see_listeners_button_title|Hörer*innen anzeigen": "Hörer anzeigen",
-        "your_library_music_pages_page_artists_empty_button|Künstler*innen hinzufügen": "Künstler hinzufügen"
+        "your_library_music_pages_page_artists_empty_button|Künstler*innen hinzufügen": "Künstler hinzufügen",
+        "content_feed_empty_view_subtitle_no_items|Wenn es etwas Neues gibt, lassen wir es dich hier wissen. Folge deinen Lieblingskünstler*innen und -podcasts, um auf dem Laufenden zu bleiben.": "Wenn es etwas Neues gibt, lassen wir es dich hier wissen. Folge deinen Lieblingskünstlern und -podcasts, um auf dem Laufenden zu bleiben.",
+        "content_feed_empty_view_subtitle_no_music|Folge deinen Lieblingskünstler*innen, damit wir dich auf dem Laufenden halten können.": "Folge deinen Lieblingskünstlern, damit wir dich auf dem Laufenden halten können.",
+        "error_message_others_still_can_join_session|Andere Nutzer*innen können noch immer an dieser Session teilnehmen. Nochmal versuchen?": "Andere Nutzer können noch immer an dieser Session teilnehmen. Nochmal versuchen?",
+        "error_message_others_still_can_not_join_session|Andere Nutzer*innen können noch immer nicht an dieser Session teilnehmen. Nochmal versuchen?": "Andere Nutzer können noch immer nicht an dieser Session teilnehmen. Nochmal versuchen?",
+        "library_wall_subtitle|Künstler*innen und Podcasts, denen du folgst, werden ebenfalls hier gespeichert.": "Künstler und Podcasts, denen du folgst, werden ebenfalls hier gespeichert.",
+        "podcast_paywalls_subscriber_podcast_dialog_title|Diese Folge ist nur für Abonnent*innen verfügbar": "Diese Folge ist nur für Abonnenten verfügbar",
+        "social_listening_participant_list_remove_participants_button|Alle Teilnehmer*innen entfernen": "Alle Teilnehmer entfernen",
+        "social_listening_participant_list_subtitle_participant|Teilnehmer*in": "Teilnehmer",
+        "filter_chip_title_artist|Künstler*innen": "Künstler",
+        "podcast_paywalls_successful_subscriber_dialog_body|Du kannst nun auf alle Folgen auf Spotify zugreifen, die nur für Abonnent*innen zugänglich sind.": "Du kannst nun auf alle Folgen auf Spotify zugreifen, die nur für Abonnenten zugänglich sind.",
+        "stations_promo_subtitle|\"Erstelle eigene Sender basierend auf Künstler*innen, die du liebst.\n Oder hör dir Sender an, die nach Genre, Stimmung\nund Jahrzehnt zusammengestellt sind.\"": "\"Erstelle eigene Sender basierend auf Künstlern, die du liebst.\n Oder hör dir Sender an, die nach Genre, Stimmung\nund Jahrzehnt zusammengestellt sind.\""
       }
     }
   ]

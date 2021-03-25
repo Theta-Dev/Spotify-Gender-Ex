@@ -11,9 +11,6 @@ TEST_PERFORMANCE = True
 TEST_ALL_VERSIONS = False
 RECOMPILE = False
 
-# Dont verify SSL certificate
-NOSSL = False
-
 DIR_TESTFILES = str(files('tests.testfiles').joinpath(''))
 DIR_TMP = os.path.join(DIR_TESTFILES, 'tmp')
 DIR_APK = os.path.join(DIR_TESTFILES, 'apk')
