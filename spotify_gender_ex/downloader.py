@@ -17,8 +17,9 @@ class Downloader:
         else:
             d_code = 'arm64-v8a'
 
-        pattern_url = r'(?<=' + re.escape(d_code) + r'</code>\W<a href=")' +\
+        pattern_url = r'(?<=' + re.escape(d_code) + r'</code>\W<a href=")' + \
                       re.escape('https://play.googleapis.com/download/by-token/download?token=') + r'[^"]+'
+        pattern_url_fallback = '(?<=<a href=")' + re.escape('https://play.googleapis.com/download/by-token/download?token=') + r'[^"]+'
         pattern_version = r'(?<=<strong>spotify-listen-to-podcasts-find-music-you-love_)(\d|\.)+(?=.apk<\/strong>)'
 
         url = URL_APKCOMBO
@@ -34,6 +35,9 @@ class Downloader:
             return
 
         search_url = re.search(pattern_url, r.text)
+        if not search_url:
+            search_url = re.search(pattern_url_fallback, r.text)
+
         search_version = re.search(pattern_version, r.text)
 
         if not search_url or not search_version:
