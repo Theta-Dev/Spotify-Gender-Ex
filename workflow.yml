@@ -30,11 +30,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: spotify-app
-          path: ./GenderEx/output/*.apk
+          path: ./GenderEx/output/*
           retention-days: 7
-      
-      - name: Store log
-        uses: actions/upload-artifact@v2
-        with:
-          name: logs
-          path: ./GenderEx/output/log/
