@@ -32,6 +32,8 @@ class Downloader:
             self.spotify_url = ''
             return
 
+        print(r.text)
+
         search_url = re.search(pattern_url, r.text)
         search_version = re.search(pattern_version, r.text)
 
