@@ -1,5 +1,5 @@
 {
-  "version": 5,
+  "version": 6,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -12,7 +12,9 @@
     "8.6.8.1094",
     "8.6.10.581",
     "8.6.12.986",
-    "8.6.14.960"
+    "8.6.14.960",
+    "8.6.14.975",
+    "8.6.16.1041"
   ],
   "files": [
     {
@@ -26,7 +28,10 @@
         "social_listening_participant_list_invite_notice_title/other|Lade bis zu %1$s Freund*innen ein": "Lade bis zu %1$s Freunde ein",
         "social_listening_participant_list_invite_notice_title/one|Lade maximal %1$s Freund*in ein": "Lade maximal %1$s Freund ein",
         "connect_device_multiple_listeners/other|%1$d Hörer*innen": "%1$d Hörer",
-        "connect_device_multiple_listeners/one|%1$d Hörer*in": "%1$d Hörer"
+        "connect_device_multiple_listeners/one|%1$d Hörer*in": "%1$d Hörer",
+        "join_or_take_over_dialog_title_fallback/one|%1$d andere*r hört auf %2$s.": "%1$d anderer hört auf %2$s.",
+        "join_or_take_over_dialog_title_multiple_participants/one|%1$s und %2$d andere*r hören auf %3$s.": "%1$s und %2$d anderer hören auf %3$s.",
+        "playlist_header_collaborators/one|%1$s + %2$d weitere*r": "%1$s + %2$d weiterer"
       }
     },
     {
@@ -192,7 +197,12 @@
         "social_listening_participant_list_subtitle_participant|Teilnehmer*in": "Teilnehmer",
         "filter_chip_title_artist|Künstler*innen": "Künstler",
         "podcast_paywalls_successful_subscriber_dialog_body|Du kannst nun auf alle Folgen auf Spotify zugreifen, die nur für Abonnent*innen zugänglich sind.": "Du kannst nun auf alle Folgen auf Spotify zugreifen, die nur für Abonnenten zugänglich sind.",
-        "stations_promo_subtitle|\"Erstelle eigene Sender basierend auf Künstler*innen, die du liebst.\n Oder hör dir Sender an, die nach Genre, Stimmung\nund Jahrzehnt zusammengestellt sind.\"": "\"Erstelle eigene Sender basierend auf Künstlern, die du liebst.\n Oder hör dir Sender an, die nach Genre, Stimmung\nund Jahrzehnt zusammengestellt sind.\""
+        "stations_promo_subtitle|\"Erstelle eigene Sender basierend auf Künstler*innen, die du liebst.\n Oder hör dir Sender an, die nach Genre, Stimmung\nund Jahrzehnt zusammengestellt sind.\"": "\"Erstelle eigene Sender basierend auf Künstlern, die du liebst.\n Oder hör dir Sender an, die nach Genre, Stimmung\nund Jahrzehnt zusammengestellt sind.\"",
+        "artist_offline_text|Du musst online sein, um die vollständige Künstler*innen-Seite anzuzeigen.": "Du musst online sein, um die vollständige Künstlerseite anzuzeigen.",
+        "item_title_add_artists|Künstler*innen hinzufügen": "Künstler hinzufügen",
+        "take_over_confirmation_dialog_subtitle|Die anderen Teilnehmer*innen werden vom Lautsprecher getrennt und ihre Warteschlange wird gelöscht.": "Die anderen Teilnehmer werden vom Lautsprecher getrennt und ihre Warteschlange wird gelöscht.",
+        "ylx_artist_subtitle|Künstler*in": "Künstler",
+        "your_library_x_add_artists_no_connection_snackbar_message|Du musst online sein, um weitere Künstler*innen hinzuzufügen.": "Du musst online sein, um weitere Künstler hinzuzufügen."
       }
     }
   ]
