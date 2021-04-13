@@ -6,23 +6,21 @@ import re
 import os
 import logging
 
-URL_APKCOMBO = 'https://apkcombo.com/spotify-listen-to-podcasts-find-music-you-love/com.spotify.music/download/apk'
+URL_APKCOMBO = 'https://apkcombo.com/de-de/apk-downloader/advance/?package_name=com.spotify.music&device=&arches=arm64-v8a&sdkInt=&lang=en&dpi=480&sa=1'
+URL_APKCOMBO_32 = 'https://apkcombo.com/de-de/apk-downloader/advance/?package_name=com.spotify.music&device=&arches=armeabi-v7a&sdkInt=&lang=en&dpi=480&sa=1'
+
 URL_RTABLE = 'https://raw.githubusercontent.com/Theta-Dev/Spotify-Gender-Ex/master/spotify_gender_ex/res/replacements.json'
 
 
 class Downloader:
     def __init__(self, arm32=False):
         if arm32:
-            d_code = 'armeabi-v7a'
+            url = URL_APKCOMBO_32
         else:
-            d_code = 'arm64-v8a'
+            url = URL_APKCOMBO
 
-        pattern_url = r'(?<=' + re.escape(d_code) + r'</code>\W<a href=")' + \
-                      re.escape('https://play.googleapis.com/download/by-token/download?token=') + r'[^"]+'
-        pattern_url_fallback = '(?<=<a href=")' + re.escape('https://play.googleapis.com/download/by-token/download?token=') + r'[^"]+'
+        pattern_url = '(?<=<a href=")' + re.escape('https://play.googleapis.com/download/by-token/download?token=') + r'[^"]+'
         pattern_version = r'(?<=<strong>spotify-listen-to-podcasts-find-music-you-love_)(\d|\.)+(?=.apk<\/strong>)'
-
-        url = URL_APKCOMBO
 
         try:
             r = requests.get(url)
@@ -35,9 +33,6 @@ class Downloader:
             return
 
         search_url = re.search(pattern_url, r.text)
-        if not search_url:
-            search_url = re.search(pattern_url_fallback, r.text)
-
         search_version = re.search(pattern_version, r.text)
 
         if not search_url or not search_version:
