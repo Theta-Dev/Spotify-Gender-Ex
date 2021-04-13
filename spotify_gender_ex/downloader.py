@@ -6,21 +6,19 @@ import re
 import os
 import logging
 
-URL_APKCOMBO = 'https://apkcombo.com/de-de/apk-downloader/advance/?package_name=com.spotify.music&device=&arches=arm64-v8a&sdkInt=&lang=en&dpi=480&sa=1'
-URL_APKCOMBO_32 = 'https://apkcombo.com/de-de/apk-downloader/advance/?package_name=com.spotify.music&device=&arches=armeabi-v7a&sdkInt=&lang=en&dpi=480&sa=1'
-
+URL_UPTODOWN = 'https://spotify.de.uptodown.com/android/download'
 URL_RTABLE = 'https://raw.githubusercontent.com/Theta-Dev/Spotify-Gender-Ex/master/spotify_gender_ex/res/replacements.json'
 
 
 class Downloader:
-    def __init__(self, arm32=False):
-        if arm32:
-            url = URL_APKCOMBO_32
-        else:
-            url = URL_APKCOMBO
+    def __init__(self, download_id=''):
+        pattern_url = re.escape('https://dw.uptodown.com/dwn/') + r'(\w|\.|\/|-|\+|=)+'
+        pattern_version = r'(?<=<div class=version>)(\d|\.)+'
 
-        pattern_url = '(?<=<a href=")' + re.escape('https://play.googleapis.com/download/by-token/download?token=') + r'[^"]+'
-        pattern_version = r'(?<=<strong>spotify-listen-to-podcasts-find-music-you-love_)(\d|\.)+(?=.apk<\/strong>)'
+        if download_id:
+            url = URL_UPTODOWN + '/' + download_id
+        else:
+            url = URL_UPTODOWN
 
         try:
             r = requests.get(url)
@@ -31,8 +29,6 @@ class Downloader:
             self.spotify_version = 'NA'
             self.spotify_url = ''
             return
-
-        print(r.text)
 
         search_url = re.search(pattern_url, r.text)
         search_version = re.search(pattern_version, r.text)
@@ -84,7 +80,7 @@ def _download(url, output_path, description=''):
     logging.info(msg)
 
     try:
-        with _DownloadProgressBar(unit='B', unit_scale=True, miniters=1, desc=description) as t:
+        with _DownloadProgressBar(unit='B', unit_scale=True, miniters=1, desc=url.split('/')[-1]) as t:
             urllib.request.urlretrieve(url, filename=output_path, reporthook=t.update_to)
     except Exception:
         return False

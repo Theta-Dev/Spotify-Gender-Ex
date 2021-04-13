@@ -26,7 +26,7 @@ class DownloaderTest(unittest.TestCase):
     def test_spotify_version(self):
         dldr = downloader.Downloader()
         self.assertRegex(dldr.spotify_version, r'\d+.\d+.\d+.\d+')
-        self.assertTrue(dldr.spotify_url.startswith('https://play.googleapis.com/download/by-token/download?token='))
+        self.assertTrue(dldr.spotify_url.startswith('https://dw.uptodown.com/dwn/'))
 
     @unittest.skipUnless(tests.TEST_DOWNLOAD, 'download skipped')
     def test_download_spotify(self):

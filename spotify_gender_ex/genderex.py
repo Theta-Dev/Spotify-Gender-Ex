@@ -15,7 +15,7 @@ VERSION = '2.2.0'
 
 class GenderEx:
     def __init__(self, apk_file='', folder_out='.', replacement_table='', builtin=False, no_interaction=False,
-                 debug=False, ks_password='', key_password='', no_logfile=False, arm32=False):
+                 debug=False, ks_password='', key_password='', no_logfile=False):
         self.spotify_version = ''
         self.noia = no_interaction
         self.ks_password = ks_password or '12345678'
@@ -35,7 +35,7 @@ class GenderEx:
         logging.info('Starte Spotify GenderEx V' + VERSION)
 
         # Downloader
-        self.downloader = downloader.Downloader(arm32)
+        self.downloader = downloader.Downloader()
         self.latest_spotify = self.downloader.spotify_version
 
         if apk_file and os.path.isfile(apk_file):
