@@ -10,7 +10,7 @@ from spotify_gender_ex.workdir import Workdir
 from spotify_gender_ex import downloader
 
 # Version as shown in the credits
-VERSION = '2.2.0'
+VERSION = '2.3.0'
 
 
 class GenderEx:
