@@ -4,7 +4,7 @@ from importlib_resources import files
 
 # Test cases to run
 TEST_DOWNLOAD = False
-TEST_APPLICATION = True
+TEST_APPLICATION = False
 TEST_PERFORMANCE = True
 
 # Application test options

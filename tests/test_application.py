@@ -15,8 +15,7 @@ DOWNLOAD_IDS = {
 TESTVERSIONS = list(DOWNLOAD_IDS.keys())
 
 
-# @unittest.skipUnless(tests.TEST_APPLICATION, 'application test skipped')
-@unittest.skip
+@unittest.skipUnless(tests.TEST_APPLICATION, 'application test skipped')
 class ScriptTest(unittest.TestCase):
     def do_script_test(self, version):
         self.maxDiff = None
@@ -37,7 +36,7 @@ class ScriptTest(unittest.TestCase):
 
         # Dowload apk file if not existant
         if not os.path.isfile(apk_file):
-            dwn = downloader.Downloader(tests.NOSSL, DOWNLOAD_IDS[version])
+            dwn = downloader.Downloader(DOWNLOAD_IDS[version])
 
             if dwn.download_spotify(apk_file):
                 print('Downloaded ' + version)
@@ -48,8 +47,8 @@ class ScriptTest(unittest.TestCase):
         tests.clear_tmp_folder()
 
         # Run the script
-        start_genderex(apk_file, tests.DIR_TMP, '', True, '', '',
-                       True, True, 0, False, not tests.RECOMPILE, True)
+        start_genderex(apk_file, tests.DIR_TMP, builtin=True, no_interaction=True,
+                       force=True, no_compile=not tests.RECOMPILE, no_logfile=True)
 
         # Verify replacements
         for i in range(len(nogender_files)):

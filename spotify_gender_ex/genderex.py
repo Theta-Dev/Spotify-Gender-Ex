@@ -15,7 +15,7 @@ VERSION = '2.2.0'
 
 class GenderEx:
     def __init__(self, apk_file='', folder_out='.', replacement_table='', builtin=False, no_interaction=False,
-                 debug=False, ks_password='', key_password='', no_logfile=False):
+                 no_write=False, debug=False, ks_password='', key_password='', no_logfile=False):
         self.spotify_version = ''
         self.noia = no_interaction
         self.ks_password = ks_password or '12345678'
@@ -67,7 +67,7 @@ class GenderEx:
 
             self.rtm.add_rtab(rt_builtin, 'builtin')
             # Dont modify custom replcement table when in noia mode
-            self.rtm.add_rtab(rt_custom, 'custom', not no_interaction)
+            self.rtm.add_rtab(rt_custom, 'custom', not no_write)
 
     def is_latest_spotify_processed(self):
         """Check if the latest spotify version is already processed and present in the output folder"""
