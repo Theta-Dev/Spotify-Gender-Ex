@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -14,7 +14,9 @@
     "8.6.12.986",
     "8.6.14.960",
     "8.6.14.975",
-    "8.6.16.1041"
+    "8.6.16.1041",
+    "8.6.18.720",
+    "8.6.20.1063"
   ],
   "files": [
     {
@@ -202,7 +204,13 @@
         "item_title_add_artists|Künstler*innen hinzufügen": "Künstler hinzufügen",
         "take_over_confirmation_dialog_subtitle|Die anderen Teilnehmer*innen werden vom Lautsprecher getrennt und ihre Warteschlange wird gelöscht.": "Die anderen Teilnehmer werden vom Lautsprecher getrennt und ihre Warteschlange wird gelöscht.",
         "ylx_artist_subtitle|Künstler*in": "Künstler",
-        "your_library_x_add_artists_no_connection_snackbar_message|Du musst online sein, um weitere Künstler*innen hinzuzufügen.": "Du musst online sein, um weitere Künstler hinzuzufügen."
+        "your_library_x_add_artists_no_connection_snackbar_message|Du musst online sein, um weitere Künstler*innen hinzuzufügen.": "Du musst online sein, um weitere Künstler hinzuzufügen.",
+        "creator_artist_verified|Verifizierte*r Künstler*in": "Verifizierter Künstler",
+        "join_ongoing_session_notification_title|Dein*e Freund*in %1$s hört auf %2$s": "Dein Freund %1$s hört auf %2$s",
+        "monthly_listeners_title|MONATLICHE HÖRER*INNEN": "MONATLICHE HÖRER",
+        "podcast_paywalls_subscriber_podcast_dialog_body|\"Wenn du diese*n Podcaster*in mit einem monatlichen Abo unterstützt, hilfst du ihm*ihr, weitere Folgen zu erstellen.\n\nDu erhältst Zugriff auf die gesamte Show, einschließlich aller Bonus- und Exklusivfolgen.\"": "\"Wenn du diesen Podcaster mit einem monatlichen Abo unterstützt, hilfst du ihm, weitere Folgen zu erstellen.\n\nDu erhältst Zugriff auf die gesamte Show, einschließlich aller Bonus- und Exklusivfolgen.\"",
+        "verified_artist_text|Verifizierte*r Künstler*in": "Verifizierter Künstler",
+        "your_library_content_filter_artists_content_description|Künstler*innen, nur Künstler*innen anzeigen.": "Künstler, nur Künstler anzeigen."
       }
     }
   ]
