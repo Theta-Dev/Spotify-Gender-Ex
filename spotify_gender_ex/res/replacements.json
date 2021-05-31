@@ -1,5 +1,5 @@
 {
-  "version": 8,
+  "version": 9,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -17,7 +17,8 @@
     "8.6.16.1041",
     "8.6.18.720",
     "8.6.20.1063",
-    "8.6.24.918"
+    "8.6.24.918",
+    "8.6.30.889"
   ],
   "files": [
     {
@@ -212,10 +213,12 @@
         "podcast_paywalls_subscriber_podcast_dialog_body|\"Wenn du diese*n Podcaster*in mit einem monatlichen Abo unterstützt, hilfst du ihm*ihr, weitere Folgen zu erstellen.\n\nDu erhältst Zugriff auf die gesamte Show, einschließlich aller Bonus- und Exklusivfolgen.\"": "\"Wenn du diesen Podcaster mit einem monatlichen Abo unterstützt, hilfst du ihm, weitere Folgen zu erstellen.\n\nDu erhältst Zugriff auf die gesamte Show, einschließlich aller Bonus- und Exklusivfolgen.\"",
         "verified_artist_text|Verifizierte*r Künstler*in": "Verifizierter Künstler",
         "your_library_content_filter_artists_content_description|Künstler*innen, nur Künstler*innen anzeigen.": "Künstler, nur Künstler anzeigen.",
-        "blend_note|Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem*einer Freund*in. Verbundene Nutzer können dein Profilbild und deinen Benutzernamen sehen.": "Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem*einer Freund*in. Verbundene Nutzer können dein Profilbild und deinen Benutzernamen sehen.",
-        "element_content_description_context_artist|Künstler*in": "Künstler*in",
-        "podcast_paywalls_subscriber_podcast_dialog_body|\"Wenn du diese*n Podcaster*in mit einem monatlichen Abo unterstützt, hilfst du ihm*ihr, weitere Folgen zu erstellen.\n\nDu erhältst Zugriff auf die gesamte Show, einschließlich aller Bonus- und Exklusivfolgen, die veröffentlicht werden.\"": "\"Wenn du diese*n Podcaster*in mit einem monatlichen Abo unterstützt, hilfst du ihm*ihr, weitere Folgen zu erstellen.\n\nDu erhältst Zugriff auf die gesamte Show, einschließlich aller Bonus- und Exklusivfolgen, die veröffentlicht werden.\"",
-        "remote_participants_listen_with_friends|Mit Freund*innen hören": "Mit Freund*innen hören"
+        "blend_note|Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem*einer Freund*in. Verbundene Nutzer können dein Profilbild und deinen Benutzernamen sehen.": "Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem Freund. Verbundene Nutzer können dein Profilbild und deinen Benutzernamen sehen.",
+        "element_content_description_context_artist|Künstler*in": "Künstler",
+        "podcast_paywalls_subscriber_podcast_dialog_body|\"Wenn du diese*n Podcaster*in mit einem monatlichen Abo unterstützt, hilfst du ihm*ihr, weitere Folgen zu erstellen.\n\nDu erhältst Zugriff auf die gesamte Show, einschließlich aller Bonus- und Exklusivfolgen, die veröffentlicht werden.\"": "\"Wenn du diesen Podcaster mit einem monatlichen Abo unterstützt, hilfst du ihm, weitere Folgen zu erstellen.\n\nDu erhältst Zugriff auf die gesamte Show, einschließlich aller Bonus- und Exklusivfolgen, die veröffentlicht werden.\"",
+        "remote_participants_listen_with_friends|Mit Freund*innen hören": "Mit Freunden hören",
+        "options_menu_block_user|Nutzer*in blockieren": "Nutzer blockieren",
+        "options_menu_unblock_user|Nutzer*in entsperren": "Nutzer entsperren"
       }
     }
   ]
