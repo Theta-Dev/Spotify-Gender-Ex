@@ -26,6 +26,9 @@ jobs:
           GITHUB_EVENT: ${{ toJson(github.event) }}
         run: python scripts/gh_parse_issue.py spotify_gender_ex/res/replacements.json
 
+      - name: Create new branch
+        run: git checkout -b "replacements/${{ env.spotify_version }}"
+
       - name: Commit updated replacement table to new branch
         uses: EndBug/add-and-commit@v7
         with:
