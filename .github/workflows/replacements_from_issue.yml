@@ -45,4 +45,4 @@ jobs:
           PULL_REQUEST_FROM_BRANCH: 'replacements/${{ env.spotify_version }}'
           PULL_REQUEST_BRANCH: 'master'
           PULL_REQUEST_TITLE: 'Aktualisierte Ersetzungsregeln (Spotify ${{ env.spotify_version }})'
-          PULL_REQUEST_BODY: '${{ env.n_replacements }} neue Ersetzungsregeln, auto-generiert vom Issue #${{ github.event.issue.number }}'
+          PULL_REQUEST_BODY: '${{ env.n_replacements }} neue Ersetzungsregeln, auto-generiert aus Issue #${{ github.event.issue.number }}'
