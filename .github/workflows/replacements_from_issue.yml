@@ -25,17 +25,20 @@ jobs:
         env:
           GITHUB_EVENT: ${{ toJson(github.event) }}
         run: python scripts/gh_parse_issue.py spotify_gender_ex/res/replacements.json
+      
+      - name: Get branch name
+        run: echo "branch_name=replacements/${{ env.spotify_version }}_${{ github.event.issue.number }}" >> $GITHUB_ENV
 
       - name: Create new branch
-        run: git checkout -b "replacements/${{ env.spotify_version }}"
+        run: git checkout -b "${{ env.branch_name }}"
 
       - name: Commit updated replacement table to new branch
         uses: EndBug/add-and-commit@v7
         with:
           add: 'spotify_gender_ex/res/replacements.json'
-          branch: 'replacements/${{ env.spotify_version }}'
+          branch: '${{ env.branch_name }}'
           pull_strategy: NO-PULL
-          push: 'origin replacements/${{ env.spotify_version }} --force'
+          push: 'origin ${{ env.branch_name }} --force'
           default_author: github_actions
           message: 'Added ${{ env.n_replacements }} new replacements for Spotify ${{ env.spotify_version }}'
 
@@ -43,7 +46,7 @@ jobs:
         uses: vsoch/pull-request-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PULL_REQUEST_FROM_BRANCH: 'replacements/${{ env.spotify_version }}'
+          PULL_REQUEST_FROM_BRANCH: '${{ env.branch_name }}'
           PULL_REQUEST_BRANCH: 'master'
           PULL_REQUEST_TITLE: 'Aktualisierte Ersetzungsregeln (Spotify ${{ env.spotify_version }})'
           PULL_REQUEST_BODY: '${{ env.n_replacements }} neue Ersetzungsregeln, auto-generiert aus Issue #${{ github.event.issue.number }}'
