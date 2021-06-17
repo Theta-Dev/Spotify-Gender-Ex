@@ -1,5 +1,5 @@
 {
-  "version": 9,
+  "version": 10,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -18,7 +18,8 @@
     "8.6.18.720",
     "8.6.20.1063",
     "8.6.24.918",
-    "8.6.30.889"
+    "8.6.30.889",
+    "8.6.34.749"
   ],
   "files": [
     {
@@ -218,7 +219,9 @@
         "podcast_paywalls_subscriber_podcast_dialog_body|\"Wenn du diese*n Podcaster*in mit einem monatlichen Abo unterstützt, hilfst du ihm*ihr, weitere Folgen zu erstellen.\n\nDu erhältst Zugriff auf die gesamte Show, einschließlich aller Bonus- und Exklusivfolgen, die veröffentlicht werden.\"": "\"Wenn du diesen Podcaster mit einem monatlichen Abo unterstützt, hilfst du ihm, weitere Folgen zu erstellen.\n\nDu erhältst Zugriff auf die gesamte Show, einschließlich aller Bonus- und Exklusivfolgen, die veröffentlicht werden.\"",
         "remote_participants_listen_with_friends|Mit Freund*innen hören": "Mit Freunden hören",
         "options_menu_block_user|Nutzer*in blockieren": "Nutzer blockieren",
-        "options_menu_unblock_user|Nutzer*in entsperren": "Nutzer entsperren"
+        "options_menu_unblock_user|Nutzer*in entsperren": "Nutzer entsperren",
+        "dynamic_playlist_session_context_menu_action_view_artist_title_text|Künstler*in anzeigen": "Künstler anzeigen",
+        "take_over_confirmation_dialog_subtitle_device|Die anderen Teilnehmer*innen werden vom Gerät getrennt und ihre Warteschlange wird gelöscht.": "Die anderen Teilnehmer werden vom Gerät getrennt und ihre Warteschlange wird gelöscht."
       }
     }
   ]
