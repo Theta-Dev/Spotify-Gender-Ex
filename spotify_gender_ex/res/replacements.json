@@ -1,5 +1,5 @@
 {
-  "version": 10,
+  "version": 11,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -220,7 +220,7 @@
         "remote_participants_listen_with_friends|Mit Freund*innen hören": "Mit Freunden hören",
         "options_menu_block_user|Nutzer*in blockieren": "Nutzer blockieren",
         "options_menu_unblock_user|Nutzer*in entsperren": "Nutzer entsperren",
-        "dynamic_playlist_session_context_menu_action_view_artist_title_text|Künstler*in anzeigen": "Künstler anzeigen",
+        "dynamic_playlist_session_context_menu_action_view_artist_title_text|Künstler*in anzeigen": "Testkünstler anzeigen",
         "take_over_confirmation_dialog_subtitle_device|Die anderen Teilnehmer*innen werden vom Gerät getrennt und ihre Warteschlange wird gelöscht.": "Die anderen Teilnehmer werden vom Gerät getrennt und ihre Warteschlange wird gelöscht."
       }
     }
