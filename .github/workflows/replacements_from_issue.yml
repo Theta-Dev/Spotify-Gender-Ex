@@ -39,7 +39,7 @@ jobs:
           message: 'Added ${{ env.n_replacements }} new replacements for Spotify ${{ env.spotify_version }}'
 
       - name: Create PR with the updated replacement table
-        uses: vsoch/pull-request-action@master
+        uses: vsoch/pull-request-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PULL_REQUEST_FROM_BRANCH: 'replacements/${{ env.spotify_version }}'
