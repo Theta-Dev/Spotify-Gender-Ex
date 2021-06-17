@@ -1,5 +1,5 @@
 {
-  "version": 10,
+  "version": 11,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -20,7 +20,8 @@
     "8.6.24.918",
     "8.6.30.889",
     "8.6.32.925",
-    "8.6.34.749"
+    "8.6.34.749",
+    "8.6.35.0"
   ],
   "files": [
     {
@@ -37,7 +38,8 @@
         "connect_device_multiple_listeners/one|%1$d Hörer*in": "%1$d Hörer",
         "join_or_take_over_dialog_title_fallback/one|%1$d andere*r hört auf %2$s.": "%1$d anderer hört auf %2$s.",
         "join_or_take_over_dialog_title_multiple_participants/one|%1$s und %2$d andere*r hören auf %3$s.": "%1$s und %2$d anderer hören auf %3$s.",
-        "playlist_header_collaborators/one|%1$s + %2$d weitere*r": "%1$s + %2$d weiterer"
+        "playlist_header_collaborators/one|%1$s + %2$d weitere*r": "%1$s + %2$d weiterer",
+        "test_key1|Künstler*innen": "Künstler"
       }
     },
     {
@@ -222,7 +224,9 @@
         "options_menu_block_user|Nutzer*in blockieren": "Nutzer blockieren",
         "options_menu_unblock_user|Nutzer*in entsperren": "Nutzer entsperren",
         "dynamic_playlist_session_context_menu_action_view_artist_title_text|Künstler*in anzeigen": "Künstler anzeigen",
-        "take_over_confirmation_dialog_subtitle_device|Die anderen Teilnehmer*innen werden vom Gerät getrennt und ihre Warteschlange wird gelöscht.": "Die anderen Teilnehmer werden vom Gerät getrennt und ihre Warteschlange wird gelöscht."
+        "take_over_confirmation_dialog_subtitle_device|Die anderen Teilnehmer*innen werden vom Gerät getrennt und ihre Warteschlange wird gelöscht.": "Die anderen Teilnehmer werden vom Gerät getrennt und ihre Warteschlange wird gelöscht.",
+        "test_key2|Nur Premium Nutzer*innen": "Nur Premiumnutzer",
+        "test_key3|Künstler*innen-Radio basierend auf": "Künstlerradio basierend auf"
       }
     }
   ]
