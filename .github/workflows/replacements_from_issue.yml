@@ -1,0 +1,44 @@
+name: Get replacements from issue
+
+on:
+  issue_comment:
+    types: [ created ]
+
+jobs:
+  parse_issue:
+    if: contains(github.event.issue.title, 'Neue Ersetzungsregeln') && contains(github.event.comment.body, '[BEGIN VALUES]')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install spotify-gender-ex
+
+      - name: Parse GitHub issue
+        env:
+          GITHUB_EVENT: ${{ toJson(github.event) }}
+        run: python scripts/gh_parse_issue.py spotify_gender_ex/res/replacements.json
+
+      - name: Commit updated replacement table to new branch
+        uses: EndBug/add-and-commit@v7
+        with:
+          add: 'spotify_gender_ex/res/replacements.json'
+          branch: 'replacements/${{ env.spotify_version }}'
+          default_author: github_actions
+          message: 'Added ${{ env.n_replacements }} new replacements for Spotify ${{ env.spotify_version }}'
+
+      - name: Create PR with the updated replacement table
+        uses: vsoch/pull-request-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PULL_REQUEST_FROM_BRANCH: 'replacements/${{ env.spotify_version }}'
+          PULL_REQUEST_BRANCH: 'master'
+          PULL_REQUEST_TITLE: 'Aktualisierte Ersetzungsregeln (Spotify ${{ env.spotify_version }})'
+          PULL_REQUEST_BODY: '${{ env.n_replacements }} neue Ersetzungsregeln, auto-generiert vom Issue #${{ github.event.issue.number }}'
