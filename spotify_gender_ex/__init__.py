@@ -6,7 +6,7 @@ from spotify_gender_ex import genderex
 
 def start_genderex(apk_file='', directory='.', replacement_table='', builtin=False, ks_password='', key_password='',
                    no_interaction=False, force=False, no_write=False, cleanup_max_files=0, debug=False,
-                   no_compile=False, no_logfile=False):
+                   no_verify=False, no_compile=False, no_logfile=False):
     click.echo('0. INFO')
     if not os.path.isdir(directory):
         click.echo('Keine Eingabedaten')
@@ -33,7 +33,10 @@ def start_genderex(apk_file='', directory='.', replacement_table='', builtin=Fal
         return
 
     click.echo('2. VERIFIZIEREN')
-    gex.verify()
+    if no_verify:
+        click.echo('Übersprungen.')
+    else:
+        gex.verify()
 
     click.echo('3. DEKOMPILIEREN')
     gex.decompile()
@@ -78,9 +81,10 @@ def start_genderex(apk_file='', directory='.', replacement_table='', builtin=Fal
               help='Säuberung am Ende: Maximale Anzahl Dateien im Ausgabeordner (die ältesten Versionen werden gelöscht)',
               default=0, type=click.INT)
 @click.option('--debug', help='Debug-Informationen in die Logdatei schreiben', is_flag=True)
-def run(a, d, rt, builtin, kspw, kypw, noia, force, nowrt, cleanup, debug):
+@click.option('--noverify', help='Spotify-App-Signatur nicht verifizieren. Nur dann aktivieren, wenn du nicht die Original-Spotify-App verarbeitest.', is_flag=True)
+def run(a, d, rt, builtin, kspw, kypw, noia, force, nowrt, cleanup, debug, noverify):
     """Entferne die Gendersternchen (z.B. Künstler*innen) aus der Spotify-App für Android!"""
-    start_genderex(a, d, rt, builtin, kspw, kypw, noia, force, nowrt, cleanup, debug)
+    start_genderex(a, d, rt, builtin, kspw, kypw, noia, force, nowrt, cleanup, debug, noverify)
 
 
 if __name__ == '__main__':
