@@ -15,7 +15,7 @@ DOWNLOAD_IDS = {
 TESTVERSIONS = list(DOWNLOAD_IDS.keys())
 
 
-@unittest.skipUnless(tests.TEST_APPLICATION, 'application test skipped')
+@unittest.skipUnless(tests.TEST_APPLICATION, 'application test skipped')#
 class ScriptTest(unittest.TestCase):
     def do_script_test(self, version):
         self.maxDiff = None

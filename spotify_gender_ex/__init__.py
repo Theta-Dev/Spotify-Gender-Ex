@@ -32,11 +32,14 @@ def start_genderex(apk_file='', directory='.', replacement_table='', builtin=Fal
     if not gex.download():
         return
 
-    click.echo('2. DEKOMPILIEREN')
+    click.echo('2. VERIFIZIEREN')
+    gex.verify()
+
+    click.echo('3. DEKOMPILIEREN')
     gex.decompile()
     gex.check_compatibility()
 
-    click.echo('3. DEGENDERIFIZIEREN')
+    click.echo('4. DEGENDERIFIZIEREN')
     gex.replace()
     gex.add_credits()
 
@@ -44,10 +47,10 @@ def start_genderex(apk_file='', directory='.', replacement_table='', builtin=Fal
     if no_compile:
         return
 
-    click.echo('4. REKOMPILIEREN')
+    click.echo('5. REKOMPILIEREN')
     gex.recompile()
 
-    click.echo('5. SIGNIEREN')
+    click.echo('6. SIGNIEREN')
     gex.sign()
 
     click.echo('Degenderifizierung abgeschlossen. Vielen Dank.')

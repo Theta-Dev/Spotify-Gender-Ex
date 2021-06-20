@@ -86,18 +86,20 @@ class Workdir:
                 return None
         return filepath
 
-    def _create_keystore(self, keystorepath):
+    @staticmethod
+    def _keytool_base():
         if os.name == 'nt':
             # Keytool on Windows
-            keytool_base = str(os.path.join(os.getenv('JAVA_HOME'), 'bin', 'keytool.exe'))
+            return str(os.path.join(os.getenv('JAVA_HOME'), 'bin', 'keytool.exe'))
         else:
             # Keytool on Linux
-            keytool_base = 'keytool'
+            return 'keytool'
 
-        subprocess.run([keytool_base, '-keystore', keystorepath, '-genkey', '-alias', 'genderex',
+    def _create_keystore(self, keystorepath):
+        subprocess.run([self._keytool_base(), '-keystore', keystorepath, '-genkey', '-alias', 'genderex',
                         '-keyalg', 'RSA', '-keysize', '2048', '-validity', '50000',
                         '-storepass', self.ks_password, '-keypass', self.key_password, '-dname',
-                        'CN=spotify-gender-ex'])
+                        'CN=spotify-gender-ex'], check=True)
 
         # Check if keystore generation was successful
         assert os.path.isfile(keystorepath), 'Keystore konnte nicht erzeugt werden'

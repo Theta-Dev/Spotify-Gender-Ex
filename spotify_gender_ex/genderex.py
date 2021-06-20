@@ -10,7 +10,9 @@ from spotify_gender_ex.workdir import Workdir
 from spotify_gender_ex import downloader
 
 # Version as shown in the credits
-VERSION = '2.3.0'
+VERSION = '2.4.0'
+
+_SPOTIFY_CERT_SHA256 = '6505b181933344f93893d586e399b94616183f04349cb572a9e81a3335e28ffd'
 
 
 class GenderEx:
@@ -101,11 +103,18 @@ class GenderEx:
         else:
             return self.downloader.download_spotify(self.workdir.file_apk)
 
+    def verify(self):
+        """Check if the Spotify apk file is genuine by verifying its certificate"""
+        subprocess.run(['java', '-jar', self.file_apksigner, '-y',
+                        '--verifySha256', _SPOTIFY_CERT_SHA256,
+                        '-a', self.workdir.file_apk], check=True)
+
     def decompile(self):
         """Decompiles Spotify using APKTool"""
         logging.info('Dekompiliere %s mit APKTool ins Verzeichnis %s' % (self.workdir.file_apk, self.workdir.dir_apk))
         subprocess.run(
-            ['java', '-jar', self.file_apktool, 'd', self.workdir.file_apk, '-s', '-o', self.workdir.dir_apk])
+            ['java', '-jar', self.file_apktool, 'd', self.workdir.file_apk, '-s', '-o', self.workdir.dir_apk],
+            check=True)
 
         # Check if decompile was successful
         assert os.path.isfile(self.workdir.file_apktool)
@@ -130,7 +139,7 @@ class GenderEx:
         click.echo(msg)
         logging.info(msg)
         subprocess.run(['java', '-jar', self.file_apktool, 'b', '--use-aapt2',
-                        self.workdir.dir_apk, '-o', self.workdir.file_apkout])
+                        self.workdir.dir_apk, '-o', self.workdir.file_apkout], check=True)
 
         # Check if compile was successful
         assert os.path.isfile(self.workdir.file_apkout)
@@ -228,7 +237,7 @@ class GenderEx:
         if has_zip_align:
             cmd += ['--zipAlignPath', 'zipalign']
 
-        subprocess.run(cmd)
+        subprocess.run(cmd, check=True)
 
         rtver = self.rtm.get_rt_versions()
 
