@@ -3,6 +3,7 @@ name: Get replacements from issue
 on:
   issue_comment:
     types: [ created ]
+concurrency: replacements
 
 jobs:
   parse_issue:
