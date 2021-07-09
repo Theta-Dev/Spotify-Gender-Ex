@@ -1,5 +1,5 @@
 {
-  "version": 11,
+  "version": 12,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -22,7 +22,8 @@
     "8.6.34.749",
     "8.6.36.1068",
     "8.6.36.1070",
-    "8.6.40.929"
+    "8.6.40.929",
+    "8.6.42.671"
   ],
   "files": [
     {
@@ -225,7 +226,8 @@
         "options_menu_unblock_user|Nutzer*in entsperren": "Nutzer entsperren",
         "dynamic_playlist_session_context_menu_action_view_artist_title_text|Künstler*in anzeigen": "Künstler anzeigen",
         "take_over_confirmation_dialog_subtitle_device|Die anderen Teilnehmer*innen werden vom Gerät getrennt und ihre Warteschlange wird gelöscht.": "Die anderen Teilnehmer werden vom Gerät getrennt und ihre Warteschlange wird gelöscht.",
-        "podcast_sponsors_page_title|Sponsor*innen": "Sponsoren"
+        "podcast_sponsors_page_title|Sponsor*innen": "Sponsoren",
+        "invitation_privacy_note|Hinweis: Verbundene Nutzer*innen können dein Profilbild und deinen Benutzernamen sehen.": "Hinweis: Verbundene Nutzer können dein Profilbild und deinen Benutzernamen sehen."
       }
     }
   ]
