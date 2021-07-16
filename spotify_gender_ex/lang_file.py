@@ -3,6 +3,9 @@ from xml.etree import ElementTree
 import re
 
 
+GENDER_REGEX = re.compile(r'''(\*[iIrRnN])|(\([rRnN]\))|([a-zß-ü][IRN])|(:[iIrRnN](?!nternal))''')
+
+
 class LangFile:
     def __init__(self, path):
         self.path = path
@@ -32,6 +35,4 @@ class LangFile:
 
 
 def is_suspicious(string):
-    if re.search('spotify:internal', string):
-        return False
-    return bool(re.search(r'(\*[iIrRnN])|(\([rRnN]\))|([a-zß-ü][IRN])|(:[iIrRnN])', string))
+    return bool(GENDER_REGEX.search(string))

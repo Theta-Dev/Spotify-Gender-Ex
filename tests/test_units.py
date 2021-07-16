@@ -119,7 +119,8 @@ class LangFileTest(unittest.TestCase):
             'Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem*einer Freund*in.': True,
             '„%1$s“ in Künstler*innen': True,
             'Tippe auf einer Folge auf {download}, um sie dir ohne Internetverbindung anzuhören.': False,
-            'Ich stimme den &lt;a href=\"spotify:internal:signup:tos\"&gt;Nutzungsbedingungen&lt;/a&gt; und der &lt;a href=\"spotify:internal:signup:policy\"&gt;Datenschutzrichtlinie&lt;/a&gt; von Spotify zu.': False
+            'Ich stimme den &lt;a href=\"spotify:internal:signup:tos\"&gt;Nutzungsbedingungen&lt;/a&gt; und der &lt;a href=\"spotify:internal:signup:policy\"&gt;Datenschutzrichtlinie&lt;/a&gt; von Spotify zu.': False,
+            'Ich stimme den &lt;a href=\"spotify:internal:signup:tos\"&gt;Nutzungsbedingung:innen&lt;/a&gt; und der &lt;a href=\"spotify:internal:signup:policy\"&gt;Datenschutzrichtlinie&lt;/a&gt; von Spotify zu.': True,
         }
 
         for item in test_data.items():
