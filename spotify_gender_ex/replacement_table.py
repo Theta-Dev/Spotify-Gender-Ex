@@ -12,8 +12,7 @@ class ReplacementManager:
     def __init__(self, dir_apk, get_missing_replacement=None):
         self._rtabs = {}
         self.dir_apk = dir_apk
-        self.mutable_rtab = None
-        self.rtab_modified = False
+        self.new_replacements = ReplacementTable.from_scratch()
 
         # Replacement counters
         self.n_replaced = 0
@@ -24,14 +23,12 @@ class ReplacementManager:
         else:
             self.get_missing_replacement = self._missing_replacement_default
 
-    def add_rtab(self, rtab, name, is_mutable=False):
+    def add_rtab(self, rtab, name):
         """
         Adds a ReplacementTable to the manager.
         Sets the mutable replacement table if specified.
         """
         self._rtabs[name] = rtab
-        if is_mutable:
-            self.mutable_rtab = rtab
 
     def get_replacement(self, lfpath, key, old):
         for rtab in self._rtabs.values():
@@ -43,11 +40,8 @@ class ReplacementManager:
 
     def insert_replacement(self, lfpath, key, old, new):
         """Inserts a new replacement into the mutable replacement table"""
-        if self.mutable_rtab:
-            rset = self.mutable_rtab.make_set_from_langfile(lfpath)
-            rset.add(key, old, new)
-
-            self.rtab_modified = True
+        rset = self.new_replacements.make_set_from_langfile(lfpath)
+        rset.add(key, old, new)
 
     def check_compatibility(self, spotify_version):
         """
@@ -143,13 +137,11 @@ class ReplacementManager:
         logging.info('%d neue Ersetungsregeln' % self.n_newrpl)
         return self.n_replaced, self.n_newrpl
 
-    def write_replacement_table(self, spotify_version=''):
-        """If modified, write back replacement table"""
-        if self.rtab_modified:
-            self.mutable_rtab.version += 1
-            if spotify_version:
-                self.mutable_rtab.spotify_addversion(spotify_version)
-            self.mutable_rtab.to_file()
+    def write_new_replacements(self, spotify_version, file):
+        """Write back new replacements if there are any"""
+        if not self.new_replacements.is_empty():
+            self.new_replacements.spotify_addversion(spotify_version)
+            self.new_replacements.to_file(file)
 
             logging.info('Benutzerdefinierte Ersetzungstabelle gespeichert')
 
@@ -173,7 +165,7 @@ class ReplacementTable:
                 data = json.load(json_file)
                 rtab = cls(**data)
         else:
-            rtab = cls(0, [], [])
+            rtab = cls.from_scratch()
 
         rtab.path = file
 
@@ -189,6 +181,10 @@ class ReplacementTable:
     def from_string(cls, string):
         data = json.loads(string)
         return cls(**data)
+
+    @classmethod
+    def from_scratch(cls):
+        return cls(1, [], [])
 
     def set_from_langfile(self, path):
         """Returns ReplacemenSet that matches the (os-agnostic) path of the language file."""
@@ -206,6 +202,7 @@ class ReplacementTable:
         if not rset:
             rset = ReplacementSet(path, [])
             self.sets.append(rset)
+            self.sets.sort(key=lambda s: s.path)
         return rset
 
     def to_file(self, file=None):

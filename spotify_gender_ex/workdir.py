@@ -13,7 +13,6 @@ class Workdir:
 
         self.dir_root = self._get_dir(os.path.join(pathin, 'GenderEx'))
         self.dir_output = self._get_dir(os.path.join(self.dir_root, 'output'))
-        self.dir_log = self._get_dir(os.path.join(self.dir_output, 'log'))
 
         self.dir_tmp = os.path.join(self.dir_root, 'tmp')
         self._clear_tmp_folder()
@@ -34,9 +33,13 @@ class Workdir:
         version_fn = spotify_version.replace('.', '-')
         return str('%s-genderex-%s' % (version_fn, rt_version))
 
-    def _output_file(self, spotify_version, rt_version, name, ending):
+    def _output_file(self, spotify_version, rt_version, name, ending, folder=''):
+        basepath = self.dir_output
+        if folder:
+            basepath = Workdir._get_dir(os.path.join(basepath, folder))
+
         basename = Workdir._output_basename(spotify_version, rt_version)
-        file = os.path.join(self.dir_output, name + '-' + basename + '.' + ending)
+        file = os.path.join(basepath, name + '-' + basename + '.' + ending)
 
         if os.path.isfile(file):
             os.remove(file)
@@ -46,7 +49,10 @@ class Workdir:
         return self._output_file(spotify_version, rt_version, 'spotify', 'apk')
 
     def get_file_logout(self, spotify_version, rt_version):
-        return self._output_file(spotify_version, rt_version, 'log', 'txt')
+        return self._output_file(spotify_version, rt_version, 'log', 'txt', 'log')
+
+    def get_file_newrepl(self, spotify_version, rt_version):
+        return self._output_file(spotify_version, rt_version, 'repl', 'json', 'repl')
 
     def cleanup(self, max_files=0):
         if max_files > 0:

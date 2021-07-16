@@ -102,6 +102,7 @@ class LangFileTest(unittest.TestCase):
 
         lfile = lang_file.LangFile(path)
 
+        # noinspection PyUnusedLocal
         def fun_replace(key, old):
             if key == rkey:
                 return 'MODIFIED'
@@ -204,18 +205,18 @@ class ReplacementManagerTest(unittest.TestCase):
 
         # noinspection PyTypeChecker
         rpm = replacement_table.ReplacementManager(None)
-        rpm.add_rtab(rt2, 'b', True)
         rpm.add_rtab(rt1, 'a')
+        rpm.add_rtab(rt2, 'b')
         rpm.add_rtab(rt3, 'c')
 
-        self.assertEqual(rt2, rpm._rtabs.get('b'))
         self.assertEqual(rt1, rpm._rtabs.get('a'))
-        self.assertEqual(rt2, rpm.mutable_rtab)
+        self.assertEqual(rt2, rpm._rtabs.get('b'))
+        self.assertEqual(rt3, rpm._rtabs.get('c'))
 
         self.assertTrue(rpm.check_compatibility('unittest'))
         self.assertFalse(rpm.check_compatibility('v1'))
 
-        self.assertEqual('b0a1', rpm.get_rt_versions())
+        self.assertEqual('a1b0', rpm.get_rt_versions())
 
     def test_do_replacement(self):
         tests.clear_tmp_folder()
@@ -256,10 +257,10 @@ class ReplacementManagerTest(unittest.TestCase):
         rt = replacement_table.ReplacementTable.from_file(path)
 
         rpm = replacement_table.ReplacementManager(dir_apk, lambda key, old: old + '_MOD')
-        rpm.add_rtab(rt, 'rt', True)
+        rpm.add_rtab(rt, 'rt')
 
         rpm.do_replace()
-        rpm.write_replacement_table('newver')
+        rpm.write_new_replacements('newver', path)
 
         tests.assert_files_equal(self, os.path.join(tests.DIR_REPLACE, 'replacements_testwrite.json'), path)
 

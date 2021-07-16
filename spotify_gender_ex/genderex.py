@@ -17,7 +17,7 @@ _SPOTIFY_CERT_SHA256 = '6505b181933344f93893d586e399b94616183f04349cb572a9e81a33
 
 class GenderEx:
     def __init__(self, apk_file='', folder_out='.', replacement_table='', builtin=False, no_interaction=False,
-                 no_write=False, debug=False, ks_password='', key_password=''):
+                 debug=False, ks_password='', key_password=''):
         self.spotify_version = ''
         self.noia = no_interaction
         self.ks_password = ks_password or '12345678'
@@ -57,9 +57,6 @@ class GenderEx:
             rt_specified = ReplacementTable.from_file(replacement_table)
             self.rtm.add_rtab(rt_specified, 'specified')
         else:
-            # Otherwise use custom table on top of the builtin one
-            rt_custom = ReplacementTable.from_file(self.workdir.file_rtable)
-
             # If we can, use the latest replacement table from GitHub
             rt_builtin = None
 
@@ -74,7 +71,6 @@ class GenderEx:
                 rt_builtin = ReplacementTable.from_file(files('spotify_gender_ex.res').joinpath('replacements.json'))
 
             self.rtm.add_rtab(rt_builtin, 'builtin')
-            self.rtm.add_rtab(rt_custom, 'custom', not no_write)
 
     def is_latest_spotify_processed(self) -> bool:
         """
@@ -163,7 +159,6 @@ class GenderEx:
     def replace(self):
         """Executes all replacements"""
         n_replaced, n_newrpl = self.rtm.do_replace()
-        self.rtm.write_replacement_table(self.spotify_version)
 
         click.echo('%d Ersetzungen vorgenommen' % n_replaced)
         click.echo('%d neue Ersetzungsregeln hinzugefügt' % n_newrpl)
@@ -263,7 +258,11 @@ class GenderEx:
 
         # Write spotify_version.txt
         with open(self.workdir.file_version, 'w', encoding='utf-8') as f:
-            f.write('%s-%s' % (self.spotify_version, self.rtm.get_rt_versions()))
+            f.write('%s-%s' % (self.spotify_version, rtver))
+
+        # Save new replacements
+        self.rtm.write_new_replacements(self.spotify_version,
+                                        self.workdir.get_file_newrepl(self.spotify_version, rtver))
 
     def wait_for_enter(self, msg):
         """Displays a message and waits for the user to press ENTER. Does nothing in non-interactive mode."""

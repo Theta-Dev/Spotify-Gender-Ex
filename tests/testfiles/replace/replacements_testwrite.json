@@ -1,14 +1,12 @@
 {
   "version": 1,
   "spotify_versions": [
-    "unittest",
     "newver"
   ],
   "files": [
     {
       "path": "file1_withgender.xml",
       "replace": {
-        "Biblec|Künstler*innen": "Künstler",
         "Lythro|Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem*einer Freund*in.": "Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem*einer Freund*in._MOD",
         "Housur|Nur Premium Nutzer*innen": "Nur Premium Nutzer*innen_MOD",
         "Bizong|Künstler*innen-Radio basierend auf": "Künstler*innen-Radio basierend auf_MOD",
