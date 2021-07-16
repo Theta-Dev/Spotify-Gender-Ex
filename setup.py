@@ -17,6 +17,8 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
     ],
     py_modules=['spotify_gender_ex'],
     install_requires=[
@@ -24,7 +26,8 @@ setuptools.setup(
         'tqdm',
         'importlib_resources',
         'pyyaml',
-        'requests'
+        'requests',
+        'github3.py',
     ],
     packages=setuptools.find_packages(exclude=['tests*']),
     package_data={

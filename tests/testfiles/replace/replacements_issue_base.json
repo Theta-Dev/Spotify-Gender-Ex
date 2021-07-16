@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "spotify_versions": [
+    "unittest"
+  ],
+  "files": [
+    {
+      "path": "file1_withgender.xml",
+      "replace": {
+        "Giting|FREUND*INNEN EINLADEN": "FREUNDE EINLADEN",
+        "Ollope|„%1$s“ in Künstler*innen": "„%1$s“ in Künstler"
+      }
+    },
+    {
+      "path": "file2_withgender.xml",
+      "replace": {
+        "Blatte_Greade/other|Spieler*innen": "Spieler",
+        "Blatte_Greade/one|Spieler*in": "Spieler"
+      }
+    }
+  ]
+}

@@ -20,7 +20,7 @@ class Workdir:
 
         self.file_keystore = self._get_file(os.path.join(self.dir_root, 'genderex.keystore'), self._create_keystore)
         self.file_rtable = os.path.join(self.dir_root, 'replacements.json')
-        self.file_rtable_upd = os.path.join(self.dir_root, 'replacements_updated.json')
+        self.file_version = os.path.join(self.dir_root, 'spotify_version.txt')
 
         self.file_apk = os.path.join(self.dir_tmp, 'app.apk')
         self.file_log = os.path.join(self.dir_tmp, 'log.txt')

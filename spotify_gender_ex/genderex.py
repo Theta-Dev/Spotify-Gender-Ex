@@ -17,7 +17,7 @@ _SPOTIFY_CERT_SHA256 = '6505b181933344f93893d586e399b94616183f04349cb572a9e81a33
 
 class GenderEx:
     def __init__(self, apk_file='', folder_out='.', replacement_table='', builtin=False, no_interaction=False,
-                 no_write=False, debug=False, ks_password='', key_password='', no_logfile=False):
+                 no_write=False, debug=False, ks_password='', key_password=''):
         self.spotify_version = ''
         self.noia = no_interaction
         self.ks_password = ks_password or '12345678'
@@ -30,9 +30,15 @@ class GenderEx:
         self.workdir = Workdir(folder_out, self.ks_password, self.key_password)
         self.rtm = ReplacementManager(self.workdir.dir_apk, self._get_missing_replacement)
 
+        # Tests if zipalign is installed
+        self.has_zip_align = True
+        try:
+            subprocess.run('zipalign')
+        except FileNotFoundError:
+            self.has_zip_align = False
+
         # Logging
-        if not no_logfile:
-            logging.basicConfig(filename=self.workdir.file_log, level=logging.DEBUG if debug else logging.INFO)
+        logging.basicConfig(filename=self.workdir.file_log, level=logging.DEBUG if debug else logging.INFO)
 
         logging.info('Starte Spotify GenderEx V' + VERSION)
 
@@ -68,23 +74,29 @@ class GenderEx:
                 rt_builtin = ReplacementTable.from_file(files('spotify_gender_ex.res').joinpath('replacements.json'))
 
             self.rtm.add_rtab(rt_builtin, 'builtin')
-            # Dont modify custom replcement table when in noia mode
             self.rtm.add_rtab(rt_custom, 'custom', not no_write)
 
-    def is_latest_spotify_processed(self):
-        """Check if the latest spotify version is already processed and present in the output folder"""
+    def is_latest_spotify_processed(self) -> bool:
+        """
+        Check if the latest spotify version is already processed
+        (either present in the output folder or equal to the version in ``spotify_version.txt``)
+        """
+        # Dont check if downloading has been disabled
         if not self.downloader:
             return False
 
-        search_version = self.latest_spotify.replace('.', '-')
+        latest_version = '%s-%s' % (self.latest_spotify, self.rtm.get_rt_versions())
 
-        for file in os.listdir(self.workdir.dir_output):
-            # Remove spotify- prefix from filename
-            if str(file).startswith(search_version, 8):
+        # Check spotify_version.txt
+        if os.path.isfile(self.workdir.file_version):
+            with open(self.workdir.file_version, encoding='utf-8') as f:
+                ver = f.read()
+
+            if latest_version == ver:
                 return True
         return False
 
-    def download(self):
+    def download(self) -> bool:
         """
         Download the Spotify app from uptodown.com if it is not present
 
@@ -105,9 +117,13 @@ class GenderEx:
 
     def verify(self):
         """Check if the Spotify apk file is genuine by verifying its certificate"""
-        subprocess.run(['java', '-jar', self.file_apksigner, '-y',
-                        '--verifySha256', _SPOTIFY_CERT_SHA256,
-                        '-a', self.workdir.file_apk], check=True)
+        cmd = ['java', '-jar', self.file_apksigner, '-y', '--verifySha256', _SPOTIFY_CERT_SHA256,
+               '-a', self.workdir.file_apk]
+
+        if self.has_zip_align:
+            cmd += ['--zipAlignPath', 'zipalign']
+
+        subprocess.run(cmd, check=True)
 
     def decompile(self):
         """Decompiles Spotify using APKTool"""
@@ -152,7 +168,7 @@ class GenderEx:
         click.echo('%d Ersetzungen vorgenommen' % n_replaced)
         click.echo('%d neue Ersetzungsregeln hinzugefügt' % n_newrpl)
 
-    def _get_missing_replacement(self, key, old):
+    def _get_missing_replacement(self, key: str, old: str) -> str:
         """
         This method gets called by the ReplacementManager if it cant replace a suspicious field.
         Prompts the user to manually enter a replacement value.
@@ -172,9 +188,9 @@ class GenderEx:
                 return new_text.strip()
             else:
                 self.wait_for_enter('Enter drücken, um die Eingabe zu wiederholen.')
-                return self._get_missing_replacement(old)
+                return self._get_missing_replacement(key, old)
 
-    def get_spotify_version(self):
+    def get_spotify_version(self) -> str:
         """Reads the Spotify version number from the decompiled app."""
         with open(self.workdir.file_apktool, 'r', encoding='utf-8') as f:
             text = f.read()
@@ -222,19 +238,12 @@ class GenderEx:
 
     def sign(self):
         """Signs the APK file using UberAPKSigner and copies the app into the output folder"""
-        # Tests if zipalign is installed
-        has_zip_align = True
-        try:
-            subprocess.run('zipalign')
-        except FileNotFoundError:
-            has_zip_align = False
-
         cmd = ['java', '-jar', self.file_apksigner,
                '-a', self.workdir.file_apkout, '-o', self.workdir.dir_output,
                '--ks', self.workdir.file_keystore, '--ksAlias', 'genderex', '--ksPass', self.ks_password,
                '--ksKeyPass', self.key_password]
 
-        if has_zip_align:
+        if self.has_zip_align:
             cmd += ['--zipAlignPath', 'zipalign']
 
         subprocess.run(cmd, check=True)
@@ -251,6 +260,10 @@ class GenderEx:
         if os.path.isfile(self.workdir.file_log):
             file_logout = self.workdir.get_file_logout(self.spotify_version, rtver)
             os.renames(self.workdir.file_log, file_logout)
+
+        # Write spotify_version.txt
+        with open(self.workdir.file_version, 'w', encoding='utf-8') as f:
+            f.write('%s-%s' % (self.spotify_version, self.rtm.get_rt_versions()))
 
     def wait_for_enter(self, msg):
         """Displays a message and waits for the user to press ENTER. Does nothing in non-interactive mode."""

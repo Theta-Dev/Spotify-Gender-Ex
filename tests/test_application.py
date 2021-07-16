@@ -47,17 +47,15 @@ class ScriptTest(unittest.TestCase):
         tests.clear_tmp_folder()
 
         # Run the script
-        start_genderex(apk_file, tests.DIR_TMP, builtin=True, no_interaction=True,
-                       force=True, no_compile=not tests.RECOMPILE, no_logfile=True)
+        start_genderex(apk_file, tests.DIR_TMP, builtin=True, no_interaction=True, force=True)
 
         # Verify replacements
         for i in range(len(nogender_files)):
             tests.assert_files_equal(self, nogender_files[i], modified_files[i])
 
         # Is output apk present?
-        if tests.RECOMPILE:
-            self.assertTrue(str(os.listdir(out_folder)[0]).startswith(
-                'spotify-%s-genderex-' % version))
+        self.assertTrue(str(os.listdir(out_folder)[0]).startswith(
+            'spotify-%s-genderex-' % version))
 
     def test_application(self):
         if tests.TEST_ALL_VERSIONS:

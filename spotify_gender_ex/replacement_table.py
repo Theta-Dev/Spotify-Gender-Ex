@@ -12,7 +12,7 @@ class ReplacementManager:
     def __init__(self, dir_apk, get_missing_replacement=None):
         self._rtabs = {}
         self.dir_apk = dir_apk
-        self._mutable_rtab = None
+        self.mutable_rtab = None
         self.rtab_modified = False
 
         # Replacement counters
@@ -31,7 +31,7 @@ class ReplacementManager:
         """
         self._rtabs[name] = rtab
         if is_mutable:
-            self._mutable_rtab = rtab
+            self.mutable_rtab = rtab
 
     def get_replacement(self, lfpath, key, old):
         for rtab in self._rtabs.values():
@@ -43,8 +43,8 @@ class ReplacementManager:
 
     def insert_replacement(self, lfpath, key, old, new):
         """Inserts a new replacement into the mutable replacement table"""
-        if self._mutable_rtab:
-            rset = self._mutable_rtab.make_set_from_langfile(lfpath)
+        if self.mutable_rtab:
+            rset = self.mutable_rtab.make_set_from_langfile(lfpath)
             rset.add(key, old, new)
 
             self.rtab_modified = True
@@ -146,10 +146,10 @@ class ReplacementManager:
     def write_replacement_table(self, spotify_version=''):
         """If modified, write back replacement table"""
         if self.rtab_modified:
-            self._mutable_rtab.version += 1
+            self.mutable_rtab.version += 1
             if spotify_version:
-                self._mutable_rtab.spotify_addversion(spotify_version)
-            self._mutable_rtab.to_file()
+                self.mutable_rtab.spotify_addversion(spotify_version)
+            self.mutable_rtab.to_file()
 
             logging.info('Benutzerdefinierte Ersetzungstabelle gespeichert')
 

@@ -12,9 +12,13 @@ PHRASES = [
     'Es wurden neue Gendersternchen entdeckt!',
     'Ein wildes Gendersternchen erscheint!',
     'Und täglich grüßt das Gendersternchen...',
-    'Wie es aussieht war Spotify mal wieder linguistisch kreativ unterwegs gewesen.',
+    'Wie es aussieht ist Spotify mal wieder linguistisch kreativ unterwegs gewesen.',
     'Grüße gehen raus an alle Sprachkünstler &ast;RÜLPS&ast; INNEN',
 ]
+
+
+def escape_nl(input):
+    return str(input).replace('\n', '\\n')
 
 
 @click.command()
@@ -33,7 +37,7 @@ def run(replacement_table, token):
             key, value = replace.split('|', 2)
 
             entries.append('%s|%s' % (rset.path, key))
-            values.append(value)
+            values.append(escape_nl(value))
 
     issue_title = 'Neue Ersetzungsregeln (Spotify %s)' % spotify_version
 

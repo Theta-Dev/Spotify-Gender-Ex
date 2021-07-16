@@ -1,22 +1,23 @@
 # coding=utf-8
 import click
 import os
-from spotify_gender_ex import genderex
+from spotify_gender_ex import genderex, gh_issue
 
 
 def start_genderex(apk_file='', directory='.', replacement_table='', builtin=False, ks_password='', key_password='',
                    no_interaction=False, force=False, no_write=False, cleanup_max_files=0, debug=False,
-                   no_verify=False, no_compile=False, no_logfile=False):
+                   no_verify=False, gh_token=''):
     click.echo('0. INFO')
     if not os.path.isdir(directory):
         click.echo('Keine Eingabedaten')
         return
 
     gex = genderex.GenderEx(apk_file, directory, replacement_table, builtin, no_interaction, no_write, debug,
-                            ks_password, key_password, no_logfile)
+                            ks_password, key_password)
 
     click.echo('Spotify-Gender-Ex Version: %s' % genderex.VERSION)
     click.echo('Aktuelle Spotify-Version: %s' % gex.latest_spotify)
+    click.echo('Ersetzungstabellen: %s' % gex.rtm.get_rt_versions())
 
     # Non-interactive mode is meant for automation.
     # In this case, dont process the same spotify version multiple times
@@ -46,15 +47,17 @@ def start_genderex(apk_file='', directory='.', replacement_table='', builtin=Fal
     gex.replace()
     gex.add_credits()
 
-    # This is only for reducing test time
-    if no_compile:
-        return
-
     click.echo('5. REKOMPILIEREN')
     gex.recompile()
 
     click.echo('6. SIGNIEREN')
     gex.sign()
+
+    if gh_token and gex.rtm.mutable_rtab and not gex.rtm.mutable_rtab.is_empty():
+        click.echo('7. NEUE ERSETZUNGEN ÜBERMITTELN')
+
+        if gh_issue.create_issue(gex.rtm.mutable_rtab, gex.spotify_version, gh_token):
+            click.echo('GitHub-Issue erstellt')
 
     click.echo('Degenderifizierung abgeschlossen. Vielen Dank.')
     click.echo('Deine Spotify-App befindet sich hier:')
@@ -82,9 +85,10 @@ def start_genderex(apk_file='', directory='.', replacement_table='', builtin=Fal
               default=0, type=click.INT)
 @click.option('--debug', help='Debug-Informationen in die Logdatei schreiben', is_flag=True)
 @click.option('--noverify', help='Spotify-App-Signatur nicht verifizieren. Nur dann aktivieren, wenn du nicht die Original-Spotify-App verarbeitest.', is_flag=True)
-def run(a, d, rt, builtin, kspw, kypw, noia, force, nowrt, cleanup, debug, noverify):
+@click.option('--gh-token', help='GitHub-Token, um neue Ersetzungsregeln zu übermitteln', default='', type=click.STRING)
+def run(a, d, rt, builtin, kspw, kypw, noia, force, nowrt, cleanup, debug, noverify, gh_token):
     """Entferne die Gendersternchen (z.B. Künstler*innen) aus der Spotify-App für Android!"""
-    start_genderex(a, d, rt, builtin, kspw, kypw, noia, force, nowrt, cleanup, debug, noverify)
+    start_genderex(a, d, rt, builtin, kspw, kypw, noia, force, nowrt, cleanup, debug, noverify, gh_token)
 
 
 if __name__ == '__main__':

@@ -1,8 +1,13 @@
 import unittest
+from unittest import mock
 import os
 import shutil
+
+import github3
+from github3 import GitHub
+
 import tests
-from spotify_gender_ex import downloader, workdir, replacement_table, lang_file
+from spotify_gender_ex import downloader, workdir, replacement_table, lang_file, gh_issue
 
 RT_STRING = '''{
   "version": 0,
@@ -204,7 +209,7 @@ class ReplacementManagerTest(unittest.TestCase):
 
         self.assertEqual(rt2, rpm._rtabs.get('b'))
         self.assertEqual(rt1, rpm._rtabs.get('a'))
-        self.assertEqual(rt2, rpm._mutable_rtab)
+        self.assertEqual(rt2, rpm.mutable_rtab)
 
         self.assertTrue(rpm.check_compatibility('unittest'))
         self.assertFalse(rpm.check_compatibility('v1'))
@@ -256,6 +261,48 @@ class ReplacementManagerTest(unittest.TestCase):
         rpm.write_replacement_table('newver')
 
         tests.assert_files_equal(self, os.path.join(tests.DIR_REPLACE, 'replacements_testwrite.json'), path)
+
+
+class CreateIssueTest(unittest.TestCase):
+    def test_create_issue(self):
+        path = os.path.join(tests.DIR_REPLACE, 'replacements_issue.json')
+        path_base = os.path.join(tests.DIR_REPLACE, 'replacements_issue_base.json')
+        path_nogender = os.path.join(tests.DIR_REPLACE, 'replacements_issue_nogender.json')
+
+        # Mock GitHub library
+        gh = GitHub()
+        gh.create_issue = mock.Mock()
+        github3.login = mock.Mock(return_value=gh)
+
+        # Get replacement table to convert into issue
+        rt = replacement_table.ReplacementTable.from_file(path)
+
+        # Create the issue
+        self.assertTrue(gh_issue.create_issue(rt, 'newver', 'test_token'))
+
+        # Verify GH library call args
+        github3.login.assert_called_once_with(token='test_token')
+        gh.create_issue.assert_called_once_with(gh_issue.REPO_OWNER, gh_issue.REPO_NAME,
+                                                'Neue Ersetzungsregeln (Spotify newver)', mock.ANY)
+
+        # Verify issue body
+        issue_body = gh.create_issue.call_args.args[3]
+        nrt = replacement_table.ReplacementTable.from_file(path_base)
+        gh_issue.parse_issue(nrt, issue_body, '''
+        [BEGIN VALUES]
+        Künstler
+        Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem Freund.
+        Nur Premiumnutzer
+        Künstlerradio\\nbasierend auf
+        Künstler
+        Künstler
+        [END VALUES]
+        ''')
+
+        with open(path_nogender, encoding='utf-8') as f:
+            exp_json = f.read()
+
+        self.assertEqual(nrt.to_string(), exp_json)
 
 
 if __name__ == '__main__':

@@ -9,7 +9,6 @@ TEST_PERFORMANCE = True
 
 # Application test options
 TEST_ALL_VERSIONS = False
-RECOMPILE = False
 
 DIR_TESTFILES = str(files('tests.testfiles').joinpath(''))
 DIR_TMP = os.path.join(DIR_TESTFILES, 'tmp')
