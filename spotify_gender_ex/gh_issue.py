@@ -85,6 +85,10 @@ Daraufhin wird eine neue PR mit den Änderungen an der Ersetzungstabelle erzeugt
             click.echo('Could not obtain GH instance')
             return False
 
+        # Dont create an issue if one exists with the same title
+        if any(gh.search_issues('repo:%s/%s is:issue is:open in:title %s' % (REPO_OWNER, REPO_NAME, issue_title))):
+            return False
+
         gh.create_issue(REPO_OWNER, REPO_NAME, issue_title, issue_body)
 
         return True

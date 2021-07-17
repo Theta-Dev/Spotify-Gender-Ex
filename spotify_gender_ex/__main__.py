@@ -59,11 +59,13 @@ def start_genderex(apk_file='', directory='.', replacement_table='', builtin=Fal
     click.echo('6. SIGNIEREN')
     gex.sign()
 
-    if gh_token and not gex.rtm.new_replacements.is_empty():
+    if gh_token and not builtin and not replacement_table and not gex.rtm.new_replacements.is_empty():
         click.echo('7. NEUE ERSETZUNGEN ÜBERMITTELN')
 
         if gh_issue.create_issue(gex.rtm.new_replacements, gex.spotify_version, gh_token):
             click.echo('GitHub-Issue erstellt')
+        else:
+            click.echo('GitHub-Issue wurde nicht erstellt. Existiert bereits oder Fehler.')
 
     click.echo('Degenderifizierung abgeschlossen. Vielen Dank.')
     click.echo('Deine Spotify-App befindet sich hier:')

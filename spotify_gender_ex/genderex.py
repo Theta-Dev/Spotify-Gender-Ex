@@ -252,6 +252,13 @@ class GenderEx:
         if self.file_rtabout:
             self.set_github_var('rtab_file', os.path.abspath(self.file_rtabout))
 
+        msg = '''Spotify *%s* wurde erfolgreich degenderifiziert!
+Spotify-Gender-Ex: %s
+Ersetzungstabelle: %s
+Neue Ersetzungsregeln: %s''' % (self.spotify_version, __version__,
+                                self.rtm.get_rt_versions(), self.rtm.get_new_repl_string())
+        self.set_github_var('genderex_msg', msg)
+
     def wait_for_enter(self, msg):
         """Displays a message and waits for the user to press ENTER. Does nothing in non-interactive mode."""
         if not self.noia:
