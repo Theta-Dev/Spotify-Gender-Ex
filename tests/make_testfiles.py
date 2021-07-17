@@ -1,9 +1,10 @@
-import tests
+import copy
 import os
 import random
-import copy
-import xml.etree.ElementTree as ET
-from spotify_gender_ex import lang_file, replacement_table
+from xml.etree import ElementTree
+
+import tests
+from spotify_gender_ex import replacement_table
 
 """
 This program can be used to generate language files and replacement tables
@@ -50,7 +51,7 @@ def make_testfiles(length, gender_ratio, n_tables):
 
     for i in range(n_tables):
         table = replacement_table.ReplacementTable(1, ['unittest'], [])
-        rset = replacement_table.ReplacementSet('lang.xml', [])
+        rset = replacement_table.ReplacementSet('lang.xml', dict())
         table.sets.append(rset)
 
         tables.append(table)
@@ -74,23 +75,23 @@ def make_testfiles(length, gender_ratio, n_tables):
         table.to_file(os.path.join(tests.DIR_MAKE, 'replacements_%d.json' % i))
         i += i
 
-    root = ET.Element('resources')
-    ET.SubElement(root, 'info', {'n_total': str(length), 'n_gender': str(ngender)})
+    root = ElementTree.Element('resources')
+    ElementTree.SubElement(root, 'info', {'n_total': str(length), 'n_gender': str(ngender)})
 
     root_nogender = copy.deepcopy(root)
 
     for key in langdata:
-        el = ET.SubElement(root, 'string', {'name': key})
+        el = ElementTree.SubElement(root, 'string', {'name': key})
         el.text = langdata[key]
 
     for key in langdata_nogender:
-        el = ET.SubElement(root_nogender, 'string', {'name': key})
+        el = ElementTree.SubElement(root_nogender, 'string', {'name': key})
         el.text = langdata_nogender[key]
 
-    tree = ET.ElementTree(root)
+    tree = ElementTree.ElementTree(root)
     tree.write(os.path.join(tests.DIR_MAKE, 'lang.xml'), xml_declaration=True, encoding='utf-8')
 
-    tree = ET.ElementTree(root_nogender)
+    tree = ElementTree.ElementTree(root_nogender)
     tree.write(os.path.join(tests.DIR_MAKE, 'lang_nogender.xml'), xml_declaration=True, encoding='utf-8')
 
 
