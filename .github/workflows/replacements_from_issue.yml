@@ -46,7 +46,7 @@ jobs:
       - name: Create PR with the updated replacement table
         uses: vsoch/pull-request-action@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.THETAMATIC_GH_TOKEN }}
           PULL_REQUEST_FROM_BRANCH: '${{ env.branch_name }}'
           PULL_REQUEST_BRANCH: 'master'
           PULL_REQUEST_TITLE: 'Aktualisierte Ersetzungsregeln (Spotify ${{ env.spotify_version }})'
