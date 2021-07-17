@@ -39,6 +39,7 @@ class GenderEx:
             self.workdir.file_apk = apk_file
 
         self.file_apkout = ''
+        self.file_rtabout = ''
 
         # Replacement tables
         if not no_internal:
@@ -233,9 +234,23 @@ class GenderEx:
             f.write('%s-%s' % (self.spotify_version, self.rtm.get_rt_versions()))
 
         # Save new replacements
-        if self.rtm.write_new_replacements(self.spotify_version,
-                                           self.workdir.get_file_newrepl(self.spotify_version, rtver)):
+        self.file_rtabout = self.workdir.get_file_newrepl(self.spotify_version, rtver)
+        if self.rtm.write_new_replacements(self.spotify_version, self.file_rtabout):
             click.echo('Neue Ersetzungstabelle gespeichert')
+
+    @staticmethod
+    def set_github_var(key, value):
+        def escape(val_in) -> str:
+            return str(val_in).replace('"', '\\"').replace('\n', '\\n')
+
+        os.system('echo "%s=%s" >> $GITHUB_ENV' % (escape(key), escape(value)))
+
+    def set_github_vars(self):
+        self.set_github_var('spotify_version', self.spotify_version)
+        self.set_github_var('apk_file', os.path.abspath(self.file_apkout))
+
+        if self.file_rtabout:
+            self.set_github_var('rtab_file', os.path.abspath(self.file_rtabout))
 
     def wait_for_enter(self, msg):
         """Displays a message and waits for the user to press ENTER. Does nothing in non-interactive mode."""

@@ -8,6 +8,8 @@ from spotify_gender_ex import __version__, genderex, gh_issue
 
 def start_genderex(apk_file='', directory='.', replacement_table='', builtin=False, no_internal=False,
                    ks_password='', key_password='', no_interaction=False, force=False, no_verify=False, gh_token=''):
+    on_gh_actions = bool(os.environ.get('GITHUB_ACTIONS'))
+
     click.echo('0. INFO')
     if not os.path.isdir(directory):
         click.echo('Keine Eingabedaten')
@@ -19,6 +21,9 @@ def start_genderex(apk_file='', directory='.', replacement_table='', builtin=Fal
     click.echo('Spotify-Gender-Ex Version: %s' % __version__)
     click.echo('Aktuelle Spotify-Version: %s' % gex.latest_spotify)
     click.echo('Ersetzungstabellen: %s' % gex.rtm.get_rt_versions())
+
+    if on_gh_actions:
+        click.echo('GenderEx läuft auf GitHub Actions.')
 
     # Non-interactive mode is meant for automation.
     # In this case, dont process the same spotify version multiple times
@@ -63,6 +68,9 @@ def start_genderex(apk_file='', directory='.', replacement_table='', builtin=Fal
     click.echo('Degenderifizierung abgeschlossen. Vielen Dank.')
     click.echo('Deine Spotify-App befindet sich hier:')
     click.echo(gex.file_apkout)
+
+    if on_gh_actions:
+        gex.set_github_vars()
 
 
 @click.command()

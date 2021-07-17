@@ -4,6 +4,7 @@ import os
 import click
 
 from spotify_gender_ex import gh_issue
+from spotify_gender_ex.genderex import GenderEx
 from spotify_gender_ex.replacement_table import ReplacementTable
 
 
@@ -25,9 +26,9 @@ def run(replacement_table):
     click.echo(rtable.to_string())
 
     # Add spotify version to GitHub env
-    if os.environ.get('CI'):
-        os.system('echo "n_replacements=%d" >> $GITHUB_ENV' % n_entries)
-        os.system('echo "spotify_version=%s" >> $GITHUB_ENV' % spotify_version)
+    if os.environ.get('GITHUB_ACTIONS'):
+        GenderEx.set_github_var('n_replacements', n_entries)
+        GenderEx.set_github_var('spotify_version', spotify_version)
         click.echo('Set spotify version to %s' % spotify_version)
 
     if not has_changed:
