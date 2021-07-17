@@ -7,7 +7,8 @@ import requests
 from tqdm import tqdm
 
 URL_UPTODOWN = 'https://spotify.de.uptodown.com/android/download'
-URL_RTABLE = 'https://raw.githubusercontent.com/Theta-Dev/Spotify-Gender-Ex/master/spotify_gender_ex/res/replacements.json'
+URL_GHAPI = 'https://api.github.com/repos/Theta-Dev/Spotify-Gender-Ex/commits/master'
+URL_RTABLE = 'https://raw.githubusercontent.com/Theta-Dev/Spotify-Gender-Ex/%s/spotify_gender_ex/res/replacements.json'
 
 
 class Downloader:
@@ -48,9 +49,12 @@ class Downloader:
 
         return _download(self.spotify_url, output_path, 'Spotify')
 
-    def get_replacement_table_raw(self):
+    @staticmethod
+    def get_replacement_table_raw():
         try:
-            return requests.get(URL_RTABLE).text
+            # Get latest commit
+            sha = requests.get(URL_GHAPI).json()['sha']
+            return requests.get(URL_RTABLE % sha).text
         except Exception:
             click.echo('Ersetzungstabelle konnte nicht abgerufen werden. Verwende eingebaute Tabelle.')
 
