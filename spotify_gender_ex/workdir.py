@@ -2,7 +2,6 @@
 import os
 import shutil
 import subprocess
-import click
 
 
 class Workdir:
@@ -22,7 +21,6 @@ class Workdir:
         self.file_version = os.path.join(self.dir_root, 'spotify_version.txt')
 
         self.file_apk = os.path.join(self.dir_tmp, 'app.apk')
-        self.file_log = os.path.join(self.dir_tmp, 'log.txt')
         self.file_apkout = os.path.join(self.dir_tmp, 'app_out.apk')
         self.file_apkout_signed = os.path.join(self.dir_output, 'app_out-aligned-signed.apk')
         self.dir_apk = os.path.join(self.dir_tmp, 'app')
@@ -48,21 +46,8 @@ class Workdir:
     def get_file_apkout(self, spotify_version, rt_version):
         return self._output_file(spotify_version, rt_version, 'spotify', 'apk')
 
-    def get_file_logout(self, spotify_version, rt_version):
-        return self._output_file(spotify_version, rt_version, 'log', 'txt', 'log')
-
     def get_file_newrepl(self, spotify_version, rt_version):
         return self._output_file(spotify_version, rt_version, 'repl', 'json', 'repl')
-
-    def cleanup(self, max_files=0):
-        if max_files > 0:
-            file_list = sorted(filter(lambda x: x.endswith('.apk'), os.listdir(self.dir_output)))
-
-            for i in range(len(file_list) - max_files):
-                click.echo('Löschen: ' + file_list[i])
-                os.remove(os.path.join(self.dir_output, file_list[i]))
-
-            self._clear_tmp_folder()
 
     def _clear_tmp_folder(self):
         try:

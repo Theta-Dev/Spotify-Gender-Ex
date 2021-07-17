@@ -1,7 +1,7 @@
-import unittest
-from unittest import mock
 import os
 import shutil
+import unittest
+from unittest import mock
 
 import github3
 from github3 import GitHub
@@ -10,7 +10,7 @@ import tests
 from spotify_gender_ex import downloader, workdir, replacement_table, lang_file, gh_issue
 
 RT_STRING = '''{
-  "version": 0,
+  "version": 1,
   "spotify_versions": [
     "unittest"
   ],
@@ -140,7 +140,7 @@ class ReplacementTableTest(unittest.TestCase):
         self.assertEqual(path2, rt2.path)
 
         self.assertEqual(1, rt1.version)
-        self.assertEqual(0, rt2.version)
+        self.assertEqual(1, rt2.version)
 
         self.assertEqual(["unittest"], rt1.spotify_versions)
         self.assertEqual(["unittest"], rt2.spotify_versions)
@@ -155,7 +155,7 @@ class ReplacementTableTest(unittest.TestCase):
         rt = replacement_table.ReplacementTable.from_string(RT_STRING)
 
         self.assertIsNone(rt.path)
-        self.assertEqual(0, rt.version)
+        self.assertEqual(1, rt.version)
         self.assertEqual(["unittest"], rt.spotify_versions)
         self.assertEqual(['file1_withgender.xml', 'file2_withgender.xml'], list(map(lambda s: s.path, rt.sets)))
 
@@ -192,6 +192,20 @@ class ReplacementTableTest(unittest.TestCase):
 
         self.assertEqual(RT_STRING, rt.to_string())
 
+    def test_count(self):
+        path = os.path.join(tests.DIR_REPLACE, 'replacements.json')
+        rt = replacement_table.ReplacementTable.from_file(path)
+
+        self.assertEqual(10, rt.n_replacements())
+        self.assertEqual(0, rt.n_suspicious())
+
+    def test_count_suspicious(self):
+        path = os.path.join(tests.DIR_REPLACE, 'replacements_issue.json')
+        rt = replacement_table.ReplacementTable.from_file(path)
+
+        self.assertEqual(6, rt.n_replacements())
+        self.assertEqual(6, rt.n_suspicious())
+
 
 class ReplacementManagerTest(unittest.TestCase):
     def test_add_rtab(self):
@@ -203,8 +217,7 @@ class ReplacementManagerTest(unittest.TestCase):
         rt2 = replacement_table.ReplacementTable.from_file(path2)
         rt3 = replacement_table.ReplacementTable.from_file(path3)
 
-        # noinspection PyTypeChecker
-        rpm = replacement_table.ReplacementManager(None)
+        rpm = replacement_table.ReplacementManager('')
         rpm.add_rtab(rt1, 'a')
         rpm.add_rtab(rt2, 'b')
         rpm.add_rtab(rt3, 'c')
@@ -216,7 +229,9 @@ class ReplacementManagerTest(unittest.TestCase):
         self.assertTrue(rpm.check_compatibility('unittest'))
         self.assertFalse(rpm.check_compatibility('v1'))
 
-        self.assertEqual('a1b0', rpm.get_rt_versions())
+        self.assertEqual('a1b1', rpm.get_rt_versions())
+        self.assertEqual('a1 (2416a1dc), b1 (24464164)', rpm.get_rt_versions(True))
+        self.assertEqual('', rpm.get_new_repl_string())
 
     def test_do_replacement(self):
         tests.clear_tmp_folder()
@@ -263,6 +278,19 @@ class ReplacementManagerTest(unittest.TestCase):
         rpm.write_new_replacements('newver', path)
 
         tests.assert_files_equal(self, os.path.join(tests.DIR_REPLACE, 'replacements_testwrite.json'), path)
+        self.assertEqual('9S', rpm.get_new_repl_string())
+
+    def test_version_string(self):
+        path1 = os.path.join(tests.DIR_REPLACE, 'replacements.json')
+        path2 = os.path.join(tests.DIR_REPLACE, 'replacements_3N2S.json')
+
+        rpm = replacement_table.ReplacementManager('')
+        rpm.add_rtab(replacement_table.ReplacementTable.from_file(path1), 'intern (lokal)')
+        rpm.new_replacements = replacement_table.ReplacementTable.from_file(path2)
+
+        self.assertEqual('i1', rpm.get_rt_versions())
+        self.assertEqual('3N2S', rpm.get_new_repl_string())
+        self.assertEqual('i1_3N2S', rpm.get_version_string())
 
 
 class CreateIssueTest(unittest.TestCase):

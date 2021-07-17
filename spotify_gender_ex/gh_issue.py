@@ -1,8 +1,8 @@
-from typing import Tuple, List
 import random
-import logging
 import re
+from typing import Tuple, List
 
+import click
 import github3
 from github3 import exceptions
 
@@ -83,14 +83,14 @@ Daraufhin wird eine neue PR mit den Änderungen an der Ersetzungstabelle erzeugt
     try:
         gh = github3.login(token=token)
         if gh is None:
-            logging.error('Could not obtain GH instance')
+            click.echo('Could not obtain GH instance')
             return False
 
         gh.create_issue(REPO_OWNER, REPO_NAME, issue_title, issue_body)
 
         return True
     except exceptions.GitHubException as e:
-        logging.error(e)
+        click.echo(e)
         return False
 
 

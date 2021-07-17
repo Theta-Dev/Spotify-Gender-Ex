@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "spotify_versions": [
+    "unittest",
+    "newver"
+  ],
+  "files": [
+    {
+      "path": "file1_withgender.xml",
+      "replace": {
+        "Lythro|Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem*einer Freund*in.": "Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem Freund.",
+        "Housur|Nur Premium Nutzer*innen": "Nur Premiumnutzer",
+        "Bizong|Künstler*innen-Radio basierend auf": "Künstler*innen-Radio\nbasierend auf"
+      }
+    },
+    {
+      "path": "file2_withgender.xml",
+      "replace": {
+        "Urelex_Yeable/other|Künstler*innen": "Künstler*innen",
+        "Urelex_Yeable/one|Künstler*in": "Künstler"
+      }
+    }
+  ]
+}

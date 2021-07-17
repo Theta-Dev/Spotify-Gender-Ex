@@ -6,7 +6,7 @@ Doppelpunkte und Binnen-Is erkannt.
 
 ### REGEX:
 ```
-(\*[iIrRnN])|(\([rRnN]\))|([a-zß-ü][IRN])|((:[iIrRnN])(?![\w:]+\\"))
+(\*[iIrRnN])|(\([rRnN]\))|([a-zß-ü][IRN])|(:[iIrRnN](?!nternal))
 ```
 
 ### Tests:
