@@ -58,8 +58,7 @@ Die Versionsangaben erleichtern die Zuordnung mehrerer erzeugter Dateien sowie d
 
 ## GenderEx 3.x.x
 
-Den ersten Teil der Versionsstrings habe ich aus GenderEx 2 übernommen. Allerdings hat die integrierte Ersetzungstabelle
-nun das Präfix ``i`` und mit ``-rt`` zusätzlich manuell hinzugefügte Tabellen erhalten das Präfix ``a``.
+Den ersten Teil der Versionsstrings habe ich aus GenderEx 2 übernommen.
 
 Nach dem Teil mit der Ersetzungstabelle kommt die Information über die neu hinzugefügten Ersetzungsregeln. Bemerkt das
 Programm während dem Ersetzen verdächtige Einträge, für die es keine Ersetzungsregeln gibt, wird der Nutzer darum
@@ -70,9 +69,9 @@ Dies ist immer dann der Fall, wenn GenderEx im ``--noia``-Modus betrieben wird (
 
 | Typ                         | Dateiname                                         |
 | --------------------------- | ------------------------------------------------- |
-| builtin                     | spotify_8_6_44_851_genderex_i12.apk               |
-| builtin + new items         | spotify_8_6_44_851_genderex_i12_3N.apk            |
-| builtin + suspicious items  | spotify_8_6_44_851_genderex_i12_1N2S.apk          |
+| builtin                     | spotify_8_6_44_851_genderex_b12.apk               |
+| builtin + new items         | spotify_8_6_44_851_genderex_b12_3N.apk            |
+| builtin + suspicious items  | spotify_8_6_44_851_genderex_b12_1N2S.apk          |
 | custom                      | spotify_8_6_44_851_genderex_c1.apk                |
 
 ### Informationen in der App
@@ -81,6 +80,6 @@ Dies ist immer dann der Fall, wenn GenderEx im ``--noia``-Modus betrieben wird (
 | --------------------------- | -------------------------------- |
 | Spotify                     | 8.6.44.851                       |
 | Spotify-Gender-Ex           | 3.0.0                            |
-| Ersetzungstabellen          | i12 (8ca73f67), a1(15b04808)     |
+| Ersetzungstabellen          | b12 (8ca73f67), c1(15b04808)     |
 | Neue Ersetzungsregeln       | 3N                               |
 | Erstelldatum                | 16.07.2021 20:51                 |

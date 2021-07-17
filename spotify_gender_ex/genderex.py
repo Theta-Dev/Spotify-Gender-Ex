@@ -49,20 +49,20 @@ class GenderEx:
                 try:
                     rtab_raw = self.downloader.get_replacement_table_raw()
                     rt = ReplacementTable.from_string(rtab_raw)
-                    self.rtm.add_rtab(rt, 'intern (GitHub)')
+                    self.rtm.add_rtab(rt, 'builtin (GitHub)')
                     got_rt = True
                 except Exception as e:
                     click.echo(str(e))
 
             if not got_rt:
                 rt = ReplacementTable.from_file(files('spotify_gender_ex.res').joinpath('replacements.json'))
-                self.rtm.add_rtab(rt, 'intern (lokal)')
+                self.rtm.add_rtab(rt, 'builtin (lokal)')
         if replacement_tables:
             for rtfile in replacement_tables:
                 if os.path.isfile(rtfile):
                     # If replacement table specified, make it the only table
                     rt = ReplacementTable.from_file(rtfile)
-                    self.rtm.add_rtab(rt, 'additional (%s)' % rtfile)
+                    self.rtm.add_rtab(rt, 'custom (%s)' % rtfile)
 
     def is_latest_spotify_processed(self) -> bool:
         """Check if the latest spotify version is already processed"""
@@ -70,12 +70,12 @@ class GenderEx:
         if not self.downloader:
             return False
 
-        latest_version = '%s-%s' % (self.latest_spotify, self.rtm.get_version_string())
+        latest_version = '%s-%s' % (self.latest_spotify, self.rtm.get_rt_versions())
 
         # Check spotify_version.txt
         if os.path.isfile(self.workdir.file_version):
             with open(self.workdir.file_version, encoding='utf-8') as f:
-                ver = f.read()
+                ver = f.read().strip()
 
             if latest_version == ver:
                 return True
@@ -230,7 +230,7 @@ class GenderEx:
 
         # Write spotify_version.txt
         with open(self.workdir.file_version, 'w', encoding='utf-8') as f:
-            f.write('%s-%s' % (self.spotify_version, rtver))
+            f.write('%s-%s' % (self.spotify_version, self.rtm.get_rt_versions()))
 
         # Save new replacements
         if self.rtm.write_new_replacements(self.spotify_version,
