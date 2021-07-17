@@ -2,7 +2,6 @@
 import os
 import shutil
 import subprocess
-import click
 
 
 class Workdir:
@@ -13,17 +12,15 @@ class Workdir:
 
         self.dir_root = self._get_dir(os.path.join(pathin, 'GenderEx'))
         self.dir_output = self._get_dir(os.path.join(self.dir_root, 'output'))
-        self.dir_log = self._get_dir(os.path.join(self.dir_output, 'log'))
 
         self.dir_tmp = os.path.join(self.dir_root, 'tmp')
         self._clear_tmp_folder()
 
         self.file_keystore = self._get_file(os.path.join(self.dir_root, 'genderex.keystore'), self._create_keystore)
         self.file_rtable = os.path.join(self.dir_root, 'replacements.json')
-        self.file_rtable_upd = os.path.join(self.dir_root, 'replacements_updated.json')
+        self.file_version = os.path.join(self.dir_root, 'spotify_version.txt')
 
         self.file_apk = os.path.join(self.dir_tmp, 'app.apk')
-        self.file_log = os.path.join(self.dir_tmp, 'log.txt')
         self.file_apkout = os.path.join(self.dir_tmp, 'app_out.apk')
         self.file_apkout_signed = os.path.join(self.dir_output, 'app_out-aligned-signed.apk')
         self.dir_apk = os.path.join(self.dir_tmp, 'app')
@@ -34,9 +31,13 @@ class Workdir:
         version_fn = spotify_version.replace('.', '-')
         return str('%s-genderex-%s' % (version_fn, rt_version))
 
-    def _output_file(self, spotify_version, rt_version, name, ending):
+    def _output_file(self, spotify_version, rt_version, name, ending, folder=''):
+        basepath = self.dir_output
+        if folder:
+            basepath = Workdir._get_dir(os.path.join(basepath, folder))
+
         basename = Workdir._output_basename(spotify_version, rt_version)
-        file = os.path.join(self.dir_output, name + '-' + basename + '.' + ending)
+        file = os.path.join(basepath, name + '-' + basename + '.' + ending)
 
         if os.path.isfile(file):
             os.remove(file)
@@ -45,18 +46,8 @@ class Workdir:
     def get_file_apkout(self, spotify_version, rt_version):
         return self._output_file(spotify_version, rt_version, 'spotify', 'apk')
 
-    def get_file_logout(self, spotify_version, rt_version):
-        return self._output_file(spotify_version, rt_version, 'log', 'txt')
-
-    def cleanup(self, max_files=0):
-        if max_files > 0:
-            file_list = sorted(filter(lambda x: x.endswith('.apk'), os.listdir(self.dir_output)))
-
-            for i in range(len(file_list) - max_files):
-                click.echo('Löschen: ' + file_list[i])
-                os.remove(os.path.join(self.dir_output, file_list[i]))
-
-            self._clear_tmp_folder()
+    def get_file_newrepl(self, spotify_version, rt_version):
+        return self._output_file(spotify_version, rt_version, 'repl', 'json', 'repl')
 
     def _clear_tmp_folder(self):
         try:

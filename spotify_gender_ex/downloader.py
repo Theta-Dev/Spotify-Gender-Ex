@@ -1,10 +1,10 @@
-import requests
-import urllib.request
-from tqdm import tqdm
-import click
-import re
 import os
-import logging
+import re
+import urllib.request
+
+import click
+import requests
+from tqdm import tqdm
 
 URL_UPTODOWN = 'https://spotify.de.uptodown.com/android/download'
 URL_RTABLE = 'https://raw.githubusercontent.com/Theta-Dev/Spotify-Gender-Ex/master/spotify_gender_ex/res/replacements.json'
@@ -24,7 +24,6 @@ class Downloader:
             r = requests.get(url)
         except Exception:
             msg = 'Spotify-Version konnte nicht abgerufen werden'
-            logging.error(msg)
             click.echo(msg)
             self.spotify_version = 'NA'
             self.spotify_url = ''
@@ -35,7 +34,6 @@ class Downloader:
 
         if not search_url or not search_version:
             msg = 'Spotify-Version nicht gefunden'
-            logging.error(msg)
             click.echo(msg)
             self.spotify_version = 'NA'
             self.spotify_url = ''
@@ -44,8 +42,6 @@ class Downloader:
         self.spotify_url = str(search_url[0])
         self.spotify_version = str(search_version[0])
 
-        logging.info('Aktuelle Spotify-Version: %s' % self.spotify_version)
-
     def download_spotify(self, output_path):
         if not self.spotify_url:
             return False
@@ -53,12 +49,10 @@ class Downloader:
         return _download(self.spotify_url, output_path, 'Spotify')
 
     def get_replacement_table_raw(self):
-        logging.info('Ersetzungstabelle von GitHub abrufen')
         try:
             return requests.get(URL_RTABLE).text
         except Exception:
-            msg = 'Ersetzungstabelle konnte nicht abgerufen werden. Verwende eingebaute Tabelle.'
-            logging.error(msg)
+            click.echo('Ersetzungstabelle konnte nicht abgerufen werden. Verwende eingebaute Tabelle.')
 
 
 # See here
@@ -73,11 +67,9 @@ class _DownloadProgressBar(tqdm):
 
 def _download(url, output_path, description=''):
     if description:
-        msg = 'Lade %s herunter: %s' % (description, url)
+        click.echo('Lade %s herunter: %s' % (description, url))
     else:
-        msg = 'Herunterladen: ' + url
-    click.echo(msg)
-    logging.info(msg)
+        click.echo('Herunterladen: ' + url)
 
     try:
         with _DownloadProgressBar(unit='B', unit_scale=True, miniters=1, desc=url.split('/')[-1]) as t:

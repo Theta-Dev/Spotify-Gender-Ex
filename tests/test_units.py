@@ -1,11 +1,16 @@
-import unittest
 import os
 import shutil
+import unittest
+from unittest import mock
+
+import github3
+from github3 import GitHub
+
 import tests
-from spotify_gender_ex import downloader, workdir, replacement_table, lang_file
+from spotify_gender_ex import downloader, workdir, replacement_table, lang_file, gh_issue
 
 RT_STRING = '''{
-  "version": 0,
+  "version": 1,
   "spotify_versions": [
     "unittest"
   ],
@@ -97,6 +102,7 @@ class LangFileTest(unittest.TestCase):
 
         lfile = lang_file.LangFile(path)
 
+        # noinspection PyUnusedLocal
         def fun_replace(key, old):
             if key == rkey:
                 return 'MODIFIED'
@@ -114,7 +120,8 @@ class LangFileTest(unittest.TestCase):
             'Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem*einer Freund*in.': True,
             '„%1$s“ in Künstler*innen': True,
             'Tippe auf einer Folge auf {download}, um sie dir ohne Internetverbindung anzuhören.': False,
-            'Ich stimme den &lt;a href=\"spotify:internal:signup:tos\"&gt;Nutzungsbedingungen&lt;/a&gt; und der &lt;a href=\"spotify:internal:signup:policy\"&gt;Datenschutzrichtlinie&lt;/a&gt; von Spotify zu.': False
+            'Ich stimme den &lt;a href=\"spotify:internal:signup:tos\"&gt;Nutzungsbedingungen&lt;/a&gt; und der &lt;a href=\"spotify:internal:signup:policy\"&gt;Datenschutzrichtlinie&lt;/a&gt; von Spotify zu.': False,
+            'Ich stimme den &lt;a href=\"spotify:internal:signup:tos\"&gt;Nutzungsbedingung:innen&lt;/a&gt; und der &lt;a href=\"spotify:internal:signup:policy\"&gt;Datenschutzrichtlinie&lt;/a&gt; von Spotify zu.': True,
         }
 
         for item in test_data.items():
@@ -133,7 +140,7 @@ class ReplacementTableTest(unittest.TestCase):
         self.assertEqual(path2, rt2.path)
 
         self.assertEqual(1, rt1.version)
-        self.assertEqual(0, rt2.version)
+        self.assertEqual(1, rt2.version)
 
         self.assertEqual(["unittest"], rt1.spotify_versions)
         self.assertEqual(["unittest"], rt2.spotify_versions)
@@ -148,7 +155,7 @@ class ReplacementTableTest(unittest.TestCase):
         rt = replacement_table.ReplacementTable.from_string(RT_STRING)
 
         self.assertIsNone(rt.path)
-        self.assertEqual(0, rt.version)
+        self.assertEqual(1, rt.version)
         self.assertEqual(["unittest"], rt.spotify_versions)
         self.assertEqual(['file1_withgender.xml', 'file2_withgender.xml'], list(map(lambda s: s.path, rt.sets)))
 
@@ -185,6 +192,20 @@ class ReplacementTableTest(unittest.TestCase):
 
         self.assertEqual(RT_STRING, rt.to_string())
 
+    def test_count(self):
+        path = os.path.join(tests.DIR_REPLACE, 'replacements.json')
+        rt = replacement_table.ReplacementTable.from_file(path)
+
+        self.assertEqual(10, rt.n_replacements())
+        self.assertEqual(0, rt.n_suspicious())
+
+    def test_count_suspicious(self):
+        path = os.path.join(tests.DIR_REPLACE, 'replacements_issue.json')
+        rt = replacement_table.ReplacementTable.from_file(path)
+
+        self.assertEqual(6, rt.n_replacements())
+        self.assertEqual(6, rt.n_suspicious())
+
 
 class ReplacementManagerTest(unittest.TestCase):
     def test_add_rtab(self):
@@ -196,20 +217,21 @@ class ReplacementManagerTest(unittest.TestCase):
         rt2 = replacement_table.ReplacementTable.from_file(path2)
         rt3 = replacement_table.ReplacementTable.from_file(path3)
 
-        # noinspection PyTypeChecker
-        rpm = replacement_table.ReplacementManager(None)
-        rpm.add_rtab(rt2, 'b', True)
+        rpm = replacement_table.ReplacementManager('')
         rpm.add_rtab(rt1, 'a')
+        rpm.add_rtab(rt2, 'b')
         rpm.add_rtab(rt3, 'c')
 
-        self.assertEqual(rt2, rpm._rtabs.get('b'))
         self.assertEqual(rt1, rpm._rtabs.get('a'))
-        self.assertEqual(rt2, rpm._mutable_rtab)
+        self.assertEqual(rt2, rpm._rtabs.get('b'))
+        self.assertEqual(rt3, rpm._rtabs.get('c'))
 
         self.assertTrue(rpm.check_compatibility('unittest'))
         self.assertFalse(rpm.check_compatibility('v1'))
 
-        self.assertEqual('b0a1', rpm.get_rt_versions())
+        self.assertEqual('a1b1', rpm.get_rt_versions())
+        self.assertEqual('a1 (2416a1dc), b1 (24464164)', rpm.get_rt_versions(True))
+        self.assertEqual('', rpm.get_new_repl_string())
 
     def test_do_replacement(self):
         tests.clear_tmp_folder()
@@ -250,12 +272,67 @@ class ReplacementManagerTest(unittest.TestCase):
         rt = replacement_table.ReplacementTable.from_file(path)
 
         rpm = replacement_table.ReplacementManager(dir_apk, lambda key, old: old + '_MOD')
-        rpm.add_rtab(rt, 'rt', True)
+        rpm.add_rtab(rt, 'rt')
 
         rpm.do_replace()
-        rpm.write_replacement_table('newver')
+        rpm.write_new_replacements('newver', path)
 
         tests.assert_files_equal(self, os.path.join(tests.DIR_REPLACE, 'replacements_testwrite.json'), path)
+        self.assertEqual('9S', rpm.get_new_repl_string())
+
+    def test_version_string(self):
+        path1 = os.path.join(tests.DIR_REPLACE, 'replacements.json')
+        path2 = os.path.join(tests.DIR_REPLACE, 'replacements_3N2S.json')
+
+        rpm = replacement_table.ReplacementManager('')
+        rpm.add_rtab(replacement_table.ReplacementTable.from_file(path1), 'intern (lokal)')
+        rpm.new_replacements = replacement_table.ReplacementTable.from_file(path2)
+
+        self.assertEqual('i1', rpm.get_rt_versions())
+        self.assertEqual('3N2S', rpm.get_new_repl_string())
+        self.assertEqual('i1_3N2S', rpm.get_version_string())
+
+
+class CreateIssueTest(unittest.TestCase):
+    def test_create_issue(self):
+        path = os.path.join(tests.DIR_REPLACE, 'replacements_issue.json')
+        path_base = os.path.join(tests.DIR_REPLACE, 'replacements_issue_base.json')
+        path_nogender = os.path.join(tests.DIR_REPLACE, 'replacements_issue_nogender.json')
+
+        # Mock GitHub library
+        gh = GitHub()
+        gh.create_issue = mock.Mock()
+        github3.login = mock.Mock(return_value=gh)
+
+        # Get replacement table to convert into issue
+        rt = replacement_table.ReplacementTable.from_file(path)
+
+        # Create the issue
+        self.assertTrue(gh_issue.create_issue(rt, 'newver', 'test_token'))
+
+        # Verify GH library call args
+        github3.login.assert_called_once_with(token='test_token')
+        gh.create_issue.assert_called_once_with(gh_issue.REPO_OWNER, gh_issue.REPO_NAME,
+                                                'Neue Ersetzungsregeln (Spotify newver)', mock.ANY)
+
+        # Verify issue body
+        issue_body = gh.create_issue.call_args.args[3]
+        nrt = replacement_table.ReplacementTable.from_file(path_base)
+        gh_issue.parse_issue(nrt, issue_body, '''
+        [BEGIN VALUES]
+        Künstler
+        Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem Freund.
+        Nur Premiumnutzer
+        Künstlerradio\\nbasierend auf
+        Künstler
+        Künstler
+        [END VALUES]
+        ''')
+
+        with open(path_nogender, encoding='utf-8') as f:
+            exp_json = f.read()
+
+        self.assertEqual(nrt.to_string(), exp_json)
 
 
 if __name__ == '__main__':

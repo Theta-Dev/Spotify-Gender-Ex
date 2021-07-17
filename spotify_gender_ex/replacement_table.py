@@ -1,19 +1,21 @@
 # coding=utf-8
-import click
+import hashlib
 import json
 import os
-import logging
+from typing import Optional, Tuple, Dict, Callable
+
+import click
+
 from spotify_gender_ex import lang_file
 
 
 class ReplacementManager:
     """ReplacementManager holds multiple ReplacementTables"""
 
-    def __init__(self, dir_apk, get_missing_replacement=None):
+    def __init__(self, dir_apk: str, get_missing_replacement: Optional[Callable] = None):
         self._rtabs = {}
         self.dir_apk = dir_apk
-        self._mutable_rtab = None
-        self.rtab_modified = False
+        self.new_replacements = ReplacementTable.from_scratch()
 
         # Replacement counters
         self.n_replaced = 0
@@ -24,16 +26,14 @@ class ReplacementManager:
         else:
             self.get_missing_replacement = self._missing_replacement_default
 
-    def add_rtab(self, rtab, name, is_mutable=False):
+    def add_rtab(self, rtab: 'ReplacementTable', name: str):
         """
         Adds a ReplacementTable to the manager.
         Sets the mutable replacement table if specified.
         """
         self._rtabs[name] = rtab
-        if is_mutable:
-            self._mutable_rtab = rtab
 
-    def get_replacement(self, lfpath, key, old):
+    def get_replacement(self, lfpath: str, key: str, old: str) -> str:
         for rtab in self._rtabs.values():
             rset = rtab.set_from_langfile(lfpath)
             if rset:
@@ -41,30 +41,26 @@ class ReplacementManager:
                 if new_string:
                     return new_string
 
-    def insert_replacement(self, lfpath, key, old, new):
+    def insert_replacement(self, lfpath: str, key: str, old: str, new: str):
         """Inserts a new replacement into the mutable replacement table"""
-        if self._mutable_rtab:
-            rset = self._mutable_rtab.make_set_from_langfile(lfpath)
-            rset.add(key, old, new)
+        rset = self.new_replacements.make_set_from_langfile(lfpath)
+        rset.add(key, old, new)
 
-            self.rtab_modified = True
-
-    def check_compatibility(self, spotify_version):
+    def check_compatibility(self, spotify_version: str) -> bool:
         """
         Returns True if all loaded replacement tables are compatible to the Spotify version.
         Outputs incompatibility messages via the console, too.
         """
         res = True
 
-        for rtab_name in self._rtabs:
-            if not self._rtabs.get(rtab_name).spotify_compatible(spotify_version):
+        for rtab_name, rtab in self._rtabs.items():
+            if not rtab.spotify_compatible(spotify_version):
                 msg = 'Ersetzungstabelle %s ist nicht mit Spotify %s kompatibel.' % (rtab_name, spotify_version)
                 click.echo(msg)
-                logging.info(msg)
                 res = False
         return res
 
-    def get_rt_versions(self):
+    def get_rt_versions(self, verbose=False) -> str:
         """Gets a version string of all replacement tables (e.g. b3c0)"""
         vstring = ''
 
@@ -73,15 +69,39 @@ class ReplacementManager:
             if not rtab.is_empty():
                 vstring += rtab_name[0] + str(rtab.version)
 
-        return vstring
+                if verbose:
+                    vstring += ' (%s), ' % rtab.md5_hash()[:8]
+
+        return vstring.rstrip(', ')
+
+    def get_new_repl_string(self) -> str:
+        """Gets a string with the number of new/suspicious replacement items"""
+        count = self.new_replacements.n_replacements()
+        sus = self.new_replacements.n_suspicious()
+        new = count - sus
+        res = ''
+
+        if new > 0:
+            res += '%dN' % new
+        if sus > 0:
+            res += '%dS' % sus
+
+        return res
+
+    def get_version_string(self) -> str:
+        res = self.get_rt_versions()
+        repl = self.get_new_repl_string()
+
+        if repl:
+            res += '_' + repl
+        return res
 
     @staticmethod
-    def _missing_replacement_default(key, old):
-        logging.info('Diese Zeile zu deiner Ersetzungstabelle hinzufügen und anpassen.')
-        logging.info('"%s|%s": "%s"' % (key, old, old))
+    def _missing_replacement_default(key: str, old: str) -> str:
+        click.echo('Verdächtig: %s' % old)
         return old
 
-    def do_replace(self, dir_out=None):
+    def do_replace(self, dir_out=None) -> Tuple[int, int]:
         """
         Iterates through all language files.
         For each language field in every file, it tries to find a replacement.
@@ -109,18 +129,15 @@ class ReplacementManager:
             # Get language file
             langfile = lang_file.LangFile(os.path.join(self.dir_apk, ReplacementSet.get_realpath(lfpath)))
 
-            def fun_replace(key, old):
+            def fun_replace(key: str, old: str) -> str:
                 new_string = self.get_replacement(lfpath, key, old)
                 if new_string:
                     self.n_replaced += 1
                     return new_string
 
                 if lang_file.is_suspicious(old):
-                    logging.info('Verdächtig: ' + old)
-
                     # Create a new replacement and obtain the new value
                     new_string = str(self.get_missing_replacement(key, old))
-                    logging.info('Neue Ersetzungsregel: ' + new_string)
 
                     # Replace using new replacement and add it to the table
                     self.insert_replacement(lfpath, key, old, new_string)
@@ -139,19 +156,15 @@ class ReplacementManager:
 
             langfile.to_file(target_file)
 
-        logging.info('%d Ersetzungen vorgenommen' % self.n_replaced)
-        logging.info('%d neue Ersetungsregeln' % self.n_newrpl)
         return self.n_replaced, self.n_newrpl
 
-    def write_replacement_table(self, spotify_version=''):
-        """If modified, write back replacement table"""
-        if self.rtab_modified:
-            self._mutable_rtab.version += 1
-            if spotify_version:
-                self._mutable_rtab.spotify_addversion(spotify_version)
-            self._mutable_rtab.to_file()
-
-            logging.info('Benutzerdefinierte Ersetzungstabelle gespeichert')
+    def write_new_replacements(self, spotify_version: str, file: str) -> bool:
+        """Write back new replacements if there are any"""
+        if not self.new_replacements.is_empty():
+            self.new_replacements.spotify_addversion(spotify_version)
+            self.new_replacements.to_file(file)
+            return True
+        return False
 
 
 class ReplacementTable:
@@ -167,48 +180,46 @@ class ReplacementTable:
         self.path = None
 
     @classmethod
-    def from_file(cls, file):
+    def from_file(cls, file: str) -> 'ReplacementTable':
         if os.path.isfile(file):
             with open(file, 'r', encoding='utf-8') as json_file:
                 data = json.load(json_file)
                 rtab = cls(**data)
         else:
-            rtab = cls(0, [], [])
+            rtab = cls.from_scratch()
 
         rtab.path = file
-
-        # Check for deprecated replacement sets
-        for rset in rtab.sets:
-            if rset.deprecated:
-                logging.warning('Format of replacement table %s is deprecated. Converting.' % file)
-                rtab.to_file()
-
         return rtab
 
     @classmethod
-    def from_string(cls, string):
+    def from_string(cls, string: str) -> 'ReplacementTable':
         data = json.loads(string)
         return cls(**data)
 
-    def set_from_langfile(self, path):
+    @classmethod
+    def from_scratch(cls) -> 'ReplacementTable':
+        return cls(1, [], [])
+
+    def set_from_langfile(self, path: str) -> Optional['ReplacementSet']:
         """Returns ReplacemenSet that matches the (os-agnostic) path of the language file."""
         try:
             return next(filter(lambda s: s.path == path, self.sets))
         except StopIteration:
             return None
 
-    def make_set_from_langfile(self, path):
+    def make_set_from_langfile(self, path: str) -> 'ReplacementSet':
         """
         Returns ReplacemenSet that matches the (os-agnostic) path of the language file
         or creates one if it doesn't exist.
         """
         rset = self.set_from_langfile(path)
         if not rset:
-            rset = ReplacementSet(path, [])
+            rset = ReplacementSet(path, dict())
             self.sets.append(rset)
+            self.sets.sort(key=lambda s: s.path)
         return rset
 
-    def to_file(self, file=None):
+    def to_file(self, file: str = None):
         if not file:
             file = self.path
 
@@ -216,24 +227,41 @@ class ReplacementTable:
             json.dump(self, outfile,
                       default=lambda obj: getattr(obj.__class__, "to_json")(obj), indent=2, ensure_ascii=False)
 
-    def to_string(self):
+    def to_string(self) -> str:
         return json.dumps(self,
                           default=lambda obj: getattr(obj.__class__, "to_json")(obj), indent=2, ensure_ascii=False)
 
-    def spotify_compatible(self, version):
+    def spotify_compatible(self, version: str) -> bool:
         return version in self.spotify_versions or self.is_empty()
 
-    def spotify_addversion(self, version):
+    def spotify_addversion(self, version: str):
         if version not in self.spotify_versions:
             self.spotify_versions.append(version)
 
-    def is_empty(self):
+    def is_empty(self) -> bool:
         for rset in self.sets:
             if not rset.is_empty():
                 return False
         return True
 
-    def to_json(self):
+    def n_replacements(self) -> int:
+        n = 0
+
+        for rset in self.sets:
+            n += rset.n_replacements()
+        return n
+
+    def n_suspicious(self) -> int:
+        n = 0
+
+        for rset in self.sets:
+            n += rset.n_suspicious()
+        return n
+
+    def md5_hash(self) -> str:
+        return hashlib.md5(self.to_string().encode('utf-8')).hexdigest()
+
+    def to_json(self) -> dict:
         return {
             'version': self.version,
             'spotify_versions': self.spotify_versions,
@@ -247,36 +275,38 @@ class ReplacementSet:
     of the language file it will run the replacements on.
     """
 
-    def __init__(self, path, replace):
+    def __init__(self, path: str, replace: Dict[str, str]):
         self.path = path
         self.realpath = self.get_realpath(path)
-        self.deprecated = False
-
-        if isinstance(replace, dict):
-            self.replace = replace
-        else:
-            # Backwards-compatibility for lists
-            self.deprecated = True
-            self.replace = {}
-            for item in replace:
-                self.replace[self._get_key(item.get('key'), item.get('old'))] = item.get('new')
+        self.replace = replace
 
     @staticmethod
-    def get_realpath(path):
+    def get_realpath(path: str) -> str:
         return os.path.join(*path.split('/'))
 
     @staticmethod
-    def _get_key(key, old):
+    def _get_key(key: str, old: str) -> str:
         return key + '|' + old
 
-    def add(self, key, old, new):
+    def add(self, key: str, old: str, new: str):
         self.replace[self._get_key(key, old)] = new
 
-    def get_replacement(self, key, old):
+    def get_replacement(self, key: str, old: str) -> str:
         return self.replace.get(self._get_key(key, old))
 
-    def is_empty(self):
+    def is_empty(self) -> bool:
         return not bool(self.replace)
 
-    def to_json(self):
+    def n_replacements(self) -> int:
+        return len(self.replace.items())
+
+    def n_suspicious(self) -> int:
+        n = 0
+
+        for _, val in self.replace.items():
+            if lang_file.is_suspicious(val):
+                n += 1
+        return n
+
+    def to_json(self) -> dict:
         return {'path': self.path, 'replace': self.replace}

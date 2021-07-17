@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "spotify_versions": [
+    "unittest",
+    "newver"
+  ],
+  "files": [
+    {
+      "path": "file1_withgender.xml",
+      "replace": {
+        "Giting|FREUND*INNEN EINLADEN": "FREUNDE EINLADEN",
+        "Ollope|„%1$s“ in Künstler*innen": "„%1$s“ in Künstler",
+        "Biblec|Künstler*innen": "Künstler",
+        "Lythro|Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem*einer Freund*in.": "Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem Freund.",
+        "Housur|Nur Premium Nutzer*innen": "Nur Premiumnutzer",
+        "Bizong|Künstler*innen-Radio basierend auf": "Künstlerradio\nbasierend auf"
+      }
+    },
+    {
+      "path": "file2_withgender.xml",
+      "replace": {
+        "Blatte_Greade/other|Spieler*innen": "Spieler",
+        "Blatte_Greade/one|Spieler*in": "Spieler",
+        "Urelex_Yeable/other|Künstler*innen": "Künstler",
+        "Urelex_Yeable/one|Künstler*in": "Künstler"
+      }
+    }
+  ]
+}
