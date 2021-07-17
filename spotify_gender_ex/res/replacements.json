@@ -1,5 +1,5 @@
 {
-  "version": 12,
+  "version": 13,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -26,7 +26,8 @@
     "8.6.36.1068",
     "8.6.36.1070",
     "8.6.40.929",
-    "8.6.42.671"
+    "8.6.42.671",
+    "8.6.44.851"
   ],
   "files": [
     {
@@ -230,7 +231,13 @@
         "dynamic_playlist_session_context_menu_action_view_artist_title_text|Künstler*in anzeigen": "Künstler anzeigen",
         "take_over_confirmation_dialog_subtitle_device|Die anderen Teilnehmer*innen werden vom Gerät getrennt und ihre Warteschlange wird gelöscht.": "Die anderen Teilnehmer werden vom Gerät getrennt und ihre Warteschlange wird gelöscht.",
         "podcast_sponsors_page_title|Sponsor*innen": "Sponsoren",
-        "invitation_privacy_note|Hinweis: Verbundene Nutzer*innen können dein Profilbild und deinen Benutzernamen sehen.": "Hinweis: Verbundene Nutzer können dein Profilbild und deinen Benutzernamen sehen."
+        "invitation_privacy_note|Hinweis: Verbundene Nutzer*innen können dein Profilbild und deinen Benutzernamen sehen.": "Hinweis: Verbundene Nutzer können dein Profilbild und deinen Benutzernamen sehen.",
+        "item_subtitle_artist|Künstler*in": "Künstler",
+        "podcast_paywalls_subscriber_podcast_dialog_body|\"Unterstütze die Show und erhalte Zugang zu allen Folgen plus zusätzlichem Content.\n\nWie das geht, erfährst du von dem*der Podcaster*in.\"": "\"Unterstütze die Show und erhalte Zugang zu allen Folgen plus zusätzlichem Content.\n\nWie das geht, erfährst du vom Podcaster.\"",
+        "show_context_menu_content_description_user|Mehr Optionen für Nutzer*in %1$s": "Mehr Optionen für Nutzer %1$s",
+        "social_listening_error_dialog_body_session_inactive|Du kannst eine neue Session mit deinen Freund*innen starten.": "Du kannst eine neue Session mit deinen Freunden starten.",
+        "start_session_top_subtitle_text|Hör gemeinsam mit Freund*innen an unterschiedlichen Orten.": "Hör gemeinsam mit Freunden an unterschiedlichen Orten.",
+        "user_can_not_rate_show_text|\"Nur Hörer*innen dieser Show können sie bewerten.\nHör dir ein paar Folgen an und gib dann deine Bewertung ab.\"": "\"Nur Zuhörer dieser Show können sie bewerten.\nHör dir ein paar Folgen an und gib dann deine Bewertung ab.\""
       }
     }
   ]
