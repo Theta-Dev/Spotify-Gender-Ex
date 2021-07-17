@@ -9,8 +9,7 @@ from github3 import exceptions
 from spotify_gender_ex.replacement_table import ReplacementTable
 
 REPO_OWNER = 'Theta-Dev'
-# REPO_NAME = 'Spotify-Gender-Ex'
-REPO_NAME = 'testactions'
+REPO_NAME = 'Spotify-Gender-Ex'
 
 PHRASES = [
     'Es wurden neue Gendersternchen entdeckt!',
