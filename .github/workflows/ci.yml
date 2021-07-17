@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - 'replacements/**'
   pull_request:
     branches:
       - '*'
