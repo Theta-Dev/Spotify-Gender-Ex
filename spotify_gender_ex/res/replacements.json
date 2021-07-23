@@ -1,5 +1,5 @@
 {
-  "version": 13,
+  "version": 14,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -27,7 +27,8 @@
     "8.6.36.1070",
     "8.6.40.929",
     "8.6.42.671",
-    "8.6.44.851"
+    "8.6.44.851",
+    "8.6.46.886"
   ],
   "files": [
     {
@@ -237,7 +238,11 @@
         "show_context_menu_content_description_user|Mehr Optionen für Nutzer*in %1$s": "Mehr Optionen für Nutzer %1$s",
         "social_listening_error_dialog_body_session_inactive|Du kannst eine neue Session mit deinen Freund*innen starten.": "Du kannst eine neue Session mit deinen Freunden starten.",
         "start_session_top_subtitle_text|Hör gemeinsam mit Freund*innen an unterschiedlichen Orten.": "Hör gemeinsam mit Freunden an unterschiedlichen Orten.",
-        "user_can_not_rate_show_text|\"Nur Hörer*innen dieser Show können sie bewerten.\nHör dir ein paar Folgen an und gib dann deine Bewertung ab.\"": "\"Nur Zuhörer dieser Show können sie bewerten.\nHör dir ein paar Folgen an und gib dann deine Bewertung ab.\""
+        "user_can_not_rate_show_text|\"Nur Hörer*innen dieser Show können sie bewerten.\nHör dir ein paar Folgen an und gib dann deine Bewertung ab.\"": "\"Nur Zuhörer dieser Show können sie bewerten.\nHör dir ein paar Folgen an und gib dann deine Bewertung ab.\"",
+        "playlist_participants_context_menu_make_collaborator|Als Mitwirkende*n festlegen": "Als Mitwirkenden festlegen",
+        "playlist_participants_context_menu_remove_as_collaborator|Als Mitwirkende*n entfernen": "Als Mitwirkenden entfernen",
+        "podcast_sponsors_error_subtitle|Schau später nochmal vorbei, um Infos zu den Sponsor*innen dieser Show zu erhalten.": "Schau später nochmal vorbei, um Infos zu den Sponsoren dieser Show zu erhalten.",
+        "podcast_sponsors_error_title|Die Infos zu Sponsor*innen wurden nicht geladen": "Die Infos zu Sponsoren wurden nicht geladen"
       }
     }
   ]
