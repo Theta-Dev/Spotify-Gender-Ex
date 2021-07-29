@@ -1,5 +1,5 @@
 {
-  "version": 14,
+  "version": 15,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -28,7 +28,8 @@
     "8.6.40.929",
     "8.6.42.671",
     "8.6.44.851",
-    "8.6.46.886"
+    "8.6.46.886",
+    "8.6.48.792"
   ],
   "files": [
     {
@@ -242,7 +243,13 @@
         "playlist_participants_context_menu_make_collaborator|Als Mitwirkende*n festlegen": "Als Mitwirkenden festlegen",
         "playlist_participants_context_menu_remove_as_collaborator|Als Mitwirkende*n entfernen": "Als Mitwirkenden entfernen",
         "podcast_sponsors_error_subtitle|Schau später nochmal vorbei, um Infos zu den Sponsor*innen dieser Show zu erhalten.": "Schau später nochmal vorbei, um Infos zu den Sponsoren dieser Show zu erhalten.",
-        "podcast_sponsors_error_title|Die Infos zu Sponsor*innen wurden nicht geladen": "Die Infos zu Sponsoren wurden nicht geladen"
+        "podcast_sponsors_error_title|Die Infos zu Sponsor*innen wurden nicht geladen": "Die Infos zu Sponsoren wurden nicht geladen",
+        "playlist_participants_try_again_dialog_body_follow_user|Du musst mit dem Internet verbunden sein, um diesem*dieser Nutzer*in zu folgen. Bitte stell eine Internetverbindung her und versuch’s nochmal.": "Du musst mit dem Internet verbunden sein, um diesem Nutzer zu folgen. Bitte stell eine Internetverbindung her und versuch’s nochmal.",
+        "playlist_participants_try_again_dialog_body_make_collaborator|Du musst mit dem Internet verbunden sein, um diese*n Nutzer*in als Mitwirkende*n zu bestimmen. Bitte stell eine Internetverbindung her und versuch’s nochmal.": "Du musst mit dem Internet verbunden sein, um diesen Nutzer als Mitwirkenden zu bestimmen. Bitte stell eine Internetverbindung her und versuch’s nochmal.",
+        "playlist_participants_try_again_dialog_body_remove_collaborator|Du musst mit dem Internet verbunden sein, um diese*n Nutzer*in als Mitwirkende*n zu entfernen. Bitte stell eine Internetverbindung her und versuch’s nochmal.": "Du musst mit dem Internet verbunden sein, um diesen Nutzer als Mitwirkenden zu entfernen. Bitte stell eine Internetverbindung her und versuch’s nochmal.",
+        "playlist_participants_try_again_dialog_body_remove_user|Du musst mit dem Internet verbunden sein, um diese*n Nutzer*in zu entfernen. Bitte stell eine Internetverbindung her und versuch’s nochmal.": "Du musst mit dem Internet verbunden sein, um diesen Nutzer zu entfernen. Bitte stell eine Internetverbindung her und versuch’s nochmal.",
+        "playlist_participants_try_again_dialog_body_unfollow_user|Du musst mit dem Internet verbunden sein, um diesem*dieser Nutzer*in zu entfolgen. Bitte stell eine Internetverbindung her und versuch’s nochmal.": "Du musst mit dem Internet verbunden sein, um diesem Nutzer zu entfolgen. Bitte stell eine Internetverbindung her und versuch’s nochmal.",
+        "podcast_sponsors_error_subtitle|Schau später nochmal vorbei, um Infos zu den Sponsor*innen dieser Folge zu erhalten.": "Schau später nochmal vorbei, um Infos zu den Sponsoren dieser Folge zu erhalten."
       }
     }
   ]
