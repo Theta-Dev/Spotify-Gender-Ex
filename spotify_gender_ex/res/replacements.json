@@ -1,5 +1,5 @@
 {
-  "version": 15,
+  "version": 16,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -29,7 +29,8 @@
     "8.6.42.671",
     "8.6.44.851",
     "8.6.46.886",
-    "8.6.48.792"
+    "8.6.48.792",
+    "8.6.52.911"
   ],
   "files": [
     {
@@ -249,7 +250,10 @@
         "playlist_participants_try_again_dialog_body_remove_collaborator|Du musst mit dem Internet verbunden sein, um diese*n Nutzer*in als Mitwirkende*n zu entfernen. Bitte stell eine Internetverbindung her und versuch’s nochmal.": "Du musst mit dem Internet verbunden sein, um diesen Nutzer als Mitwirkenden zu entfernen. Bitte stell eine Internetverbindung her und versuch’s nochmal.",
         "playlist_participants_try_again_dialog_body_remove_user|Du musst mit dem Internet verbunden sein, um diese*n Nutzer*in zu entfernen. Bitte stell eine Internetverbindung her und versuch’s nochmal.": "Du musst mit dem Internet verbunden sein, um diesen Nutzer zu entfernen. Bitte stell eine Internetverbindung her und versuch’s nochmal.",
         "playlist_participants_try_again_dialog_body_unfollow_user|Du musst mit dem Internet verbunden sein, um diesem*dieser Nutzer*in zu entfolgen. Bitte stell eine Internetverbindung her und versuch’s nochmal.": "Du musst mit dem Internet verbunden sein, um diesem Nutzer zu entfolgen. Bitte stell eine Internetverbindung her und versuch’s nochmal.",
-        "podcast_sponsors_error_subtitle|Schau später nochmal vorbei, um Infos zu den Sponsor*innen dieser Folge zu erhalten.": "Schau später nochmal vorbei, um Infos zu den Sponsoren dieser Folge zu erhalten."
+        "podcast_sponsors_error_subtitle|Schau später nochmal vorbei, um Infos zu den Sponsor*innen dieser Folge zu erhalten.": "Schau später nochmal vorbei, um Infos zu den Sponsoren dieser Folge zu erhalten.",
+        "liked_songs_sort_option_artist|Künstler*in": "Künstler",
+        "local_files_sort_artist|Künstler*in": "Künstler",
+        "user_can_not_rate_show_text|\"Nur Hörer*innen dieser Show können sie bewerten.\nHör dir ein paar Folgen an und gib dann dein Feedback ab.\"": "\"Nur Hörer dieser Show können sie bewerten.\nHör dir ein paar Folgen an und gib dann dein Feedback ab.\""
       }
     }
   ]
