@@ -1,5 +1,5 @@
 {
-  "version": 16,
+  "version": 17,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -30,7 +30,8 @@
     "8.6.44.851",
     "8.6.46.886",
     "8.6.48.792",
-    "8.6.52.911"
+    "8.6.52.911",
+    "8.6.58.994"
   ],
   "files": [
     {
@@ -253,7 +254,14 @@
         "podcast_sponsors_error_subtitle|Schau später nochmal vorbei, um Infos zu den Sponsor*innen dieser Folge zu erhalten.": "Schau später nochmal vorbei, um Infos zu den Sponsoren dieser Folge zu erhalten.",
         "liked_songs_sort_option_artist|Künstler*in": "Künstler",
         "local_files_sort_artist|Künstler*in": "Künstler",
-        "user_can_not_rate_show_text|\"Nur Hörer*innen dieser Show können sie bewerten.\nHör dir ein paar Folgen an und gib dann dein Feedback ab.\"": "\"Nur Hörer dieser Show können sie bewerten.\nHör dir ein paar Folgen an und gib dann dein Feedback ab.\""
+        "user_can_not_rate_show_text|\"Nur Hörer*innen dieser Show können sie bewerten.\nHör dir ein paar Folgen an und gib dann dein Feedback ab.\"": "\"Nur Hörer dieser Show können sie bewerten.\nHör dir ein paar Folgen an und gib dann dein Feedback ab.\"",
+        "social_listening_onboarding_host_info|Nutzer*innen, die im selben lokalen Netzwerk angemeldet sind, sehen deinen Anzeigenamen und dein Profilbild. Du kannst das unter Einstellungen > Geräte deaktivieren.": "Nutzer, die im selben lokalen Netzwerk angemeldet sind, sehen deinen Anzeigenamen und dein Profilbild. Du kannst das unter Einstellungen > Geräte deaktivieren.",
+        "social_listening_onboarding_host_title|Freund*innen in deiner Nähe können sich ebenfalls mit diesem Lautsprecher verbinden": "Freunde in deiner Nähe können sich ebenfalls mit diesem Lautsprecher verbinden",
+        "social_listening_onboarding_participant_device_subtitle|Alle Teilnehmer*innen dieser Session können steuern, was über dieses Gerät abgespielt wird.": "Alle Teilnehmer dieser Session können steuern, was über dieses Gerät abgespielt wird.",
+        "social_listening_onboarding_participant_info|Nutzer*innen, die im lokalen Netzwerk des Hosts angemeldet sind, sehen deinen Anzeigenamen und dein Profilbild.": "Nutzer, die im lokalen Netzwerk des Hosts angemeldet sind, sehen deinen Anzeigenamen und dein Profilbild.",
+        "social_listening_onboarding_participant_speaker_subtitle|Alle Teilnehmer*innen dieser Session können steuern, was über den Lautsprecher abgespielt wird.": "Alle Teilnehmer dieser Session können steuern, was über den Lautsprecher abgespielt wird.",
+        "social_listening_onboarding_text_host|Nutzer*innen, die im selben lokalen Netzwerk angemeldet sind, sehen deinen Anzeigenamen und dein Profilbild. Du kannst das unter Einstellungen > Geräte deaktivieren.": "Nutzer, die im selben lokalen Netzwerk angemeldet sind, sehen deinen Anzeigenamen und dein Profilbild. Du kannst das unter Einstellungen > Geräte deaktivieren.",
+        "social_listening_onboarding_text_participant|Nutzer*innen, die im lokalen Netzwerk des Hosts angemeldet sind, sehen deinen Anzeigenamen und dein Profilbild.": "Nutzer, die im lokalen Netzwerk des Hosts angemeldet sind, sehen deinen Anzeigenamen und dein Profilbild."
       }
     }
   ]
