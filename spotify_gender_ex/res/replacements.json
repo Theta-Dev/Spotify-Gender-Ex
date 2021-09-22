@@ -1,5 +1,5 @@
 {
-  "version": 18,
+  "version": 19,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -32,7 +32,8 @@
     "8.6.48.792",
     "8.6.52.911",
     "8.6.58.994",
-    "8.6.62.1029"
+    "8.6.62.1029",
+    "8.6.64.1081"
   ],
   "files": [
     {
@@ -265,7 +266,8 @@
         "social_listening_onboarding_text_participant|Nutzer*innen, die im lokalen Netzwerk des Hosts angemeldet sind, sehen deinen Anzeigenamen und dein Profilbild.": "Nutzer, die im lokalen Netzwerk des Hosts angemeldet sind, sehen deinen Anzeigenamen und dein Profilbild.",
         "content_feed_tip_box_subtitle|Hier findest du Neuerscheinungen von Künstler*innen und Podcasts, denen du folgst.": "Hier findest du Neuerscheinungen von Künstlern und Podcasts, denen du folgst.",
         "content_feed_tooltip_message|Hier findest du Neuerscheinungen von Künstler*innen und Podcasts, denen du folgst.": "Hier findest du Neuerscheinungen von Künstlern und Podcasts, denen du folgst.",
-        "social_listening_onboarding_host_title_device|Freund*innen in deiner Nähe können sich ebenfalls mit diesem Gerät verbinden": "Freunde in deiner Nähe können sich ebenfalls mit diesem Gerät verbinden"
+        "social_listening_onboarding_host_title_device|Freund*innen in deiner Nähe können sich ebenfalls mit diesem Gerät verbinden": "Freunde in deiner Nähe können sich ebenfalls mit diesem Gerät verbinden",
+        "data_saver_mode_subtitle|Setzt die Audioqualität auf „Niedrig“ (entspricht 24 kbit/s) und deaktiviert Künstler*innen-Canvases.": "Setzt die Audioqualität auf „Niedrig“ (entspricht 24 kbit/s) und deaktiviert Künstler-Canvases."
       }
     }
   ]
