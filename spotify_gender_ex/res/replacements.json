@@ -1,5 +1,5 @@
 {
-  "version": 20,
+  "version": 21,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -34,7 +34,8 @@
     "8.6.58.994",
     "8.6.62.1029",
     "8.6.64.1081",
-    "8.6.66.1238"
+    "8.6.66.1238",
+    "8.6.70.1102"
   ],
   "files": [
     {
@@ -269,7 +270,12 @@
         "content_feed_tooltip_message|Hier findest du Neuerscheinungen von Künstler*innen und Podcasts, denen du folgst.": "Hier findest du Neuerscheinungen von Künstlern und Podcasts, denen du folgst.",
         "social_listening_onboarding_host_title_device|Freund*innen in deiner Nähe können sich ebenfalls mit diesem Gerät verbinden": "Freunde in deiner Nähe können sich ebenfalls mit diesem Gerät verbinden",
         "data_saver_mode_subtitle|Setzt die Audioqualität auf „Niedrig“ (entspricht 24 kbit/s) und deaktiviert Künstler*innen-Canvases.": "Setzt die Audioqualität auf „Niedrig“ (entspricht 24 kbit/s) und deaktiviert Künstler-Canvases.",
-        "premium_plan_card_plan_manager|Verwalter*in des Abos": "Verwalter des Abos"
+        "premium_plan_card_plan_manager|Verwalter*in des Abos": "Verwalter des Abos",
+        "authScreenCopy|Du stimmst zu, dass <b>Samsung</b> auf all seinen Geräten zu Folgendem berechtigt ist:<br><br><b>Informationen zu deiner Nutzung von Spotify einsehen.</b> Das bedeutet, dass erfasst wird, was du speicherst, was dir gefällt, welchen Inhalten du folgst und was du anhörst sowie auf welchem Gerät du Spotify nutzt. So kann Samsung deine Spotify Inhalte jederzeit auf deine Anfrage hin wiedergeben.<br /><br /><b>Aktionen in deinem Spotify Konto ausführen.</b> Samsung kann in deiner Bibliothek Songs hinzufügen und löschen sowie Künstler*innen folgen oder nicht mehr folgen, wenn du Samsung dazu aufforderst.<br><br><b>Die Wiedergabe steuern,</b> damit du Spotify auf deinem Samsung-Gerät streamen und steuern kannst.<br><br><b>In der Datenschutzrichtlinie von Samsung erfährst du mehr darüber, wie Samsung deine Daten nutzt.</b><br><br>Samsung teilt Spotify auch deine E-Mail-Adresse, deinen Namen, dein Geschlecht und dein Geburtsdatum mit, sodass Spotify ein Konto für dich erstellen kann, wenn du derzeit noch keins hast. Spotify speichert diese Daten nur, wenn ein Konto erstellt wird. Mehr Informationen dazu, wie Spotify deine Daten verwendet, erhältst du in der <a href=\\\"https://www.spotify.com/legal/privacy-policy/\\\">Datenschutzrichtlinie von Spotify</a>.": "Du stimmst zu, dass <b>Samsung</b> auf all seinen Geräten zu Folgendem berechtigt ist:<br><br><b>Informationen zu deiner Nutzung von Spotify einsehen.</b> Das bedeutet, dass erfasst wird, was du speicherst, was dir gefällt, welchen Inhalten du folgst und was du anhörst sowie auf welchem Gerät du Spotify nutzt. So kann Samsung deine Spotify Inhalte jederzeit auf deine Anfrage hin wiedergeben.<br /><br /><b>Aktionen in deinem Spotify Konto ausführen.</b> Samsung kann in deiner Bibliothek Songs hinzufügen und löschen sowie Künstlern folgen oder nicht mehr folgen, wenn du Samsung dazu aufforderst.<br><br><b>Die Wiedergabe steuern,</b> damit du Spotify auf deinem Samsung-Gerät streamen und steuern kannst.<br><br><b>In der Datenschutzrichtlinie von Samsung erfährst du mehr darüber, wie Samsung deine Daten nutzt.</b><br><br>Samsung teilt Spotify auch deine E-Mail-Adresse, deinen Namen, dein Geschlecht und dein Geburtsdatum mit, sodass Spotify ein Konto für dich erstellen kann, wenn du derzeit noch keins hast. Spotify speichert diese Daten nur, wenn ein Konto erstellt wird. Mehr Informationen dazu, wie Spotify deine Daten verwendet, erhältst du in der <a href=\\\"https://www.spotify.com/legal/privacy-policy/\\\">Datenschutzrichtlinie von Spotify</a>.",
+        "settings_show_recently_played_artists_description|Kürzlich gehörte Künstler*innen in meinem öffentlichen Profil anzeigen": "Kürzlich gehörte Künstler in meinem öffentlichen Profil anzeigen",
+        "social_listening_participant_list_add_friends_description|Deine Freund*innen können Songs hinzufügen, skippen und auf dem selben Lautsprecher abspielen.": "Deine Freunde können Songs hinzufügen, überspringen und auf dem selben Lautsprecher abspielen.",
+        "social_listening_participant_list_add_friends_title|Freund*innen hinzufügen": "Freunde hinzufügen",
+        "social_listening_participant_list_legal_notice|Nutzer*innen, die im selben lokalen Netzwerk angemeldet sind, sehen deinen Anzeigenamen und dein Profilbild.": "Nutzer, die im selben lokalen Netzwerk angemeldet sind, sehen deinen Anzeigenamen und dein Profilbild."
       }
     }
   ]
