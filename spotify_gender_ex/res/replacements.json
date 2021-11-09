@@ -1,5 +1,5 @@
 {
-  "version": 21,
+  "version": 22,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -35,7 +35,8 @@
     "8.6.62.1029",
     "8.6.64.1081",
     "8.6.66.1238",
-    "8.6.70.1102"
+    "8.6.70.1102",
+    "8.6.74.1176"
   ],
   "files": [
     {
@@ -275,7 +276,17 @@
         "settings_show_recently_played_artists_description|Kürzlich gehörte Künstler*innen in meinem öffentlichen Profil anzeigen": "Kürzlich gehörte Künstler in meinem öffentlichen Profil anzeigen",
         "social_listening_participant_list_add_friends_description|Deine Freund*innen können Songs hinzufügen, skippen und auf dem selben Lautsprecher abspielen.": "Deine Freunde können Songs hinzufügen, überspringen und auf dem selben Lautsprecher abspielen.",
         "social_listening_participant_list_add_friends_title|Freund*innen hinzufügen": "Freunde hinzufügen",
-        "social_listening_participant_list_legal_notice|Nutzer*innen, die im selben lokalen Netzwerk angemeldet sind, sehen deinen Anzeigenamen und dein Profilbild.": "Nutzer, die im selben lokalen Netzwerk angemeldet sind, sehen deinen Anzeigenamen und dein Profilbild."
+        "social_listening_participant_list_legal_notice|Nutzer*innen, die im selben lokalen Netzwerk angemeldet sind, sehen deinen Anzeigenamen und dein Profilbild.": "Nutzer, die im selben lokalen Netzwerk angemeldet sind, sehen deinen Anzeigenamen und dein Profilbild.",
+        "blend_note|Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem*einer Freund*in. Verbundenen Personen wird dein Benutzername und Profilbild angezeigt. Sie haben auch die Möglichkeit, diese Daten in den sozialen Medien zu teilen.": "Hinweis: Der gemeinsame Mix ist für zwei Personen, also teile deine Einladung direkt mit einem Freund. Verbundenen Personen wird dein Benutzername und Profilbild angezeigt. Sie haben auch die Möglichkeit, diese Daten in den sozialen Medien zu teilen.",
+        "invite_friends_wifi_subtitle|Deine Freund*innen können diesem Lautsprecher beitreten, indem sie den Code unten scannen.": "Deine Freunde können diesem Lautsprecher beitreten, indem sie den Code unten scannen.",
+        "lineup_row_monthly_listeners_subtitle|%1$s monatliche Hörer*innen": "%1$s monatliche Hörer",
+        "podcast_ad_episode_page_header|Sponsor*innen": "Sponsoren",
+        "podcast_sponsors_error_subtitle_for_episode|Schau später nochmal vorbei, um Infos zu den Sponsor*innen dieser Folge zu erhalten.": "Schau später nochmal vorbei, um Infos zu den Sponsoren dieser Folge zu erhalten.",
+        "podcast_sponsors_error_subtitle_for_show|Schau später nochmal vorbei, um Infos zu den Sponsor*innen dieser Show zu erhalten.": "Schau später nochmal vorbei, um Infos zu den Sponsoren dieser Show zu erhalten.",
+        "social_listening_onboarding_host_device_subtitle_message|Freund*innen im selben WLAN-Netzwerk können beitreten, indem sie auf %1$s tippen und dasselbe Gerät auswählen.": "Freunde im selben WLAN-Netzwerk können beitreten, indem sie auf %1$s tippen und dasselbe Gerät auswählen.",
+        "social_listening_onboarding_host_info_message|Dein Anzeigename und dein Profilbild auf Spotify werden anderen Nutzer*innen im selben WLAN-Netzwerk angezeigt. Tippe auf %1$s, um dies zu deaktivieren.": "Dein Anzeigename und dein Profilbild auf Spotify werden anderen Nutzern im selben WLAN-Netzwerk angezeigt. Tippe auf %1$s, um dies zu deaktivieren.",
+        "social_listening_onboarding_host_speaker_subtitle_message|Freund*innen im selben WLAN-Netzwerk können beitreten, indem sie auf %1$s tippen und denselben Lautsprecher auswählen.": "Freunde im selben WLAN-Netzwerk können beitreten, indem sie auf %1$s tippen und denselben Lautsprecher auswählen.",
+        "social_listening_title_friends|Freund*innen einladen": "Freunde einladen"
       }
     }
   ]
