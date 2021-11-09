@@ -19,11 +19,15 @@ def start_genderex(apk_file='', directory='.', replacement_table='', builtin=Fal
                             ks_password, key_password)
 
     click.echo('Spotify-Gender-Ex Version: %s' % __version__)
-    click.echo('Aktuelle Spotify-Version: %s' % gex.latest_spotify)
+    click.echo('Aktuelle Spotify-Version: %s' % gex.get_spotify_store_version())
     click.echo('Ersetzungstabellen: %s' % gex.rtm.get_rt_versions())
 
     if on_gh_actions:
         click.echo('GenderEx läuft auf GitHub Actions.')
+    
+    if not gex.is_operational():
+        click.echo('Keine Spotify-App vorhanden.')
+        return
 
     # Non-interactive mode is meant for automation.
     # In this case, dont process the same spotify version multiple times

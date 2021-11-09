@@ -245,8 +245,8 @@
         <item quantity="one">Füge zum Teilen noch %1$d Song oder Podcast hinzu.</item>
     </plurals>
     <plurals name="social_listening_join_failed_session_full_body">
-        <item quantity="other">Es können %1$s Hörer gleichzeitig teilnehmen und wir haben das Maximum erreicht.</item>
-        <item quantity="one">Es kann %1$s Hörer gleichzeitig teilnehmen und wir haben das Maximum erreicht.</item>
+        <item quantity="other">Es können %1$s Zuhörer gleichzeitig teilnehmen und wir haben das Maximum erreicht.</item>
+        <item quantity="one">Es kann %1$s Zuhörer gleichzeitig teilnehmen und wir haben das Maximum erreicht.</item>
     </plurals>
     <plurals name="social_listening_participant_list_invite_notice_title">
         <item quantity="other">Lade bis zu %1$s Freunde ein</item>

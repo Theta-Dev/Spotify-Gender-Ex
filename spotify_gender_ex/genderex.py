@@ -8,7 +8,7 @@ import click
 from importlib_resources import files
 
 from spotify_gender_ex import __version__
-from spotify_gender_ex import downloader
+from spotify_gender_ex import downloader, appstore
 from spotify_gender_ex.replacement_table import ReplacementManager, ReplacementTable
 from spotify_gender_ex.workdir import Workdir
 
@@ -32,8 +32,11 @@ class GenderEx:
         self.rtm = ReplacementManager(self.workdir.dir_apk, self._get_missing_replacement)
 
         # Downloader
-        self.downloader = downloader.Downloader()
-        self.latest_spotify = self.downloader.spotify_version
+        self.spotify_app = None
+        try:
+            self.spotify_app = appstore.get_spotify_app()
+        except appstore.StoreException:
+            click.echo('Spotify-App konnte nicht abgerufen werden')
 
         if apk_file and os.path.isfile(apk_file):
             self.workdir.file_apk = apk_file
@@ -48,12 +51,12 @@ class GenderEx:
 
             if not builtin:
                 try:
-                    rtab_raw = self.downloader.get_replacement_table_raw()
+                    rtab_raw = downloader.get_replacement_table_raw()
                     rt = ReplacementTable.from_string(rtab_raw)
                     self.rtm.add_rtab(rt, 'builtin (GitHub)')
                     got_rt = True
-                except Exception as e:
-                    click.echo(str(e))
+                except Exception:
+                    pass
 
             if not got_rt:
                 rt = ReplacementTable.from_file(files('spotify_gender_ex.res').joinpath('replacements.json'))
@@ -64,14 +67,13 @@ class GenderEx:
                     # If replacement table specified, make it the only table
                     rt = ReplacementTable.from_file(rtfile)
                     self.rtm.add_rtab(rt, 'custom (%s)' % rtfile)
+        
+    def is_operational(self) -> bool:
+        return self.spotify_app is not None or os.path.isfile(self.workdir.file_apk)
 
     def is_latest_spotify_processed(self) -> bool:
         """Check if the latest spotify version is already processed"""
-        # Dont check if downloading has been disabled
-        if not self.downloader:
-            return False
-
-        latest_version = '%s-%s' % (self.latest_spotify, self.rtm.get_rt_versions())
+        latest_version = '%s-%s' % (self.get_spotify_store_version(), self.rtm.get_rt_versions())
 
         # Check spotify_version.txt
         if os.path.isfile(self.workdir.file_version):
@@ -92,12 +94,9 @@ class GenderEx:
             msg = 'APK-Datei existiert bereits, Download übersprungen.'
             click.echo(msg)
             return True
-        elif not self.downloader:
-            msg = 'APK-Datei kann nicht heruntergeladen werden. Beende.'
-            click.echo(msg)
-            return False
         else:
-            return self.downloader.download_spotify(self.workdir.file_apk)
+            return downloader.download_file(self.spotify_app.download_url, self.workdir.file_apk,
+                'Spotify ' + self.spotify_app.version)
 
     def verify(self):
         """Check if the Spotify apk file is genuine by verifying its certificate"""
@@ -167,6 +166,12 @@ class GenderEx:
                 self.wait_for_enter('Enter drücken, um die Eingabe zu wiederholen.')
                 return self._get_missing_replacement(key, old)
 
+    def get_spotify_store_version(self) -> str:
+        if self.spotify_app:
+            return self.spotify_app.version
+        else:
+            return ''
+    
     def get_spotify_version(self) -> str:
         """Reads the Spotify version number from the decompiled app."""
         with open(self.workdir.file_apktool, 'r', encoding='utf-8') as f:

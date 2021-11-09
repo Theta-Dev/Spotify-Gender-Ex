@@ -28,6 +28,7 @@ setuptools.setup(
         'pyyaml',
         'requests',
         'github3.py',
+        'beautifulsoup4',
     ],
     packages=setuptools.find_packages(exclude=['tests*']),
     package_data={

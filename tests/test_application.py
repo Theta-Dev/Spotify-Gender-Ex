@@ -2,7 +2,7 @@ import os
 import unittest
 
 import tests
-from spotify_gender_ex import downloader
+from spotify_gender_ex import appstore, downloader
 from spotify_gender_ex.__main__ import start_genderex
 
 DOWNLOAD_IDS = {
@@ -38,9 +38,9 @@ class ScriptTest(unittest.TestCase):
 
         # Dowload apk file if not existant
         if not os.path.isfile(apk_file):
-            dwn = downloader.Downloader(DOWNLOAD_IDS[version])
+            app = appstore.get_spotify_app_from_id(DOWNLOAD_IDS[version])
 
-            if dwn.download_spotify(apk_file):
+            if downloader.download_file(app.download_url, apk_file, version):
                 print('Downloaded ' + version)
             else:
                 self.fail('Download not successful')
