@@ -1,5 +1,5 @@
 {
-  "version": 23,
+  "version": 24,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -37,7 +37,8 @@
     "8.6.66.1238",
     "8.6.70.1102",
     "8.6.74.1176",
-    "8.6.78.264"
+    "8.6.78.264",
+    "8.6.80.1007"
   ],
   "files": [
     {
@@ -291,7 +292,8 @@
         "social_listening_onboarding_host_speaker_subtitle_message|Freund*innen im selben WLAN-Netzwerk können beitreten, indem sie auf %1$s tippen und denselben Lautsprecher auswählen.": "Freunde im selben WLAN-Netzwerk können beitreten, indem sie auf %1$s tippen und denselben Lautsprecher auswählen.",
         "social_listening_title_friends|Freund*innen einladen": "Freunde einladen",
         "artist_context_menu_title|Mehr Künstler*innen": "Mehr Künstler",
-        "ipl_manage_participants|Teilnehmer*innen verwalten": "Teilnehmer verwalten"
+        "ipl_manage_participants|Teilnehmer*innen verwalten": "Teilnehmer verwalten",
+        "home_context_menu_navigate_artist|Künstler*in aufrufen": "Künstler aufrufen"
       }
     }
   ]
