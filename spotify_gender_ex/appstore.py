@@ -68,6 +68,8 @@ class Apkcombo:
         if not HAS_SELENIUM:
             raise StoreException('Selenium not installed')
 
+        print("Using selenium to fetch " + url)
+
         driver = webdriver.Chrome()
         driver.get(url)
         data = driver.page_source
