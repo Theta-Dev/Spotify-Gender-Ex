@@ -48,7 +48,7 @@ class AppstoreTest(unittest.TestCase):
     def test_get_spotify_app(self):
         app = appstore.get_spotify_app()
         self.assertEqual(len(app.version.split('.')), 4)
-        self.assertTrue('.apk' in app.download_url)
+        self.assertTrue(app.download_url.startswith('https://'))
     
     def test_compare_versions(self):
         self.assertEqual(0, appstore.compare_versions('8.6.4.971', '8.6.4.971'))

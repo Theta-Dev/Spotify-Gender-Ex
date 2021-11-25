@@ -30,6 +30,9 @@ setuptools.setup(
         'github3.py',
         'beautifulsoup4',
     ],
+    extras_require={
+        'selenium': ['selenium']
+    },
     packages=setuptools.find_packages(exclude=['tests*']),
     package_data={
         'spotify_gender_ex': ['lib/*', 'res/*']

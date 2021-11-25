@@ -67,21 +67,24 @@ class GenderEx:
                     # If replacement table specified, make it the only table
                     rt = ReplacementTable.from_file(rtfile)
                     self.rtm.add_rtab(rt, 'custom (%s)' % rtfile)
-        
+
     def is_operational(self) -> bool:
         return self.spotify_app is not None or os.path.isfile(self.workdir.file_apk)
 
     def is_latest_spotify_processed(self) -> bool:
         """Check if the latest spotify version is already processed"""
-        latest_version = '%s-%s' % (self.get_spotify_store_version(), self.rtm.get_rt_versions())
-
         # Check spotify_version.txt
         if os.path.isfile(self.workdir.file_version):
             with open(self.workdir.file_version, encoding='utf-8') as f:
-                ver = f.read().strip()
+                version_string = f.read().strip()
 
-            if latest_version == ver:
-                return True
+            vsplit = version_string.split('-', 1)
+            if len(vsplit) != 2:
+                return False
+
+            return vsplit[1] == self.rtm.get_rt_versions() and \
+                   appstore.compare_versions(self.get_spotify_store_version(), vsplit[0]) != 1
+
         return False
 
     def download(self) -> bool:
@@ -96,7 +99,7 @@ class GenderEx:
             return True
         else:
             return downloader.download_file(self.spotify_app.download_url, self.workdir.file_apk,
-                'Spotify ' + self.spotify_app.version)
+                                            'Spotify ' + self.spotify_app.version)
 
     def verify(self):
         """Check if the Spotify apk file is genuine by verifying its certificate"""
@@ -171,7 +174,7 @@ class GenderEx:
             return self.spotify_app.version
         else:
             return ''
-    
+
     def get_spotify_version(self) -> str:
         """Reads the Spotify version number from the decompiled app."""
         with open(self.workdir.file_apktool, 'r', encoding='utf-8') as f:

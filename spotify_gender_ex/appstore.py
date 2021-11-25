@@ -1,14 +1,23 @@
+import re
 from dataclasses import dataclass
 from typing import List, Set
+
 import requests
 from bs4 import BeautifulSoup
-import re
+
+HAS_SELENIUM = False
+try:
+    from selenium import webdriver
+
+    HAS_SELENIUM = True
+except ImportError:
+    pass
 
 URL_APKCOMBO = 'https://apkcombo.com/apk-downloader/?q=%s'
 URL_UPTODOWN = 'https://spotify.de.uptodown.com/android/download'
 
 DEFAULT_CPU = 'arm64-v8a'
-DEFAULT_UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.35 Safari/537.36'
+DEFAULT_UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36'
 
 
 @dataclass
@@ -17,10 +26,10 @@ class App:
     cpu_archs: Set[str]
     download_url: str
 
-    def __eq__(self, o: object) -> bool:
+    def __eq__(self, o: 'App') -> bool:
         return self.version == o.version
-    
-    def __gt__(self, o: object) -> bool:
+
+    def __gt__(self, o: 'App') -> bool:
         return compare_versions(self.version, o.version) > 0
 
 
@@ -31,15 +40,39 @@ class StoreException(Exception):
 class Apkcombo:
     def __init__(self, user_agent=DEFAULT_UA, cpu_arch=DEFAULT_CPU):
         self.cpu_arch = cpu_arch
-        self.headers = {'User-Agent': user_agent}
+        self.headers = {
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+            "Accept-Encoding": "gzip, deflate",
+            "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
+            "Dnt": "1",
+            "Upgrade-Insecure-Requests": "1",
+            'User-Agent': user_agent
+        }
 
     def _query_page(self, app_name) -> str:
         url = URL_APKCOMBO % app_name
-        
+
         try:
-            return requests.get(url, headers=self.headers).text
+            resp = requests.get(url, headers=self.headers)
+            # Cloudflare protection
+            if resp.status_code == 503:
+                return self._query_page_selenium(url)
+            if resp.status_code != 200:
+                raise StoreException('HTTP status code: ' + str(resp.status_code))
+            return resp.text
         except Exception as e:
             raise StoreException(e)
+
+    @staticmethod
+    def _query_page_selenium(url) -> str:
+        if not HAS_SELENIUM:
+            raise StoreException('Selenium not installed')
+
+        driver = webdriver.Chrome()
+        driver.get(url)
+        data = driver.page_source
+        driver.quit()
+        return data
 
     def _parse_page(self, raw_page) -> List[App]:
         soup = BeautifulSoup(raw_page, 'html.parser')
