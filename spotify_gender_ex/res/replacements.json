@@ -1,5 +1,5 @@
 {
-  "version": 24,
+  "version": 25,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -38,7 +38,8 @@
     "8.6.70.1102",
     "8.6.74.1176",
     "8.6.78.264",
-    "8.6.80.1007"
+    "8.6.80.1007",
+    "8.6.84.1240"
   ],
   "files": [
     {
@@ -57,7 +58,9 @@
         "join_or_take_over_dialog_title_multiple_participants/one|%1$s und %2$d andere*r hören auf %3$s.": "%1$s und %2$d anderer hören auf %3$s.",
         "playlist_header_collaborators/one|%1$s + %2$d weitere*r": "%1$s + %2$d weiterer",
         "connect_button_device_with_participants/other|%1$s Hörer*innen": "%1$s Hörer",
-        "connect_button_device_with_participants/one|%1$s Hörer*in": "%1$s Hörer"
+        "connect_button_device_with_participants/one|%1$s Hörer*in": "%1$s Hörer",
+        "profile_list_item_followers_count/other|%1$,d Follower*innen": "%1$,d Follower",
+        "profile_list_item_followers_count/one|%1$,d Follower*innen": "%1$,d Follower"
       }
     },
     {
@@ -293,7 +296,13 @@
         "social_listening_title_friends|Freund*innen einladen": "Freunde einladen",
         "artist_context_menu_title|Mehr Künstler*innen": "Mehr Künstler",
         "ipl_manage_participants|Teilnehmer*innen verwalten": "Teilnehmer verwalten",
-        "home_context_menu_navigate_artist|Künstler*in aufrufen": "Künstler aufrufen"
+        "home_context_menu_navigate_artist|Künstler*in aufrufen": "Künstler aufrufen",
+        "blend_group_note|Hinweis: Du kannst bis zu 10 Personen einladen. Verbundene Nutzer*innen sehen dein Profilbild und deinen Benutzernamen. Durch das Einladen von Freund*innen werden Playlists erstellt und andere Empfehlungsfeatures genutzt, die eurem Geschmack entsprechen.": "Hinweis: Du kannst bis zu 10 Personen einladen. Verbundene Nutzer sehen dein Profilbild und deinen Benutzernamen. Durch das Einladen von Freunden werden Playlists erstellt und andere Empfehlungsfeatures genutzt, die eurem Geschmack entsprechen.",
+        "first_rate_description|Du bist eine*r der ersten Hörer*innen, die diese Show bewerten. Vielen Dank! Sobald genug Leute ihr Feedback gegeben haben, zeigen wir die durchschnittliche Bewertung an.": "Du bist einer der ersten Hörer, die diese Show bewerten. Vielen Dank! Sobald genug Leute ihr Feedback gegeben haben, zeigen wir die durchschnittliche Bewertung an.",
+        "invite_friends|Freund*innen einladen": "Freunde einladen",
+        "playlist_invite_friends_with_token_title|Freund*innen einladen": "Freunde einladen",
+        "settings_listening_activity_description|Mit meinen Follower*innen auf Spotify teilen, was ich höre": "Mit meinen Followern auf Spotify teilen, was ich höre",
+        "social_listening_participant_list_invite_notice_title_one_friend|Eine*n Freund*in einladen": "Einen Freund einladen"
       }
     }
   ]
