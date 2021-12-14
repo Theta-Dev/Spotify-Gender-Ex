@@ -30,7 +30,6 @@ jobs:
 
       - name: Run GenderEx
         run: |
-          sudo apt-get install openssh-client -y
-          echo ${{ secrets.TRIGGER_SSH_KEY }} > ssh_key
+          echo "${{ secrets.TRIGGER_SSH_KEY }}" > ssh_key
           ssh -i ssh_key trigger@thetadev.de
           rm ssh_key
