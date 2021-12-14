@@ -31,5 +31,6 @@ jobs:
       - name: Run GenderEx
         run: |
           echo "${{ secrets.TRIGGER_SSH_KEY }}" > ssh_key
+          chmod 600 ssh_key
           ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ssh_key trigger@thetadev.de
           rm ssh_key
