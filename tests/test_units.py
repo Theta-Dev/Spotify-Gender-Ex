@@ -50,6 +50,10 @@ class AppstoreTest(unittest.TestCase):
         self.assertEqual(len(app.version.split('.')), 4)
         self.assertTrue(app.download_url.startswith('https://'))
     
+    def test_chromedriver(self):
+        raw_html = appstore.Apkcombo._query_page_selenium('https://raw.githubusercontent.com/Theta-Dev/Spotify-Gender-Ex/master/README.md')
+        self.assertIn('Spotify-Gender-Ex', raw_html)
+    
     def test_compare_versions(self):
         self.assertEqual(0, appstore.compare_versions('8.6.4.971', '8.6.4.971'))
         self.assertEqual(1, appstore.compare_versions('8.6.5.971', '8.6.4.1000'))

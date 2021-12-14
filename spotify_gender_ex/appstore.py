@@ -70,7 +70,14 @@ class Apkcombo:
 
         print("Using selenium to fetch " + url)
 
-        driver = webdriver.Chrome()
+        chrome_opt = webdriver.ChromeOptions()
+        chrome_opt.add_argument("--no-sandbox")
+        chrome_opt.add_argument("--disable-extensions")
+        chrome_opt.add_argument("--disable-gpu")
+        chrome_opt.add_argument("--disable-dev-shm-usage")
+        chrome_opt.add_argument("--headless")
+
+        driver = webdriver.Chrome(options=chrome_opt)
         driver.get(url)
         data = driver.page_source
         driver.quit()
