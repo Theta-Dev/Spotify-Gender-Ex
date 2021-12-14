@@ -6,6 +6,7 @@ on:
       - master
     paths:
       - 'spotify_gender_ex/res/replacements.json'
+  workflow_dispatch:
 
 jobs:
   dispatch:
@@ -28,9 +29,7 @@ jobs:
         run: pytest tests/test_replacements.py
 
       - name: Run GenderEx
-        uses: mvasigh/dispatch-action@main
-        with:
-          token: ${{ secrets.MY_GH_TOKEN }}
-          repo: GenderEx-Run
-          owner: Theta-Dev
-          event_type: run_genderex
+        run: |
+          echo ${{ secrets.TRIGGER_SSH_KEY }} > ssh_key
+          ssh -i ssh_key trigger@thetadev.de
+          rm ssh_key
