@@ -30,6 +30,8 @@ jobs:
 
       - name: Run GenderEx
         run: |
-          echo "${{ secrets.TRIGGER_SSH_KEY }}" > ssh_key
-          ssh -i ssh_key trigger@thetadev.de
-          rm ssh_key
+          mkdir ~/.ssh
+          echo "thetadev.de ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOENIbF43EQi41ndBcnDIr9EMOSesx/KW+FufnkzPhRH" > ~/.ssh/known_hosts
+          echo "${{ secrets.TRIGGER_SSH_KEY }}" > ~/.ssh/id_ed25519
+          ssh trigger@thetadev.de
+          rm -rf ~/.ssh
