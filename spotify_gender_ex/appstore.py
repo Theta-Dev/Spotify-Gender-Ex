@@ -5,14 +5,6 @@ from typing import List, Set
 import requests
 from bs4 import BeautifulSoup
 
-HAS_SELENIUM = False
-try:
-    from selenium import webdriver
-
-    HAS_SELENIUM = True
-except ImportError:
-    pass
-
 URL_APKCOMBO = 'https://apkcombo.com/apk-downloader/?q=%s'
 URL_UPTODOWN = 'https://spotify.de.uptodown.com/android/download'
 
@@ -54,34 +46,11 @@ class Apkcombo:
 
         try:
             resp = requests.get(url, headers=self.headers)
-            # Cloudflare protection
-            if resp.status_code == 503:
-                return self._query_page_selenium(url)
             if resp.status_code != 200:
                 raise StoreException('HTTP status code: ' + str(resp.status_code))
             return resp.text
         except Exception as e:
             raise StoreException(e)
-
-    @staticmethod
-    def _query_page_selenium(url) -> str:
-        if not HAS_SELENIUM:
-            raise StoreException('Selenium not installed')
-
-        print("Using selenium to fetch " + url)
-
-        chrome_opt = webdriver.ChromeOptions()
-        chrome_opt.add_argument("--no-sandbox")
-        chrome_opt.add_argument("--disable-extensions")
-        chrome_opt.add_argument("--disable-gpu")
-        chrome_opt.add_argument("--disable-dev-shm-usage")
-        chrome_opt.add_argument("--headless")
-
-        driver = webdriver.Chrome(options=chrome_opt)
-        driver.get(url)
-        data = driver.page_source
-        driver.quit()
-        return data
 
     def _parse_page(self, raw_page) -> List[App]:
         soup = BeautifulSoup(raw_page, 'html.parser')

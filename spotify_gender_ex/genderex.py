@@ -8,7 +8,7 @@ import click
 from importlib_resources import files
 
 from spotify_gender_ex import __version__
-from spotify_gender_ex import downloader, appstore
+from spotify_gender_ex import downloader, appstore, notify
 from spotify_gender_ex.replacement_table import ReplacementManager, ReplacementTable
 from spotify_gender_ex.workdir import Workdir
 
@@ -18,7 +18,7 @@ _SPOTIFY_CERT_SHA256 = '6505b181933344f93893d586e399b94616183f04349cb572a9e81a33
 class GenderEx:
     def __init__(self, apk_file='', folder_out='.', replacement_tables: Optional[Iterable[str]] = None, builtin=False,
                  no_internal=False,
-                 no_interaction=False, ks_password='', key_password=''):
+                 no_interaction=False, ks_password='', key_password='', gotify_url=''):
         self.spotify_version = ''
         self.noia = no_interaction
         self.ks_password = ks_password or '12345678'
@@ -67,6 +67,11 @@ class GenderEx:
                     # If replacement table specified, make it the only table
                     rt = ReplacementTable.from_file(rtfile)
                     self.rtm.add_rtab(rt, 'custom (%s)' % rtfile)
+
+        # Notifier
+        self.notifier = None
+        if gotify_url:
+            self.notifier = notify.Notifier(gotify_url)
 
     def is_operational(self) -> bool:
         return self.spotify_app is not None or os.path.isfile(self.workdir.file_apk)
@@ -245,6 +250,20 @@ class GenderEx:
         self.file_rtabout = self.workdir.get_file_newrepl(self.spotify_version, rtver)
         if self.rtm.write_new_replacements(self.spotify_version, self.file_rtabout):
             click.echo('Neue Ersetzungstabelle gespeichert')
+
+    def notify(self):
+        if self.notifier is not None:
+            msg = '''Spotify {spotify_version} wurde erfolgreich degenderifiziert.
+Spotify-Gender-Ex: {genderex_version}
+Ersetzungstabellen: {rt_versions}
+Neue Ersetzungsregeln: {repl_string}'''.format(
+                spotify_version=self.spotify_version,
+                genderex_version=__version__,
+                rt_versions=self.rtm.get_rt_versions(),
+                repl_string=self.rtm.get_new_repl_string(),
+            )
+
+            self.notifier.notify(msg)
 
     @staticmethod
     def set_github_var(key, value):
