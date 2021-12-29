@@ -1,5 +1,5 @@
 {
-  "version": 26,
+  "version": 27,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -40,7 +40,8 @@
     "8.6.78.264",
     "8.6.80.1007",
     "8.6.84.1240",
-    "8.6.86.1231"
+    "8.6.86.1231",
+    "8.6.88.1104"
   ],
   "files": [
     {
@@ -306,7 +307,8 @@
         "social_listening_participant_list_invite_notice_title_one_friend|Eine*n Freund*in einladen": "Einen Freund einladen",
         "episode_associations_artist_row_chevron_content_description|Künstler*in aufrufen": "Künstler aufrufen",
         "episode_associations_artist_row_subtitle|Künstler*in": "Künstler",
-        "medium_density_card_artist|Künstler*in": "Künstler"
+        "medium_density_card_artist|Künstler*in": "Künstler",
+        "section_header_title_artist|Verknüpfte*r Künstler*in": "Verknüpfter Künstler"
       }
     }
   ]
