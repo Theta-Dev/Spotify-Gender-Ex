@@ -1,5 +1,5 @@
 {
-  "version": 27,
+  "version": 28,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -41,7 +41,8 @@
     "8.6.80.1007",
     "8.6.84.1240",
     "8.6.86.1231",
-    "8.6.88.1104"
+    "8.6.88.1104",
+    "8.6.96.422"
   ],
   "files": [
     {
@@ -308,7 +309,24 @@
         "episode_associations_artist_row_chevron_content_description|Künstler*in aufrufen": "Künstler aufrufen",
         "episode_associations_artist_row_subtitle|Künstler*in": "Künstler",
         "medium_density_card_artist|Künstler*in": "Künstler",
-        "section_header_title_artist|Verknüpfte*r Künstler*in": "Verknüpfter Künstler"
+        "section_header_title_artist|Verknüpfte*r Künstler*in": "Verknüpfter Künstler",
+        "artist_concerts_no_concerts_near_user_location|Für diese*n Künstler*in gibt es keine Konzerttermine in der Nähe von %1$s.": "Für diesen Künstler gibt es keine Konzerttermine in der Nähe von %1$s.",
+        "artist_concerts_no_concerts_near_you|Für diese*n Künstler*in gibt es keine Konzerttermine in deiner Nähe.": "Für diesen Künstler gibt es keine Konzerttermine in deiner Nähe.",
+        "context_menu_ban_artist|Diese*n Künstler*in nicht spielen": "Diesen Künstler nicht spielen",
+        "context_menu_unban_artist|Diese*n Künstler*in wieder spielen": "Diesen Künstler wieder spielen",
+        "enhanced_session_context_menu_action_view_artist_title_text|Künstler*in anzeigen": "Künstler anzeigen",
+        "freetier_education_toastie_artist_ban|OK, wir werden diese*n Künstler*in nicht wieder spielen.": "OK, wir werden diesen Künstler nicht wieder spielen.",
+        "marquee_feedback_menu_option_artist|Ich habe kein Interesse an diesem*dieser Künstler*in.": "Ich habe kein Interesse an diesem Künstler.",
+        "marquee_optout_artist_notification_text|Alles klar. Diese werden für diese*n Künstler*in nicht angezeigt.": "Alles klar. Diese werden für diesen Künstler nicht angezeigt.",
+        "marquee_optout_menu_optout_artist|Für diese*n Künstler*in nicht anzeigen": "Für diesen Künstler nicht anzeigen",
+        "placeholder_collection_empty_artist_only_not_following_body|Du hast von %1$s noch nichts gespeichert. Folge diesem*dieser Künstler*in, um ihn*sie in „Deine Musik“ anzuzeigen.": "Du hast von %1$s noch nichts gespeichert. Folge diesem Künstler, um ihn in „Deine Musik“ anzuzeigen.",
+        "placeholder_collection_empty_artist_only_not_following_body_your_library|Du hast von %1$s noch nichts gespeichert. Folge diesem*dieser Künstler*in, um ihn*sie in deiner Bibliothek anzuzeigen.": "Du hast von %1$s noch nichts gespeichert. Folge diesem Künstler, um ihn in deiner Bibliothek anzuzeigen.",
+        "playlist_participants_row_subtitle_owner|Inhaber*in": "Inhaber",
+        "profile_list_followers_title|Follower*innen": "Follower",
+        "profile_tabs_followers|FOLLOWER*INNEN": "FOLLOWER",
+        "share_to_external_artist_title|Hier ist ein*e Künstler*in, den*die ich mit dir teilen möchte…": "Hier ist ein Künstler, den ich mit dir teilen möchte…",
+        "toast_banned_artist|Ok, wir werden keine Musik von diesem*dieser Künstler*in mehr spielen.": "Ok, wir werden keine Musik von diesem Künstler mehr spielen.",
+        "try_saying|Versuche, eine*n Künstler*in, einen Song oder den Namen einer Playlist zu sagen.": "Versuche, einen Künstler, einen Song oder den Namen einer Playlist zu sagen."
       }
     }
   ]
