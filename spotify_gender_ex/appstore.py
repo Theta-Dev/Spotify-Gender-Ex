@@ -5,7 +5,7 @@ from typing import List, Set
 import requests
 from bs4 import BeautifulSoup
 
-URL_APKCOMBO = 'https://apkcombo.com/apk-downloader/?q=%s'
+URL_APKCOMBO = 'https://apkcombo.com/%s/download/apk'
 URL_UPTODOWN = 'https://spotify.de.uptodown.com/android/download'
 
 DEFAULT_CPU = 'arm64-v8a'
@@ -110,7 +110,7 @@ class Apkcombo:
         raise StoreException('Could not find apk for ' + self.cpu_arch)
 
     def get_spotify_app(self) -> App:
-        raw_page = self._query_page('com.spotify.music')
+        raw_page = self._query_page('spotify/com.spotify.music')
         apps = self._parse_page(raw_page)
         return self._pick_app(apps)
 
@@ -168,7 +168,7 @@ def get_spotify_app(cpu_arch=DEFAULT_CPU) -> App:
 
     if len(found_apps) == 0:
         raise StoreException('Spotify-App konnte nicht abgerufen werden')
-    
+
     return max(found_apps)
 
 
@@ -196,7 +196,7 @@ def compare_versions(version_a: str, version_b: str) -> int:
     for i in range(len(va_parts)):
         n_a = int(va_parts[i])
         n_b = int(vb_parts[i])
-        
+
         if n_a > n_b:
             return 1
         if n_a < n_b:
