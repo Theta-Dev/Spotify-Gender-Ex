@@ -1,5 +1,5 @@
 {
-  "version": 30,
+  "version": 31,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -44,7 +44,8 @@
     "8.6.88.1104",
     "8.6.96.422",
     "8.6.98.900",
-    "8.7.0.1147"
+    "8.7.0.1147",
+    "8.7.2.1205"
   ],
   "files": [
     {
@@ -333,7 +334,8 @@
         "context_menu_unpin_artist|Künstler*in loslösen": "Künstler loslösen",
         "social_listening_onboarding_participant_info|Nutzer*innen, die im WLAN des Hosts angemeldet sind, sehen deinen Anzeigenamen und dein Profilbild.": "Nutzer, die im WLAN des Hosts angemeldet sind, sehen deinen Anzeigenamen und dein Profilbild.",
         "social_listening_onboarding_participants_title|Teilnehmer*innen": "Teilnehmer",
-        "social_listening_participant_list_legal_notice|Nutzer*innen, die im selben WLAN angemeldet sind, sehen deinen Anzeigenamen und dein Profilbild.": "Nutzer, die im selben WLAN angemeldet sind, sehen deinen Anzeigenamen und dein Profilbild."
+        "social_listening_participant_list_legal_notice|Nutzer*innen, die im selben WLAN angemeldet sind, sehen deinen Anzeigenamen und dein Profilbild.": "Nutzer, die im selben WLAN angemeldet sind, sehen deinen Anzeigenamen und dein Profilbild.",
+        "live_room_context_menu_report_users|So meldest du Nutzer*innen": "So meldest du Nutzer"
       }
     }
   ]
