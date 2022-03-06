@@ -1,5 +1,5 @@
 {
-  "version": 31,
+  "version": 32,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -45,7 +45,8 @@
     "8.6.96.422",
     "8.6.98.900",
     "8.7.0.1147",
-    "8.7.2.1205"
+    "8.7.2.1205",
+    "8.7.8.1206"
   ],
   "files": [
     {
@@ -335,7 +336,12 @@
         "social_listening_onboarding_participant_info|Nutzer*innen, die im WLAN des Hosts angemeldet sind, sehen deinen Anzeigenamen und dein Profilbild.": "Nutzer, die im WLAN des Hosts angemeldet sind, sehen deinen Anzeigenamen und dein Profilbild.",
         "social_listening_onboarding_participants_title|Teilnehmer*innen": "Teilnehmer",
         "social_listening_participant_list_legal_notice|Nutzer*innen, die im selben WLAN angemeldet sind, sehen deinen Anzeigenamen und dein Profilbild.": "Nutzer, die im selben WLAN angemeldet sind, sehen deinen Anzeigenamen und dein Profilbild.",
-        "live_room_context_menu_report_users|So meldest du Nutzer*innen": "So meldest du Nutzer"
+        "live_room_context_menu_report_users|So meldest du Nutzer*innen": "So meldest du Nutzer",
+        "create_blend_item_subtitle|Lade Freund*innen zu einer geteilten Playlist ein.": "Lade Freunde zu einer geteilten Playlist ein.",
+        "entity_linking_artist_row_plus_content_description|Künstler*in verknüpfen": "Künstler verknüpfen",
+        "entity_linking_artist_row_subtitle|Künstler*in": "Künstler",
+        "social_listening_join_confirmation_dialog_privacy_notice|Teilnehmer*innen können dein Profilbild und deinen Benutzernamen sehen.": "Teilnehmer können dein Profilbild und deinen Benutzernamen sehen.",
+        "social_listening_participant_list_privacy_notice|Teilnehmer*innen können dein Profilbild und deinen Benutzernamen sehen.": "Teilnehmer können dein Profilbild und deinen Benutzernamen sehen."
       }
     }
   ]
