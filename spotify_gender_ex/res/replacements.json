@@ -1,5 +1,5 @@
 {
-  "version": 32,
+  "version": 33,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -46,7 +46,8 @@
     "8.6.98.900",
     "8.7.0.1147",
     "8.7.2.1205",
-    "8.7.8.1206"
+    "8.7.8.1206",
+    "8.7.10.1262"
   ],
   "files": [
     {
@@ -341,7 +342,8 @@
         "entity_linking_artist_row_plus_content_description|Künstler*in verknüpfen": "Künstler verknüpfen",
         "entity_linking_artist_row_subtitle|Künstler*in": "Künstler",
         "social_listening_join_confirmation_dialog_privacy_notice|Teilnehmer*innen können dein Profilbild und deinen Benutzernamen sehen.": "Teilnehmer können dein Profilbild und deinen Benutzernamen sehen.",
-        "social_listening_participant_list_privacy_notice|Teilnehmer*innen können dein Profilbild und deinen Benutzernamen sehen.": "Teilnehmer können dein Profilbild und deinen Benutzernamen sehen."
+        "social_listening_participant_list_privacy_notice|Teilnehmer*innen können dein Profilbild und deinen Benutzernamen sehen.": "Teilnehmer können dein Profilbild und deinen Benutzernamen sehen.",
+        "playlist_entity_permissions_claim_dialog_privacy_notice_contributor|Wenn du dieser Playlist als Mitwirkende*r beitrittst, werden dein Profilbild und dein Anzeigename allen Personen mit Zugriff auf diese Playlist angezeigt.": "Wenn du dieser Playlist als Mitwirkender beitrittst, werden dein Profilbild und dein Anzeigename allen Personen mit Zugriff auf diese Playlist angezeigt."
       }
     }
   ]
