@@ -2,6 +2,7 @@ import os
 import shutil
 import unittest
 from unittest import mock
+import pytest
 
 import github3
 from github3 import GitHub
@@ -50,6 +51,8 @@ class AppstoreTest(unittest.TestCase):
         self.assertEqual(len(app.version.split('.')), 4)
         self.assertTrue(app.download_url.startswith('https://'))
 
+    # Uptodown does not work on GH actions because Cloudflare
+    @pytest.mark.skipif(tests.ON_GH_ACTIONS)
     def test_uptodown(self):
         utd = appstore.Uptodown()
         app = utd.get_spotify_app()
