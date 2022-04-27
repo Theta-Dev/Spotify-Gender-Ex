@@ -49,11 +49,29 @@ class AppstoreTest(unittest.TestCase):
         app = appstore.get_spotify_app()
         self.assertEqual(len(app.version.split('.')), 4)
         self.assertTrue(app.download_url.startswith('https://'))
+
+    def test_uptodown(self):
+        utd = appstore.Uptodown()
+        app = utd.get_spotify_app()
+        self.assertEqual(len(app.version.split('.')), 4)
+        self.assertTrue(app.download_url.startswith('https://'))
+
+    def test_apkcombo(self):
+        utd = appstore.Apkcombo()
+        app = utd.get_spotify_app()
+        self.assertEqual(len(app.version.split('.')), 4)
+        self.assertTrue(app.download_url.startswith('https://'))
     
     def test_compare_versions(self):
         self.assertEqual(0, appstore.compare_versions('8.6.4.971', '8.6.4.971'))
         self.assertEqual(1, appstore.compare_versions('8.6.5.971', '8.6.4.1000'))
         self.assertEqual(-1, appstore.compare_versions('8.6.5.971', '9.6.4.1000'))
+
+    def test_check_app_file(self):
+        with self.assertRaises(appstore.StoreException):
+            appstore.check_app_file('https://thetadev.de/', {})
+
+        appstore.check_app_file('https://github.com/TeamNewPipe/NewPipe/releases/download/v0.22.2/NewPipe_v0.22.2.apk', {})
 
 
 class WorkdirTest(unittest.TestCase):

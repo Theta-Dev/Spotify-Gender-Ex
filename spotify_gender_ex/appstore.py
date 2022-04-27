@@ -216,8 +216,12 @@ def compare_versions(version_a: str, version_b: str) -> int:
 
 def check_app_file(app_url: str, headers: dict):
     file_headers = requests.get(app_url, headers=headers, stream=True).headers
-    file_type = file_headers['Content-Type']
-    file_size = int(file_headers['Content-Length'])
+    file_type = file_headers.get('Content-Type')
+
+    try:
+        file_size = int(file_headers.get('Content-Length'))
+    except TypeError or ValueError:
+        raise StoreException('Did not receive content length')
 
     if file_type != 'application/vnd.android.package-archive':
         raise StoreException(f'Received file of type: {file_type}, no android app')
