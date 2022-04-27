@@ -46,19 +46,21 @@ class DownloaderTest(unittest.TestCase):
 
 
 class AppstoreTest(unittest.TestCase):
+    # Store sites dont work on GH actions because Cloudflare
+    @pytest.mark.skipif(tests.ON_GH_ACTIONS, reason='GH Actions')
     def test_get_spotify_app(self):
         app = appstore.get_spotify_app()
         self.assertEqual(len(app.version.split('.')), 4)
         self.assertTrue(app.download_url.startswith('https://'))
 
-    # Uptodown does not work on GH actions because Cloudflare
-    @pytest.mark.skipif(tests.ON_GH_ACTIONS)
+    @pytest.mark.skipif(tests.ON_GH_ACTIONS, reason='GH Actions')
     def test_uptodown(self):
         utd = appstore.Uptodown()
         app = utd.get_spotify_app()
         self.assertEqual(len(app.version.split('.')), 4)
         self.assertTrue(app.download_url.startswith('https://'))
 
+    @pytest.mark.skipif(tests.ON_GH_ACTIONS, reason='GH Actions')
     def test_apkcombo(self):
         utd = appstore.Apkcombo()
         app = utd.get_spotify_app()
