@@ -14,6 +14,7 @@ except ImportError:
     pass
 
 URL_APKCOMBO = 'https://apkcombo.com/apk-downloader/?q=%s'
+URL_APKCOMBO_CHECKIN = 'https://apkcombo.com/checkin'
 URL_UPTODOWN = 'https://spotify.de.uptodown.com/android/download'
 
 DEFAULT_CPU = 'arm64-v8a'
@@ -48,10 +49,8 @@ class Apkcombo:
             "Upgrade-Insecure-Requests": "1",
             'User-Agent': user_agent
         }
-
-    def _query_page(self, app_name) -> str:
-        url = URL_APKCOMBO % app_name
-
+    
+    def _query_url(self, url) -> str:
         try:
             resp = requests.get(url, headers=self.headers)
             # Cloudflare protection
@@ -62,6 +61,13 @@ class Apkcombo:
             return resp.text
         except Exception as e:
             raise StoreException(e)
+
+    def _query_page(self, app_name) -> str:
+        url = URL_APKCOMBO % app_name
+        return self._query_url(url)
+    
+    def _query_checkin(self) -> str:
+        return self._query_url(URL_APKCOMBO_CHECKIN)
 
     @staticmethod
     def _query_page_selenium(url) -> str:
@@ -83,7 +89,7 @@ class Apkcombo:
         driver.quit()
         return data
 
-    def _parse_page(self, raw_page) -> List[App]:
+    def _parse_page(self, raw_page, checkin_token) -> List[App]:
         soup = BeautifulSoup(raw_page, 'html.parser')
 
         arch_list_elm = soup.select_one('#variants-tab ul')
@@ -120,7 +126,7 @@ class Apkcombo:
                     continue
                 version = match.group(0)
 
-                parsed_apps.append(App(version, archs, download_url))
+                parsed_apps.append(App(version, archs, f'{download_url}&{checkin_token}'))
 
         return parsed_apps
 
@@ -141,8 +147,9 @@ class Apkcombo:
         raise StoreException('Could not find apk for ' + self.cpu_arch)
 
     def get_spotify_app(self) -> App:
+        checkin_token = self._query_checkin()
         raw_page = self._query_page('com.spotify.music')
-        apps = self._parse_page(raw_page)
+        apps = self._parse_page(raw_page, checkin_token)
         return self._pick_app(apps)
 
 
