@@ -10,6 +10,8 @@ TEST_PERFORMANCE = True
 # Application test options
 TEST_ALL_VERSIONS = False
 
+ON_GH_ACTIONS = bool(os.environ.get('GITHUB_ACTIONS'))
+
 DIR_TESTFILES = str(files('tests.testfiles').joinpath(''))
 DIR_TMP = os.path.join(DIR_TESTFILES, 'tmp')
 DIR_APK = os.path.join(DIR_TESTFILES, 'apk')

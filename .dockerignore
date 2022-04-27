@@ -1,0 +1,11 @@
+.*
+venv
+assets
+docs
+tests
+build
+dist
+tmp
+scripts
+*.egg-info
+GenderEx

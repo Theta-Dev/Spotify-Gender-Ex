@@ -2,12 +2,13 @@ import os
 import shutil
 import unittest
 from unittest import mock
+import pytest
 
 import github3
 from github3 import GitHub
 
 import tests
-from spotify_gender_ex import downloader, workdir, replacement_table, lang_file, gh_issue
+from spotify_gender_ex import downloader, appstore, workdir, replacement_table, lang_file, gh_issue
 
 RT_STRING = '''{
   "version": 1,
@@ -28,28 +29,54 @@ RT_STRING = '''{
 
 
 class DownloaderTest(unittest.TestCase):
-    def test_spotify_version(self):
-        dldr = downloader.Downloader()
-        self.assertRegex(dldr.spotify_version, r'\d+.\d+.\d+.\d+')
-        self.assertTrue(dldr.spotify_url.startswith('https://dw.uptodown.com/dwn/'))
-
-    @unittest.skipUnless(tests.TEST_DOWNLOAD, 'download skipped')
-    def test_download_spotify(self):
+    def test_download_file(self):
         tests.clear_tmp_folder()
 
-        dldr = downloader.Downloader()
-        path = os.path.join(tests.DIR_TMP, 'spotify.apk')
-        dldr.download_spotify(path)
-        self.assertGreater(os.path.getsize(path), 20000000)
+        path = os.path.join(tests.DIR_TMP, 'test.md')
+        downloader.download_file('https://raw.githubusercontent.com/Theta-Dev/Spotify-Gender-Ex/master/README.md', path, 'README')
+        self.assertGreater(os.path.getsize(path), 500)
 
     def test_download_replacement_table(self):
-        dldr = downloader.Downloader()
-        rpl_text = dldr.get_replacement_table_raw()
+        rpl_text = downloader.get_replacement_table_raw()
         rtab = replacement_table.ReplacementTable.from_string(rpl_text)
 
         self.assertTrue(rtab.version > 0)
         self.assertTrue(len(rtab.sets) > 0)
         self.assertTrue(len(rtab.spotify_versions) > 0)
+
+
+class AppstoreTest(unittest.TestCase):
+    # Store sites dont work on GH actions because Cloudflare
+    @pytest.mark.skipif(tests.ON_GH_ACTIONS, reason='GH Actions')
+    def test_get_spotify_app(self):
+        app = appstore.get_spotify_app()
+        self.assertEqual(len(app.version.split('.')), 4)
+        self.assertTrue(app.download_url.startswith('https://'))
+
+    @pytest.mark.skipif(tests.ON_GH_ACTIONS, reason='GH Actions')
+    def test_uptodown(self):
+        utd = appstore.Uptodown()
+        app = utd.get_spotify_app()
+        self.assertEqual(len(app.version.split('.')), 4)
+        self.assertTrue(app.download_url.startswith('https://'))
+
+    @pytest.mark.skipif(tests.ON_GH_ACTIONS, reason='GH Actions')
+    def test_apkcombo(self):
+        utd = appstore.Apkcombo()
+        app = utd.get_spotify_app()
+        self.assertEqual(len(app.version.split('.')), 4)
+        self.assertTrue(app.download_url.startswith('https://'))
+    
+    def test_compare_versions(self):
+        self.assertEqual(0, appstore.compare_versions('8.6.4.971', '8.6.4.971'))
+        self.assertEqual(1, appstore.compare_versions('8.6.5.971', '8.6.4.1000'))
+        self.assertEqual(-1, appstore.compare_versions('8.6.5.971', '9.6.4.1000'))
+
+    def test_check_app_file(self):
+        with self.assertRaises(appstore.StoreException):
+            appstore.check_app_file('https://thetadev.de/', {})
+
+        appstore.check_app_file('https://github.com/TeamNewPipe/NewPipe/releases/download/v0.22.2/NewPipe_v0.22.2.apk', {})
 
 
 class WorkdirTest(unittest.TestCase):

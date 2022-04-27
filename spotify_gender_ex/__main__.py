@@ -8,6 +8,11 @@ from spotify_gender_ex import __version__, genderex, gh_issue
 
 def start_genderex(apk_file='', directory='.', replacement_table='', builtin=False, no_internal=False,
                    ks_password='', key_password='', no_interaction=False, force=False, no_verify=False, gh_token=''):
+    gh_token = arg_or_envvar(gh_token, '', 'GEX_GH_TOKEN')
+    ks_password = arg_or_envvar(ks_password, '', 'GEX_KS_PASSWORD')
+    key_password = arg_or_envvar(key_password, '', 'GEX_KEY_PASSWORD')
+    gotify_url = os.environ.get('GEX_GOTIFY_URL')
+
     on_gh_actions = bool(os.environ.get('GITHUB_ACTIONS'))
 
     click.echo('0. INFO')
@@ -16,14 +21,18 @@ def start_genderex(apk_file='', directory='.', replacement_table='', builtin=Fal
         return
 
     gex = genderex.GenderEx(apk_file, directory, replacement_table, builtin, no_internal, no_interaction,
-                            ks_password, key_password)
+                            ks_password, key_password, gotify_url)
 
     click.echo('Spotify-Gender-Ex Version: %s' % __version__)
-    click.echo('Aktuelle Spotify-Version: %s' % gex.latest_spotify)
+    click.echo('Aktuelle Spotify-Version: %s' % gex.get_spotify_store_version())
     click.echo('Ersetzungstabellen: %s' % gex.rtm.get_rt_versions())
 
     if on_gh_actions:
         click.echo('GenderEx läuft auf GitHub Actions.')
+    
+    if not gex.is_operational():
+        click.echo('Keine Spotify-App vorhanden.')
+        return
 
     # Non-interactive mode is meant for automation.
     # In this case, dont process the same spotify version multiple times
@@ -58,6 +67,7 @@ def start_genderex(apk_file='', directory='.', replacement_table='', builtin=Fal
 
     click.echo('6. SIGNIEREN')
     gex.sign()
+    gex.notify()
 
     if gh_token and not builtin and not replacement_table and not gex.rtm.new_replacements.is_empty():
         click.echo('7. NEUE ERSETZUNGEN ÜBERMITTELN')
@@ -73,6 +83,12 @@ def start_genderex(apk_file='', directory='.', replacement_table='', builtin=Fal
 
     if on_gh_actions:
         gex.set_github_vars()
+
+
+def arg_or_envvar(arg, default, envvar: str):
+    if arg and arg != default:
+        return arg
+    return os.environ.get(envvar, default)
 
 
 @click.command()

@@ -751,7 +751,7 @@ Gerät verbinden"</string>
     <string name="creative_id">Creative ID</string>
     <string name="creator_artist_facebook_label">Facebook</string>
     <string name="creator_artist_instagram_label">Instagram</string>
-    <string name="creator_artist_monthly_listeners_title">MONATLICHE HÖRER</string>
+    <string name="creator_artist_monthly_listeners_title">MONATLICHE ZUHÖRER</string>
     <string name="creator_artist_rank_label">weltweit</string>
     <string name="creator_artist_twitter_label">Twitter</string>
     <string name="creator_artist_verified">Verifizierter Künstler</string>
@@ -1056,7 +1056,7 @@ Du kannst die automatische Anpassung der Qualität in den "<annotation icon="set
     <string name="events_hub_section_title_recommended">Für dich empfohlen</string>
     <string name="events_hub_section_title_virtual">Anstehende virtuelle Events</string>
     <string name="events_hub_title">Konzerte</string>
-    <string name="eventshub_monthly_listeners_title">MONATLICHE HÖRER</string>
+    <string name="eventshub_monthly_listeners_title">MONATLICHE ZUHÖRER</string>
     <string name="everything_connected_description">Wenn du ins Auto steigst, verbindet sich dein Smartphone ab jetzt automatisch mit Car Thing und der Stereoanlage deines Fahrzeugs.</string>
     <string name="exit_voice_mode_content_description">Sprachmodus beenden</string>
     <string name="explicit_badge_content_description">Unangemessen</string>
@@ -2610,7 +2610,7 @@ Oder tippe auf einen Song, um kurz reinzuhören."</string>
     <string name="social_listening_join_confirmation_dialog_subtitle">Hört zusammen in Echtzeit. In einer Gruppen-Session können alle Teilnehmer steuern, was gespielt wird.</string>
     <string name="social_listening_join_confirmation_dialog_title">%1$s hat dich zu einer Gruppen-Session eingeladen.</string>
     <string name="social_listening_join_confirmation_dialog_title_nearby">Gruppen-Session von %1$s beitreten</string>
-    <string name="social_listening_join_failed_session_full_title">Sorry, die maximale Anzahl an Hörern ist in dieser Gruppen-Session bereits erreicht.</string>
+    <string name="social_listening_join_failed_session_full_title">Sorry, die maximale Anzahl an Zuhörern ist in dieser Gruppen-Session bereits erreicht.</string>
     <string name="social_listening_join_failed_session_got_it_button">Alles klar</string>
     <string name="social_listening_leave_button_title_host">Session beenden</string>
     <string name="social_listening_leave_button_title_participant">Session verlassen</string>
@@ -2651,7 +2651,7 @@ Oder tippe auf einen Song, um kurz reinzuhören."</string>
     <string name="social_listening_scannable_content_description">Spotify Code</string>
     <string name="social_listening_scannable_general_error_description_multi_output_design">Irgendwas ist schiefgelaufen.</string>
     <string name="social_listening_scannable_general_error_retry_button">Nochmal versuchen</string>
-    <string name="social_listening_see_listeners_button_title">Hörer anzeigen</string>
+    <string name="social_listening_see_listeners_button_title">Zuhörer anzeigen</string>
     <string name="social_listening_session_ended_dialog_confirm_button">Alles klar</string>
     <string name="social_listening_session_ended_dialog_subtitle">Der Host hat die Gruppen-Session beendet.</string>
     <string name="social_listening_session_ended_dialog_subtitle_containing_host_name">%1$s hat die Gruppen-Session beendet.</string>

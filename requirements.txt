@@ -4,3 +4,5 @@ importlib_resources
 pyyaml
 requests
 github3.py
+beautifulsoup4
+pytest
