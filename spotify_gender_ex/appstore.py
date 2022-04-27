@@ -119,7 +119,9 @@ class Apkcombo:
         checkin_token = self._query_checkin()
         raw_page = self._query_page('spotify/com.spotify.music')
         apps = self._parse_page(raw_page, checkin_token)
-        return self._pick_app(apps)
+        app = self._pick_app(apps)
+        check_app_file(app.download_url, self.headers)
+        return app
 
 
 class Uptodown:
@@ -153,6 +155,8 @@ class Uptodown:
 
         spotify_url = str(search_url[0])
         spotify_version = str(search_version[0])
+
+        check_app_file(spotify_url, self.headers)
 
         return App(spotify_version, {'universal'}, spotify_url)
 
@@ -208,3 +212,15 @@ def compare_versions(version_a: str, version_b: str) -> int:
             return 1
         if n_a < n_b:
             return -1
+
+
+def check_app_file(app_url: str, headers: dict):
+    file_headers = requests.get(app_url, headers=headers, stream=True).headers
+    file_type = file_headers['Content-Type']
+    file_size = int(file_headers['Content-Length'])
+
+    if file_type != 'application/vnd.android.package-archive':
+        raise StoreException(f'Received file of type: {file_type}, no android app')
+
+    if file_size < 1e6:
+        raise StoreException('Received file smaller than 1MB')
