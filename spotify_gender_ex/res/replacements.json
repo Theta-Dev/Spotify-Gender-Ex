@@ -1,5 +1,5 @@
 {
-  "version": 34,
+  "version": 35,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -48,7 +48,8 @@
     "8.7.2.1205",
     "8.7.8.1206",
     "8.7.10.1262",
-    "8.7.14.1332"
+    "8.7.14.1332",
+    "8.7.22.1125"
   ],
   "files": [
     {
@@ -69,7 +70,9 @@
         "connect_button_device_with_participants/other|%1$s Hörer*innen": "%1$s Hörer",
         "connect_button_device_with_participants/one|%1$s Hörer*in": "%1$s Hörer",
         "profile_list_item_followers_count/other|%1$,d Follower*innen": "%1$,d Follower",
-        "profile_list_item_followers_count/one|%1$,d Follower*innen": "%1$,d Follower"
+        "profile_list_item_followers_count/one|%1$,d Follower*innen": "%1$,d Follower",
+        "social_listening_participants/other|%1$d Hörer*innen": "%1$d Hörer",
+        "social_listening_participants/one|%1$d Hörer*in": "%1$d Hörer"
       }
     },
     {
@@ -345,7 +348,11 @@
         "social_listening_join_confirmation_dialog_privacy_notice|Teilnehmer*innen können dein Profilbild und deinen Benutzernamen sehen.": "Teilnehmer können dein Profilbild und deinen Benutzernamen sehen.",
         "social_listening_participant_list_privacy_notice|Teilnehmer*innen können dein Profilbild und deinen Benutzernamen sehen.": "Teilnehmer können dein Profilbild und deinen Benutzernamen sehen.",
         "playlist_entity_permissions_claim_dialog_privacy_notice_contributor|Wenn du dieser Playlist als Mitwirkende*r beitrittst, werden dein Profilbild und dein Anzeigename allen Personen mit Zugriff auf diese Playlist angezeigt.": "Wenn du dieser Playlist als Mitwirkender beitrittst, werden dein Profilbild und dein Anzeigename allen Personen mit Zugriff auf diese Playlist angezeigt.",
-        "content_feed_header_subtitle|Neuerscheinungen von Künstler*innen, Podcasts und Shows, denen du folgst": "Neuerscheinungen von Künstlern, Podcasts und Shows, denen du folgst"
+        "content_feed_header_subtitle|Neuerscheinungen von Künstler*innen, Podcasts und Shows, denen du folgst": "Neuerscheinungen von Künstlern, Podcasts und Shows, denen du folgst",
+        "allboarding_skip_dialog_non_skippable_title|Wähle mindestens 3 Künstler*innen aus": "Wähle mindestens 3 Künstler aus",
+        "association_row_artist_subtitle|Künstler*in": "Künstler",
+        "audiobook_first_rate_description|Du bist eine*r der ersten Hörer*innen, die dieses Hörbuch bewerten. Sobald genug Leute ihr Feedback gegeben haben, zeigen wir die durchschnittliche Bewertung an.": "Du bist einer der ersten Hörer, die dieses Hörbuch bewerten. Sobald genug Leute ihr Feedback gegeben haben, zeigen wir die durchschnittliche Bewertung an.",
+        "join_the_conversation_description|Mit der Spotify Live-App kannst du an Unterhaltungen teilnehmen, die Hosts treffen und mit anderen Hörer*innen chatten.": "Mit der Spotify Live-App kannst du an Unterhaltungen teilnehmen, die Hosts treffen und mit anderen Hörern chatten."
       }
     }
   ]
