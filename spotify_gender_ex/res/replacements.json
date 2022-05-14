@@ -1,5 +1,5 @@
 {
-  "version": 36,
+  "version": 37,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -50,7 +50,8 @@
     "8.7.10.1262",
     "8.7.14.1332",
     "8.7.22.1125",
-    "8.7.26.901"
+    "8.7.26.901",
+    "8.7.30.1221"
   ],
   "files": [
     {
@@ -356,7 +357,9 @@
         "join_the_conversation_description|Mit der Spotify Live-App kannst du an Unterhaltungen teilnehmen, die Hosts treffen und mit anderen Hörer*innen chatten.": "Mit der Spotify Live-App kannst du an Unterhaltungen teilnehmen, die Hosts treffen und mit anderen Hörern chatten.",
         "artist_subtitle|Künstler*in": "Künstler",
         "blend_group_note|Hinweis: Die Personen in diesem gemeinsamen Mix können ihre eigenen Freund*innen hinzufügen. Möglicherweise erstellen wir auch andere Playlists, die soziale Empfehlungen enthalten. Nutzer*innen, die Teil dieser Playlists sind, sehen dein Profilbild und deinen Benutzernamen. <a href=\\\"https://support.spotify.com/article/blend/\\\">Hier erfährst du mehr</a> über diese Playlists und die Informationen, die sie enthalten.": "Hinweis: Die Personen in diesem gemeinsamen Mix können ihre eigenen Freunde hinzufügen. Möglicherweise erstellen wir auch andere Playlists, die soziale Empfehlungen enthalten. Nutzer, die Teil dieser Playlists sind, sehen dein Profilbild und deinen Benutzernamen. <a href=\\\"https://support.spotify.com/article/blend/\\\">Hier erfährst du mehr</a> über diese Playlists und die Informationen, die sie enthalten.",
-        "invite_friends|Freund*innen zum gemeinsamen Mix einladen": "Freunde zum gemeinsamen Mix einladen"
+        "invite_friends|Freund*innen zum gemeinsamen Mix einladen": "Freunde zum gemeinsamen Mix einladen",
+        "episode_associations_disclaimer_dialog_description|\"Podcaster*innen können ihre Folge mit Inhalten auf Spotify verknüpfen.\n\nWenn du beispielsweise deine Meinung zu einem Album geben oder auf den Podcast einer anderen Person reagieren möchtest, kannst du über die Seite deiner Folge auf diese Inhalte verlinken.\n\nDies impliziert keine Befürwortung durch Spotify oder den*die Ersteller*in der verknüpften Inhalte.\"": "\"Podcaster können ihre Folge mit Inhalten auf Spotify verknüpfen.\n\nWenn du beispielsweise deine Meinung zu einem Album geben oder auf den Podcast einer anderen Person reagieren möchtest, kannst du über die Seite deiner Folge auf diese Inhalte verlinken.\n\nDies impliziert keine Befürwortung durch Spotify oder den Ersteller der verknüpften Inhalte.\"",
+        "start_session_top_subtitle_text|Hör gemeinsam mit Freund*innen an verschiedenen Orten.": "Hör gemeinsam mit Freunden an verschiedenen Orten."
       }
     }
   ]
