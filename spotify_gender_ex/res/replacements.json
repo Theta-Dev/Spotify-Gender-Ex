@@ -1,5 +1,5 @@
 {
-  "version": 38,
+  "version": 39,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -52,7 +52,8 @@
     "8.7.22.1125",
     "8.7.26.901",
     "8.7.30.1221",
-    "8.7.32.1554"
+    "8.7.32.1554",
+    "8.7.36.905"
   ],
   "files": [
     {
@@ -364,7 +365,10 @@
         "guest_start_educate_preview_pager_2_content|Während du Spotify ausprobierst, hast du keinen Zugang zu deiner Bibliothek oder den Songs, Alben, Künstler*innen und Playlists, die du speicherst.": "Während du Spotify ausprobierst, hast du keinen Zugang zu deiner Bibliothek oder den Songs, Alben, Künstlern und Playlists, die du speicherst.",
         "home_context_menu_not_interested_in_artist|Kein Interesse an diesem*dieser Künstler*in": "Kein Interesse an diesem Künstler",
         "search_start_subtitle_free_user_audiobook|Suche nach Künstler*innen, Songs, Playlists oder Hörbüchern.": "Suche nach Künstlern, Songs, Playlists oder Hörbüchern.",
-        "search_start_subtitle_podcast_audiobook|Suche nach Künstler*innen, Songs, Podcasts oder Hörbüchern.": "Suche nach Künstlern, Songs, Podcasts oder Hörbüchern."
+        "search_start_subtitle_podcast_audiobook|Suche nach Künstler*innen, Songs, Podcasts oder Hörbüchern.": "Suche nach Künstlern, Songs, Podcasts oder Hörbüchern.",
+        "episode_associations_tagged_disclaimer_dialog_description|\"Podcaster*innen können Inhalte in ihren Folgen auf Spotify mit Tags versehen.\n \nWenn du beispielsweise deine Meinung zu einem Album abgeben möchtest, kannst du dieses Album taggen. Es wird dann auf der Seite deiner Folge angezeigt.\n\nDies impliziert keine Befürwortung durch Spotify oder den*die Ersteller*in der getaggten Inhalte.\"": "\"Podcaster können Inhalte in ihren Folgen auf Spotify mit Tags versehen.\n \nWenn du beispielsweise deine Meinung zu einem Album abgeben möchtest, kannst du dieses Album taggen. Es wird dann auf der Seite deiner Folge angezeigt.\n\nDies impliziert keine Befürwortung durch Spotify oder den Ersteller der getaggten Inhalte.\"",
+        "initial_inspired_recording_user|Nutzer*in": "Nutzer",
+        "tagged_section_header_title_artist|Getaggte*r Künstler*in": "Getaggter Künstler"
       }
     }
   ]
