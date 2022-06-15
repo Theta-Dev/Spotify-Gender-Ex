@@ -1,5 +1,5 @@
 {
-  "version": 39,
+  "version": 40,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -53,7 +53,8 @@
     "8.7.26.901",
     "8.7.30.1221",
     "8.7.32.1554",
-    "8.7.36.905"
+    "8.7.36.905",
+    "8.7.38.670"
   ],
   "files": [
     {
@@ -368,7 +369,14 @@
         "search_start_subtitle_podcast_audiobook|Suche nach Künstler*innen, Songs, Podcasts oder Hörbüchern.": "Suche nach Künstlern, Songs, Podcasts oder Hörbüchern.",
         "episode_associations_tagged_disclaimer_dialog_description|\"Podcaster*innen können Inhalte in ihren Folgen auf Spotify mit Tags versehen.\n \nWenn du beispielsweise deine Meinung zu einem Album abgeben möchtest, kannst du dieses Album taggen. Es wird dann auf der Seite deiner Folge angezeigt.\n\nDies impliziert keine Befürwortung durch Spotify oder den*die Ersteller*in der getaggten Inhalte.\"": "\"Podcaster können Inhalte in ihren Folgen auf Spotify mit Tags versehen.\n \nWenn du beispielsweise deine Meinung zu einem Album abgeben möchtest, kannst du dieses Album taggen. Es wird dann auf der Seite deiner Folge angezeigt.\n\nDies impliziert keine Befürwortung durch Spotify oder den Ersteller der getaggten Inhalte.\"",
         "initial_inspired_recording_user|Nutzer*in": "Nutzer",
-        "tagged_section_header_title_artist|Getaggte*r Künstler*in": "Getaggter Künstler"
+        "tagged_section_header_title_artist|Getaggte*r Künstler*in": "Getaggter Künstler",
+        "association_row_artist_chevron_content_description|Zum/Zur Künstler*in": "Zum Künstler",
+        "copyright_dialog_info|Du bestätigst, dass du Eigentümer*in dieses Bildes bist oder das Recht hast, es zu verwenden, und dass diese Verwendung nicht gegen die Nutzungsbedingungen oder die Plattformregeln verstößt.": "Du bestätigst, dass du Eigentümer dieses Bildes bist oder das Recht hast, es zu verwenden, und dass diese Verwendung nicht gegen die Nutzungsbedingungen oder die Plattformregeln verstößt.",
+        "download_spotify_live_subtitle|Interagiere mit den Hosts, nimm mit Hörer*innen Kontakt auf und entdecke mehr Livestreams.": "Interagiere mit den Hosts, nimm mit Hörern Kontakt auf und entdecke mehr Livestreams.",
+        "guest_dialog_body|Registriere dich oder melde dich an, um deine gespeicherten Songs, Podcasts, Playlists, gefolgten Künstler*innen und mehr in deiner Bibliothek zu sehen.": "Registriere dich oder melde dich an, um deine gespeicherten Songs, Podcasts, Playlists, gefolgten Künstler und mehr in deiner Bibliothek zu sehen.",
+        "guest_dialog_body_library|Registriere dich oder melde dich an, um auf deine Bibliothek und die von dir gespeicherten Songs, Künstler*innen, Playlists und Podcasts zuzugreifen.": "Registriere dich oder melde dich an, um auf deine Bibliothek und die von dir gespeicherten Songs, Künstler, Playlists und Podcasts zuzugreifen.",
+        "interact_in_spotify_live_label|Interagiere mit Hörer*innen und Creator*innen in der Spotify Live App.": "Interagiere mit Hörern und Creators in der Spotify Live App.",
+        "premium_destination_heading_blend_now|Mit Spotify Premium kannst du in Gruppen-Sessions gemeinsam mit deinen Freund*innen in Echtzeit Musik hören.": "Mit Spotify Premium kannst du in Gruppen-Sessions gemeinsam mit deinen Freunden in Echtzeit Musik hören."
       }
     }
   ]
