@@ -1,5 +1,5 @@
 {
-  "version": 40,
+  "version": 41,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -54,7 +54,8 @@
     "8.7.30.1221",
     "8.7.32.1554",
     "8.7.36.905",
-    "8.7.38.670"
+    "8.7.38.670",
+    "8.7.48.1058"
   ],
   "files": [
     {
@@ -376,7 +377,12 @@
         "guest_dialog_body|Registriere dich oder melde dich an, um deine gespeicherten Songs, Podcasts, Playlists, gefolgten Künstler*innen und mehr in deiner Bibliothek zu sehen.": "Registriere dich oder melde dich an, um deine gespeicherten Songs, Podcasts, Playlists, gefolgten Künstler und mehr in deiner Bibliothek zu sehen.",
         "guest_dialog_body_library|Registriere dich oder melde dich an, um auf deine Bibliothek und die von dir gespeicherten Songs, Künstler*innen, Playlists und Podcasts zuzugreifen.": "Registriere dich oder melde dich an, um auf deine Bibliothek und die von dir gespeicherten Songs, Künstler, Playlists und Podcasts zuzugreifen.",
         "interact_in_spotify_live_label|Interagiere mit Hörer*innen und Creator*innen in der Spotify Live App.": "Interagiere mit Hörern und Creators in der Spotify Live App.",
-        "premium_destination_heading_blend_now|Mit Spotify Premium kannst du in Gruppen-Sessions gemeinsam mit deinen Freund*innen in Echtzeit Musik hören.": "Mit Spotify Premium kannst du in Gruppen-Sessions gemeinsam mit deinen Freunden in Echtzeit Musik hören."
+        "premium_destination_heading_blend_now|Mit Spotify Premium kannst du in Gruppen-Sessions gemeinsam mit deinen Freund*innen in Echtzeit Musik hören.": "Mit Spotify Premium kannst du in Gruppen-Sessions gemeinsam mit deinen Freunden in Echtzeit Musik hören.",
+        "content_feed_artist_offers_tip_box_subtitle|Unter „Neues“ findest du aktuelles Merch und anstehende Events von Künstler*innen, denen du folgst.": "Unter „Neues“ findest du aktuelles Merch und anstehende Events von Künstlern, denen du folgst.",
+        "empty_section_subtitle|Dort siehst du mehr Konzerte von deinen Lieblingskünstler*innen": "Dort siehst du mehr Konzerte von deinen Lieblingskünstlern",
+        "empty_section_subtitle_with_location|Für diese*n Künstler*in gibt es keine Konzerttermine in der Nähe von %1$1s.": "Für diesen Künstler gibt es keine Konzerttermine in der Nähe von %1$1s.",
+        "library_sort_order_author|Autor*in": "Autor",
+        "your_library_sort_order_author|Autor*in": "Autor"
       }
     }
   ]
