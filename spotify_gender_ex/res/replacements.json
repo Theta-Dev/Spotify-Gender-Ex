@@ -1,5 +1,5 @@
 {
-  "version": 41,
+  "version": 42,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -55,7 +55,8 @@
     "8.7.32.1554",
     "8.7.36.905",
     "8.7.38.670",
-    "8.7.48.1058"
+    "8.7.48.1058",
+    "8.7.52.1010"
   ],
   "files": [
     {
@@ -382,7 +383,13 @@
         "empty_section_subtitle|Dort siehst du mehr Konzerte von deinen Lieblingskünstler*innen": "Dort siehst du mehr Konzerte von deinen Lieblingskünstlern",
         "empty_section_subtitle_with_location|Für diese*n Künstler*in gibt es keine Konzerttermine in der Nähe von %1$1s.": "Für diesen Künstler gibt es keine Konzerttermine in der Nähe von %1$1s.",
         "library_sort_order_author|Autor*in": "Autor",
-        "your_library_sort_order_author|Autor*in": "Autor"
+        "your_library_sort_order_author|Autor*in": "Autor",
+        "create_playlist_menu_option_create_blend_playlist_description|Kombiniere Musikvorlieben in einer geteilten Playlist mit Freund*innen.": "Kombiniere Musikvorlieben in einer geteilten Playlist mit Freunden.",
+        "featured_section_header_title_artist|Empfohlene*r Künstler*in": "Empfohlener Künstler",
+        "google_meet_dialog_footnote|Teilnehmer*innen können dein Profilbild und deinen Benutzernamen sehen.": "Teilnehmer können dein Profilbild und deinen Benutzernamen sehen.",
+        "google_meet_host_dialog_subtitle|Dieses Feature befindet sich noch in der Beta-Phase. Nur Android-Nutzer*innen können über Google Meet beitreten. Kopiere und teile den Einladungslink unten, um iOS-Nutzer*innen einzuladen.": "Dieses Feature befindet sich noch in der Beta-Phase. Nur Android-Nutzer können über Google Meet beitreten. Kopiere und teile den Einladungslink unten, um iOS-Nutzer einzuladen.",
+        "google_meet_participant_dialog_subtitle|Dieses Feature befindet sich noch in der Beta-Phase. Nur Android-Nutzer*innen können über Google Meet beitreten. Kopiere und teile den Einladungslink unten, um iOS-Nutzer*innen einzuladen.": "Dieses Feature befindet sich noch in der Beta-Phase. Nur Android-Nutzer können über Google Meet beitreten. Kopiere und teile den Einladungslink unten, um iOS-Nutzer einzuladen.",
+        "google_meet_upsell_dialog_subtitle|Dieses Feature ist derzeit nur für Spotify Premium Nutzer*innen verfügbar.": "Dieses Feature ist derzeit nur für Spotify Premium Nutzer verfügbar."
       }
     }
   ]
