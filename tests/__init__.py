@@ -1,6 +1,5 @@
 import os
 import shutil
-from importlib_resources import files
 
 # Test cases to run
 TEST_DOWNLOAD = False
@@ -12,7 +11,7 @@ TEST_ALL_VERSIONS = False
 
 ON_GH_ACTIONS = bool(os.environ.get('GITHUB_ACTIONS'))
 
-DIR_TESTFILES = str(files('tests.testfiles').joinpath(''))
+DIR_TESTFILES = os.path.abspath(os.path.join(os.path.dirname(__file__), 'testfiles'))
 DIR_TMP = os.path.join(DIR_TESTFILES, 'tmp')
 DIR_APK = os.path.join(DIR_TESTFILES, 'apk')
 DIR_LANG = os.path.join(DIR_TESTFILES, 'lang')
