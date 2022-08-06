@@ -1,5 +1,5 @@
 {
-  "version": 42,
+  "version": 43,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -56,7 +56,8 @@
     "8.7.36.905",
     "8.7.38.670",
     "8.7.48.1058",
-    "8.7.52.1010"
+    "8.7.52.1010",
+    "8.7.54.403"
   ],
   "files": [
     {
@@ -389,7 +390,10 @@
         "google_meet_dialog_footnote|Teilnehmer*innen können dein Profilbild und deinen Benutzernamen sehen.": "Teilnehmer können dein Profilbild und deinen Benutzernamen sehen.",
         "google_meet_host_dialog_subtitle|Dieses Feature befindet sich noch in der Beta-Phase. Nur Android-Nutzer*innen können über Google Meet beitreten. Kopiere und teile den Einladungslink unten, um iOS-Nutzer*innen einzuladen.": "Dieses Feature befindet sich noch in der Beta-Phase. Nur Android-Nutzer können über Google Meet beitreten. Kopiere und teile den Einladungslink unten, um iOS-Nutzer einzuladen.",
         "google_meet_participant_dialog_subtitle|Dieses Feature befindet sich noch in der Beta-Phase. Nur Android-Nutzer*innen können über Google Meet beitreten. Kopiere und teile den Einladungslink unten, um iOS-Nutzer*innen einzuladen.": "Dieses Feature befindet sich noch in der Beta-Phase. Nur Android-Nutzer können über Google Meet beitreten. Kopiere und teile den Einladungslink unten, um iOS-Nutzer einzuladen.",
-        "google_meet_upsell_dialog_subtitle|Dieses Feature ist derzeit nur für Spotify Premium Nutzer*innen verfügbar.": "Dieses Feature ist derzeit nur für Spotify Premium Nutzer verfügbar."
+        "google_meet_upsell_dialog_subtitle|Dieses Feature ist derzeit nur für Spotify Premium Nutzer*innen verfügbar.": "Dieses Feature ist derzeit nur für Spotify Premium Nutzer verfügbar.",
+        "empty_section_subtitle|Diese*r Künstler*in hat keine anstehenden Konzerte.": "Dieser Künstler hat keine anstehenden Konzerte.",
+        "google_meet_copy_link_dialog_subtitle|Kopiere den unten stehenden Link und teile ihn mit den Teilnehmer*innen, um iOS-Nutzer*innen zur Gruppen-Session einzuladen.": "Kopiere den unten stehenden Link und teile ihn mit den Teilnehmern, um iOS-Nutzer zur Gruppen-Session einzuladen.",
+        "google_meet_upsell_dialog_subtitle|Exklusiv für Spotify Premium Abonnent*innen verfügbar": "Exklusiv für Spotify Premium Abonnenten verfügbar"
       }
     }
   ]
