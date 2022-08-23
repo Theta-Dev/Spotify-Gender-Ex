@@ -1,5 +1,5 @@
 {
-  "version": 43,
+  "version": 44,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -57,7 +57,8 @@
     "8.7.38.670",
     "8.7.48.1058",
     "8.7.52.1010",
-    "8.7.54.403"
+    "8.7.54.403",
+    "8.7.58.455"
   ],
   "files": [
     {
@@ -80,7 +81,9 @@
         "profile_list_item_followers_count/other|%1$,d Follower*innen": "%1$,d Follower",
         "profile_list_item_followers_count/one|%1$,d Follower*innen": "%1$,d Follower",
         "social_listening_participants/other|%1$d Hörer*innen": "%1$d Hörer",
-        "social_listening_participants/one|%1$d Hörer*in": "%1$d Hörer"
+        "social_listening_participants/one|%1$d Hörer*in": "%1$d Hörer",
+        "profile_followers_count/other|%1$d Follower*innen •": "%1$d Follower •",
+        "profile_followers_count/one|%1$d Follower*in •": "%1$d Follower •"
       }
     },
     {
