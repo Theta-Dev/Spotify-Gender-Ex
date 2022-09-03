@@ -1,5 +1,5 @@
 {
-  "version": 44,
+  "version": 45,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -58,7 +58,8 @@
     "8.7.48.1058",
     "8.7.52.1010",
     "8.7.54.403",
-    "8.7.58.455"
+    "8.7.58.455",
+    "8.7.62.398"
   ],
   "files": [
     {
@@ -396,7 +397,9 @@
         "google_meet_upsell_dialog_subtitle|Dieses Feature ist derzeit nur für Spotify Premium Nutzer*innen verfügbar.": "Dieses Feature ist derzeit nur für Spotify Premium Nutzer verfügbar.",
         "empty_section_subtitle|Diese*r Künstler*in hat keine anstehenden Konzerte.": "Dieser Künstler hat keine anstehenden Konzerte.",
         "google_meet_copy_link_dialog_subtitle|Kopiere den unten stehenden Link und teile ihn mit den Teilnehmer*innen, um iOS-Nutzer*innen zur Gruppen-Session einzuladen.": "Kopiere den unten stehenden Link und teile ihn mit den Teilnehmern, um iOS-Nutzer zur Gruppen-Session einzuladen.",
-        "google_meet_upsell_dialog_subtitle|Exklusiv für Spotify Premium Abonnent*innen verfügbar": "Exklusiv für Spotify Premium Abonnenten verfügbar"
+        "google_meet_upsell_dialog_subtitle|Exklusiv für Spotify Premium Abonnent*innen verfügbar": "Exklusiv für Spotify Premium Abonnenten verfügbar",
+        "listening_stats_top_artists_this_week_title|Deine Top-Künstler*innen diese Woche": "Deine Top-Künstler diese Woche",
+        "listening_stats_top_artists_title|Deine Top-Künstler*innen": "Deine Top-Künstler"
       }
     }
   ]
