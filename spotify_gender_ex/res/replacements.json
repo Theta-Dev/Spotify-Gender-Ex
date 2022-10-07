@@ -1,5 +1,5 @@
 {
-  "version": 45,
+  "version": 46,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -59,7 +59,8 @@
     "8.7.52.1010",
     "8.7.54.403",
     "8.7.58.455",
-    "8.7.62.398"
+    "8.7.62.398",
+    "8.7.72.546"
   ],
   "files": [
     {
@@ -399,7 +400,11 @@
         "google_meet_copy_link_dialog_subtitle|Kopiere den unten stehenden Link und teile ihn mit den Teilnehmer*innen, um iOS-Nutzer*innen zur Gruppen-Session einzuladen.": "Kopiere den unten stehenden Link und teile ihn mit den Teilnehmern, um iOS-Nutzer zur Gruppen-Session einzuladen.",
         "google_meet_upsell_dialog_subtitle|Exklusiv für Spotify Premium Abonnent*innen verfügbar": "Exklusiv für Spotify Premium Abonnenten verfügbar",
         "listening_stats_top_artists_this_week_title|Deine Top-Künstler*innen diese Woche": "Deine Top-Künstler diese Woche",
-        "listening_stats_top_artists_title|Deine Top-Künstler*innen": "Deine Top-Künstler"
+        "listening_stats_top_artists_title|Deine Top-Künstler*innen": "Deine Top-Künstler",
+        "follow_suggestion_followed_by_friends|Freund*innen folgen dieser Person": "Freunde folgen dieser Person",
+        "google_meet_participant_chip_message|Teilnehmer*innen in deinem Meet hören gemeinsam Musik über Spotify": "Teilnehmer in deinem Meet hören gemeinsam Musik über Spotify",
+        "radio_context_menu_browse_artist|Künstler*in anzeigen": "Künstler anzeigen",
+        "track_context_menu_artists_list_title|Künstler*innen": "Künstler"
       }
     }
   ]
