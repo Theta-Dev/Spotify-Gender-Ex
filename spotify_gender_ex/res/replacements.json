@@ -1,5 +1,5 @@
 {
-  "version": 46,
+  "version": 47,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -60,7 +60,8 @@
     "8.7.54.403",
     "8.7.58.455",
     "8.7.62.398",
-    "8.7.72.546"
+    "8.7.72.546",
+    "8.7.74.443"
   ],
   "files": [
     {
@@ -85,7 +86,9 @@
         "social_listening_participants/other|%1$d Hörer*innen": "%1$d Hörer",
         "social_listening_participants/one|%1$d Hörer*in": "%1$d Hörer",
         "profile_followers_count/other|%1$d Follower*innen •": "%1$d Follower •",
-        "profile_followers_count/one|%1$d Follower*in •": "%1$d Follower •"
+        "profile_followers_count/one|%1$d Follower*in •": "%1$d Follower •",
+        "profile_followers_count/other|%1$d Follower*innen": "%1$d Follower",
+        "profile_followers_count/one|%1$d Follower*in": "%1$d Follower"
       }
     },
     {
@@ -404,7 +407,12 @@
         "follow_suggestion_followed_by_friends|Freund*innen folgen dieser Person": "Freunde folgen dieser Person",
         "google_meet_participant_chip_message|Teilnehmer*innen in deinem Meet hören gemeinsam Musik über Spotify": "Teilnehmer in deinem Meet hören gemeinsam Musik über Spotify",
         "radio_context_menu_browse_artist|Künstler*in anzeigen": "Künstler anzeigen",
-        "track_context_menu_artists_list_title|Künstler*innen": "Künstler"
+        "track_context_menu_artists_list_title|Künstler*innen": "Künstler",
+        "preview_profile_feedback|So wird dein Profil anderen Nutzer*innen angezeigt.": "So wird dein Profil anderen Nutzern angezeigt.",
+        "settings_disable_follows_description|Andere können dir dann nicht mehr folgen und die Liste mit deinen Follower*innen/Personen, denen du folgst, wird ausgeblendet.": "Andere können dir dann nicht mehr folgen und die Liste mit deinen Followern/Personen, denen du folgst, wird ausgeblendet.",
+        "settings_disable_follows_title|Option zum Folgen/Follower*innen deaktivieren": "Option zum Folgen/Follower deaktivieren",
+        "stream_ad_see_all_error_title|Die Infos zu Sponsor*innen wurden nicht geladen": "Die Infos zu Sponsoren wurden nicht geladen",
+        "stream_ad_see_all_page_title|Sponsor*innen": "Sponsoren"
       }
     }
   ]
