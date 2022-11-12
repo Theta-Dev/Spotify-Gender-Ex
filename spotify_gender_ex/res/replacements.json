@@ -1,5 +1,5 @@
 {
-  "version": 47,
+  "version": 48,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -61,7 +61,8 @@
     "8.7.58.455",
     "8.7.62.398",
     "8.7.72.546",
-    "8.7.74.443"
+    "8.7.74.443",
+    "8.7.82.94"
   ],
   "files": [
     {
@@ -412,7 +413,9 @@
         "settings_disable_follows_description|Andere können dir dann nicht mehr folgen und die Liste mit deinen Follower*innen/Personen, denen du folgst, wird ausgeblendet.": "Andere können dir dann nicht mehr folgen und die Liste mit deinen Followern/Personen, denen du folgst, wird ausgeblendet.",
         "settings_disable_follows_title|Option zum Folgen/Follower*innen deaktivieren": "Option zum Folgen/Follower deaktivieren",
         "stream_ad_see_all_error_title|Die Infos zu Sponsor*innen wurden nicht geladen": "Die Infos zu Sponsoren wurden nicht geladen",
-        "stream_ad_see_all_page_title|Sponsor*innen": "Sponsoren"
+        "stream_ad_see_all_page_title|Sponsor*innen": "Sponsoren",
+        "settings_disable_follows_title|Follower*innen zulassen": "Follower zulassen",
+        "settings_hide_followers_following_title|Follower*innen und „Folge ich“": "Follower und „Folge ich“"
       }
     }
   ]
