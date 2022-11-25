@@ -1,5 +1,5 @@
 {
-  "version": 49,
+  "version": 50,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -63,7 +63,8 @@
     "8.7.72.546",
     "8.7.74.443",
     "8.7.82.94",
-    "8.7.84.382"
+    "8.7.84.382",
+    "8.7.86.422"
   ],
   "files": [
     {
@@ -417,7 +418,10 @@
         "stream_ad_see_all_page_title|Sponsor*innen": "Sponsoren",
         "settings_disable_follows_title|Follower*innen zulassen": "Follower zulassen",
         "settings_hide_followers_following_title|Follower*innen und „Folge ich“": "Follower und „Folge ich“",
-        "creator_artist_bio|Künstler*innen-Biografie": "Künstlerbiografie"
+        "creator_artist_bio|Künstler*innen-Biografie": "Künstlerbiografie",
+        "now_playing_bar_smart_shuffle_artist|Ähnlich wie der*die von dir gewählte Künstler*in": "Ähnlich wie der von dir gewählte Künstler",
+        "reinvent_free_suggested_song_explanation_artist|Möchtest du nur diese*n Künstler*in anhören?": "Möchtest du nur diesen Künstler anhören?",
+        "settings_allow_follows_title|Follower*innen zulassen": "Follower zulassen"
       }
     }
   ]
