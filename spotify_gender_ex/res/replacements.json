@@ -1,5 +1,5 @@
 {
-  "version": 50,
+  "version": 51,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -64,7 +64,8 @@
     "8.7.74.443",
     "8.7.82.94",
     "8.7.84.382",
-    "8.7.86.422"
+    "8.7.86.422",
+    "8.7.88.496"
   ],
   "files": [
     {
@@ -421,7 +422,11 @@
         "creator_artist_bio|Künstler*innen-Biografie": "Künstlerbiografie",
         "now_playing_bar_smart_shuffle_artist|Ähnlich wie der*die von dir gewählte Künstler*in": "Ähnlich wie der von dir gewählte Künstler",
         "reinvent_free_suggested_song_explanation_artist|Möchtest du nur diese*n Künstler*in anhören?": "Möchtest du nur diesen Künstler anhören?",
-        "settings_allow_follows_title|Follower*innen zulassen": "Follower zulassen"
+        "settings_allow_follows_title|Follower*innen zulassen": "Follower zulassen",
+        "artist_monthly_listeners|%1$s monatliche Hörer*innen": "%1$s monatliche Hörer",
+        "track_credit_role_performer|Interpret*in": "Interpret",
+        "track_credit_role_producer|Produzent*in": "Produzent",
+        "track_credit_role_writer|Texter*in": "Texter"
       }
     }
   ]
