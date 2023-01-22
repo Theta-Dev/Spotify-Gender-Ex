@@ -138,6 +138,9 @@ class GenderEx:
 
         Output file: GenderEx/tmp/app_out.apk
         """
+        # Apply necessary patches
+        self.patch_v8_8()
+
         click.echo('Rekompiliere nach ' + self.workdir.file_apkout)
         subprocess.run(['java', '-jar', self.file_apktool, 'b', '--use-aapt2',
                         self.workdir.dir_apk, '-o', self.workdir.file_apkout], check=True)
@@ -173,6 +176,25 @@ class GenderEx:
             else:
                 self.wait_for_enter('Enter drücken, um die Eingabe zu wiederholen.')
                 return self._get_missing_replacement(key, old)
+
+    def patch_v8_8(self):
+        """Apply patches to be able to recompile Spotify 8.8.0.0+ with apktool"""
+        if appstore.compare_versions(self.spotify_version, '8.8.0.0') >= 0:
+            click.echo('Wende v8.8-Patches an')
+            self._replace_in_file(os.path.join(self.workdir.dir_apk, 'AndroidManifest.xml'),
+                                  'android:localeConfig="@xml/locales_config"', '')
+            self._replace_in_file(os.path.join(self.workdir.dir_apk, 'res', 'values-v31', 'colors.xml'),
+                                  '@android:color', '@*android:color')
+
+    @staticmethod
+    def _replace_in_file(file, old: str, new: str):
+        with open(file, 'r', encoding='utf-8') as f:
+            text = f.read()
+
+        text = text.replace(old, new)
+
+        with open(file, 'w', encoding='utf-8') as f:
+            f.write(text)
 
     def get_spotify_store_version(self) -> str:
         if self.spotify_app:

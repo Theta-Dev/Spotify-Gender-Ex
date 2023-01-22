@@ -223,7 +223,7 @@ def check_app_file(app_url: str, headers: dict):
     except TypeError or ValueError:
         raise StoreException('Did not receive content length')
 
-    if file_type != 'application/vnd.android.package-archive':
+    if file_type != 'application/vnd.android.package-archive' and file_type != 'application/octet-stream':
         raise StoreException(f'Received file of type: {file_type}, no android app')
 
     if file_size < 1e6:
