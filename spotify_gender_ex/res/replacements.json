@@ -1,5 +1,5 @@
 {
-  "version": 51,
+  "version": 52,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -65,7 +65,8 @@
     "8.7.82.94",
     "8.7.84.382",
     "8.7.86.422",
-    "8.7.88.496"
+    "8.7.88.496",
+    "8.8.2.434"
   ],
   "files": [
     {
@@ -92,7 +93,9 @@
         "profile_followers_count/other|%1$d Follower*innen •": "%1$d Follower •",
         "profile_followers_count/one|%1$d Follower*in •": "%1$d Follower •",
         "profile_followers_count/other|%1$d Follower*innen": "%1$d Follower",
-        "profile_followers_count/one|%1$d Follower*in": "%1$d Follower"
+        "profile_followers_count/one|%1$d Follower*in": "%1$d Follower",
+        "sidedrawer_profilerow_followers_count/other|%1$d Follower*innen": "%1$d Follower",
+        "sidedrawer_profilerow_followers_count/one|%1$d Follower*in": "%1$d Follower"
       }
     },
     {
@@ -426,7 +429,10 @@
         "artist_monthly_listeners|%1$s monatliche Hörer*innen": "%1$s monatliche Hörer",
         "track_credit_role_performer|Interpret*in": "Interpret",
         "track_credit_role_producer|Produzent*in": "Produzent",
-        "track_credit_role_writer|Texter*in": "Texter"
+        "track_credit_role_writer|Texter*in": "Texter",
+        "invite_button_onboarding_tooltip|Lade Freund*innen in der Nähe ein, damit sie Songs zur Warteschlange hinzufügen und die Wiedergabe über den Lautsprecher steuern können.": "Lade Freunde in der Nähe ein, damit sie Songs zur Warteschlange hinzufügen und die Wiedergabe über den Lautsprecher steuern können.",
+        "options_menu_remove_follower|Follower*in entfernen": "Follower entfernen",
+        "settings_hide_followers_following_title|Follower*innen und Profile, denen du folgst": "Follower und Profile, denen du folgst"
       }
     }
   ]
