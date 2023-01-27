@@ -1,5 +1,5 @@
 {
-  "version": 52,
+  "version": 53,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -66,7 +66,8 @@
     "8.7.84.382",
     "8.7.86.422",
     "8.7.88.496",
-    "8.8.2.434"
+    "8.8.2.434",
+    "8.8.4.518"
   ],
   "files": [
     {
@@ -432,7 +433,8 @@
         "track_credit_role_writer|Texter*in": "Texter",
         "invite_button_onboarding_tooltip|Lade Freund*innen in der Nähe ein, damit sie Songs zur Warteschlange hinzufügen und die Wiedergabe über den Lautsprecher steuern können.": "Lade Freunde in der Nähe ein, damit sie Songs zur Warteschlange hinzufügen und die Wiedergabe über den Lautsprecher steuern können.",
         "options_menu_remove_follower|Follower*in entfernen": "Follower entfernen",
-        "settings_hide_followers_following_title|Follower*innen und Profile, denen du folgst": "Follower und Profile, denen du folgst"
+        "settings_hide_followers_following_title|Follower*innen und Profile, denen du folgst": "Follower und Profile, denen du folgst",
+        "private_follows_feedback|Die Liste mit deinen Follower*innen und Personen, denen du folgst, ist privat. Nur du kannst diese Infos sehen.": "Die Liste mit deinen Followern und Personen, denen du folgst, ist privat. Nur du kannst diese Infos sehen."
       }
     }
   ]
