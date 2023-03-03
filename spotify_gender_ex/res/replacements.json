@@ -1,5 +1,5 @@
 {
-  "version": 56,
+  "version": 57,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -70,7 +70,8 @@
     "8.8.4.518",
     "8.8.6.472",
     "8.8.8.548",
-    "8.8.10.582"
+    "8.8.10.582",
+    "8.8.14.575"
   ],
   "files": [
     {
@@ -446,7 +447,8 @@
         "jam_join_dialog_description|Lade Freund*innen ein, um in einer Jam Session gemeinsam Musik zu hören. Die Teilnehmer*innen sehen dein Profilbild und deinen Benutzernamen.": "Lade Freunde ein, um in einer Jam Session gemeinsam Musik zu hören. Die Teilnehmer sehen dein Profilbild und deinen Benutzernamen.",
         "jam_start_dialog_description|Ein Treffen mit Freund*innen ist die perfekte Gelegenheit für eine Jam Session. Du steuerst die Wiedergabe, aber alle Teilnehmer*innen können Songs zur Warteschlange hinzufügen.": "Ein Treffen mit Freunden ist die perfekte Gelegenheit für eine Jam Session. Du steuerst die Wiedergabe, aber alle Teilnehmer können Songs zur Warteschlange hinzufügen.",
         "jam_user_end_dialog_description|Möchtest du eine neue Jam Session starten? Du steuerst die Wiedergabe und die Teilnehmer*innen können gemeinsam auswählen, was gespielt wird.": "Möchtest du eine neue Jam Session starten? Du steuerst die Wiedergabe und die Teilnehmer können gemeinsam auswählen, was gespielt wird.",
-        "remove_follower_confirmation_dialog_body|Diese Person wird nicht darüber informiert, dass du sie aus deinen Follower*innen entfernt hast.": "Diese Person wird nicht darüber informiert, dass du sie aus deinen Followern entfernt hast."
+        "remove_follower_confirmation_dialog_body|Diese Person wird nicht darüber informiert, dass du sie aus deinen Follower*innen entfernt hast.": "Diese Person wird nicht darüber informiert, dass du sie aus deinen Followern entfernt hast.",
+        "guest_chips_content_description|Gäste und Moderator*innen der Folge": "Gäste und Moderatoren der Folge"
       }
     }
   ]
