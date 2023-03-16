@@ -1,5 +1,5 @@
 {
-  "version": 58,
+  "version": 59,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -72,7 +72,8 @@
     "8.8.8.548",
     "8.8.10.582",
     "8.8.14.575",
-    "8.8.16.615"
+    "8.8.16.615",
+    "8.8.18.509"
   ],
   "files": [
     {
@@ -454,7 +455,10 @@
         "blend_party_dialog_body|Ein Treffen mit Freund*innen ist die perfekte Gelegenheit für eine Jam Session. Du steuerst die Wiedergabe, aber alle Teilnehmer*innen können Songs zur Warteschlange hinzufügen.": "Ein Treffen mit Freunden ist die perfekte Gelegenheit für eine Jam Session. Du steuerst die Wiedergabe, aber alle Teilnehmer können Songs zur Warteschlange hinzufügen.",
         "context_menu_browse_artists|Künstler*innen anzeigen": "Künstler anzeigen",
         "context_menu_go_to_artist_radio|Zum Künstler*innen-Radio": "Zum Künstlerradio",
-        "offline_playable_cache_sort_artist|Künstler*in": "Künstler"
+        "offline_playable_cache_sort_artist|Künstler*in": "Künstler",
+        "search_start_subtitle_assisted_curation|Suche nach Künstler*innen, Songs und mehr.": "Suche nach Künstlern, Songs und mehr.",
+        "social_listening_participant_list_invite_notice_title_link_shared|Warten auf Freund*innen …": "Warten auf Freunde …",
+        "social_listening_subtitle_multi_output_in_session|Warten auf Freund*innen …": "Warten auf Freunde …"
       }
     }
   ]
