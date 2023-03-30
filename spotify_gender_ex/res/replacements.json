@@ -1,5 +1,5 @@
 {
-  "version": 60,
+  "version": 61,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -74,7 +74,8 @@
     "8.8.14.575",
     "8.8.16.615",
     "8.8.18.509",
-    "8.8.20.544"
+    "8.8.20.544",
+    "8.8.22.510"
   ],
   "files": [
     {
@@ -460,7 +461,10 @@
         "search_start_subtitle_assisted_curation|Suche nach Künstler*innen, Songs und mehr.": "Suche nach Künstlern, Songs und mehr.",
         "social_listening_participant_list_invite_notice_title_link_shared|Warten auf Freund*innen …": "Warten auf Freunde …",
         "social_listening_subtitle_multi_output_in_session|Warten auf Freund*innen …": "Warten auf Freunde …",
-        "creator_artist_bio|Informationen zum*zur Künstler*in": "Informationen zun Künstler"
+        "creator_artist_bio|Informationen zum*zur Künstler*in": "Informationen zun Künstler",
+        "content_desc_follow|Diesem*dieser Künstler*in folgen": "Diesem Künstler folgen",
+        "content_desc_open_artist_page|Seite des*der Künstler*in öffnen": "Seite des Künstlers öffnen",
+        "content_desc_unfollow|Diesem*dieser Künstler*in nicht mehr folgen": "Diesem Künstler nicht mehr folgen"
       }
     }
   ]
