@@ -1,5 +1,5 @@
 {
-  "version": 61,
+  "version": 62,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -75,7 +75,8 @@
     "8.8.16.615",
     "8.8.18.509",
     "8.8.20.544",
-    "8.8.22.510"
+    "8.8.22.510",
+    "8.8.26.408"
   ],
   "files": [
     {
@@ -464,7 +465,11 @@
         "creator_artist_bio|Informationen zum*zur Künstler*in": "Informationen zun Künstler",
         "content_desc_follow|Diesem*dieser Künstler*in folgen": "Diesem Künstler folgen",
         "content_desc_open_artist_page|Seite des*der Künstler*in öffnen": "Seite des Künstlers öffnen",
-        "content_desc_unfollow|Diesem*dieser Künstler*in nicht mehr folgen": "Diesem Künstler nicht mehr folgen"
+        "content_desc_unfollow|Diesem*dieser Künstler*in nicht mehr folgen": "Diesem Künstler nicht mehr folgen",
+        "podcast_qna_education_dialog_bullet_one|Der*die Podcaster*in kann deine Antworten auf Spotify veröffentlichen.": "Der Podcaster kann deine Antworten auf Spotify veröffentlichen.",
+        "podcastpaywalls_subscriber_podcast_dialog_body|\"Unterstütze die Show und erhalte Zugang zu allen Folgen plus zusätzlichem Content.\n\nWie das geht, erfährst du von dem*der Podcaster*in.\"": "\"Unterstütze die Show und erhalte Zugang zu allen Folgen plus zusätzlichem Content.\n\nWie das geht, erfährst du vom Podcaster.\"",
+        "settings_private_session_description|Verbirg deine Höraktivität vorübergehend vor deinen Follower*innen.": "Verbirg deine Höraktivität vorübergehend vor deinen Followern.",
+        "your_library_content_filter_on_tour_content_description|Auf Tour, nur Künstler*innen auf Tour anzeigen": "Auf Tour, nur Künstler auf Tour anzeigen"
       }
     }
   ]
