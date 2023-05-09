@@ -1,5 +1,5 @@
 {
-  "version": 62,
+  "version": 63,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -76,7 +76,8 @@
     "8.8.18.509",
     "8.8.20.544",
     "8.8.22.510",
-    "8.8.26.408"
+    "8.8.26.408",
+    "8.8.32.508"
   ],
   "files": [
     {
@@ -105,7 +106,9 @@
         "profile_followers_count/other|%1$d Follower*innen": "%1$d Follower",
         "profile_followers_count/one|%1$d Follower*in": "%1$d Follower",
         "sidedrawer_profilerow_followers_count/other|%1$d Follower*innen": "%1$d Follower",
-        "sidedrawer_profilerow_followers_count/one|%1$d Follower*in": "%1$d Follower"
+        "sidedrawer_profilerow_followers_count/one|%1$d Follower*in": "%1$d Follower",
+        "join_nearby_popup_title_fallback/other|Möchtest du dich %1$d weiteren Hörer*innen anschließen?": "Möchtest du dich %1$d weiteren Hörern anschließen?",
+        "join_nearby_popup_title_fallback/one|Möchtest du dich %1$d weiteren*weiterer Hörer*in anschließen?": "Möchtest du dich %1$d weiteren Hörern anschließen?"
       }
     },
     {
@@ -469,7 +472,10 @@
         "podcast_qna_education_dialog_bullet_one|Der*die Podcaster*in kann deine Antworten auf Spotify veröffentlichen.": "Der Podcaster kann deine Antworten auf Spotify veröffentlichen.",
         "podcastpaywalls_subscriber_podcast_dialog_body|\"Unterstütze die Show und erhalte Zugang zu allen Folgen plus zusätzlichem Content.\n\nWie das geht, erfährst du von dem*der Podcaster*in.\"": "\"Unterstütze die Show und erhalte Zugang zu allen Folgen plus zusätzlichem Content.\n\nWie das geht, erfährst du vom Podcaster.\"",
         "settings_private_session_description|Verbirg deine Höraktivität vorübergehend vor deinen Follower*innen.": "Verbirg deine Höraktivität vorübergehend vor deinen Followern.",
-        "your_library_content_filter_on_tour_content_description|Auf Tour, nur Künstler*innen auf Tour anzeigen": "Auf Tour, nur Künstler auf Tour anzeigen"
+        "your_library_content_filter_on_tour_content_description|Auf Tour, nur Künstler*innen auf Tour anzeigen": "Auf Tour, nur Künstler auf Tour anzeigen",
+        "join_nearby_popup_title_multiple_participants|Möchtest du dich %1$s und %2$d weiteren Hörer*innen anschließen?": "Möchtest du dich %1$s und %2$d weiteren Hörern anschließen?",
+        "library_sort_order_creator|Nach Creator*in": "Nach Creator",
+        "your_library_sort_order_creator|Nach Creator*in": "Nach Creator"
       }
     }
   ]
