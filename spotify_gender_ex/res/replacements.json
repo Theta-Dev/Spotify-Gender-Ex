@@ -107,7 +107,7 @@
         "profile_followers_count/one|%1$d Follower*in": "%1$d Follower",
         "sidedrawer_profilerow_followers_count/other|%1$d Follower*innen": "%1$d Follower",
         "sidedrawer_profilerow_followers_count/one|%1$d Follower*in": "%1$d Follower",
-        "join_nearby_popup_title_fallback/other|Möchtest du dich %1$d weiteren Hörer*innen anschließen?": "Möchtest du dich %1$d weiteren Hörern anschließen?",
+        "join_nearby_popup_title_fallback/other|Möchtest du dich %1$d weiteren Hörer*innen anschließen?": "Möchtest du dich %1$d weiteren Hörern anschließen?",
         "join_nearby_popup_title_fallback/one|Möchtest du dich %1$d weiteren*weiterer Hörer*in anschließen?": "Möchtest du dich %1$d weiteren Hörern anschließen?"
       }
     },
