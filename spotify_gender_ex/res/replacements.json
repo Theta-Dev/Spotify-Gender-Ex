@@ -1,5 +1,5 @@
 {
-  "version": 63,
+  "version": 64,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -77,7 +77,8 @@
     "8.8.20.544",
     "8.8.22.510",
     "8.8.26.408",
-    "8.8.32.508"
+    "8.8.32.508",
+    "8.8.40.470"
   ],
   "files": [
     {
@@ -475,7 +476,9 @@
         "your_library_content_filter_on_tour_content_description|Auf Tour, nur Künstler*innen auf Tour anzeigen": "Auf Tour, nur Künstler auf Tour anzeigen",
         "join_nearby_popup_title_multiple_participants|Möchtest du dich %1$s und %2$d weiteren Hörer*innen anschließen?": "Möchtest du dich %1$s und %2$d weiteren Hörern anschließen?",
         "library_sort_order_creator|Nach Creator*in": "Nach Creator",
-        "your_library_sort_order_creator|Nach Creator*in": "Nach Creator"
+        "your_library_sort_order_creator|Nach Creator*in": "Nach Creator",
+        "search_subtitle_artist|Künstler*in": "Künstler",
+        "tagged_section_header_title_artist|Empfohlene*r Künstler*in": "Empfohlener Künstler"
       }
     }
   ]
