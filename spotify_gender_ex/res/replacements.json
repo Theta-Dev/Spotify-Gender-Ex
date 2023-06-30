@@ -1,5 +1,5 @@
 {
-  "version": 64,
+  "version": 65,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -78,7 +78,8 @@
     "8.8.22.510",
     "8.8.26.408",
     "8.8.32.508",
-    "8.8.40.470"
+    "8.8.40.470",
+    "8.8.48.523"
   ],
   "files": [
     {
@@ -478,7 +479,10 @@
         "library_sort_order_creator|Nach Creator*in": "Nach Creator",
         "your_library_sort_order_creator|Nach Creator*in": "Nach Creator",
         "search_subtitle_artist|Künstler*in": "Künstler",
-        "tagged_section_header_title_artist|Empfohlene*r Künstler*in": "Empfohlener Künstler"
+        "tagged_section_header_title_artist|Empfohlene*r Künstler*in": "Empfohlener Künstler",
+        "artist_attribution_sheet_title|An diesem Song beteiligte Künstler*innen": "An diesem Song beteiligte Künstler",
+        "first_use_ts_dialog_message|Hier sind einige Regeln, die Creator*innen und Fans schützen sollen.": "Hier sind einige Regeln, die Creators und Fans schützen sollen.",
+        "ipl_volume_control_granted_for_participants|Alle Sessionteilnehmer*innen können die Lautstärke ändern.": "Alle Sessionteilnehmer können die Lautstärke ändern."
       }
     }
   ]
