@@ -1,5 +1,5 @@
 {
-  "version": 67,
+  "version": 68,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -81,7 +81,8 @@
     "8.8.40.470",
     "8.8.48.523",
     "8.8.50.466",
-    "8.8.52.458"
+    "8.8.52.458",
+    "8.8.54.481"
   ],
   "files": [
     {
@@ -487,7 +488,10 @@
         "ipl_volume_control_granted_for_participants|Alle Sessionteilnehmer*innen können die Lautstärke ändern.": "Alle Sessionteilnehmer können die Lautstärke ändern.",
         "settings_notice_at_collection_subtitle|Wichtig für Einwohner*innen bestimmter Bundesstaaten.": "Wichtig für Einwohner bestimmter Bundesstaaten.",
         "your_library_sort_menu_author|Autor*in": "Autor",
-        "your_library_sort_menu_creator|Creator*in": "Creator"
+        "your_library_sort_menu_creator|Creator*in": "Creator",
+        "settings_disable_recommendations_dialog_subtitle|Du erhältst dann keine personalisierten Empfehlungen mehr, z. B. neue Inhalte basierend auf deinem Geschmack, das Feature „Für dich aufgelegt“ und für dich zusammengestellte Playlists (wie „Dein Mix der Woche“ und „Dein Mixtape“). Du erhältst aber weiterhin Empfehlungen basierend auf den Künstler*innen und Shows, denen du folgst.": "Du erhältst dann keine personalisierten Empfehlungen mehr, z. B. neue Inhalte basierend auf deinem Geschmack, das Feature „Für dich aufgelegt“ und für dich zusammengestellte Playlists (wie „Dein Mix der Woche“ und „Dein Mixtape“). Du erhältst aber weiterhin Empfehlungen basierend auf den Künstlern und Shows, denen du folgst.",
+        "share_options_join_by_qrcode_subtitle|Teilnehmer*innen scannen diesen QR-Code, um deiner Gruppen-Session beizutreten.": "Teilnehmer scannen diesen QR-Code, um deiner Gruppen-Session beizutreten.",
+        "share_options_title|Teilnehmer*innen zur Gruppen-Session einladen": "Teilnehmer zur Gruppen-Session einladen"
       }
     }
   ]
