@@ -1,5 +1,5 @@
 {
-  "version": 69,
+  "version": 70,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -83,7 +83,8 @@
     "8.8.50.466",
     "8.8.52.458",
     "8.8.54.481",
-    "8.8.56.538"
+    "8.8.56.538",
+    "8.8.58.473"
   ],
   "files": [
     {
@@ -493,7 +494,11 @@
         "settings_disable_recommendations_dialog_subtitle|Du erhältst dann keine personalisierten Empfehlungen mehr, z. B. neue Inhalte basierend auf deinem Geschmack, das Feature „Für dich aufgelegt“ und für dich zusammengestellte Playlists (wie „Dein Mix der Woche“ und „Dein Mixtape“). Du erhältst aber weiterhin Empfehlungen basierend auf den Künstler*innen und Shows, denen du folgst.": "Du erhältst dann keine personalisierten Empfehlungen mehr, z. B. neue Inhalte basierend auf deinem Geschmack, das Feature „Für dich aufgelegt“ und für dich zusammengestellte Playlists (wie „Dein Mix der Woche“ und „Dein Mixtape“). Du erhältst aber weiterhin Empfehlungen basierend auf den Künstlern und Shows, denen du folgst.",
         "share_options_join_by_qrcode_subtitle|Teilnehmer*innen scannen diesen QR-Code, um deiner Gruppen-Session beizutreten.": "Teilnehmer scannen diesen QR-Code, um deiner Gruppen-Session beizutreten.",
         "share_options_title|Teilnehmer*innen zur Gruppen-Session einladen": "Teilnehmer zur Gruppen-Session einladen",
-        "join_asking_for_type_of_session_sheet_legal_text|Die Teilnehmer*innen der Session sehen deinen Benutzernamen, dein Profilbild und Songs, die basierend auf deinem Geschmacksprofil vorgeschlagen werden.": "Die Teilnehmer der Session sehen deinen Benutzernamen, dein Profilbild und Songs, die basierend auf deinem Geschmacksprofil vorgeschlagen werden."
+        "join_asking_for_type_of_session_sheet_legal_text|Die Teilnehmer*innen der Session sehen deinen Benutzernamen, dein Profilbild und Songs, die basierend auf deinem Geschmacksprofil vorgeschlagen werden.": "Die Teilnehmer der Session sehen deinen Benutzernamen, dein Profilbild und Songs, die basierend auf deinem Geschmacksprofil vorgeschlagen werden.",
+        "default_join_session_sheet_legal_text|Die Teilnehmer*innen der Session sehen deinen Benutzernamen, dein Profilbild und Songs, die basierend auf deinem Geschmacksprofil vorgeschlagen werden.": "Die Teilnehmer der Session sehen deinen Benutzernamen, dein Profilbild und Songs, die basierend auf deinem Geschmacksprofil vorgeschlagen werden.",
+        "invite_friends_with_tap_subtitle|Aktiviere Bluetooth und halte dann dein Smartphone an die der anderen Teilnehmer*innen, um derselben Session beizutreten.": "Aktiviere Bluetooth und halte dann dein Smartphone an die der anderen Teilnehmer, um derselben Session beizutreten.",
+        "social_listening_onboarding_host_info_message|Die Teilnehmer*innen der Session sehen deinen Benutzernamen, dein Profilbild und Songs, die basierend auf deinem Geschmacksprofil vorgeschlagen werden. Personen, die mit demselben WLAN verbunden sind, können Sessions starten oder ihnen beitreten. Tippe auf %1$s, um diese Einstellungen zu verwalten.": "Die Teilnehmer der Session sehen deinen Benutzernamen, dein Profilbild und Songs, die basierend auf deinem Geschmacksprofil vorgeschlagen werden. Personen, die mit demselben WLAN verbunden sind, können Sessions starten oder ihnen beitreten. Tippe auf %1$s, um diese Einstellungen zu verwalten.",
+        "tap_phones_subtitle|Halte dein Smartphone an die deiner Freund*innen, um sie zu einer Gruppen-Session einzuladen oder selbst beizutreten.": "Halte dein Smartphone an die deiner Freunde, um sie zu einer Gruppen-Session einzuladen oder selbst beizutreten."
       }
     }
   ]
