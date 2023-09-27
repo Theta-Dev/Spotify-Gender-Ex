@@ -1,5 +1,5 @@
 {
-  "version": 70,
+  "version": 71,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -84,7 +84,8 @@
     "8.8.52.458",
     "8.8.54.481",
     "8.8.56.538",
-    "8.8.58.473"
+    "8.8.58.473",
+    "8.8.72.630"
   ],
   "files": [
     {
@@ -498,7 +499,28 @@
         "default_join_session_sheet_legal_text|Die Teilnehmer*innen der Session sehen deinen Benutzernamen, dein Profilbild und Songs, die basierend auf deinem Geschmacksprofil vorgeschlagen werden.": "Die Teilnehmer der Session sehen deinen Benutzernamen, dein Profilbild und Songs, die basierend auf deinem Geschmacksprofil vorgeschlagen werden.",
         "invite_friends_with_tap_subtitle|Aktiviere Bluetooth und halte dann dein Smartphone an die der anderen Teilnehmer*innen, um derselben Session beizutreten.": "Aktiviere Bluetooth und halte dann dein Smartphone an die der anderen Teilnehmer, um derselben Session beizutreten.",
         "social_listening_onboarding_host_info_message|Die Teilnehmer*innen der Session sehen deinen Benutzernamen, dein Profilbild und Songs, die basierend auf deinem Geschmacksprofil vorgeschlagen werden. Personen, die mit demselben WLAN verbunden sind, können Sessions starten oder ihnen beitreten. Tippe auf %1$s, um diese Einstellungen zu verwalten.": "Die Teilnehmer der Session sehen deinen Benutzernamen, dein Profilbild und Songs, die basierend auf deinem Geschmacksprofil vorgeschlagen werden. Personen, die mit demselben WLAN verbunden sind, können Sessions starten oder ihnen beitreten. Tippe auf %1$s, um diese Einstellungen zu verwalten.",
-        "tap_phones_subtitle|Halte dein Smartphone an die deiner Freund*innen, um sie zu einer Gruppen-Session einzuladen oder selbst beizutreten.": "Halte dein Smartphone an die deiner Freunde, um sie zu einer Gruppen-Session einzuladen oder selbst beizutreten."
+        "tap_phones_subtitle|Halte dein Smartphone an die deiner Freund*innen, um sie zu einer Gruppen-Session einzuladen oder selbst beizutreten.": "Halte dein Smartphone an die deiner Freunde, um sie zu einer Gruppen-Session einzuladen oder selbst beizutreten.",
+        "assisted_curation_card_subtitle_social_recommendations|Basierend auf den Vorlieben aller Teilnehmer*innen und den Songs in diesem Jam.": "Basierend auf den Vorlieben aller Teilnehmer und den Songs in diesem Jam.",
+        "assisted_curation_search_artist|Künstler*in": "Künstler",
+        "assisted_curation_search_filter_artists|Künstler*innen": "Künstler",
+        "blend_party_dialog_body|Ein Treffen mit Freund*innen ist die perfekte Gelegenheit für einen Jam. Du steuerst die Wiedergabe, aber alle Teilnehmer*innen können Songs zur Warteschlange hinzufügen.": "Ein Treffen mit Freunden ist die perfekte Gelegenheit für einen Jam. Du steuerst die Wiedergabe, aber alle Teilnehmer können Songs zur Warteschlange hinzufügen.",
+        "collection_artist_title|Künstler*innen-Sammlung": "Künstlersammlung",
+        "content_feed_tip_box_rebranding_subtitle|Willkommen bei „Following“. Hier findest du die Neuerscheinungen deiner Lieblingscreator*innen.": "Willkommen bei „Following“. Hier findest du die Neuerscheinungen deiner Lieblingscreators.",
+        "ipl_volume_control_granted_for_participants|Alle Sessionteilnehmer*innen können die Lautstärke des Lautsprechers ändern.": "Alle Sessionteilnehmer können die Lautstärke des Lautsprechers ändern.",
+        "jam_join_dialog_description|Lade Freund*innen ein, um in einem Jam gemeinsam Musik zu hören. Die Teilnehmer*innen sehen dein Profilbild und deinen Benutzernamen.": "Lade Freunde ein, um in einem Jam gemeinsam Musik zu hören. Die Teilnehmer sehen dein Profilbild und deinen Benutzernamen.",
+        "jam_start_dialog_description|Ein Treffen mit Freund*innen ist die perfekte Gelegenheit für einen Jam. Du steuerst die Wiedergabe, aber alle Teilnehmer*innen können Songs zur Warteschlange hinzufügen.": "Ein Treffen mit Freunden ist die perfekte Gelegenheit für einen Jam. Du steuerst die Wiedergabe, aber alle Teilnehmer können Songs zur Warteschlange hinzufügen.",
+        "jam_user_end_dialog_description|Möchtest du einen neuen Jam starten? Du steuerst die Wiedergabe und die Teilnehmer*innen können gemeinsam auswählen, was gespielt wird.": "Möchtest du einen neuen Jam starten? Du steuerst die Wiedergabe und die Teilnehmer können gemeinsam auswählen, was gespielt wird.",
+        "listening_party_card_description|Interagiere mit deinem*deiner Lieblingskünstler*in und lausche Behind-the-Scenes-Storys auf einer besonderen Party, live gehostet von %1$s.": "Interagiere mit deinem Lieblingskünstler und lausche Behind-the-Scenes-Storys auf einer besonderen Party, live gehostet von %1$s.",
+        "profile_list_see_all_artists|Alle Künstler*innen anzeigen": "Alle Künstler anzeigen",
+        "share_options_title|Freund*innen einladen und gemeinsam hören": "Freunde einladen und gemeinsam hören",
+        "share_options_title_jam|Lade Freund*innen zu deinem Jam ein": "Lade Freunde zu deinem Jam ein",
+        "social_listening_onboarding_host_info_message_jam|Die Teilnehmer*innen des Jams sehen deinen Benutzernamen, dein Profilbild und Songs, die basierend auf deinem Geschmacksprofil vorgeschlagen werden. Personen, die mit demselben WLAN verbunden sind, können Jams starten oder ihnen beitreten. Tippe auf %1$s, um diese Einstellungen zu verwalten.": "Die Teilnehmer des Jams sehen deinen Benutzernamen, dein Profilbild und Songs, die basierend auf deinem Geschmacksprofil vorgeschlagen werden. Personen, die mit demselben WLAN verbunden sind, können Jams starten oder ihnen beitreten. Tippe auf %1$s, um diese Einstellungen zu verwalten.",
+        "social_listening_onboarding_host_subtitle_message|Lade Freund*innen ein, gemeinsam mit dir Musik zu hören und in Echtzeit Songs zur Warteschlange hinzuzufügen, egal wo sie sind.": "Lade Freunde ein, gemeinsam mit dir Musik zu hören und in Echtzeit Songs zur Warteschlange hinzuzufügen, egal wo sie sind.",
+        "social_listening_onboarding_host_title_group_session|Starte eine Session – Musik klingt mit Freund*innen noch besser": "Starte eine Session – Musik klingt mit Freunden noch besser",
+        "social_listening_onboarding_host_title_jam|Starte einen Jam – Musik klingt mit Freund*innen noch besser": "Starte einen Jam – Musik klingt mit Freunden noch besser",
+        "social_listening_participant_list_invite_notice_title|Freund*innen einladen": "Freunde einladen",
+        "social_listening_start_session_dialog_subtitle|Lade Freund*innen ein, um gemeinsam Songs auszuwählen und anzuhören. Die Teilnehmer*innen des Jams sehen dein Profilbild, deinen Benutzernamen und Songs, die basierend auf deinem Geschmacksprofil vorgeschlagen werden.": "Lade Freunde ein, um gemeinsam Songs auszuwählen und anzuhören. Die Teilnehmer des Jams sehen dein Profilbild, deinen Benutzernamen und Songs, die basierend auf deinem Geschmacksprofil vorgeschlagen werden.",
+        "social_radar_onboarding_dialog_ask_friends_description|Bitte deine Freund*innen, in der Spotify App Bluetooth zu aktivieren: Einstellungen > Tippen und beitreten.": "Bitte deine Freunde, in der Spotify App Bluetooth zu aktivieren: Einstellungen > Tippen und beitreten."
       }
     }
   ]
