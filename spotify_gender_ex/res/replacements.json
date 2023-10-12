@@ -1,5 +1,5 @@
 {
-  "version": 72,
+  "version": 73,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -86,7 +86,8 @@
     "8.8.56.538",
     "8.8.58.473",
     "8.8.72.630",
-    "8.8.74.652"
+    "8.8.74.652",
+    "8.8.76.667"
   ],
   "files": [
     {
@@ -524,7 +525,12 @@
         "social_radar_onboarding_dialog_ask_friends_description|Bitte deine Freund*innen, in der Spotify App Bluetooth zu aktivieren: Einstellungen > Tippen und beitreten.": "Bitte deine Freunde, in der Spotify App Bluetooth zu aktivieren: Einstellungen > Tippen und beitreten.",
         "content_feed_header_subtitle_following|Hier findest du die neuesten Inhalte der Künstler*innen und Podcasts, denen du folgst.": "Hier findest du die neuesten Inhalte der Künstler und Podcasts, denen du folgst.",
         "content_feed_tip_box_rebranding_subtitle|Willkommen im Follow-Feed. Hier findest du die Neuerscheinungen deiner Lieblingscreator*innen.": "Willkommen im Follow-Feed. Hier findest du die Neuerscheinungen deiner Lieblingscreators.",
-        "settings_disable_recommendations_dialog_subtitle|Du erhältst dann keine personalisierten Empfehlungen mehr, z. B. neue Inhalte basierend auf deinem Geschmack, das DJ-Feature und für dich zusammengestellte Playlists (wie „Dein Mix der Woche“ und „Dein Mixtape“). Du erhältst aber weiterhin Empfehlungen basierend auf den Künstler*innen und Shows, denen du folgst.": "Du erhältst dann keine personalisierten Empfehlungen mehr, z. B. neue Inhalte basierend auf deinem Geschmack, das DJ-Feature und für dich zusammengestellte Playlists (wie „Dein Mix der Woche“ und „Dein Mixtape“). Du erhältst aber weiterhin Empfehlungen basierend auf den Künstlern und Shows, denen du folgst."
+        "settings_disable_recommendations_dialog_subtitle|Du erhältst dann keine personalisierten Empfehlungen mehr, z. B. neue Inhalte basierend auf deinem Geschmack, das DJ-Feature und für dich zusammengestellte Playlists (wie „Dein Mix der Woche“ und „Dein Mixtape“). Du erhältst aber weiterhin Empfehlungen basierend auf den Künstler*innen und Shows, denen du folgst.": "Du erhältst dann keine personalisierten Empfehlungen mehr, z. B. neue Inhalte basierend auf deinem Geschmack, das DJ-Feature und für dich zusammengestellte Playlists (wie „Dein Mix der Woche“ und „Dein Mixtape“). Du erhältst aber weiterhin Empfehlungen basierend auf den Künstlern und Shows, denen du folgst.",
+        "social_listening_v2_onboarding_host_description|Lade Freund*innen ein, gemeinsam mit dir Musik zu hören und in Echtzeit Songs zur Warteschlange hinzuzufügen, egal wo sie sind.": "Lade Freunde ein, gemeinsam mit dir Musik zu hören und in Echtzeit Songs zur Warteschlange hinzuzufügen, egal wo sie sind.",
+        "social_listening_v2_onboarding_host_info_jam|Die Teilnehmer*innen des Jams sehen deinen Benutzernamen, dein Profilbild und Songs, die basierend auf deinem Geschmacksprofil vorgeschlagen werden. Personen, die mit demselben WLAN verbunden sind, können Jams starten oder ihnen beitreten.": "Die Teilnehmer des Jams sehen deinen Benutzernamen, dein Profilbild und Songs, die basierend auf deinem Geschmacksprofil vorgeschlagen werden. Personen, die mit demselben WLAN verbunden sind, können Jams starten oder ihnen beitreten.",
+        "social_listening_v2_onboarding_host_subtitle|Musik klingt mit Freund*innen noch besser": "Musik klingt mit Freunden noch besser",
+        "user_stats_artist_popularity_graph_tooltip|Die Popularität eines*einer Künstler*in wird anhand der Anzahl der aktuellen Streams auf Spotify im Vergleich zu anderen Künstler*innen gemessen.": "Die Popularität eines Künstlers wird anhand der Anzahl der aktuellen Streams auf Spotify im Vergleich zu anderen Künstlern gemessen.",
+        "user_stats_details_title_top_artists|Top-Künstler*innen": "Top-Künstler"
       }
     }
   ]
