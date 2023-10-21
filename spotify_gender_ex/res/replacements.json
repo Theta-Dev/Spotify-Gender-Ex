@@ -1,5 +1,5 @@
 {
-  "version": 73,
+  "version": 74,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -87,7 +87,8 @@
     "8.8.58.473",
     "8.8.72.630",
     "8.8.74.652",
-    "8.8.76.667"
+    "8.8.76.667",
+    "8.8.80.599"
   ],
   "files": [
     {
@@ -118,7 +119,9 @@
         "sidedrawer_profilerow_followers_count/other|%1$d Follower*innen": "%1$d Follower",
         "sidedrawer_profilerow_followers_count/one|%1$d Follower*in": "%1$d Follower",
         "join_nearby_popup_title_fallback/other|Möchtest du dich %1$d weiteren Hörer*innen anschließen?": "Möchtest du dich %1$d weiteren Hörern anschließen?",
-        "join_nearby_popup_title_fallback/one|Möchtest du dich %1$d weiteren*weiterer Hörer*in anschließen?": "Möchtest du dich %1$d weiteren Hörern anschließen?"
+        "join_nearby_popup_title_fallback/one|Möchtest du dich %1$d weiteren*weiterer Hörer*in anschließen?": "Möchtest du dich %1$d weiteren Hörern anschließen?",
+        "profile_recently_played_subtitle/other|%1$,d Follower*innen": "%1$,d Follower",
+        "profile_recently_played_subtitle/one|%1$,d Follower*in": "%1$,d Follower"
       }
     },
     {
@@ -530,7 +533,12 @@
         "social_listening_v2_onboarding_host_info_jam|Die Teilnehmer*innen des Jams sehen deinen Benutzernamen, dein Profilbild und Songs, die basierend auf deinem Geschmacksprofil vorgeschlagen werden. Personen, die mit demselben WLAN verbunden sind, können Jams starten oder ihnen beitreten.": "Die Teilnehmer des Jams sehen deinen Benutzernamen, dein Profilbild und Songs, die basierend auf deinem Geschmacksprofil vorgeschlagen werden. Personen, die mit demselben WLAN verbunden sind, können Jams starten oder ihnen beitreten.",
         "social_listening_v2_onboarding_host_subtitle|Musik klingt mit Freund*innen noch besser": "Musik klingt mit Freunden noch besser",
         "user_stats_artist_popularity_graph_tooltip|Die Popularität eines*einer Künstler*in wird anhand der Anzahl der aktuellen Streams auf Spotify im Vergleich zu anderen Künstler*innen gemessen.": "Die Popularität eines Künstlers wird anhand der Anzahl der aktuellen Streams auf Spotify im Vergleich zu anderen Künstlern gemessen.",
-        "user_stats_details_title_top_artists|Top-Künstler*innen": "Top-Künstler"
+        "user_stats_details_title_top_artists|Top-Künstler*innen": "Top-Künstler",
+        "disable_recommendations_sheet_youstillget_text_1|Empfehlungen basierend auf Künstler*innen und Shows, denen du folgst": "Empfehlungen basierend auf Künstlern und Shows, denen du folgst",
+        "join_the_conversation_description|Nimm in der Webversion an dieser Listening Party teil – für ein maximal interaktives Erlebnis. Hör Musik, unterhalte dich mit deinen Lieblingskünstler*innen und erfahre, wie es hinter den Kulissen zugeht.": "Nimm in der Webversion an dieser Listening Party teil – für ein maximal interaktives Erlebnis. Hör Musik, unterhalte dich mit deinen Lieblingskünstlern und erfahre, wie es hinter den Kulissen zugeht.",
+        "profile_recently_played_section_footer|Alle Künstler*innen anzeigen": "Alle Künstler anzeigen",
+        "profile_recently_played_section_title|Kürzlich gehörte Künstler*innen": "Kürzlich gehörte Künstler",
+        "track_credit_row_accessibility_action_click|Seite des*der Künstler*in öffnen": "Seite des Künstlers öffnen"
       }
     }
   ]
