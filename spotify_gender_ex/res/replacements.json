@@ -1,5 +1,5 @@
 {
-  "version": 74,
+  "version": 75,
   "spotify_versions": [
     "8.5.89.901",
     "8.5.93.445",
@@ -88,7 +88,8 @@
     "8.8.72.630",
     "8.8.74.652",
     "8.8.76.667",
-    "8.8.80.599"
+    "8.8.80.599",
+    "8.8.82.634"
   ],
   "files": [
     {
@@ -538,7 +539,11 @@
         "join_the_conversation_description|Nimm in der Webversion an dieser Listening Party teil – für ein maximal interaktives Erlebnis. Hör Musik, unterhalte dich mit deinen Lieblingskünstler*innen und erfahre, wie es hinter den Kulissen zugeht.": "Nimm in der Webversion an dieser Listening Party teil – für ein maximal interaktives Erlebnis. Hör Musik, unterhalte dich mit deinen Lieblingskünstlern und erfahre, wie es hinter den Kulissen zugeht.",
         "profile_recently_played_section_footer|Alle Künstler*innen anzeigen": "Alle Künstler anzeigen",
         "profile_recently_played_section_title|Kürzlich gehörte Künstler*innen": "Kürzlich gehörte Künstler",
-        "track_credit_row_accessibility_action_click|Seite des*der Künstler*in öffnen": "Seite des Künstlers öffnen"
+        "track_credit_row_accessibility_action_click|Seite des*der Künstler*in öffnen": "Seite des Künstlers öffnen",
+        "google_meet_join_session_dialog_subtitle|Indem du diesem Jam beitrittst, bestätigst du, diese Integration nur für <b><u>persönliche, nicht kommerzielle Zwecke</u> zu verwenden.</b> Es gelten die <b><font color=\\\"#1ED760\\\"><a style=\\\"text-decoration:none\\\" href=\\\"https://www.spotify.com/legal\\\">Nutzungsbedingungen</font></b></a>.": "Indem du diesem Jam beitrittst, bestätigst du, diese Integration nur für <b><u>persönliche, nicht kommerzielle Zwecke</u> zu verwenden.</b> Es gelten die <b><font color=\\\"#1ED760\\\"><a style=\\\"text-decoration:none\\\" href=\\\"https://www.spotify.com/legal\\\">Nutzungsbedingungen</font></b></a>.",
+        "google_meet_start_session_dialog_headphones_indicator|Verwende Kopfhörer, um ein Echo zu vermeiden. Teilnehmer*innen in der Gruppe und alle im selben WLAN können dein Profilbild und deinen Benutzernamen sehen.": "Verwende Kopfhörer, um ein Echo zu vermeiden. Teilnehmer in der Gruppe und alle im selben WLAN können dein Profilbild und deinen Benutzernamen sehen.",
+        "google_meet_start_session_dialog_subtitle|Indem du diesen Jam startest, stimmst du zu, diese Integration nur für <b><u>persönliche, nicht kommerzielle Zwecke</u> zu verwenden.</b> Es gelten die <b><font color=\\\"#1ED760\\\"><a style=\\\"text-decoration:none\\\" href=\\\"https://www.spotify.com/legal\\\">Nutzungsbedingungen</font></b></a>.": "Indem du diesen Jam startest, stimmst du zu, diese Integration nur für <b><u>persönliche, nicht kommerzielle Zwecke</u> zu verwenden.</b> Es gelten die <b><font color=\\\"#1ED760\\\"><a style=\\\"text-decoration:none\\\" href=\\\"https://www.spotify.com/legal\\\">Nutzungsbedingungen</font></b></a>.",
+        "recommendations_disabled_upsell_sheet_yourestillgetting_text_1|Empfehlungen basierend auf Künstler*innen und Shows, denen du folgst": "Empfehlungen basierend auf Künstlern und Shows, denen du folgst"
       }
     }
   ]
