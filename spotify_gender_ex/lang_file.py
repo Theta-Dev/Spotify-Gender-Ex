@@ -3,10 +3,13 @@ import re
 from typing import Callable, List, Optional
 from xml.etree import ElementTree
 
-GENDER_REGEX = re.compile(r'''(\*[iIrRnN])|(\([rRnN]\))|([a-zß-ü][IRN])|(:[iIrRnN](?!nternal))''')
+GENDER_REGEX = re.compile(
+    r'''(\*[iIrRnN])|(\([rRnN]\))|([a-zß-ü][IRN])|(:[iIrRnN](?!nternal))''')
+CLEANR = re.compile('<.*?>|&([a-z0-9]+|#[0-9]{1,6}|#x[0-9a-f]{1,6});')
 
 
 class LangFile:
+
     def __init__(self, path: str):
         """Open language file at the given path and read its contents"""
         self.path = path
@@ -22,7 +25,8 @@ class LangFile:
         """
         self._walk_tree(self.tree.getroot(), [], fun_repl)
 
-    def _walk_tree(self, tree_node: ElementTree.Element, key_list: List[str], fun_repl: Callable):
+    def _walk_tree(self, tree_node: ElementTree.Element, key_list: List[str],
+                   fun_repl: Callable):
         """
         Internal recursive function for walking through the XML tree
         and replacing language values.
@@ -56,5 +60,10 @@ class LangFile:
         self.tree.write(file, xml_declaration=True, encoding='utf-8')
 
 
+def cleanhtml(raw_html: str) -> str:
+    """Language files may contain HTML tags which have to be removed before checking"""
+    return re.sub(CLEANR, '', raw_html)
+
+
 def is_suspicious(string: str) -> bool:
-    return bool(GENDER_REGEX.search(string))
+    return bool(GENDER_REGEX.search(cleanhtml(string)))
